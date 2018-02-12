@@ -1,0 +1,873 @@
+/* .left-menu
+{
+  float: left;
+  display: inline-flex;
+  list-style: none;
+  padding: 0.6%;
+  width: 100%;
+}
+
+.left-menu li
+{
+margin-left: 1%;
+}
+
+.small-navbar
+{
+  width: 100%;
+  background-color: red;
+  height: 7.5vh;
+} */
+
+
+
+@font-face {
+          font-family: 'FireontheMountain';
+          src: url('Fire on the Mountain.ttf');
+        }
+
+body
+{
+   font-family: 'Lato', sans-serif;
+   width: 100%;
+   height: 100%;
+   overflow-x: hidden;
+}
+
+
+img
+{
+display: block;
+width: 100%;
+height: auto;
+}
+
+nav
+{
+  background-color: rgba(0,0,0,0.20);
+display: grid;
+grid-template-columns: 10vw 90vw;
+  /* justify-content: space-between; */
+z-index: 1000;
+  position: fixed;
+  width: 100vw;
+}
+
+.nav_links
+{
+  font-family: 'consolas',sans-serif !important;
+  font-size: 1.4rem;
+  z-index: 1000;
+  white-space: nowrap;
+  display: inline-grid;
+  grid-template-columns: auto auto auto auto auto auto;
+  grid-column-gap: 1rem;
+  align-items: center;
+  overflow-x: auto;
+  width: 90vw ;
+}
+
+.nav_links::-webkit-scrollbar {
+    width: 0px;  /* remove scrollbar space */
+    background: transparent;  /* optional: just make scrollbar invisible */
+}
+/* optional: show position indicator in red */
+
+nav a
+{
+  text-decoration: none;
+    text-align: center;
+  color:#fff;
+  cursor: pointer;
+}
+
+header{
+  height:100vh;
+  display:flex;
+  align-items:center;
+  color:#fff;
+}
+
+.logo
+{
+  /* grid-column: 1; */
+  /* background-image: url("");
+  background-position: center;
+  background-size: contain;
+  background-repeat: no-repeat; */
+  height: 11vh;
+  display: grid;
+  align-items: center;
+  z-index: 1000;
+
+}
+
+.logo img
+{
+  display: block;
+  /* height: 8vh;
+  width: 2vw; */
+  /* position: absolute;
+  top: -3vh;
+  left: -2vw; */
+  /* height: 35vh;
+  width: 20vw; */
+}
+
+/* .2 {
+  grid-column: 2;
+}
+
+.3 {
+  grid-column: 3;
+} */
+
+.fullscreen-video-wrap{
+  /* position:absolute; */
+  position:absolute;
+top:0;
+left:0;
+  width:100%;
+  height:100vh;
+  overflow:hidden;
+}
+
+.fullscreen-video-wrap video{
+  min-height:100%;
+  min-width:100%;
+}
+
+.header-overlay{
+  height:100vh;
+  width:100%;
+  position: absolute;
+  top:0;
+  left:0;
+  z-index:1;
+  background:#225470;
+  opacity:0.50;
+}
+
+/* .4 {
+  grid-column: 4;
+}
+
+.5 {
+  grid-column: 5;
+}
+
+.6
+{
+  grid-column: 6;
+}
+
+.7
+{
+  grid-column: 7;
+} */
+
+
+
+
+.slider_content
+{
+/* position: absolute; */
+grid-template-columns: auto auto auto;
+grid-template-rows: auto;
+grid-column-gap: 0px;
+align-content: center;
+display: grid;
+z-index: 1000;
+/* top: 50vh;
+left:28vw; */
+align-items: center;
+text-align: center;
+margin: auto;
+
+}
+
+
+
+.slider_content input
+{
+width: 100%;
+width: 30vw;
+font-size: 1.2rem;
+height: 6vh;
+min-height: 35px;
+padding: 4px 50px;
+
+}
+
+.dropbtn
+{
+  background-color: #d4d4d4;
+    height: 6vh;
+    min-height: 35px;
+  color: #4a4a4a;
+  padding: 4px 40px;
+  font-size: 1.5rem;
+  border: none;
+  cursor:pointer;
+  border-radius: 4% 0px 0px 4%;
+}
+
+.dropdown
+{
+  position: relative;
+}
+
+.dropdown-content
+{
+  display: none;
+  font-size: 1.2rem;
+  position: absolute;
+  background-color: #bb9666;
+  box-shadow: 0px 8px 16px 0 rgb(0,0,0,0.2);
+  z-index: 1;
+}
+
+.dropdown-content a
+{
+    color: #fff;
+    padding: 12px 35px;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown:hover .dropdown-content
+{
+  display: block;
+}
+
+.srch_btn
+{
+  background-color: #bb9666;
+  height: 6vh;
+  min-height: 35px;
+  color:white;
+  padding: 4px 35px;
+  font-size: 1.5rem;
+  border: none;
+  cursor:pointer;
+  border-radius: 0px 4% 4% 0px;
+}
+
+.menu-header
+{
+  display: grid;
+  grid-template-columns: auto auto auto;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+
+.menu-heading
+{
+  color:#c47919;
+  font-family: 'FireontheMountain' !important;
+  font-size: 7rem;
+}
+
+.line
+{
+  margin-top: 2%;
+  width: 7vw;
+  height: 3vw;
+}
+
+.description
+{
+  text-align: center;
+    color:#c47919;
+  font-size: 1.6rem;
+
+}
+
+.food-items
+{
+  display: grid;
+  grid-template-columns: repeat(4,1fr);
+  grid-row-gap:1rem;
+  background-color: #f0f0f0;
+}
+
+.food-item img
+{
+  height: 35vh;
+}
+
+.food-item-titles
+{
+  display: grid;
+  grid-template-columns: repeat(2,1fr);
+  grid-row-gap: 1rem;
+align-content: center;
+padding: 10px;
+
+}
+
+.food-item-title
+{
+  text-transform: uppercase;
+  font-family: 'Calibri',sans-serif;
+  font-weight: bold;
+  font-size: 1.2rem;
+  white-space: nowrap;
+}
+
+.food-item-price, .order_btn
+{
+  justify-self:end;
+  font-weight: bold;
+}
+
+ .order_btn a
+ {
+color: white;
+text-decoration: none;
+ }
+
+.food-item-content
+{
+  color:#7f7f7f;
+}
+
+.order_btn
+{
+background-color: #c4792e;
+padding: 4%;
+border-radius: 5%;
+color: #fff;
+font-size: 0.6rem;
+
+}
+
+.happy_hrs
+{
+  display: grid;
+  grid-template-columns: repeat(2,1fr);
+  grid-template-rows: auto;
+  grid-gap: 2rem;
+  padding-right:2%;
+  /* align-items: center; */
+  /* justify-content: space-around; */
+}
+
+.hpy_items
+{
+  display: grid;
+grid-rows: repeat(5,1fr);
+  align-content: space-evenly;
+}
+.hpy_img  img
+{
+  height: 100% !important;
+}
+
+.food_title_price
+{
+  display: grid;
+  grid-template-columns: repeat(2,1fr);
+  grid-template-rows: auto auto auto auto auto;
+  justify-content: space-between;
+  grid-row-gap: 1rem;
+   /* align-content: space-evenly; */
+}
+
+.hpy_hrs_heading
+{
+  text-transform: uppercase;
+  display: inline-block;
+  letter-spacing: 2px;
+  font-size: 2.2rem;
+  /* font-weight: 590; */
+  color:#141414;
+  border-bottom: 1.7px solid #222;
+  padding-bottom: 1%;
+  margin-bottom: 3%;
+  margin-top: 3%;
+  /* text-decoration: underline; */
+}
+
+.food_price, .food_order
+{
+  justify-self:end;
+  font-weight: bold;
+}
+
+.food_title
+{
+  text-transform: uppercase;
+  font-family: 'Calibri',sans-serif;
+  font-weight: bold;
+  font-size: 1.1rem;
+
+  /* white-space: nowrap; */
+}
+
+
+
+.food-content
+{
+  color:#7f7f7f;
+}
+
+.food_order
+{
+  background-color: #c4792e;
+  padding: 2%;
+  border-radius: 4%;
+  color: #fff;
+  font-size: 0.6rem;
+  cursor: pointer;
+}
+
+.menu-wrapper
+{
+  margin-top: 5% !important;
+}
+
+
+.featured
+{
+  padding-right: 0% !important;
+  padding-left: 2% !important;
+}
+
+/* footer css started */
+
+.footer_wrapper
+{
+  display: grid;
+  grid-template-columns: 2fr 1fr 2fr 1fr;
+  grid-column-gap: 2rem;
+  justify-content: space-evenly;
+  align-items: center;
+  background-color: #262626;
+  color: #fff;
+  padding-left: 2%;
+  padding-right: 2%;
+  padding-bottom: 0px;
+  padding-top: 2%;
+  margin-top: 8%;
+  margin-bottom: 0px;
+  padding-bottom: 0px;
+}
+
+.footer_wrapper a
+{
+
+  color:#fff;
+}
+
+.sm_links
+{
+  text-align: center;
+}
+
+.policy_link
+{
+  display: inline-grid;
+  grid-template-rows: repeat(3,1fr);
+/* align-content: space-around; */
+/* align-self: start; */
+grid-row-gap: 1rem;
+/* align-items: center; */
+}
+
+.f_logo img
+{
+  height: 20vh;
+  width: 13vw;
+}
+
+.payment_img
+{
+  width: 20vw;
+  height: 30vh;
+}
+
+.desc_div
+{
+  display: grid;
+  grid-template-rows: repeat(3,1fr);
+    grid-row-gap: 1rem;
+}
+
+.food_icon
+{
+  width: 8% !important;
+  height: 8% !important;
+  display: inline;
+}
+
+.other
+{
+  width: 4% !important;
+  height: 4% !important;
+  display: inline;
+}
+/* Mobile css */
+@media only screen and (max-width: 768px) {
+
+    /* For mobile phones: */
+    .food-items
+    {
+      display: grid;
+      grid-template-columns: 1fr;
+    }
+
+    .slider_content
+    {
+      grid-template-columns: auto;
+      grid-template-rows: auto auto auto;
+      grid-row-gap: 2rem;
+    }
+
+    .slider_content input
+    {
+      width: 100%;
+    }
+
+    .menu-heading
+    {
+      font-size: 5rem !important;
+    }
+
+    .footer_wrapper
+    {
+      display: none;
+    }
+
+    .product_wrapper
+    {
+      padding-top: 18vh !important;
+      display: grid !important;
+      grid-template-columns: auto !important;
+      grid-template-rows: repeat(2,1fr) !important;
+      grid-row-gap: 5rem !important;
+      /* grid-column-gap: 5rem; */
+      align-content: center !important;
+    }
+
+}
+/* Mobile css ends */
+
+
+
+
+
+
+
+
+
+
+
+/* Product detail page css starts */
+.product_main
+{
+  margin-left: 10%;
+  margin-right: 10%;
+}
+
+.product_wrapper
+{
+  padding-top: 18vh;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-row-gap: 5rem;
+  grid-column-gap: 5rem;
+  align-content: center;
+  /* justify-content: space-around;
+  padding-left: 5%;
+  padding-right: 5%; */
+  /* margin-left: 10%;
+  margin-right: 10%; */
+}
+
+.prod_desc
+{
+  display: grid;
+  grid-row-gap: 1rem;
+  grid-template-rows: repeat(auto-fit,1fr);
+  align-content: space-around;
+
+}
+
+.product_img img
+{
+  height: 100%; !important;
+  border-radius: 0.2%;
+  box-shadow: 5px 5px 2px grey;
+}
+
+.prod_title
+{
+  font-size: 2.6rem;
+}
+
+.prod_price
+{
+  color:#bb9666;
+  font-size:1.6rem;
+}
+
+.prod_long_desc
+{
+  font-size: 1.3rem;
+  line-height: 4vh;
+  letter-spacing: 2px;
+}
+
+.add_to_cart input
+{
+    width: 60px;
+    height: 45px;
+    padding: 1%;
+    /* padding: 3px 10px; */
+}
+
+
+.add_to_cart div
+{
+  display: inline-block;
+  color: #fff;
+  background-color: #000;
+    /* height: 45px; */
+    cursor: pointer;
+    padding: 1rem;
+}
+
+.prod_short_desc
+{
+  font-size:1.2rem;
+  font-weight: 400;
+}
+
+.old_reviews, .add_review
+{
+  margin-top: 4%;
+  margin-left: 0px;
+  margin-right: 0px;
+  display: inline-block;
+  border: 0.1rem groove grey;
+  /* border-bottom: 0.01rem; */
+  padding: 0.7rem;
+  cursor: pointer;
+  /* display: none; */
+  /* font-weight: bold; */
+}
+
+
+.add_review
+{
+  background-color: #898989;
+}
+
+.old_box, .give_box
+{
+  width: 100%;
+  border: 1px solid black;
+  padding:3%;
+  height: 100%;
+  min-height: 200px;
+  display: none;
+}
+
+.display
+{
+    display: block !important;
+}
+
+.review_heading
+{
+  font-size: 2rem;
+  margin-right: 2%;
+}
+
+.large
+{
+  font-size: 1.4rem;
+}
+
+.checked
+{
+  color:orange;
+}
+
+.review_overall
+{
+  margin-top:2%;
+  font-size:1.1rem;
+}
+
+
+.review_overall_stars
+{
+  display: grid;
+  grid-template-columns: 1fr 2fr 1fr;
+  grid-gap: 2rem;
+  margin-top: 2%;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.stars
+{
+  display: grid;
+  grid-template-rows: repeat(3,1fr);
+  grid-row-gap: 1rem;
+  align-content: space-around;
+  align-items: center;
+}
+
+
+.bars
+{
+  display: grid;
+  grid-template-rows: repeat(3,1fr);
+  grid-row-gap: 1rem;
+  align-content: space-around;
+  align-items: center;
+}
+
+.people_no
+{
+  display: grid;
+  grid-template-rows: repeat(3,1fr);
+  grid-row-gap: 1rem;
+  align-content: space-around;
+  align-items: center;
+}
+
+.bar1
+{
+  width: 20%;
+  height: 2vh;
+  background-color: orange;
+}
+.bar2
+{
+  width: 80%;
+  height: 2vh;
+  background-color: orange;
+}
+.bar3
+{
+  width: 80%;
+  height: 2vh;
+  background-color: orange;
+}
+.bar4
+{
+  width: 80%;
+  height: 2vh;
+    background-color: orange;
+}
+.bar5
+{
+  width: 80%;
+  height: 2vh;
+  background-color: orange;
+}
+
+.people_ratings
+{
+  margin-top: 3%;
+}
+.name_pic_rating
+{
+  display: inline-grid;
+  grid-template-columns: 1fr 2fr;
+  grid-column-gap: 1rem;
+  align-items: center;
+}
+
+.customer_name
+{
+  font-size: 1.2rem;
+}
+
+.name_pic_rating img
+{
+    width: 75%;
+}
+
+
+.customer_rating
+{
+  margin-top: 5%;
+}
+
+.customer_comment
+{
+  margin-top: 1%;
+}
+
+.review_grid
+{
+  display: grid;
+  grid-template-rows: auto auto auto auto;
+  grid-row-gap: 1rem;
+}
+
+.reviewing_box
+{
+  width: 95%;
+}
+
+
+.related_products
+{
+margin-top: 5%;
+}
+
+.related_products h1
+{
+  font-size: 1.8rem;
+}
+
+.related_products_slide hr
+{
+    color: #bababa;
+    background-color: #bababa;
+    height: 0.1rem;
+}
+
+.related_products_slide
+{
+  display: grid;
+  grid-template-columns: repeat(3,1fr);
+  grid-gap: 2rem;
+  justify-content: evenly;
+  margin-top: 3%;
+  text-align: center;
+}
+
+.product_title
+{
+  margin-top: 2%;
+  font-size: 1.6rem;
+}
+
+.product_price
+{
+  margin-top: 2%;
+  font-size: 2rem;
+  color: #f4b462;
+}
+
+.product_order_btn
+{
+  margin-top: 3%;
+  padding: 2%;
+  color: white;
+  margin: auto;
+  width: 50%;
+  background-color: #c4792e;
+  font-size: 1.1rem;
+}
+
+/* Product detail page css ends */
