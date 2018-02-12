@@ -1,6 +1,6 @@
 module.exports = {
 
-  database: 'mongodb://root:abc123@ds037095.mongolab.com:37095/ecommerce',
-  port: 3000,
+  database: '',
+  port: process.env.PORT || 5000,
   secretKey: "Arash@$@!#@"
 }
