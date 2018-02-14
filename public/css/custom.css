@@ -48,7 +48,7 @@ nav
 display: grid;
 grid-template-columns: 10vw 90vw;
   /* justify-content: space-between; */
-z-index: 1000;
+z-index: 999;
   position: fixed;
   width: 100vw;
 }
@@ -177,7 +177,7 @@ grid-template-rows: auto;
 grid-column-gap: 0px;
 align-content: center;
 display: grid;
-z-index: 1000;
+z-index: 999;
 /* top: 50vh;
 left:28vw; */
 align-items: center;
@@ -253,6 +253,14 @@ padding: 4px 50px;
   border-radius: 0px 4% 4% 0px;
 }
 
+
+
+.home_main
+{
+  margin-left: 5%;
+  margin-right: 5%;
+}
+
 .menu-header
 {
   display: grid;
@@ -323,10 +331,15 @@ padding: 10px;
   font-weight: bold;
 }
 
- .order_btn a
+ /* .order_btn a
  {
 color: white;
 text-decoration: none;
+ } */
+
+ .order_btn
+ {
+   cursor: pointer;
  }
 
 .food-item-content
@@ -871,3 +884,129 @@ margin-top: 5%;
 }
 
 /* Product detail page css ends */
+
+
+
+
+/* The side navigation menu */
+.sidenav {
+    height: 100%; /* 100% Full-height */
+    width: 0; /* 0 width - change this with JavaScript */
+    position: fixed; /* Stay in place */
+    z-index: 1000; /* Stay on top */
+    top: 0; /* Stay at the top */
+    right: 0;
+    background-color: #ffffff; /* White*/
+    overflow-x: hidden; /* Disable horizontal scroll */
+    padding-top: 40px; /* Place content 60px from the top */
+    transition: 0.5s; /* 0.5 second transition effect to slide in the sidenav */
+}
+
+/* The navigation menu links */
+/* .sidenav a {
+    padding: 8px 8px 8px 32px;
+    text-decoration: none;
+    font-size: 25px;
+    color: #818181;
+    display: block;
+    transition: 0.3s;
+} */
+
+/* When you mouse over the navigation links, change their color */
+.sidenav a:hover {
+    color: #f1f1f1;
+}
+
+/* Position and style the close button (top right corner) */
+/* .sidenav .closebtn {
+    position: absolute;
+    top: 0;
+    right: 25px;
+    font-size: 36px;
+    margin-left: 50px;
+    color: black;
+    z-index: 1000;
+} */
+
+/* Style page content - use this if you want to push the page content to the right when you open the side navigation */
+#main {
+    transition: margin-right .5s;
+    /* padding: 20px; */
+}
+
+/* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */
+@media screen and (max-height: 450px) {
+    .sidenav {padding-top: 15px;}
+    .sidenav a {font-size: 18px;}
+}
+
+
+
+/* Cart */
+.cart_order
+{
+  display: grid;
+  grid-template-columns: auto auto;
+  grid-gap: 1rem;
+  align-items: center;
+  justify-content:space-between;
+  margin-top: 2rem;
+  font-size: 1.2rem;
+
+}
+
+.fa-times
+{
+  font-size: 0.6rem;
+  color: #bb9666;
+}
+
+
+.cart_order input
+{
+  width: 2vw;
+  font-size: 1rem;
+  height: 4vh;
+  min-height: 25px;
+  color:#bb9666;
+  border-color: #bb9666;
+  text-align: center;
+  border-width: thin;
+  /* padding: 4px 50px; */
+}
+
+.food_icon_cart
+{
+  width: 15% !important;
+  height: 15% !important;
+  display: inline;
+}
+
+.cart_order_close, .cart_order_price
+{
+  display: grid;
+  justify-content: end;
+}
+
+.cart_header_title
+{
+  font-size: 1.5rem;
+  color: #525556;
+}
+
+.cart_close
+{
+  cursor: pointer;
+}
+
+.cart_order_place
+{
+  background-color: #bb9666;
+  padding: 1rem;
+  margin: auto;
+  margin-top: 2rem;
+text-align: center;
+font-size: 1.3rem;
+color: #fff;
+border-radius: 3%;
+}
