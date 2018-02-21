@@ -105,8 +105,12 @@ router.post('/add-food',upload.single('prodImg'), function(req, res, next) {
           prodDesc: req.body.prodDesc,
           prodImg: req.file.path,
           serve: req.body.serve,
-          vegPrice: req.body.vegPrice,
-          nonVegPrice: req.body.nonVegPrice
+          price: req.body.price,
+          fullPrice: req.body.nonVegPrice,
+          nonVeg: req.body.nonVeg,
+          veg: req.body.veg,
+          mainSection1: req.body.mainSection1,
+          mainSection2: req.body.mainSection2
         });
         product
           .save()
