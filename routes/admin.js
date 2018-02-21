@@ -52,6 +52,18 @@ router.get('/categories', function(req, res, next) {
 });
 
 
+router.get('/product/:id', function(req, res, next) {
+  Product.findById({ _id: req.params.id }, function(err, product) {
+    if (err) return res.status(500).json({err});
+    else
+    {
+      res.status(201).json({product});
+    }
+
+  });
+});
+
+
 router.post('/add-category', function(req, res, next) {
   var category = new Category();
   category.name = req.body.name;
@@ -66,7 +78,7 @@ router.post('/add-category', function(req, res, next) {
     else
     {
     // req.flash('success', 'Successfully added a category');
-    return res.json('Category Saved');
+    return res.status(201).json('Category Saved');
    }
   });
 });
@@ -123,7 +135,7 @@ router.post('/add-food',upload.single('prodImg'), function(req, res, next) {
                 _id: result._id,
                 request: {
                   type: "GET",
-                  url: "http://localhost:3000/products/" + result._id
+                  url: "http://deliveryking123.herokuapp.com/product/" + result._id
                 }
               }
             });
