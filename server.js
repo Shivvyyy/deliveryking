@@ -25,7 +25,7 @@ mongoose.connect(secret.database, function(err) {
 
 //Intiating static folder
 app.use(express.static(__dirname + '/public'));
-
+app.use(express.static(__dirname + '/uploaded_images'));
 app.use(morgan('dev'));
 
 

@@ -48,7 +48,9 @@ xhr.onload = function (e) {
 
               div += ' <div class="food-item">';
               div +=  '<a href="foods"><a href="foods">';
-              div +=  '<img src="../img/food_items/1.jpg">';
+
+
+              div +=  '<img src="'+product.prodImg+'">';
 
 
               div +=   '</a></a>';
