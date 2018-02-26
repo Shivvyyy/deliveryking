@@ -2,7 +2,10 @@ var router = require('express').Router();
 var Category = require('../models/category');
 var Product = require('../models/product');
 var async = require('async');
+var async = require('async');
 const multer = require('multer');
+
+
 
 const storage = multer.diskStorage({
   destination: function(req, file, cb) {
@@ -46,7 +49,7 @@ router.get('/categories', function(req, res, next) {
       return next(err);
     }
 
-    return res.json(categories);
+    return res.status(201).json(categories);
 });
 
 });
@@ -67,6 +70,7 @@ router.get('/product/:id', function(req, res, next) {
 router.post('/add-category', function(req, res, next) {
   var category = new Category();
   category.name = req.body.name;
+  category.desc = req.body.desc;
 
   category.save(function(err) {
     if (err)
@@ -115,6 +119,7 @@ router.post('/add-food',upload.single('prodImg'), function(req, res, next) {
           name: req.body.name,
           category: category,
           prodDesc: req.body.prodDesc,
+          prodItemDesc: req.body.prodItemDesc,
           prodImg: req.file.path,
           serve: req.body.serve,
           price: req.body.price,
@@ -154,11 +159,112 @@ router.post('/add-food',upload.single('prodImg'), function(req, res, next) {
 
 
 
+// router.get('/', function(req, res, next) {
+//
+//   var categoryProducts = {};
+//
+//
+// async.waterfall([
+//
+//
+// function(callback)
+// {
+//   Category
+//     .find()
+//     .exec(function(err, categories) {
+//       if (err)
+//       {
+//         console.log(err);
+//       }
+//       else
+//       {
+//         callback(null,categories);
+//       }
+//     });
+//
+// },
+//
+//
+// function(categories,callback)
+// {
+//
+// // async.forEach(categories,function(category,index){
+// // // console.log(category._id);
+// // Product
+// //   .find({ category: category._id})
+// //   .populate('category')
+// //   .exec(function(err, products) {
+// //     if (err)
+// //     {
+// //       // res.status(500).json({error:err});
+// //       console.log('error happened');
+// //     }
+// //     else {
+// //
+// //       categoryProducts.category_name = products;
+// //       // console.log(categoryProducts);
+// //       console.log(category.name);
+// //       console.log(index);
+// //     }
+// //
+// //   });
+// //
+// // });
+//
+//
+// async.eachSeries(categories, function (category, callback) {
+//   console.log(category.name);
+//   callback(); // Alternatively: callback(new Error());
+// }, function (err) {
+//   if (err) { throw err; }
+//   callback(null,categoryProducts);
+// });
+//
+//
+// },
+//
+// function(categoryProducts, callback)
+// {
+//   console.log('Shivy here');
+//   res.status(201).json({categoryProducts});
+// }
+//
+//
+// ]);
+//
+//
+// });
 
 
+router.get('/products/:id/:limit', function(req, res, next) {
+
+  Product
+    .find({ category: req.params.id })
+    .populate('category')
+    .limit(parseInt(req.params.limit))
+    .exec(function(err, products) {
+      if (err) return next(err);
+      // res.render('main/category', {
+      //   products: products
+      // });
+      res.status(201).json(products);
+    });
+
+});
 
 
-
-
+router.get('/allProducts/:id/:skip', function(req, res, next) {
+Product
+  .find({ category: req.params.id })
+  .skip(parseInt(req.params.skip))
+  .populate('category')
+  .exec(function(err, products) {
+    if (err) return next(err);
+    // res.render('main/category', {
+    //   products: products
+    // });
+    res.status(201).json(products);
+  });
+});
 
 module.exports = router;
