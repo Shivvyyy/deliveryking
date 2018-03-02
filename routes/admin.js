@@ -2,7 +2,6 @@ var router = require('express').Router();
 var Category = require('../models/category');
 var Product = require('../models/product');
 var async = require('async');
-var async = require('async');
 const multer = require('multer');
 
 
@@ -54,17 +53,6 @@ router.get('/categories', function(req, res, next) {
 
 });
 
-
-router.get('/product/:id', function(req, res, next) {
-  Product.findById({ _id: req.params.id }, function(err, product) {
-    if (err) return res.status(500).json({err});
-    else
-    {
-      res.status(201).json({product});
-    }
-
-  });
-});
 
 
 router.post('/add-category', function(req, res, next) {

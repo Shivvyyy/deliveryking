@@ -29,6 +29,7 @@ app.use(express.static(__dirname + '/uploaded_images'));
 app.use(morgan('dev'));
 
 
+
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
@@ -39,6 +40,15 @@ app.use(session({
   secret: secret.secretKey,
   store: new MongoStore({ url: secret.database, autoReconnect: true})
 }));
+
+
+//cart
+// app.use(function(req,res,next){
+//    req.locals.cart = [];
+//    res.locals.cart = [];
+//    console.log(res.locals.cart);
+//    next();
+// });
 
 app.use(flash());
 

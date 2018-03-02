@@ -2,18 +2,7 @@
 
 
 <!-- Container-->
-<!-- <div class="container">
-  <header class="small-navbar">
-    <ul class="left-menu">
-      <li>Corporate Ordering</li>
-      <li>Download App</li>
-    </ul>
-    <ul class="right-menu">
-      <li>85236852315</li>
-      <li>Log in </li>
-    </ul>
-  </header>
-</div> -->
+
 
 
 <header>
@@ -56,6 +45,7 @@
   <br/>
   <hr/>
 
+  <div class="cartOrders">
 
   <div class="cart_order">
     <div class="cart_order_title">
@@ -162,6 +152,8 @@
 
   </div>
 
+</div>
+
   <div class="cart_order_place">
     Place Order
   </div>
@@ -171,8 +163,8 @@
 <!-- Use any element to open the sidenav -->
 
 <main class="home_main" id="main">
-
-    <div class="menu-wrapper" id="oven">
+<div id="home_main">
+    <!-- <div class="menu-wrapper" id="oven">
       <div class="menu-header">
       <div class="line">
         <img src = "../img/line2.png"/>
@@ -707,8 +699,12 @@
           </div>
         </div>
       </div>
-    </div>
+    </div> -->
+</div>
 
+<div class="loader">
+  <img src="../img/loader.gif" alt="loader">
+</div>
 
     <div class="featured_happy_wrapper">
       <div class="happy_hrs">
@@ -836,6 +832,132 @@
       </div>
 
 </main>
+
+
+
+<script>
+document.addEventListener("DOMContentLoaded", function(event) {
+
+//
+// alert("DOM fully loaded and parsed");
+
+
+var xhr = new XMLHttpRequest();
+xhr.open("GET", "/categories", true);
+xhr.onload = function (e) {
+  document.querySelector(".loader").style.display = "block";
+  if (xhr.readyState === 4) {
+    if (xhr.status === 201) {
+        categoriesResponse = JSON.parse(xhr.response);
+        console.log(categoriesResponse)
+          var htmlText =  document.getElementById('home_main');
+          while (htmlText.firstChild) htmlText.removeChild(htmlText.firstChild);
+
+      categoriesResponse.forEach(function(category)
+    {
+      // alert(category._id)
+        var div = '';
+      var xhr = new XMLHttpRequest();
+      xhr.open("GET", "/products/"+category._id+'/4', true);
+      xhr.onload = function (e) {
+        if (xhr.readyState === 4) {
+          if (xhr.status === 201) {
+            var response = JSON.parse(xhr.response);
+            console.log(response);
+
+            div += '<div class="menu-wrapper" id="'+response[0].category.name+'">';
+            div += '<div class="menu-header">';
+            div += '<div class="line">';
+            div +=  '<img src = "../img/line2.png"/>';
+            div +=  '</div>';
+            div +=  '<h1 class="menu-heading">'+response[0].category.name+'</h1>';
+            div +=  '<div class="line">';
+            div +=  '<img src = "../img/line.png"/>';
+            div += '        </div>  </div>';
+            if(response[0].category.desc)
+            div += '<div class="description">'+response[0].category.desc+'</div><br/> <br/>';
+            else
+            div += '<div class="description">Chef Made</div><br/> <br/>';
+
+                div += '  <div class="food-items">';
+
+            response.forEach(function(product,index){
+
+                  console.log(index)
+
+              div += ' <div class="food-item">';
+              div +=  '<a href="/food/'+product._id+'">';
+
+
+              div +=  '<img src="'+product.prodImg+'">';
+
+
+              div +=   '</a>';
+              div +=  '<div class="food-item-titles">';
+              div +=  '<div class="food-item-title"><span>';
+              if(product.nonVeg)
+              div += '<img src="../img/non-veg-icon.png" class="food_icon">';
+              else
+              div += '<img src="../img/veg-icon.png" class="food_icon">';
+              div +=  product.name+'</span> </div>';
+              div +=  '<div class="food-item-price">Rs. '+product.price+'</div>';
+              div +=    '  <div class="food-item-content">Aloo/Mushroom/Water</div>';
+              var sessionCart = JSON.parse(sessionStorage.getItem("cart"));
+                var productId = "'"+product._id+"'";
+                var check = false;
+                  if(sessionCart!==null)
+                  {
+              sessionCart.items.some(function(productCart,index){
+                // console.log(productCart._id);
+                if(productCart._id==product._id)
+                {
+                  div += '<div id="input_div" class="shivy_move">';
+                  var input_shivy = product._id+'shivy';
+                  div += '<input type="text" value="'+productCart.quantity+'" id="'+input_shivy+'">';
+                  div +=  '<input type="button" value="-" id="moins" onclick="minus('+productId+')">';
+                  div += '<input type="button" value="+" id="plus" onclick="plus('+productId+')">';
+                  div += '</div>';
+                  check = true;
+                  return true;
+                // alert(id);
+              }
+            });
+          }
+            if(!check) div +=  '<div class="order_btn" onclick="openNav('+productId+',this);">ORDER</div>';
+              div +=  '</div>';
+              div +=   '</div>';
+
+            });
+
+
+            div += '</div></div>';
+
+            htmlText.innerHTML += div;
+
+          } else {
+            console.error(xhr.statusText);
+          }
+        }
+      };
+      xhr.onerror = function (e) {
+        console.error(xhr.statusText);
+      };
+      xhr.send(null);
+
+    });
+    } else {
+      console.error(xhr.statusText);
+    }
+  }
+    document.querySelector(".loader").style.display = "none";
+};
+xhr.onerror = function (e) {
+  console.error(xhr.statusText);
+};
+xhr.send(null);
+
+});
+</script>
 
 
 <!-- Footer -->

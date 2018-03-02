@@ -3,32 +3,33 @@
 <main class="product_main">
 <div class="product_wrapper">
   <div class="product_img">
-    <img src="../img/test_prod.jpg" alt="">
+    <img src="../<%= product.prodImg %>" alt="">
   </div>
   <div class="prod_desc">
     <div class="prod_title">
-      <h1>Dahi Anjeer Kebab</h1>
+      <h1><%= product.name %></h1>
     </div>
     <div class="prod_price">
-    INR 250rs.
+    INR <%= product.price %>rs.
     </div>
     <div class="prod_long_desc">
-    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+      <%=product %>
+      <%= product.prodDesc %>
     </div>
     <div class="add_to_cart">
-      <input type="number" value="1"/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<div>ADD TO CART</div>
+      <input type="number" min="1" value="1"/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<div>ADD TO CART</div>
     </div>
     <div class="prod_short_desc">
-      Category: South-India<br/><br/>
-      Serve   : 2 Persons
+      Category: <%= product.category.name %><br/><br/>
+      Serve   : <%= product.serve %> Persons
     </div>
   </div>
 </div>
 <div class="reviews">
-<div class="old_reviews" onclick="change_box('old_reviews','old_box','give_box');">
+<div class="old_review" id="old_review" onclick="change_box('old_review');">
   Description
 </div>
-<div class="add_review" onclick="change_box('add_review','give_box','old_box');">
+<div class="add_review" id="add_review" onclick="change_box('add_review');">
   Give Review
 </div>
 <div class="old_box display" id="old_box">
@@ -372,3 +373,30 @@
 </div>
 
 </main>
+
+
+
+<script type="text/JavaScript">
+//Change review box
+function change_box(what_box)
+{
+
+
+  if(what_box=='old_review')
+  {
+    alert("here");
+  document.getElementById('old_review').style.background='#898989';
+  document.getElementById('add_review').style.background='#fff';
+  document.getElementById('old_box').classList.add("display");
+  document.getElementById('give_box').classList.remove("display");
+}
+else
+{
+  alert("here2");
+  document.getElementById('add_review').style.background='#898989';
+  document.getElementById('old_review').style.background='#fff';
+  document.getElementById('old_box').classList.remove("display");
+  document.getElementById('give_box').classList.add("display");
+}
+}
+</script>
