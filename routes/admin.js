@@ -89,9 +89,7 @@ router.post('/add-food',upload.single('prodImg'), function(req, res, next) {
       .exec(function(err, category) {
         if (err)
         {
-          res.status(500).json({
-            error: err
-          });
+        return next(err);
         }
         else
         {
