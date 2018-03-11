@@ -3,37 +3,38 @@
 
 <!-- Container-->
 
-
+<img src="../img/add_to_cart.png" class="shopping_cart" />
 
 <header>
 
 
   <div class="slider_content">
-    <div class="dropdown">
+    <!-- <div class="dropdown">
       <button class="dropbtn">City <span class="fa fa-caret-down"></span></button>
       <div class="dropdown-content">
         <a href="#">Delhi</a>
         <a href="#">Noida</a>
         <a href="#">Gurgaon</a>
       </div>
-    </div>
+    </div> -->
 
-    <div class="input-field">
-      <input type="text" placeholder="Enter Your Location"/>
+    <div class="input-field autocomplete">
+      <input type="text" id="myInput" placeholder="Search Your Food" autocomplete="off"/>
     </div>
 
     <div class="search_button">
-      <button class="srch_btn">Search</button>
+      <button class="srch_btn" id="search_btn" onclick="searchProd(this);">Search</button>
     </div>
   </div>
 
 
   <div class="fullscreen-video-wrap">
 
-   <video src="../video/dK-slider_video.mp4" autoplay="" loop="" muted>
+   <!-- <video src="../video/dK-slider_video.mp4" autoplay="" loop="" muted> -->
+   <img src= "../img/hero_img.jpg" class="hero_img" />
  </video>
  </div>
-  <div class="header-overlay"></div>
+  <!-- <div class="header-overlay"></div> -->
 </header>
 
 <div id="mySidenav" class="sidenav">
@@ -56,7 +57,7 @@
     </div>
     <div class="cart_order_quantity">
       <div id="input_div">
-        <input type="text" value="1" id="count">
+        <input type="text" value="1" id="count" disabled>
         <input type="button" value="-" id="moins" onclick="minus()">
         <input type="button" value="+" id="plus" onclick="plus()">
      </div>
@@ -163,7 +164,135 @@
 <!-- Use any element to open the sidenav -->
 
 <main class="home_main" id="main">
-<div id="home_main">
+
+  <div class="featured_happy_wrapper">
+    <div class="happy_hrs">
+      <div class="hpy_img">
+        <img src="../img/happy_hrs.jpg">
+      </div>
+      <div class="hpy_items">
+    <h1><span class="hpy_hrs_heading">Happy Hours</span></h1>
+
+<div class="food_title_price">
+    <div class="food_title">
+      <span><img src="../img/non-veg-icon.png" class="food_icon other"> Mushroom Mutter</span>
+    </div>
+    <div class="food_price">
+      Rs 250
+    </div>
+    <div class="food-content">Aloo/Mushroom/Water</div>
+    <div class="food_order">ORDER</div>
+  </div>
+  <div class="food_title_price">
+      <div class="food_title">
+        <span><img src="../img/veg-icon.png" class="food_icon other"> Mushroom Mutter</span>
+      </div>
+      <div class="food_price">
+          Rs 250
+      </div>
+      <div class="food-content">Aloo/Mushroom/Water</div>
+      <div class="food_order">ORDER</div>
+    </div>
+    <div class="food_title_price">
+        <div class="food_title">
+        <span><img src="../img/veg-icon.png" class="food_icon other"> Mushroom Mutter</span>
+        </div>
+        <div class="food_price">
+            Rs 250
+        </div>
+        <div class="food-content">Aloo/Mushroom/Water</div>
+        <div class="food_order">ORDER</div>
+      </div>
+      <div class="food_title_price">
+          <div class="food_title">
+          <span><img src="../img/veg-icon.png" class="food_icon other"> Mushroom Mutter</span>
+          </div>
+          <div class="food_price">
+              Rs 250
+          </div>
+          <div class="food-content">Aloo/Mushroom/Water</div>
+          <div class="food_order">ORDER</div>
+        </div>
+      <div class="food_title_price">
+            <div class="food_title">
+            <span><img src="../img/veg-icon.png" class="food_icon other"> Mushroom Mutter</span>
+            </div>
+            <div class="food_price">
+                Rs 250
+            </div>
+            <div class="food-content">Aloo/Mushroom/Water</div>
+            <div class="food_order">ORDER</div>
+          </div>
+      </div>
+    </div>
+
+    <!-- Featured wrapper -->
+
+    <div class="happy_hrs featured">
+
+      <div class="hpy_items">
+    <h1><span class="hpy_hrs_heading">Featured Items</span></h1>
+
+<div class="food_title_price">
+    <div class="food_title">
+    <span><img src="../img/non-veg-icon.png" class="food_icon other"> Mushroom Mutter</span>
+    </div>
+    <div class="food_price
+    ">
+      Rs 250
+    </div>
+    <div class="food-content">Aloo/Mushroom/Water</div>
+    <div class="food_order">ORDER</div>
+  </div>
+  <div class="food_title_price">
+      <div class="food_title">
+      <span><img src="../img/non-veg-icon.png" class="food_icon other"> Mushroom Mutter</span>
+      </div>
+      <div class="food_price">
+          Rs 250
+      </div>
+      <div class="food-content">Aloo/Mushroom/Water</div>
+      <div class="food_order">ORDER</div>
+    </div>
+    <div class="food_title_price">
+        <div class="food_title">
+        <span><img src="../img/non-veg-icon.png" class="food_icon other"> Mushroom Mutter</span>
+        </div>
+        <div class="food_price">
+            Rs 250
+        </div>
+        <div class="food-content">Aloo/Mushroom/Water</div>
+        <div class="food_order">ORDER</div>
+      </div>
+      <div class="food_title_price">
+          <div class="food_title">
+        <span><img src="../img/non-veg-icon.png" class="food_icon other"> Mushroom Mutter</span>
+          </div>
+          <div class="food_price">
+              Rs 250
+          </div>
+          <div class="food-content">Aloo/Mushroom/Water</div>
+          <div class="food_order">ORDER</div>
+        </div>
+      <div class="food_title_price">
+            <div class="food_title">
+            <span><img src="../img/veg-icon.png" class="food_icon other"> Mushroom Mutter</span>
+            </div>
+            <div class="food_price">
+                Rs 250
+            </div>
+            <div class="food-content">Aloo/Mushroom/Water</div>
+            <div class="food_order">ORDER</div>
+          </div>
+      </div>
+      <div class="hpy_img">
+        <img src="../img/happy_hrs.jpg">
+      </div>
+    </div>
+</div>
+
+<div class="" id="home_mains">
+</div>
     <!-- <div class="menu-wrapper" id="oven">
       <div class="menu-header">
       <div class="line">
@@ -700,136 +829,13 @@
         </div>
       </div>
     </div> -->
-</div>
+
 
 <div class="loader">
   <img src="../img/loader.gif" alt="loader">
 </div>
 
-    <div class="featured_happy_wrapper">
-      <div class="happy_hrs">
-        <div class="hpy_img">
-          <img src="../img/happy_hrs.jpg">
-        </div>
-        <div class="hpy_items">
-      <h1><span class="hpy_hrs_heading">Happy Hours</span></h1>
 
-  <div class="food_title_price">
-      <div class="food_title">
-        <span><img src="../img/non-veg-icon.png" class="food_icon other"> Mushroom Mutter</span>
-      </div>
-      <div class="food_price">
-        Rs 250
-      </div>
-      <div class="food-content">Aloo/Mushroom/Water</div>
-      <div class="food_order">ORDER</div>
-    </div>
-    <div class="food_title_price">
-        <div class="food_title">
-          <span><img src="../img/veg-icon.png" class="food_icon other"> Mushroom Mutter</span>
-        </div>
-        <div class="food_price">
-            Rs 250
-        </div>
-        <div class="food-content">Aloo/Mushroom/Water</div>
-        <div class="food_order">ORDER</div>
-      </div>
-      <div class="food_title_price">
-          <div class="food_title">
-          <span><img src="../img/veg-icon.png" class="food_icon other"> Mushroom Mutter</span>
-          </div>
-          <div class="food_price">
-              Rs 250
-          </div>
-          <div class="food-content">Aloo/Mushroom/Water</div>
-          <div class="food_order">ORDER</div>
-        </div>
-        <div class="food_title_price">
-            <div class="food_title">
-            <span><img src="../img/veg-icon.png" class="food_icon other"> Mushroom Mutter</span>
-            </div>
-            <div class="food_price">
-                Rs 250
-            </div>
-            <div class="food-content">Aloo/Mushroom/Water</div>
-            <div class="food_order">ORDER</div>
-          </div>
-        <div class="food_title_price">
-              <div class="food_title">
-              <span><img src="../img/veg-icon.png" class="food_icon other"> Mushroom Mutter</span>
-              </div>
-              <div class="food_price">
-                  Rs 250
-              </div>
-              <div class="food-content">Aloo/Mushroom/Water</div>
-              <div class="food_order">ORDER</div>
-            </div>
-        </div>
-      </div>
-
-      <!-- Featured wrapper -->
-
-      <div class="happy_hrs featured">
-
-        <div class="hpy_items">
-      <h1><span class="hpy_hrs_heading">Featured Items</span></h1>
-
-  <div class="food_title_price">
-      <div class="food_title">
-      <span><img src="../img/non-veg-icon.png" class="food_icon other"> Mushroom Mutter</span>
-      </div>
-      <div class="food_price
-      ">
-        Rs 250
-      </div>
-      <div class="food-content">Aloo/Mushroom/Water</div>
-      <div class="food_order">ORDER</div>
-    </div>
-    <div class="food_title_price">
-        <div class="food_title">
-        <span><img src="../img/non-veg-icon.png" class="food_icon other"> Mushroom Mutter</span>
-        </div>
-        <div class="food_price">
-            Rs 250
-        </div>
-        <div class="food-content">Aloo/Mushroom/Water</div>
-        <div class="food_order">ORDER</div>
-      </div>
-      <div class="food_title_price">
-          <div class="food_title">
-          <span><img src="../img/non-veg-icon.png" class="food_icon other"> Mushroom Mutter</span>
-          </div>
-          <div class="food_price">
-              Rs 250
-          </div>
-          <div class="food-content">Aloo/Mushroom/Water</div>
-          <div class="food_order">ORDER</div>
-        </div>
-        <div class="food_title_price">
-            <div class="food_title">
-          <span><img src="../img/non-veg-icon.png" class="food_icon other"> Mushroom Mutter</span>
-            </div>
-            <div class="food_price">
-                Rs 250
-            </div>
-            <div class="food-content">Aloo/Mushroom/Water</div>
-            <div class="food_order">ORDER</div>
-          </div>
-        <div class="food_title_price">
-              <div class="food_title">
-              <span><img src="../img/veg-icon.png" class="food_icon other"> Mushroom Mutter</span>
-              </div>
-              <div class="food_price">
-                  Rs 250
-              </div>
-              <div class="food-content">Aloo/Mushroom/Water</div>
-              <div class="food_order">ORDER</div>
-            </div>
-        </div>
-        <div class="hpy_img">
-          <img src="../img/happy_hrs.jpg">
-        </div>
-      </div>
 
 </main>
 
@@ -838,6 +844,7 @@
 <script>
 document.addEventListener("DOMContentLoaded", function(event) {
 
+  autocomplete(document.getElementById("myInput"));
 //
 // alert("DOM fully loaded and parsed");
 
@@ -850,7 +857,7 @@ xhr.onload = function (e) {
     if (xhr.status === 201) {
         categoriesResponse = JSON.parse(xhr.response);
         console.log(categoriesResponse)
-          var htmlText =  document.getElementById('home_main');
+          var htmlText =  document.getElementById('home_mains');
           while (htmlText.firstChild) htmlText.removeChild(htmlText.firstChild);
 
       categoriesResponse.forEach(function(category)
@@ -867,13 +874,16 @@ xhr.onload = function (e) {
 
             div += '<div class="menu-wrapper" id="'+response[0].category.name+'">';
             div += '<div class="menu-header">';
-            div += '<div class="line">';
-            div +=  '<img src = "../img/line2.png"/>';
-            div +=  '</div>';
-            div +=  '<h1 class="menu-heading">'+response[0].category.name+'</h1>';
-            div +=  '<div class="line">';
-            div +=  '<img src = "../img/line.png"/>';
-            div += '        </div>  </div>';
+            // div += '<div class="line">';
+            // div +=  '<img src = "../img/line2.png"/>';
+            // div +=  '</div>';
+            div +=  '<div class="menuDiv"><h1 class="menu-heading">'+response[0].category.name+'</h1></div>';
+            div +=  '<div class="filterDiv"><img src="../img/filter_btn.png" class="filterImg">';
+            div +=  '<div class="filterContent"> <a href="#">Veg</a><a href="#">Non Veg</a>';
+            div +=  '</div></div>';
+            // div +=  '<div class="line">';
+            // div +=  '<img src = "../img/line.png"/>';
+            div += '</div>';
             if(response[0].category.desc)
             div += '<div class="description">'+response[0].category.desc+'</div><br/> <br/>';
             else
@@ -889,7 +899,7 @@ xhr.onload = function (e) {
               div +=  '<a href="/food/'+product._id+'">';
 
 
-              div +=  '<img src="uploads/'+product.prodImg+'">';
+              div +=  '<img src="'+product.prodImg+'">';
 
 
               div +=   '</a>';
@@ -899,7 +909,7 @@ xhr.onload = function (e) {
               div += '<img src="../img/non-veg-icon.png" class="food_icon">';
               else
               div += '<img src="../img/veg-icon.png" class="food_icon">';
-              div +=  product.name+'</span> </div>';
+              div +=  '&nbsp;'+product.name+'</span> </div>';
               div +=  '<div class="food-item-price">Rs. '+product.price+'</div>';
               div +=    '  <div class="food-item-content">Aloo/Mushroom/Water</div>';
               var sessionCart = JSON.parse(sessionStorage.getItem("cart"));
@@ -957,6 +967,133 @@ xhr.onerror = function (e) {
 xhr.send(null);
 
 });
+
+
+//autocomplete
+function autocomplete(inp) {
+  /*the autocomplete function takes two arguments,
+  the text field element and an array of possible autocompleted values:*/
+  var arr=[];
+  var idArr=[];
+  var currentFocus;
+  /*execute a function when someone writes in the text field:*/
+  inp.addEventListener("input", function(e) {
+      var a, b, i, val = this.value;
+      var shivy = this;
+var xhttp = new XMLHttpRequest();
+      xhttp.onreadystatechange = function() {
+  if (this.readyState == 4 && this.status == 200) {
+    var response = JSON.parse(this.responseText);
+    arr=[];
+    idArr=[];
+    for(prodName in response)
+    {
+      arr.push(response[prodName].name);
+      idArr.push(response[prodName]._id);
+    }
+    console.table(arr);
+    /*close any already open lists of autocompleted values*/
+    closeAllLists();
+    if (!val) { return false;}
+    currentFocus = -1;
+    /*create a DIV element that will contain the items (values):*/
+    a = document.createElement("DIV");
+    a.setAttribute("id", shivy.id + "autocomplete-list");
+    a.setAttribute("class", "autocomplete-items");
+    /*append the DIV element as a child of the autocomplete container:*/
+    shivy.parentNode.appendChild(a);
+    /*for each item in the array...*/
+    for (i = 0; i < arr.length; i++) {
+      /*check if the item starts with the same letters as the text field value:*/
+      if (arr[i].substr(0, val.length).toUpperCase() == val.toUpperCase()) {
+        /*create a DIV element for each matching element:*/
+        b = document.createElement("DIV");
+        /*make the matching letters bold:*/
+        b.innerHTML = "<strong>" + arr[i].substr(0, val.length) + "</strong>";
+        b.innerHTML += arr[i].substr(val.length);
+        /*insert a input field that will hold the current array item's value:*/
+        b.innerHTML += "<input type='hidden' data-id='/food/"+idArr[i]+"'  value='" + arr[i] + "'>";
+        /*execute a function when someone clicks on the item value (DIV element):*/
+            b.addEventListener("click", function(e) {
+            /*insert the value for the autocomplete text field:*/
+            inp.value = this.getElementsByTagName("input")[0].value;
+            document.getElementById("search_btn").value = this.getElementsByTagName("input")[0].getAttribute("data-id");
+            /*close the list of autocompleted values,
+            (or any other open lists of autocompleted values:*/
+            closeAllLists();
+        });
+        a.appendChild(b);
+      }
+    }
+  }
+};
+xhttp.open("GET", "/search?term="+val, true);
+xhttp.send();
+
+  });
+  /*execute a function presses a key on the keyboard:*/
+  inp.addEventListener("keydown", function(e) {
+      var x = document.getElementById(this.id + "autocomplete-list");
+      if (x) x = x.getElementsByTagName("div");
+      if (e.keyCode == 40) {
+        /*If the arrow DOWN key is pressed,
+        increase the currentFocus variable:*/
+        currentFocus++;
+        /*and and make the current item more visible:*/
+        addActive(x);
+      } else if (e.keyCode == 38) { //up
+        /*If the arrow UP key is pressed,
+        decrease the currentFocus variable:*/
+        currentFocus--;
+        /*and and make the current item more visible:*/
+        addActive(x);
+      } else if (e.keyCode == 13) {
+        /*If the ENTER key is pressed, prevent the form from being submitted,*/
+        e.preventDefault();
+        if (currentFocus > -1) {
+          /*and simulate a click on the "active" item:*/
+          if (x) x[currentFocus].click();
+        }
+      }
+  });
+  function addActive(x) {
+    /*a function to classify an item as "active":*/
+    if (!x) return false;
+    /*start by removing the "active" class on all items:*/
+    removeActive(x);
+    if (currentFocus >= x.length) currentFocus = 0;
+    if (currentFocus < 0) currentFocus = (x.length - 1);
+    /*add class "autocomplete-active":*/
+    x[currentFocus].classList.add("autocomplete-active");
+  }
+  function removeActive(x) {
+    /*a function to remove the "active" class from all autocomplete items:*/
+    for (var i = 0; i < x.length; i++) {
+      x[i].classList.remove("autocomplete-active");
+    }
+  }
+  function closeAllLists(elmnt) {
+    /*close all autocomplete lists in the document,
+    except the one passed as an argument:*/
+    var x = document.getElementsByClassName("autocomplete-items");
+    for (var i = 0; i < x.length; i++) {
+      if (elmnt != x[i] && elmnt != inp) {
+      x[i].parentNode.removeChild(x[i]);
+    }
+  }
+}
+/*execute a function when someone clicks in the document:*/
+document.addEventListener("click", function (e) {
+    closeAllLists(e.target);
+});
+}
+
+
+function searchProd(prod)
+{
+  if(prod.value) location.href=prod.value;
+  else alert("No Product For this name");
+}
 </script>
 
 

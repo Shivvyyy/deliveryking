@@ -8,7 +8,7 @@ const multer = require('multer');
 
 const storage = multer.diskStorage({
   destination: function(req, file, cb) {
-    cb(null, './uploads/');
+    cb(null, '.uploaded_images/uploads/');
   },
   filename: function(req, file, cb) {
     cb(null, Date.now() + file.originalname);
@@ -106,7 +106,7 @@ router.post('/add-food',upload.single('prodImg'), function(req, res, next) {
           category: category,
           prodDesc: req.body.prodDesc,
           prodItemDesc: req.body.prodItemDesc,
-          prodImg: req.file.path,
+          prodImg: req.file.name,
           serve: req.body.serve,
           price: req.body.price,
           fullPrice: req.body.nonVegPrice,
@@ -252,5 +252,8 @@ Product
     res.status(201).json(products);
   });
 });
+
+
+
 
 module.exports = router;

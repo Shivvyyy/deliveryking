@@ -10,9 +10,13 @@ document.addEventListener("DOMContentLoaded", function(event) {
 
     var cartOrder = '';
    cartOrder += '<div class="cart_order">';
-   cartOrder += '<div class="cart_order_title">';
-     cartOrder +=   '<span><img src="../img/veg-icon.png" class="food_icon_cart">'+product.name;
-      cartOrder += '</div>';
+   cartOrder += '<div class="cart_order_title"><span>';
+   if(product.nonVeg)
+     cartOrder +=   '<img src="../img/non-veg-icon.png" class="food_icon_cart">';
+  else
+     cartOrder +=   '<img src="../img/veg-icon.png" class="food_icon_cart">';
+
+      cartOrder += '&nbsp;'+product.name+'</div>';
         var productId = "'"+product._id+"'";
      cartOrder += '<div class="cart_order_close" onclick="removeItem('+productId+',this)">';
      cartOrder +=  '<i class="fa fa-times"></i>';
@@ -52,7 +56,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
 /* Set the width of the side navigation to 250px and the left margin of the page content to 250px */
 function openNav(product,el) {
   // alert("shivy");
-  alert(product);
+  // alert(product);
 
 
 
@@ -66,9 +70,12 @@ function openNav(product,el) {
      var htmlText =  document.querySelector('.cartOrders');
      var cartOrder = '';
     cartOrder += '<div class="cart_order">';
-    cartOrder += '<div class="cart_order_title">';
-      cartOrder +=   '<span><img src="../img/veg-icon.png" class="food_icon_cart"> Veggie Quesadillas';
-       cartOrder += '</div>';
+    cartOrder += '<div class="cart_order_title"><span>';
+    if(product.product.nonVeg)
+      cartOrder +=   '<img src="../img/non-veg-icon.png" class="food_icon_cart">';
+    else
+      cartOrder +=   '<img src="../img/veg-icon.png" class="food_icon_cart">';
+       cartOrder += '&nbsp;'+product.product.name+'</div>';
          var productId = "'"+product.product._id+"'";
       cartOrder += '<div class="cart_order_close" onclick="removeItem('+productId+',this)">';
       cartOrder +=  '<i class="fa fa-times"></i>';
@@ -159,8 +166,8 @@ function openNav(product,el) {
     document.getElementById("mySidenav").style.width = "250px";
     document.getElementById("mySidenav").style.paddingLeft = "2%";
     document.getElementById("mySidenav").style.paddingRight = "2%";
-    document.getElementById("main").style.marginRight = "250px";
-    document.getElementById("main").classList.remove("home_main");
+    document.getElementById("wholeBody").style.marginRight = "250px";
+    // document.getElementById("main").classList.remove("home_main");
 
 
 }
@@ -171,8 +178,8 @@ function closeNav() {
    document.getElementById("mySidenav").style.paddingLeft = "0px";
    document.getElementById("mySidenav").style.paddingRight = "0px";
     document.getElementById("mySidenav").style.width = "0px";
-    document.getElementById("main").classList.add("home_main");
-    document.getElementById("main").style.marginRight = "5%";
+    // document.getElementById("main").classList.add("home_main");
+    document.getElementById("wholeBody").style.marginRight = "0px";
 }
 
 
@@ -204,8 +211,8 @@ function closeNav() {
         document.getElementById("mySidenav").style.width = "250px";
         document.getElementById("mySidenav").style.paddingLeft = "2%";
         document.getElementById("mySidenav").style.paddingRight = "2%";
-        document.getElementById("main").style.marginRight = "250px";
-        document.getElementById("main").classList.remove("home_main");
+        document.getElementById("wholeBody").style.marginRight = "250px";
+        // document.getElementById("main").classList.remove("home_main");
     }
     function minus(id){
 
@@ -223,8 +230,8 @@ function closeNav() {
         document.getElementById("mySidenav").style.width = "250px";
         document.getElementById("mySidenav").style.paddingLeft = "2%";
         document.getElementById("mySidenav").style.paddingRight = "2%";
-        document.getElementById("main").style.marginRight = "250px";
-        document.getElementById("main").classList.remove("home_main");
+      document.getElementById("wholeBody").style.marginRight = "250px";
+        // document.getElementById("main").classList.remove("home_main");
         return true;
       }
 
@@ -251,6 +258,21 @@ function removeItem(id,el)
       sessionCart.items.splice(index,1);
       sessionStorage.setItem("cart",JSON.stringify(sessionCart));
       el.parentElement.remove();
+      var reference = document.getElementById(id+'shivy').parentElement;
+      var realReference = reference.parentElement;
+      reference.remove();
+
+      // Create the new element
+   var li = document.createElement('div');
+  li.className = 'order_btn'; // Class name
+  li.innerHTML = 'ORDER'; // Text inside
+   li.setAttribute("onclick","openNav('"+id+"',this);");
+    realReference.appendChild(li); // Append it
+ // Attach the event!
+
+      // realReference.appendChild('<div class="order_btn" onclick="openNav('+id+',this)">ORDER</div>');
+      // realReference.innerHTML += ;
+
       return true;
     }
   });

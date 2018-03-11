@@ -43,6 +43,38 @@ router.get('/foodCart/:id', function(req, res, next) {
 
 });
 
+//live search
+router.get('/search', function(req, res, next) {
+  if (req.query.term) {
+    var regex = new RegExp(req.query["term"], 'i');
+    var query = Product.find({name: regex}).select('_id name').limit(13);
+
+       // Execute query in a callback and return users list
+   query.exec(function(err, foods) {
+       if (!err) {
+          // Method to construct the json result set
+          res.status(200).json(foods);
+       } else {
+        res.status(500).json(err);
+       }
+    });
+  }
+});
+
+router.get('/happy', function(req, res, next) {
+  Product.find({ mainSection1: true }, { mainSection2: true } ).select("name _id prod_short_desc price mainSection1").exec(function(err, products) {
+    if (err) return next(err);
+    else
+    {
+      res.json({
+        products:products
+      });
+    }
+
+});
+});
+
+
 
 //export mainRoutes
 

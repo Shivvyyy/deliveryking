@@ -13,11 +13,11 @@
     INR <%= product.price %>rs.
     </div>
     <div class="prod_long_desc">
-      <%=product %>
+      <%= product.prodDesc %>
       <%= product.prodDesc %>
     </div>
     <div class="add_to_cart">
-      <input type="number" min="1" value="1"/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<div>ADD TO CART</div>
+      <div class="add_to_cart_btn">ADD TO CART</div>
     </div>
     <div class="prod_short_desc">
       Category: <%= product.category.name %><br/><br/>
@@ -385,16 +385,20 @@ function change_box(what_box)
   if(what_box=='old_review')
   {
     alert("here");
-  document.getElementById('old_review').style.background='#898989';
+  document.getElementById('old_review').style.background='#dc3836';
+    document.getElementById('old_review').style.color='#fff';
   document.getElementById('add_review').style.background='#fff';
+  document.getElementById('add_review').style.color='#000';
   document.getElementById('old_box').classList.add("display");
   document.getElementById('give_box').classList.remove("display");
 }
 else
 {
   alert("here2");
-  document.getElementById('add_review').style.background='#898989';
+  document.getElementById('add_review').style.background='#dc3836';
+  document.getElementById('add_review').style.color='#fff';
   document.getElementById('old_review').style.background='#fff';
+    document.getElementById('old_review').style.color='#000';
   document.getElementById('old_box').classList.remove("display");
   document.getElementById('give_box').classList.add("display");
 }
