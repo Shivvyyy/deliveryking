@@ -1,0 +1,316 @@
+<% layout('layout') -%>
+
+<main>
+
+<div class="checkoutWrapper">
+  <div class="checkoutDetails">
+      <div class="cus_info">Customer Information</div>
+    <div class="logsign">
+      <div class="logsignText">
+        Profile<br/><br/>
+        Log In or Sign Up
+      </div>
+      <div class="collapsible-arrow acc" >
+        <span><i class="fas fa-2x fa-angle-up"></i></span>
+      </div>
+
+    </div>
+    <!-- collapsible -->
+    <div class="logsignformMain" id="accDiv">
+    <div class="logsignform">
+      <div class="signUpLink">Sign Up</div>
+      <div class="signupoffer">Sign up to get new offer on selected dishes</div>
+      <div class="logsignforminputs">
+        <div class="firstlastname">
+        <input type="text" placeholder="First Name" required>
+        <input type="text" placeholder="Last Name" required>
+      </div>
+      <div>
+        <input type="text" placeholder="Email Address" required>
+      </div>
+      <div>
+        <input type="number" placeholder="Enter 10 digit mob no" required>
+      </div>
+      <div>
+        <input type="text" placeholder="Password" required>
+      </div>
+
+      <!-- <input type="submit" class="submit_btn" value="SIGN UP & CONTINUE"> -->
+      <button class="submit_btn" value="SIGN UP & CONTINUE">SIGN UP & CONTINUE</button>
+      <div class="login_option">Already have an account? Log in</div>
+
+      <!-- <div class="or-divider">
+       <hr>
+      <span class="text">Or</span>
+      <hr>
+      </div> -->
+
+      <button class="guest_btn" value="Continue As Guest">Continue as Guest</button>
+    </div>
+    </div>
+</div>
+
+<!-- deliver address -->
+
+<div class="logsign">
+  <div class="logsignText">
+    Deliver to<br/><br/>
+    Not Selected
+  </div>
+  <div class="collapsible-arrow acc" >
+    <span><i class="fas fa-2x fa-angle-up"></i></span>
+  </div>
+
+</div>
+
+<!-- checkout panel -->
+
+<div class="logsign">
+  <div class="logsignText">
+    Payment Method<br/><br/>
+    Online Wallet or Cash On Delivery
+  </div>
+  <div class="collapsible-arrow acc" >
+    <span><i class="fas fa-2x fa-angle-up"></i></span>
+  </div>
+
+</div>
+
+  </div>
+  <div>
+      <div class="cus_info">ORDER SUMMARY</div>
+  <div class="checkoutTotal">
+
+    <div class="delivery_time">
+      Your order will be delivered within<br/><br/>
+      <span class="minutes">45 minutes</span>
+    </div>
+    <!-- cartItems -->
+    <div class="cart_items">
+      <div class="cart_items_inner">
+    <div class="cart_order">
+      <div class="cart_order_title"><span>
+        <img src="../img/non-veg-icon.png" class="food_icon_cart_checkout">
+        <span class="cart_prod_name">&nbsp; Gulab Jamun</div>
+
+    <div class="cart_order_close" onclick="removeItem('+productId+',this)">
+      <!-- <i class="fa fa-times"></i> -->
+        </div>
+         <div class="cart_order_quantity">
+        <div id="input_div">
+          <input type="text" value="1" id="'+product.product._id+'">
+        <input type="button" value="-" id="moins" onclick="minus('+productId+')">
+        <input type="button" value="+" id="plus" onclick="plus('+productId+')">
+          </div>
+        </div>
+
+        <div class="cart_order_price">
+        Rs 250
+          </div>
+
+    </div>
+
+    <hr/>
+
+    <div class="cart_order">
+      <div class="cart_order_title"><span>
+        <img src="../img/non-veg-icon.png" class="food_icon_cart_checkout">
+        <span class="cart_prod_name">&nbsp; Gulab Jamun</div>
+
+    <div class="cart_order_close" onclick="removeItem('+productId+',this)">
+      <!-- <i class="fa fa-times"></i> -->
+        </div>
+         <div class="cart_order_quantity">
+        <div id="input_div">
+          <input type="text" value="1" id="'+product.product._id+'">
+        <input type="button" value="-" id="moins" onclick="minus('+productId+')">
+        <input type="button" value="+" id="plus" onclick="plus('+productId+')">
+          </div>
+        </div>
+
+        <div class="cart_order_price">
+        Rs 250
+          </div>
+
+    </div>
+
+    <div class="cart_order">
+      <div class="cart_order_title"><span>
+        <img src="../img/non-veg-icon.png" class="food_icon_cart_checkout">
+        <span class="cart_prod_name">&nbsp; Gulab Jamun</div>
+
+    <div class="cart_order_close" onclick="removeItem('+productId+',this)">
+      <!-- <i class="fa fa-times"></i> -->
+        </div>
+         <div class="cart_order_quantity">
+        <div id="input_div">
+          <input type="text" value="1" id="'+product.product._id+'">
+        <input type="button" value="-" id="moins" onclick="minus('+productId+')">
+        <input type="button" value="+" id="plus" onclick="plus('+productId+')">
+          </div>
+        </div>
+
+        <div class="cart_order_price">
+        Rs 250
+          </div>
+
+    </div>
+
+    <div class="cart_order">
+      <div class="cart_order_title"><span>
+        <img src="../img/non-veg-icon.png" class="food_icon_cart_checkout">
+        <span class="cart_prod_name">&nbsp; Gulab Jamun</div>
+
+    <div class="cart_order_close" onclick="removeItem('+productId+',this)">
+      <!-- <i class="fa fa-times"></i> -->
+        </div>
+         <div class="cart_order_quantity">
+        <div id="input_div">
+          <input type="text" value="1" id="'+product.product._id+'" required>
+        <input type="button" value="-" id="moins" onclick="minus('+productId+') required">
+        <input type="button" value="+" id="plus" onclick="plus('+productId+') required" >
+          </div>
+        </div>
+
+        <div class="cart_order_price">
+        Rs 250
+          </div>
+
+    </div>
+  </div>
+
+
+    <div class="coupon">
+      <input type="text" placeholder="Enter Coupon Code" autofocus="autofocus"></input>
+      <span class="apply">Apply</span>
+    </div>
+    <hr/>
+    <div class="itemPrice">
+      <div>Items Prices</div>
+      <div class="itemPriceP">Rs <span>400</span> </div>
+      <div>GST (5%)</div>
+      <div class="gstP">+Rs <span>20</span></div>
+
+    </div>
+    <hr/>
+
+    <div class="gTotal">
+      <div> GRAND TOTAL </div>
+      <div class="gTotalP"> Rs <span>420</span> </div>
+    </div>
+
+
+    </div>
+
+    <div class="helpLine">
+      NEED HELP IN PLACING YOUR ORDER?
+    </div>
+
+
+    <div class="helpLineNo">
+      Reach out to us on<br/><br/>
+      <span class="hNo">91-7017585022</span><br/><br/>
+      Lines open from 9:00 AM to 12:00 AM
+    </div>
+
+
+    </div>
+</div>
+
+</div>
+</main>
+
+<script>
+document.addEventListener("DOMContentLoaded",function(){
+
+  var sessionCart = JSON.parse(sessionStorage.getItem("cart"));
+    // var productId = "'"+product._id+"'";
+    // var check = false;
+
+
+      if(sessionCart!==null)
+      {
+      var cartItemsDiv = document.querySelector(".cart_items_inner");
+
+      while(cartItemsDiv.firstChild) cartItemsDiv.firstChild.remove();
+      var subTotal = 0;
+  sessionCart.items.forEach(function(productCart,index){
+    // console.log(productCart._id);
+
+    console.log(productCart);
+      var div = "";
+
+
+    div +=  '<div class="cart_order">';
+    div += '<div class="cart_order_title"><span>';
+    div += '<img src="../img/non-veg-icon.png" class="food_icon_cart_checkout">';
+    div +=  '<span class="cart_prod_name">&nbsp; '+productCart.name+'</div>';
+
+    var productId = "'"+productCart._id+"'";
+    div += '<div class="cart_order_close" onclick="removeItem('+productCart._id+',this)">';
+        // <!-- <i class="fa fa-times"></i> -->
+    div += '</div><div class="cart_order_quantity"><div id="input_div">';
+    div += '<input type="text" data-val="'+productCart.price+'" value="'+productCart.quantity+'" id="'+productCart._id+'shivy" disabled>';
+    div += '<input type="button" value="-" id="moins" onclick="minus('+productId+', this)">';
+    div += '<input type="button" value="+" id="plus" onclick="plus('+productId+', this)">';
+    div += '</div></div><div class="cart_order_price">Rs <span>'+productCart.price*productCart.quantity+'</span></div></div><hr/>';
+
+      cartItemsDiv.innerHTML += div
+
+       subTotal += productCart.price*productCart.quantity;
+      // check = true;
+    // var cartBtn = document.querySelector(".prod_desc").childNodes[7];
+    // // console.log(cartBtn);
+    // cartBtn.replaceChild(divMain, cartBtn.childNodes[1]);
+    //   return true;
+    // alert(id);
+  // }
+});
+
+
+document.querySelector(".itemPriceP").getElementsByTagName("span")[0].innerText = subTotal;
+var gst = (subTotal*5)/100;
+document.querySelector(".gstP").getElementsByTagName("span")[0].innerText = gst;
+document.querySelector(".gTotalP").getElementsByTagName("span")[0].innerText = subTotal+gst;
+}
+
+
+   document.querySelector(".acc").addEventListener("click",function(e){
+
+
+
+    // console.log(e.target.className);
+    // e.target.parentElement.nextSibling.style.display = "none";
+    // document.getElementById
+    var elem = e.target.parentElement.parentElement.parentElement;
+    console.log(elem.className);
+    if(elem.className==='collapsible-arrow acc'){
+      // alert("shivy");
+      e.target.parentElement.classList.toggle("fa-angle-up");
+      e.target.parentElement.classList.toggle("fa-angle-down");
+
+      if (elem.parentElement.nextElementSibling.style.display === "none") {
+      elem.parentElement.nextElementSibling.style.display = "block";
+       }
+     else {
+      elem.parentElement.nextElementSibling.style.display= "none";
+       }
+
+    }
+    else
+    {
+      e.target.classList.toggle("fa-angle-up");
+      e.target.classList.toggle("fa-angle-down");
+
+      if (elem.nextElementSibling.style.display === "none") {
+      elem.nextElementSibling.style.display = "block";
+       }
+     else
+     {
+      elem.nextElementSibling.style.display= "none";
+       }
+
+    }
+  });
+})
+</script>

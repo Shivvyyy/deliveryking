@@ -8,7 +8,7 @@ const multer = require('multer');
 
 const storage = multer.diskStorage({
   destination: function(req, file, cb) {
-    cb(null, '.uploaded_images/uploads/');
+    cb(null, './uploaded_images/uploads/');
   },
   filename: function(req, file, cb) {
     cb(null, Date.now() + file.originalname);
@@ -106,7 +106,7 @@ router.post('/add-food',upload.single('prodImg'), function(req, res, next) {
           category: category,
           prodDesc: req.body.prodDesc,
           prodItemDesc: req.body.prodItemDesc,
-          prodImg: req.file.name,
+          prodImg: req.file.filename,
           serve: req.body.serve,
           price: req.body.price,
           fullPrice: req.body.nonVegPrice,

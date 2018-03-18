@@ -1,5 +1,5 @@
 <% layout('layout') -%>
-
+<% include ./../partials/cart %>
 <main class="product_main">
 <div class="product_wrapper">
   <div class="product_img">
@@ -16,8 +16,9 @@
       <%= product.prodDesc %>
       <%= product.prodDesc %>
     </div>
+
     <div class="add_to_cart">
-      <div class="add_to_cart_btn">ADD TO CART</div>
+      <div class="add_to_cart_btn" onclick="openNav('<%= product._id %>',this);">ADD TO CART</div>
     </div>
     <div class="prod_short_desc">
       Category: <%= product.category.name %><br/><br/>
@@ -377,6 +378,51 @@
 
 
 <script type="text/JavaScript">
+document.addEventListener("DOMContentLoaded",function(){
+  // quantityBtn += '<div id="input_div" class="shivy_move">';
+  // // var input_shivy = product.product._id+'shivy';
+  // quantityBtn += '<input type="text" value="1" id="'+input_shivy+'">';
+  // quantityBtn +=  '<input type="button" value="-" id="moins" onclick="minus("<%= product._id %>shivy")">';
+  // quantityBtn += '<input type="button" value="+" id="plus" onclick="plus("<%= product._id %>shivy")">';
+  // quantityBtn += '</div>';
+  // shivyMove.innerHTML += quantityBtn;
+
+
+  var sessionCart = JSON.parse(sessionStorage.getItem("cart"));
+    // var productId = "'"+product._id+"'";
+    var check = false;
+      if(sessionCart!==null)
+      {
+  sessionCart.items.some(function(productCart,index){
+    // console.log(productCart._id);
+
+    if(productCart._id== '<%= product._id %>')
+    {
+      var divMain = document.createElement('div');
+      divMain.id= "input_div";
+      divMain.className = "shivy_move";
+              var div = "";
+      div += '<div id="input_div" class="shivy_move">';
+      // var input_shivy = product._id+'shivy';
+      div += '<input type="text" value="'+productCart.quantity+'" id="<%= product._id %>shivy" disabled>';
+      var productId = "'<%= product._id %>'";
+      div +=  '<input type="button" value="-" id="moins" onclick="minus('+productId+')">';
+      div += '<input type="button" value="+" id="plus" onclick="plus('+productId+')">';
+      div += '</div>';
+      divMain.innerHTML = div;
+
+      // check = true;
+    var cartBtn = document.querySelector(".prod_desc").childNodes[7];
+    // console.log(cartBtn);
+    cartBtn.replaceChild(divMain, cartBtn.childNodes[1]);
+      return true;
+    // alert(id);
+  }
+});
+}
+
+
+});
 //Change review box
 function change_box(what_box)
 {

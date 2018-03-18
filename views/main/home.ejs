@@ -3,10 +3,10 @@
 
 <!-- Container-->
 
-<img src="../img/add_to_cart.png" class="shopping_cart" />
+
 
 <header>
-
+<% include ./../partials/cart %>
 
   <div class="slider_content">
     <!-- <div class="dropdown">
@@ -23,7 +23,7 @@
     </div>
 
     <div class="search_button">
-      <button class="srch_btn" id="search_btn" onclick="searchProd(this);">Search</button>
+      <button class="srch_btn" value="" id="search_btn" onclick="searchProd(this);">Search</button>
     </div>
   </div>
 
@@ -37,129 +37,7 @@
   <!-- <div class="header-overlay"></div> -->
 </header>
 
-<div id="mySidenav" class="sidenav">
-  <div class="cart_header">
-  <span style="float:left" class="cart_header_title">Your Cart</span>
-  <span style="float:right;" onclick="closeNav();" class="cart_close">Close</span>
- </div>
-  <br/>
-  <br/>
-  <hr/>
 
-  <div class="cartOrders">
-
-  <div class="cart_order">
-    <div class="cart_order_title">
-      <span><img src="../img/veg-icon.png" class="food_icon_cart"> Veggie Quesadillas
-    </div>
-    <div class="cart_order_close">
-      <i class="fa fa-times"></i>
-    </div>
-    <div class="cart_order_quantity">
-      <div id="input_div">
-        <input type="text" value="1" id="count" disabled>
-        <input type="button" value="-" id="moins" onclick="minus()">
-        <input type="button" value="+" id="plus" onclick="plus()">
-     </div>
-    </div>
-
-    <div class="cart_order_price">
-    Rs 250
-    </div>
-
-  </div>
-
-  <!-- <div class="cart_order">
-    <div class="cart_order_title">
-      <span><img src="../img/veg-icon.png" class="food_icon_cart"> Veggie Quesadillas
-    </div>
-    <div class="cart_order_close">
-      <i class="fa fa-times"></i>
-    </div>
-    <div class="cart_order_quantity">
-      <div id="input_div">
-        <input type="text" value="1" id="count">
-        <input type="button" value="-" id="moins" onclick="minus()">
-        <input type="button" value="+" id="plus" onclick="plus()">
-     </div>
-    </div>
-
-    <div class="cart_order_price">
-    Rs 250
-    </div>
-
-  </div> -->
-
-  <div class="cart_order">
-    <div class="cart_order_title">
-      <span><img src="../img/veg-icon.png" class="food_icon_cart"> Veggie Quesadillas
-    </div>
-    <div class="cart_order_close">
-      <i class="fa fa-times"></i>
-    </div>
-    <div class="cart_order_quantity">
-      <div id="input_div">
-        <input type="text" value="1" id="count">
-        <input type="button" value="-" id="moins" onclick="minus()">
-        <input type="button" value="+" id="plus" onclick="plus()">
-     </div>
-    </div>
-
-    <div class="cart_order_price">
-    Rs 250
-    </div>
-
-  </div>
-
-  <div class="cart_order">
-    <div class="cart_order_title">
-      <span><img src="../img/veg-icon.png" class="food_icon_cart"> Veggie Quesadillas
-    </div>
-    <div class="cart_order_close">
-      <i class="fa fa-times"></i>
-    </div>
-    <div class="cart_order_quantity">
-      <div id="input_div">
-        <input type="text" value="1" id="count">
-        <input type="button" value="-" id="moins" onclick="minus()">
-        <input type="button" value="+" id="plus" onclick="plus()">
-     </div>
-    </div>
-
-    <div class="cart_order_price">
-    Rs 250
-    </div>
-
-  </div>
-
-  <div class="cart_order">
-    <div class="cart_order_title">
-      <span><img src="../img/veg-icon.png" class="food_icon_cart"> Veggie Quesadillas
-    </div>
-    <div class="cart_order_close">
-      <i class="fa fa-times"></i>
-    </div>
-    <div class="cart_order_quantity">
-      <div id="input_div">
-        <input type="text" value="1" id="count">
-        <input type="button" value="-" id="moins" onclick="minus()">
-        <input type="button" value="+" id="plus" onclick="plus()">
-     </div>
-    </div>
-
-    <div class="cart_order_price">
-    Rs 250
-    </div>
-
-  </div>
-
-</div>
-
-  <div class="cart_order_place">
-    Place Order
-  </div>
-
-</div>
 
 <!-- Use any element to open the sidenav -->
 
@@ -286,7 +164,7 @@
           </div>
       </div>
       <div class="hpy_img">
-        <img src="../img/happy_hrs.jpg">
+        <img src="../img/featured_items.jpg">
       </div>
     </div>
 </div>
@@ -923,7 +801,7 @@ xhr.onload = function (e) {
                 {
                   div += '<div id="input_div" class="shivy_move">';
                   var input_shivy = product._id+'shivy';
-                  div += '<input type="text" value="'+productCart.quantity+'" id="'+input_shivy+'">';
+                  div += '<input type="text" value="'+productCart.quantity+'" id="'+input_shivy+'" disabled>';
                   div +=  '<input type="button" value="-" id="moins" onclick="minus('+productId+')">';
                   div += '<input type="button" value="+" id="plus" onclick="plus('+productId+')">';
                   div += '</div>';
@@ -968,13 +846,13 @@ xhr.send(null);
 
 });
 
-
+var arr=[];
+var idArr=[];
 //autocomplete
 function autocomplete(inp) {
   /*the autocomplete function takes two arguments,
   the text field element and an array of possible autocompleted values:*/
-  var arr=[];
-  var idArr=[];
+
   var currentFocus;
   /*execute a function when someone writes in the text field:*/
   inp.addEventListener("input", function(e) {
@@ -1002,6 +880,7 @@ var xhttp = new XMLHttpRequest();
     a.setAttribute("class", "autocomplete-items");
     /*append the DIV element as a child of the autocomplete container:*/
     shivy.parentNode.appendChild(a);
+
     /*for each item in the array...*/
     for (i = 0; i < arr.length; i++) {
       /*check if the item starts with the same letters as the text field value:*/
@@ -1031,6 +910,8 @@ xhttp.open("GET", "/search?term="+val, true);
 xhttp.send();
 
   });
+
+
   /*execute a function presses a key on the keyboard:*/
   inp.addEventListener("keydown", function(e) {
       var x = document.getElementById(this.id + "autocomplete-list");
@@ -1088,12 +969,30 @@ document.addEventListener("click", function (e) {
 });
 }
 
-
 function searchProd(prod)
 {
+
   if(prod.value) location.href=prod.value;
-  else alert("No Product For this name");
+  else
+  {
+    var gotIt = true;
+    arr.forEach(function(val,index){
+      if((prod.parentElement.previousElementSibling.getElementsByTagName("input")[0].value).toLowerCase()==val.toLowerCase())
+      {
+        gotIt = false;
+        location.href = '/food/'+idArr[index];
+      }
+      console.log(index);
+    });
+
+    if(gotIt)
+    alert("No Food By This Name");
+  }
+
+
+  // else alert("No Product For this name");
 }
+
 </script>
 
 

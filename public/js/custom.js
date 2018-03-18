@@ -2,10 +2,13 @@ document.addEventListener("DOMContentLoaded", function(event) {
 
   var sessionCart = JSON.parse(sessionStorage.getItem("cart"));
   var htmlText =  document.querySelector('.cartOrders');
-  htmlText.innerHTML = '';
+
 
   if(sessionCart!==null)
   {
+    document.querySelector(".cart_order_place").style.display="block";
+      htmlText.innerHTML = '';
+    var cart_quantity = 0;
   sessionCart.items.forEach(function(product,index){
 
     var cartOrder = '';
@@ -23,23 +26,25 @@ document.addEventListener("DOMContentLoaded", function(event) {
       cartOrder += '</div>';
       cartOrder += '<div class="cart_order_quantity">';
        cartOrder += '<div id="input_div">';
-       cartOrder += '<input type="text" value="'+product.quantity+'" id="'+product._id+'" disabled>';
+       cartOrder += '<input type="text" data-val="'+product.price+'" value="'+product.quantity+'" id="'+product._id+'" disabled>';
        cartOrder +=  '<input type="button" value="-" id="moins" onclick="minus('+productId+')">';
        cartOrder += '<input type="button" value="+" id="plus" onclick="plus('+productId+')">';
        cartOrder += '</div>';
        cartOrder += '</div>';
 
       cartOrder += '<div class="cart_order_price">';
-       cartOrder += 'Rs 250';
+       cartOrder += 'Rs <span>'+product.price * product.quantity+'</span>';
        cartOrder += '</div>';
 
      cartOrder += '</div>';
 
-
+     cart_quantity += product.quantity
           htmlText.innerHTML += cartOrder;
 
 
   });
+  document.querySelector(".cart_quan").innerText = cart_quantity;
+      document.querySelector(".cartOrders").style.display = "block";
 
 }
 
@@ -54,12 +59,14 @@ document.addEventListener("DOMContentLoaded", function(event) {
 
 
 /* Set the width of the side navigation to 250px and the left margin of the page content to 250px */
-function openNav(product,el) {
+function openNav(product,el,event) {
   // alert("shivy");
   // alert(product);
+  el.removeAttribute("onclick");
 
 
 
+// el.preventDefault();
 
     var xhttp = new XMLHttpRequest();
  xhttp.onreadystatechange = function() {
@@ -82,30 +89,33 @@ function openNav(product,el) {
        cartOrder += '</div>';
        cartOrder += '<div class="cart_order_quantity">';
         cartOrder += '<div id="input_div">';
-        cartOrder += '<input type="text" value="1" id="'+product.product._id+'">';
+        cartOrder += '<input type="text" data-val="'+product.product.price+'" value="1" id="'+product.product._id+'">';
         cartOrder +=  '<input type="button" value="-" id="moins" onclick="minus('+productId+')">';
         cartOrder += '<input type="button" value="+" id="plus" onclick="plus('+productId+')">';
         cartOrder += '</div>';
         cartOrder += '</div>';
 
        cartOrder += '<div class="cart_order_price">';
-        cartOrder += 'Rs 250';
+        cartOrder += 'Rs <span>'+product.product.price+'</span>';
         cartOrder += '</div>';
 
       cartOrder += '</div>';
 
 
-      var oldhtmlText = htmlText.innerHTML;
-      for(var i = 0; i < htmlText.length; i++)
-          htmlText.removeChild(children[i]);
-
-      htmlText.innerHTML = cartOrder;
-      htmlText.innerHTML += oldhtmlText;
 
         var sessionCart = JSON.parse(sessionStorage.getItem("cart"));
 
         if(sessionCart === null)
         {
+          document.querySelector(".cart_order_place").style.display="block";
+
+          // var oldhtmlText = htmlText.innerHTML;
+          for(var i = 0; i < htmlText.length; i++)
+              htmlText.removeChild(children[i]);
+
+          htmlText.innerHTML = cartOrder;
+          // htmlText.innerHTML += oldhtmlText;
+
           var cart = {};
           var cartItems =[];
           var item = {};
@@ -125,6 +135,14 @@ function openNav(product,el) {
         else
         {
           alert("Shivy");
+
+                    var oldhtmlText = htmlText.innerHTML;
+                    for(var i = 0; i < htmlText.length; i++)
+                        htmlText.removeChild(children[i]);
+
+                    htmlText.innerHTML = cartOrder;
+                    htmlText.innerHTML += oldhtmlText;
+
           var item = {};
           item._id = product.product._id;
           item.quantity = 1;
@@ -152,7 +170,7 @@ function openNav(product,el) {
   var quantityBtn = '';
     quantityBtn += '<div id="input_div" class="shivy_move">';
     var input_shivy = product.product._id+'shivy';
-    quantityBtn += '<input type="text" value="1" id="'+input_shivy+'">';
+    quantityBtn += '<input type="text" value="1" id="'+input_shivy+'" disabled>';
     quantityBtn +=  '<input type="button" value="-" id="moins" onclick="minus('+productId+')">';
     quantityBtn += '<input type="button" value="+" id="plus" onclick="plus('+productId+')">';
     quantityBtn += '</div>';
@@ -167,8 +185,9 @@ function openNav(product,el) {
     document.getElementById("mySidenav").style.paddingLeft = "2%";
     document.getElementById("mySidenav").style.paddingRight = "2%";
     document.getElementById("wholeBody").style.marginRight = "250px";
+    document.querySelector(".cartOrders").style.display = "block";
     // document.getElementById("main").classList.remove("home_main");
-
+    document.querySelector(".cart_quan").innerText = parseInt(document.querySelector(".cart_quan").innerText) + 1;
 
 }
 
@@ -187,7 +206,7 @@ function closeNav() {
 
     var count = 1;
 
-    function plus(id){
+    function plus(id,val){
 
         var sessionCart = JSON.parse(sessionStorage.getItem("cart"));
         sessionCart.items.some(function(product,index){
@@ -204,17 +223,36 @@ function closeNav() {
       });
         var countEl = document.getElementById(id);
         var countEm = document.getElementById(id+'shivy');
+        // console.log(id);
+        // console.log(countEl);
+        // console.log(countEm);
         count++;
+        if(countEl)
+        {
         countEl.value = count;
-        countEm.value = count;
-
+        // console.log(  countEl.parentElement.parentElement.nextElementSibling.getElementsByTagName('span')[0]);
+        countEl.parentElement.parentElement.nextElementSibling.getElementsByTagName('span')[0].innerText =  countEl.getAttribute("data-val")*count;
         document.getElementById("mySidenav").style.width = "250px";
         document.getElementById("mySidenav").style.paddingLeft = "2%";
         document.getElementById("mySidenav").style.paddingRight = "2%";
         document.getElementById("wholeBody").style.marginRight = "250px";
+        document.querySelector(".cart_quan").innerText = parseInt(document.querySelector(".cart_quan").innerText) + 1;
+      }
+      else
+      {
+        val.parentElement.parentElement.nextElementSibling.getElementsByTagName('span')[0].innerText = document.getElementById(id+'shivy').getAttribute("data-val")*count;
+        var subT = parseInt(document.getElementById(id+'shivy').getAttribute("data-val")) + parseInt(document.querySelector('.itemPriceP').getElementsByTagName("span")[0].innerText);
+        document.querySelector('.itemPriceP').getElementsByTagName("span")[0].innerText = subT;
+        var gsT =  (subT*5)/100;
+        document.querySelector('.gstP').getElementsByTagName("span")[0].innerText = gsT;
+        document.querySelector('.gTotalP').getElementsByTagName("span")[0].innerText = gsT+subT;
+      }
+        countEm.value = count;
+
+
         // document.getElementById("main").classList.remove("home_main");
     }
-    function minus(id){
+    function minus(id,val){
 
       var sessionCart = JSON.parse(sessionStorage.getItem("cart"));
       sessionCart.items.some(function(product,index){
@@ -227,10 +265,6 @@ function closeNav() {
         sessionStorage.setItem("cart",JSON.stringify(sessionCart));
         // alert(id);
 
-        document.getElementById("mySidenav").style.width = "250px";
-        document.getElementById("mySidenav").style.paddingLeft = "2%";
-        document.getElementById("mySidenav").style.paddingRight = "2%";
-      document.getElementById("wholeBody").style.marginRight = "250px";
         // document.getElementById("main").classList.remove("home_main");
         return true;
       }
@@ -241,7 +275,25 @@ function closeNav() {
         var countEl = document.getElementById(id);
         var countEm = document.getElementById(id+'shivy');
         count--;
+        if(countEl)
+        {
         countEl.value = count;
+        countEl.parentElement.parentElement.nextElementSibling.getElementsByTagName('span')[0].innerText =  countEl.getAttribute("data-val")*count;
+                document.getElementById("mySidenav").style.width = "250px";
+                document.getElementById("mySidenav").style.paddingLeft = "2%";
+                document.getElementById("mySidenav").style.paddingRight = "2%";
+              document.getElementById("wholeBody").style.marginRight = "250px";
+          document.querySelector(".cart_quan").innerText = parseInt(document.querySelector(".cart_quan").innerText) - 1;
+      }
+      else
+      {
+        val.parentElement.parentElement.nextElementSibling.getElementsByTagName('span')[0].innerText = document.getElementById(id+'shivy').getAttribute("data-val")*count;
+        var subT =  parseInt(document.querySelector('.itemPriceP').getElementsByTagName("span")[0].innerText)- parseInt(document.getElementById(id+'shivy').getAttribute("data-val"));
+        document.querySelector('.itemPriceP').getElementsByTagName("span")[0].innerText = subT;
+        var gsT =  (subT*5)/100;
+        document.querySelector('.gstP').getElementsByTagName("span")[0].innerText = gsT;
+        document.querySelector('.gTotalP').getElementsByTagName("span")[0].innerText = gsT+subT;
+      }
         countEm.value = count;
       }
     }
@@ -255,21 +307,36 @@ function removeItem(id,el)
     console.log(product._id);
     if(product._id==id)
     {
+      document.querySelector(".cart_quan").innerText = parseInt(document.querySelector(".cart_quan").innerText)-sessionCart.items[index].quantity;
       sessionCart.items.splice(index,1);
-      sessionStorage.setItem("cart",JSON.stringify(sessionCart));
+
       el.parentElement.remove();
       var reference = document.getElementById(id+'shivy').parentElement;
       var realReference = reference.parentElement;
       reference.remove();
+      if(!sessionCart.items.length)
+      {
 
+            document.querySelector(".cart_order_place").style.display="none";
+            var empty_image = '<img src="../img/empty_cart_.png" class="empty_cart">';
+            empty_image +=  '<h2 class="cart_empty_text"> Your Cart Is Empty</h2>';
+            empty_image +=  '<h2 class="cart_empty_text"> Please Fill It</h2>';
+
+            document.querySelector(".cartOrders").innerHTML = empty_image;
+            sessionStorage.clear();
+      }
+      else
+      {
+    sessionStorage.setItem("cart",JSON.stringify(sessionCart));
+  }
       // Create the new element
    var li = document.createElement('div');
   li.className = 'order_btn'; // Class name
   li.innerHTML = 'ORDER'; // Text inside
    li.setAttribute("onclick","openNav('"+id+"',this);");
     realReference.appendChild(li); // Append it
- // Attach the event!
 
+ // Attach the event!
       // realReference.appendChild('<div class="order_btn" onclick="openNav('+id+',this)">ORDER</div>');
       // realReference.innerHTML += ;
 
@@ -277,3 +344,24 @@ function removeItem(id,el)
     }
   });
 }
+
+document.querySelector(".cart_quan").addEventListener("click",function(){
+  document.getElementById("mySidenav").style.width = "250px";
+  document.getElementById("mySidenav").style.paddingLeft = "2%";
+  document.getElementById("mySidenav").style.paddingRight = "2%";
+  document.getElementById("wholeBody").style.marginRight = "250px";
+});
+
+document.querySelector(".shopping_cart").addEventListener("click",function(){
+  document.getElementById("mySidenav").style.width = "250px";
+  document.getElementById("mySidenav").style.paddingLeft = "2%";
+  document.getElementById("mySidenav").style.paddingRight = "2%";
+  document.getElementById("wholeBody").style.marginRight = "250px";
+});
+
+document.querySelector(".openCartItems").addEventListener("click",function(){
+  document.getElementById("mySidenav").style.width = "250px";
+  document.getElementById("mySidenav").style.paddingLeft = "2%";
+  document.getElementById("mySidenav").style.paddingRight = "2%";
+  document.getElementById("wholeBody").style.marginRight = "250px";
+});

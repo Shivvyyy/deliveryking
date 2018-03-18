@@ -74,7 +74,10 @@ router.get('/happy', function(req, res, next) {
 });
 });
 
-
+router.get('/checkout',(req, res, next)=>
+{
+res.render('main/checkout');
+});
 
 //export mainRoutes
 
