@@ -379,6 +379,22 @@
 
 <script type="text/JavaScript">
 document.addEventListener("DOMContentLoaded",function(){
+
+  //navbar fix
+
+  document.getElementById("mainNav").style.position = "fixed";
+  document.getElementById("mainNav").style.background = "#fff";
+  var elements  = document.getElementById("mainNav").querySelectorAll("a");
+  // document.querySelector(".small-navbar").style.display="none";
+  document.getElementById("logoImage").src="../img/logo5.png";
+  document.querySelector(".logo").style.marginLeft = "13%";
+  document.querySelector(".logo").style.width = "9vw";
+  document.querySelector(".logo").style.height = "8vh";
+  // document.querySelector(".featured_happy_wrapper").style.marginTop = "6%";
+  for (var i = 0; i < elements.length; i++) {
+      elements[i].style.color="#000";
+  }
+
   // quantityBtn += '<div id="input_div" class="shivy_move">';
   // // var input_shivy = product.product._id+'shivy';
   // quantityBtn += '<input type="text" value="1" id="'+input_shivy+'">';

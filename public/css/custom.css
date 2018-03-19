@@ -168,8 +168,8 @@ display: grid;
 grid-template-columns: 20vw 22vw 60vw;
   /* justify-content: space-between; */
 z-index: 999;
-  position: fixed;
   width: 100vw;
+
 }
 
 .nav_links
@@ -299,12 +299,13 @@ grid-template-rows: auto;
 grid-column-gap: 0px;
 align-content: center;
 display: grid;
-z-index: 999;
+z-index: 995;
 /* top: 50vh;
 left:28vw; */
 align-items: center;
 text-align: center;
 margin: auto;
+margin-bottom: 40vh;
 color:##101b21;
 }
 
@@ -377,7 +378,7 @@ color:##101b21;
 
 .featured_happy_wrapper
 {
-  margin-top: 6%;
+  margin-top: 0%;
   margin-left: 5%;
   margin-right: 5%;
 }
@@ -553,8 +554,8 @@ font-size: 0.6rem;
   display: grid;
   grid-template-columns: repeat(2,1fr);
   grid-template-rows: auto;
-  grid-gap: 2rem;
-  padding-right:2%;
+  grid-row-gap: 2rem;
+  /* padding-right:2%; */
   /* align-items: center; */
   /* justify-content: space-around; */
 }
@@ -564,6 +565,9 @@ font-size: 0.6rem;
   display: grid;
 grid-rows: repeat(5,1fr);
   align-content: space-evenly;
+  background-color: #f9f9f9;
+  padding-left: 4%;
+  padding-right: 4%;
 }
 .hpy_img  img
 {
@@ -638,7 +642,7 @@ grid-rows: repeat(5,1fr);
 .featured
 {
   padding-right: 0% !important;
-  padding-left: 2% !important;
+  /* padding-left: 2% !important; */
 }
 
 
@@ -749,6 +753,7 @@ grid-row-gap: 1rem;
 
     .product_wrapper
     {
+      width: 100%;
       padding-top: 18vh !important;
       display: grid !important;
       grid-template-columns: auto !important;
@@ -758,10 +763,11 @@ grid-row-gap: 1rem;
       align-content: center !important;
     }
 
+
     /* Cart css */
     .cart_order input
     {
-      width: 3vw !important;
+        width: 7vw !important;
     }
 
     .happy_hrs
@@ -775,13 +781,56 @@ grid-row-gap: 1rem;
       /* justify-content: space-around; */
     }
 
+    .fill_space_div
+    {
+      display: none;
+    }
+    .nav_links
+    {
+      width: 80vw;
+    }
+
+    .shivy_move input
+    {
+      width: 7vw !important;
+    }
+    .menu-heading
+    {
+        font-size: 2rem !important;
+    }
+    .description
+    {
+    font-size: 1.1rem !important;
+    }
+    .filterImg
+    {
+    width: 24.5vw !important;
+  }
+  .related_products_slide
+  {
+    grid-template-columns: auto !important;
+  }
+
+  /* checkout page */
+  .submit_btn
+  {
+    width: 100% !important;
+    margin-bottom: 5% !important;
+  }
 }
 /* Mobile css ends */
 
 
 
+.logsignform2
+{
+  display: none;
+}
 
-
+.order_summary
+{
+  display: none;
+}
 
 
 
@@ -1575,4 +1624,9 @@ input[type=number]::-webkit-outer-spin-button {
 .cart_order_place
 {
   display: none;
+}
+
+#map {
+  height: 400px;
+  width: 100%;
 }

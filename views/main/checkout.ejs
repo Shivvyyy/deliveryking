@@ -57,10 +57,52 @@
     Deliver to<br/><br/>
     Not Selected
   </div>
-  <div class="collapsible-arrow acc" >
+  <div id="collapsible-arrow-2" class="collapsible-arrow acc" >
     <span><i class="fas fa-2x fa-angle-up"></i></span>
   </div>
 
+</div>
+<!-- collapsible -->
+<div class="logsignformMain" id="accDiv">
+  <div class="logsignform2">
+    <div class="pac-card" id="pac-card">
+      <div>
+        <div id="title">
+          Autocomplete search
+        </div>
+        <div id="type-selector" class="pac-controls">
+          <input type="radio" name="type" id="changetype-all" checked="checked">
+          <label for="changetype-all">All</label>
+
+          <input type="radio" name="type" id="changetype-establishment">
+          <label for="changetype-establishment">Establishments</label>
+
+          <input type="radio" name="type" id="changetype-address">
+          <label for="changetype-address">Addresses</label>
+
+          <input type="radio" name="type" id="changetype-geocode">
+          <label for="changetype-geocode">Geocodes</label>
+        </div>
+        <div id="strict-bounds-selector" class="pac-controls">
+          <input type="checkbox" id="use-strict-bounds" value="">
+          <label for="use-strict-bounds">Strict Bounds</label>
+        </div>
+      </div>
+      <div id="pac-container">
+        <input id="pac-input" type="text"
+            placeholder="Enter a location">
+      </div>
+    </div>
+    <div id="map"></div>
+    <div id="infowindow-content">
+      <img src="" width="16" height="16" id="place-icon">
+      <span id="place-name"  class="title"></span><br>
+      <span id="place-address"></span>
+    </div>
+    <p>Latitude: <input size="20" type="text" id="latbox" name="lat" ></p>
+   <p>Longitude: <input size="20" type="text" id="lngbox" name="lng" ></p>
+   <p>Address: <input size="20" type="text" id="faddress" </p>
+  </div>
 </div>
 
 <!-- checkout panel -->
@@ -77,7 +119,7 @@
 </div>
 
   </div>
-  <div>
+  <div class="order_summary">
       <div class="cus_info">ORDER SUMMARY</div>
   <div class="checkoutTotal">
 
@@ -223,6 +265,20 @@
 <script>
 document.addEventListener("DOMContentLoaded",function(){
 
+//navbar fix
+document.getElementById("mainNav").style.position = "fixed";
+document.getElementById("mainNav").style.background = "#fff";
+var elements  = document.getElementById("mainNav").querySelectorAll("a");
+// document.querySelector(".small-navbar").style.display="none";
+document.getElementById("logoImage").src="../img/logo5.png";
+document.querySelector(".logo").style.marginLeft = "13%";
+document.querySelector(".logo").style.width = "9vw";
+document.querySelector(".logo").style.height = "8vh";
+// document.querySelector(".featured_happy_wrapper").style.marginTop = "6%";
+for (var i = 0; i < elements.length; i++) {
+    elements[i].style.color="#000";
+}
+
   var sessionCart = JSON.parse(sessionStorage.getItem("cart"));
     // var productId = "'"+product._id+"'";
     // var check = false;
@@ -274,6 +330,38 @@ document.querySelector(".gstP").getElementsByTagName("span")[0].innerText = gst;
 document.querySelector(".gTotalP").getElementsByTagName("span")[0].innerText = subTotal+gst;
 }
 
+  document.querySelector("#collapsible-arrow-2").addEventListener("click", function(e) {
+    var elem = e.target.parentElement.parentElement.parentElement;
+    console.log(elem);
+    if(elem.className==='collapsible-arrow acc'){
+      // alert("shivy");
+      e.target.parentElement.classList.toggle("fa-angle-up");
+      e.target.parentElement.classList.toggle("fa-angle-down");
+
+      if (elem.parentElement.nextElementSibling.style.display === "none") {
+      elem.parentElement.nextElementSibling.style.display = "block";
+       }
+     else {
+      elem.parentElement.nextElementSibling.style.display= "none";
+       }
+
+    }
+    else
+    {
+      e.target.classList.toggle("fa-angle-up");
+      e.target.classList.toggle("fa-angle-down");
+
+      if (elem.nextElementSibling.style.display === "none") {
+      elem.nextElementSibling.style.display = "block";
+       }
+     else
+     {
+      elem.nextElementSibling.style.display= "none";
+       }
+
+    }
+  });
+
 
    document.querySelector(".acc").addEventListener("click",function(e){
 
@@ -314,3 +402,163 @@ document.querySelector(".gTotalP").getElementsByTagName("span")[0].innerText = s
   });
 })
 </script>
+<script>
+      // This example requires the Places library. Include the libraries=places
+      // parameter when you first load the API. For example:
+      // <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places">
+
+      function initMap() {
+        map = new google.maps.Map(document.getElementById('map'), {
+          center: {lat: -34.397, lng: 150.644},
+          zoom: 6
+        });
+        infoWindow = new google.maps.InfoWindow;
+
+var geocoder = geocoder = new google.maps.Geocoder();
+        // Try HTML5 geolocation.
+        if (navigator.geolocation) {
+          navigator.geolocation.getCurrentPosition(function(position) {
+            var pos = {
+              lat: position.coords.latitude,
+              lng: position.coords.longitude
+            };
+
+            infoWindow.setPosition(pos);
+            infoWindow.setContent('Location found.');
+            infoWindow.open(map);
+            map.setCenter(pos);
+          }, function() {
+            handleLocationError(true, infoWindow, map.getCenter());
+          });
+        } else {
+          // Browser doesn't support Geolocation
+          handleLocationError(false, infoWindow, map.getCenter());
+        }
+        var card = document.getElementById('pac-card');
+        var input = document.getElementById('pac-input');
+        var types = document.getElementById('type-selector');
+        var strictBounds = document.getElementById('strict-bounds-selector');
+
+        map.controls[google.maps.ControlPosition.TOP_RIGHT].push(card);
+
+        var autocomplete = new google.maps.places.Autocomplete(input);
+
+        // Bind the map's bounds (viewport) property to the autocomplete object,
+        // so that the autocomplete requests use the current map bounds for the
+        // bounds option in the request.
+        autocomplete.bindTo('bounds', map);
+
+        var infowindow = new google.maps.InfoWindow();
+        var infowindowContent = document.getElementById('infowindow-content');
+        infowindow.setContent(infowindowContent);
+        var marker = new google.maps.Marker({
+          map: map,
+          anchorPoint: new google.maps.Point(0, -29),
+          draggable: true,
+        });
+
+        autocomplete.addListener('place_changed', function() {
+          infowindow.close();
+          marker.setVisible(false);
+          var place = autocomplete.getPlace();
+          if (!place.geometry) {
+            // User entered the name of a Place that was not suggested and
+            // pressed the Enter key, or the Place Details request failed.
+            window.alert("No details available for input: '" + place.name + "'");
+            return;
+          }
+
+          // If the place has a geometry, then present it on a map.
+          if (place.geometry.viewport) {
+            map.fitBounds(place.geometry.viewport);
+          } else {
+            map.setCenter(place.geometry.location);
+            map.setZoom(17);  // Why 17? Because it looks good.
+          }
+          marker.setPosition(place.geometry.location);
+          marker.setVisible(true);
+
+          var address = '';
+          if (place.address_components) {
+            address = [
+              (place.address_components[0] && place.address_components[0].short_name || ''),
+              (place.address_components[1] && place.address_components[1].short_name || ''),
+              (place.address_components[2] && place.address_components[2].short_name || '')
+            ].join(' ');
+          }
+
+          infowindowContent.children['place-icon'].src = place.icon;
+          infowindowContent.children['place-name'].textContent = place.name;
+          infowindowContent.children['place-address'].textContent = address;
+          infowindow.open(map, marker);
+        });
+
+        // Sets a listener on a radio button to change the filter type on Places
+        // Autocomplete.
+        function setupClickListener(id, types) {
+          var radioButton = document.getElementById(id);
+          radioButton.addEventListener('click', function() {
+            autocomplete.setTypes(types);
+          });
+        }
+        function geocodePosition(pos) {
+          geocoder.geocode({
+            latLng: pos
+          }, function(responses) {
+            if (responses && responses.length > 0) {
+              updateMarkerAddress(responses[0].formatted_address);
+                document.getElementById('faddress').value = responses[0].formatted_address;
+            } else {
+              updateMarkerAddress('Cannot determine address at this location.');
+            }
+          });
+        }
+        function updateMarkerStatus(str) {
+          document.getElementById('markerStatus').innerHTML = str;
+        }
+
+        function updateMarkerPosition(latLng) {
+          document.getElementById('info').innerHTML = [
+            latLng.lat(),
+            latLng.lng()
+          ].join(', ');
+        }
+
+        function updateMarkerAddress(str) {
+          document.getElementById('address').innerHTML = str;
+        }
+        function markerCoords(markerobject){
+            google.maps.event.addListener(markerobject, 'dragend', function(evt){
+                infoWindow.setOptions({
+                    content: '<p>Marker dropped: Current Lat: ' + evt.latLng.lat().toFixed(3) + ' Current Lng: ' + evt.latLng.lng().toFixed(3) + '</p>'
+                });
+                infoWindow.open(map, markerobject);
+            });
+
+            google.maps.event.addListener(markerobject, 'drag', function(evt){
+                console.log("marker is being dragged");
+            });
+        }
+
+        google.maps.event.addListener(marker, 'dragend', function (event) {
+          document.getElementById("latbox").value = this.getPosition().lat();
+          document.getElementById("lngbox").value = this.getPosition().lng();
+          document.getElementById('faddress').value = this.getPosition();
+          geocodePosition(marker.getPosition());
+      });
+        setupClickListener('changetype-all', []);
+        setupClickListener('changetype-address', ['address']);
+        setupClickListener('changetype-establishment', ['establishment']);
+        setupClickListener('changetype-geocode', ['geocode']);
+
+        document.getElementById('use-strict-bounds')
+            .addEventListener('click', function() {
+              console.log('Checkbox clicked! New state=' + this.checked);
+              autocomplete.setOptions({strictBounds: this.checked});
+            });
+      }
+
+
+    </script>
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB-wTYp5ZfepUgW0b7n9z_JvBlwhO4ImZo&libraries=places&callback=initMap"
+type="text/javascript"></script>
