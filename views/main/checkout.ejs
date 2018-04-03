@@ -10,7 +10,7 @@
         Profile<br/><br/>
         Log In or Sign Up
       </div>
-      <div class="collapsible-arrow acc" >
+      <div class="collapsible-arrow acc" id="collapsible-arrow" >
         <span><i class="fas fa-2x fa-angle-up"></i></span>
       </div>
 
@@ -45,7 +45,7 @@
       <hr>
       </div> -->
 
-      <button class="guest_btn" value="Continue As Guest">Continue as Guest</button>
+      <button class="guest_btn" value="Continue As Guest" onclick="manipulatePanel()">Continue as Guest</button>
     </div>
     </div>
 </div>
@@ -58,12 +58,12 @@
     Not Selected
   </div>
   <div id="collapsible-arrow-2" class="collapsible-arrow acc" >
-    <span><i class="fas fa-2x fa-angle-up"></i></span>
+    <span ><i class="fas fa-2x fa-angle-up"></i></span>
   </div>
 
 </div>
 <!-- collapsible -->
-<div class="logsignformMain" id="accDiv">
+<div class="logsignformMain" id="accDiv2" style="display: none">
   <div class="logsignform2">
     <div class="pac-card" id="pac-card">
       <div>
@@ -88,20 +88,30 @@
           <label for="use-strict-bounds">Strict Bounds</label>
         </div>
       </div>
-      <div id="pac-container">
-        <input id="pac-input" type="text"
-            placeholder="Enter a location">
-      </div>
     </div>
     <div id="map"></div>
     <div id="infowindow-content">
-      <img src="" width="16" height="16" id="place-icon">
-      <span id="place-name"  class="title"></span><br>
+      <!-- <img src="" width="8" height="8" id="place-icon"> -->
+      <!-- <span id="place-name"  class="title"></span><br> -->
       <span id="place-address"></span>
     </div>
-    <p>Latitude: <input size="20" type="text" id="latbox" name="lat" ></p>
+    <!-- <p>Latitude: <input size="20" type="text" id="latbox" name="lat" ></p>
    <p>Longitude: <input size="20" type="text" id="lngbox" name="lng" ></p>
-   <p>Address: <input size="20" type="text" id="faddress" </p>
+   <p>Address: <input size="20" type="text" id="faddress" </p> -->
+
+   <div  class="logsignforminputs">
+     <input id="pac-input" type="text" placeholder="Enter Your Location">
+   </div>
+   <div  class="logsignforminputs">
+     <input id="pac-input" type="text" placeholder="House and Street No.">
+   </div>
+   <div  class="logsignforminputs">
+     <input id="pac-input" type="text" placeholder="Your Mobile No.">
+   </div>
+   <div  class="logsignforminputs">
+     <input id="pac-input" type="text" placeholder="Your Email Address">
+   </div>
+
   </div>
 </div>
 
@@ -265,19 +275,44 @@
 <script>
 document.addEventListener("DOMContentLoaded",function(){
 
-//navbar fix
-document.getElementById("mainNav").style.position = "fixed";
-document.getElementById("mainNav").style.background = "#fff";
-var elements  = document.getElementById("mainNav").querySelectorAll("a");
-// document.querySelector(".small-navbar").style.display="none";
-document.getElementById("logoImage").src="../img/logo5.png";
-document.querySelector(".logo").style.marginLeft = "13%";
-document.querySelector(".logo").style.width = "9vw";
-document.querySelector(".logo").style.height = "8vh";
-// document.querySelector(".featured_happy_wrapper").style.marginTop = "6%";
-for (var i = 0; i < elements.length; i++) {
-    elements[i].style.color="#000";
-}
+
+    //navbar fix
+
+    document.getElementById("mainNav").style.position = "fixed";
+    document.getElementById("mainNav").style.background = "rgba(255, 255, 255, 0.95)";
+    document.getElementById("mainNav").style.borderBottom = " 1px solid rgb(225, 225, 225)";
+
+    var elements  = document.getElementById("mainNav").querySelectorAll("a");
+    // document.querySelector(".small-navbar").style.display="none";
+    document.getElementById("logoImage").src="../img/logo5.png";
+    document.querySelector(".logo").style.marginLeft = "13%";
+    document.querySelector(".logo").style.width = "9vw";
+    document.querySelector(".logo").style.height = "8vh";
+    // document.querySelector(".featured_happy_wrapper").style.marginTop = "6%";
+    for (var i = 0; i < elements.length; i++) {
+        elements[i].style.color="#000";
+    }
+
+
+    window.onscroll = function() {scrollFunction()};
+
+    function scrollFunction() {
+      if (document.body.scrollTop > document.querySelector(".small-navbar").offsetTop || document.documentElement.scrollTop > document.querySelector(".small-navbar").offsetTop )
+      {
+        console.log("yea work");
+        if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) )
+            document.querySelector(".secondSmall").style.display="none";
+        else document.querySelector(".small-navbar").style.display="none";
+      }
+      else
+      {
+        console.log("yea not");
+          if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) )
+              document.querySelector(".secondSmall").style.display="block";
+          else document.querySelector(".small-navbar").style.display="block";
+      }
+    }
+
 
   var sessionCart = JSON.parse(sessionStorage.getItem("cart"));
     // var productId = "'"+product._id+"'";
@@ -330,37 +365,6 @@ document.querySelector(".gstP").getElementsByTagName("span")[0].innerText = gst;
 document.querySelector(".gTotalP").getElementsByTagName("span")[0].innerText = subTotal+gst;
 }
 
-  document.querySelector("#collapsible-arrow-2").addEventListener("click", function(e) {
-    var elem = e.target.parentElement.parentElement.parentElement;
-    console.log(elem);
-    if(elem.className==='collapsible-arrow acc'){
-      // alert("shivy");
-      e.target.parentElement.classList.toggle("fa-angle-up");
-      e.target.parentElement.classList.toggle("fa-angle-down");
-
-      if (elem.parentElement.nextElementSibling.style.display === "none") {
-      elem.parentElement.nextElementSibling.style.display = "block";
-       }
-     else {
-      elem.parentElement.nextElementSibling.style.display= "none";
-       }
-
-    }
-    else
-    {
-      e.target.classList.toggle("fa-angle-up");
-      e.target.classList.toggle("fa-angle-down");
-
-      if (elem.nextElementSibling.style.display === "none") {
-      elem.nextElementSibling.style.display = "block";
-       }
-     else
-     {
-      elem.nextElementSibling.style.display= "none";
-       }
-
-    }
-  });
 
 
    document.querySelector(".acc").addEventListener("click",function(e){
@@ -400,12 +404,57 @@ document.querySelector(".gTotalP").getElementsByTagName("span")[0].innerText = s
 
     }
   });
-})
+});
+
+  function openPanel(e){
+    var elem = e.target.parentElement.parentElement.parentElement;
+    console.log(elem);
+    if(elem.className==='collapsible-arrow acc'){
+      // alert("shivy");
+      e.target.parentElement.classList.toggle("fa-angle-up");
+      e.target.parentElement.classList.toggle("fa-angle-down");
+
+      if (elem.parentElement.nextElementSibling.style.display === "none") {
+      elem.parentElement.nextElementSibling.style.display = "block";
+       }
+     else {
+      elem.parentElement.nextElementSibling.style.display= "none";
+       }
+
+    }
+    else
+    {
+      e.target.classList.toggle("fa-angle-up");
+      e.target.classList.toggle("fa-angle-down");
+
+      if (elem.nextElementSibling.style.display === "none") {
+      elem.nextElementSibling.style.display = "block";
+       }
+     else
+     {
+      elem.nextElementSibling.style.display= "none";
+       }
+
+    }
+  }
+
+  function manipulatePanel()
+  {
+    document.getElementById("collapsible-arrow-2").children[0].children[0].classList.toggle("fa-angle-down");
+    document.getElementById("accDiv2").style.display = "block";
+    document.getElementById("collapsible-arrow").children[0].children[0].classList.toggle("fa-angle-up");
+    document.getElementById("accDiv").style.display = "none";
+document.getElementById("collapsible-arrow-2").setAttribute("onclick","openPanel(event)");
+
+  }
+
 </script>
 <script>
       // This example requires the Places library. Include the libraries=places
       // parameter when you first load the API. For example:
       // <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places">
+    document.querySelector(".cart_quan").style.display = "none";
+    document.querySelector(".shopping_cart").style.display = "none";
 
       function initMap() {
         map = new google.maps.Map(document.getElementById('map'), {
@@ -424,7 +473,7 @@ var geocoder = geocoder = new google.maps.Geocoder();
             };
 
             infoWindow.setPosition(pos);
-            infoWindow.setContent('Location found.');
+            infoWindow.setContent('Location Found.');
             infoWindow.open(map);
             map.setCenter(pos);
           }, function() {
@@ -487,8 +536,8 @@ var geocoder = geocoder = new google.maps.Geocoder();
             ].join(' ');
           }
 
-          infowindowContent.children['place-icon'].src = place.icon;
-          infowindowContent.children['place-name'].textContent = place.name;
+          // infowindowContent.children['place-icon'].src = place.icon;
+          // infowindowContent.children['place-name'].textContent = place.name;
           infowindowContent.children['place-address'].textContent = address;
           infowindow.open(map, marker);
         });
@@ -506,14 +555,16 @@ var geocoder = geocoder = new google.maps.Geocoder();
             latLng: pos
           }, function(responses) {
             if (responses && responses.length > 0) {
-              updateMarkerAddress(responses[0].formatted_address);
-                document.getElementById('faddress').value = responses[0].formatted_address;
+                    document.getElementById('pac-input').value = responses[0].formatted_address;
+                // document.getElementById('faddress').value = responses[0].formatted_address;
+                document.getElementById("place-address").innerHTML = responses[0].formatted_address;
             } else {
               updateMarkerAddress('Cannot determine address at this location.');
             }
           });
         }
         function updateMarkerStatus(str) {
+          console.log(str);
           document.getElementById('markerStatus').innerHTML = str;
         }
 
@@ -524,9 +575,6 @@ var geocoder = geocoder = new google.maps.Geocoder();
           ].join(', ');
         }
 
-        function updateMarkerAddress(str) {
-          document.getElementById('address').innerHTML = str;
-        }
         function markerCoords(markerobject){
             google.maps.event.addListener(markerobject, 'dragend', function(evt){
                 infoWindow.setOptions({
@@ -541,9 +589,10 @@ var geocoder = geocoder = new google.maps.Geocoder();
         }
 
         google.maps.event.addListener(marker, 'dragend', function (event) {
-          document.getElementById("latbox").value = this.getPosition().lat();
-          document.getElementById("lngbox").value = this.getPosition().lng();
-          document.getElementById('faddress').value = this.getPosition();
+          // console.log(this.getPosition());
+          // document.getElementById("latbox").value = this.getPosition().lat();
+          // document.getElementById("lngbox").value = this.getPosition().lng();
+          // document.getElementById('faddress').value = this.getPosition();
           geocodePosition(marker.getPosition());
       });
         setupClickListener('changetype-all', []);

@@ -42,7 +42,7 @@
 <!-- Use any element to open the sidenav -->
 
 <main class="home_main" id="main">
-
+  <!-- <%=products %> -->
   <div class="featured_happy_wrapper">
     <div class="happy_hrs">
       <div class="hpy_img">
@@ -51,17 +51,22 @@
       <div class="hpy_items">
     <h1><span class="hpy_hrs_heading">Happy Hours</span></h1>
 
-<div class="food_title_price">
+
+  <% var total=0; for(var i=0; i< products.length; i++){ if((products[i].mainSection1)==true && total< 6){ %>
+    <!-- <%= products[i].mainSection1 %> -->
+    <% total+= 1; %>
+    <div class="food_title_price">
     <div class="food_title">
-      <span><img src="../img/non-veg-icon.png" class="food_icon other"> Mushroom Mutter</span>
+      <span><img src="../img/non-veg-icon.png" class="food_icon other"><%= products[i].name %></span>
     </div>
     <div class="food_price">
-      Rs 250
+      Rs <%= products[i].price %>
     </div>
     <div class="food-content">Aloo/Mushroom/Water</div>
-    <div class="food_order">ORDER</div>
+    <div class="food_order" onclick="openNav('<%= products[i]._id %>',this)">ORDER</div>
   </div>
-  <div class="food_title_price">
+  <% }} %>
+  <!-- <div class="food_title_price">
       <div class="food_title">
         <span><img src="../img/veg-icon.png" class="food_icon other"> Mushroom Mutter</span>
       </div>
@@ -100,7 +105,7 @@
             </div>
             <div class="food-content">Aloo/Mushroom/Water</div>
             <div class="food_order">ORDER</div>
-          </div>
+          </div> -->
       </div>
     </div>
 
@@ -110,58 +115,22 @@
 
       <div class="hpy_items">
     <h1><span class="hpy_hrs_heading">Featured Items</span></h1>
-
+    <% var total=0; for(var i=0; i< products.length; i++){ if((products[i].mainSection2)==true && total< 6){ %>
+      <!-- <%= products[i].mainSection1 %> -->
+      <% total+= 1; %>
 <div class="food_title_price">
     <div class="food_title">
-    <span><img src="../img/non-veg-icon.png" class="food_icon other"> Mushroom Mutter</span>
+    <span><img src="../img/non-veg-icon.png" class="food_icon other"> <%= products[i].name %></span>
     </div>
-    <div class="food_price
-    ">
-      Rs 250
+    <div class="food_price">
+      Rs <%= products[i].price %>
     </div>
     <div class="food-content">Aloo/Mushroom/Water</div>
-    <div class="food_order">ORDER</div>
+      <div class="food_order" onclick="openNav('<%= products[i]._id %>',this)">ORDER</div>
   </div>
-  <div class="food_title_price">
-      <div class="food_title">
-      <span><img src="../img/non-veg-icon.png" class="food_icon other"> Mushroom Mutter</span>
-      </div>
-      <div class="food_price">
-          Rs 250
-      </div>
-      <div class="food-content">Aloo/Mushroom/Water</div>
-      <div class="food_order">ORDER</div>
-    </div>
-    <div class="food_title_price">
-        <div class="food_title">
-        <span><img src="../img/non-veg-icon.png" class="food_icon other"> Mushroom Mutter</span>
-        </div>
-        <div class="food_price">
-            Rs 250
-        </div>
-        <div class="food-content">Aloo/Mushroom/Water</div>
-        <div class="food_order">ORDER</div>
-      </div>
-      <div class="food_title_price">
-          <div class="food_title">
-        <span><img src="../img/non-veg-icon.png" class="food_icon other"> Mushroom Mutter</span>
-          </div>
-          <div class="food_price">
-              Rs 250
-          </div>
-          <div class="food-content">Aloo/Mushroom/Water</div>
-          <div class="food_order">ORDER</div>
-        </div>
-      <div class="food_title_price">
-            <div class="food_title">
-            <span><img src="../img/veg-icon.png" class="food_icon other"> Mushroom Mutter</span>
-            </div>
-            <div class="food_price">
-                Rs 250
-            </div>
-            <div class="food-content">Aloo/Mushroom/Water</div>
-            <div class="food_order">ORDER</div>
-          </div>
+  <% }} %>
+
+
       </div>
       <div class="hpy_img">
         <img src="../img/featured_items.jpg">
@@ -743,7 +712,7 @@ xhr.onload = function (e) {
       // alert(category._id)
         var div = '';
       var xhr = new XMLHttpRequest();
-      xhr.open("GET", "/products/"+category._id+'/4', true);
+      xhr.open("GET", "/products/"+category._id+'/5', true);
       xhr.onload = function (e) {
         if (xhr.readyState === 4) {
           if (xhr.status === 201) {
@@ -756,8 +725,11 @@ xhr.onload = function (e) {
             // div +=  '<img src = "../img/line2.png"/>';
             // div +=  '</div>';
             div +=  '<div class="menuDiv"><h1 class="menu-heading">'+response[0].category.name+'</h1></div>';
+            var nonVeg = "'non-veg'";
+            var veg = "'veg'";
+            var passingCatId = "'"+category._id+"'";
             div +=  '<div class="filterDiv"><img src="../img/filter_btn.png" class="filterImg">';
-            div +=  '<div class="filterContent"> <a href="#">Veg</a><a href="#">Non Veg</a>';
+            div +=  '<div class="filterContent"> <a onClick="filter('+nonVeg+',this,'+passingCatId+')">Veg</a><a onClick="filter('+veg+',this,'+passingCatId+')">Non Veg</a><a onClick="filter(all,this,'+passingCatId+')">Show All</a>';
             div +=  '</div></div>';
             // div +=  '<div class="line">';
             // div +=  '<img src = "../img/line.png"/>';
@@ -765,7 +737,7 @@ xhr.onload = function (e) {
             if(response[0].category.desc)
             div += '<div class="description">'+response[0].category.desc+'</div><br/> <br/>';
             else
-            div += '<div class="description">Chef Made</div><br/> <br/>';
+            div += '<div class="description">Chef Made</div><br/><br/>';
 
                 div += '  <div class="food-items">';
 
@@ -773,15 +745,20 @@ xhr.onload = function (e) {
 
                   console.log(index)
 
-              div += ' <div class="food-item">';
+                  if(product.nonVeg)
+                  div += ' <div class="food-item non-veg">';
+                  else
+                  div += ' <div class="food-item veg">';
+
+                  div += '<div class="food-itemImg">';
               div +=  '<a href="/food/'+product._id+'">';
 
 
-              div +=  '<img src="'+product.prodImg+'">';
+              div +=  '<img src="http://deliverykings.co.in/uploads/'+product.prodImg+'">';
 
 
               div +=   '</a>';
-              div +=  '<div class="food-item-titles">';
+              div +=  '</div><div class="food-item-titles">';
               div +=  '<div class="food-item-title"><span>';
               if(product.nonVeg)
               div += '<img src="../img/non-veg-icon.png" class="food_icon">';
@@ -789,7 +766,7 @@ xhr.onload = function (e) {
               div += '<img src="../img/veg-icon.png" class="food_icon">';
               div +=  '&nbsp;'+product.name+'</span> </div>';
               div +=  '<div class="food-item-price">Rs. '+product.price+'</div>';
-              div +=    '  <div class="food-item-content">Aloo/Mushroom/Water</div>';
+              div +=    '  <div class="food-item-content">Aloo/Mushroom</div>';
               var sessionCart = JSON.parse(sessionStorage.getItem("cart"));
                 var productId = "'"+product._id+"'";
                 var check = false;
@@ -815,6 +792,8 @@ xhr.onload = function (e) {
               div +=  '</div>';
               div +=   '</div>';
 
+            var passingCatId = "'"+category._id+"'";
+                if(index==4) div+= '<div class="food-item"><img src="../img/seeMore.png" class="seeMoreImg" onClick="loadAll(this,'+passingCatId+')"></div>';
             });
 
 
@@ -845,6 +824,112 @@ xhr.onerror = function (e) {
 xhr.send(null);
 
 });
+
+
+
+function loadAll(thisOne,category,callback)
+{
+  // alert(category);
+  console.log(thisOne);
+  var tmpEl = thisOne.parentElement.parentElement;
+  var tLength = (tmpEl.children.length)-1;
+  alert(tLength);
+  console.log(tmpEl);
+  // while(tmpEl.firstChild) tmpEl.firstChild.remove();
+  if(tLength==5) tmpEl.lastElementChild.remove();
+  var xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function() {
+      if (this.readyState == 4 && this.status == 201) {
+        var allProducts = JSON.parse(xhttp.responseText);
+      allProducts.forEach(function(product,index){
+        console.log(product);
+        var div = "";
+         // Typical action to be performed when the document is ready:
+         if(product.nonVeg)
+         div += ' <div class="food-item non-veg">';
+         else
+         div += ' <div class="food-item veg">';
+
+
+         div += '<div class="food-itemImg veg">';
+         div +=  '<a href="/food/'+product._id+'">';
+
+
+         div +=  '<img src="http://deliverykings.co.in/uploads/'+product.prodImg+'">';
+
+
+         div +=   '</a>';
+         div +=  '</div><div class="food-item-titles">';
+         div +=  '<div class="food-item-title"><span>';
+         if(product.nonVeg)
+         div += '<img src="../img/non-veg-icon.png" class="food_icon">';
+         else
+         div += '<img src="../img/veg-icon.png" class="food_icon">';
+         div +=  '&nbsp;'+product.name+'</span> </div>';
+         div +=  '<div class="food-item-price">Rs. '+product.price+'</div>';
+         div +=    '  <div class="food-item-content">Aloo/Mushroom</div>';
+         var sessionCart = JSON.parse(sessionStorage.getItem("cart"));
+           var productId = "'"+product._id+"'";
+           var check = false;
+             if(sessionCart!==null)
+             {
+         sessionCart.items.some(function(productCart,index){
+           // console.log(productCart._id);
+           if(productCart._id==product._id)
+           {
+             div += '<div id="input_div" class="shivy_move">';
+             var input_shivy = product._id+'shivy';
+             div += '<input type="text" value="'+productCart.quantity+'" id="'+input_shivy+'" disabled>';
+             div +=  '<input type="button" value="-" id="moins" onclick="minus('+productId+')">';
+             div += '<input type="button" value="+" id="plus" onclick="plus('+productId+')">';
+             div += '</div>';
+             check = true;
+             return true;
+           // alert(id);
+         }
+       });
+     }
+       if(!check) div +=  '<div class="order_btn" onclick="openNav('+productId+',this);">ORDER</div>';
+         div +=  '</div>';
+         div +=   '</div>';
+         tmpEl.innerHTML += div;
+      });
+      }
+  };
+  xhttp.open("GET", "/allProducts/"+category+"/"+tLength+"", false);
+  xhttp.send();
+  callback();
+}
+
+function filter(type,thisOne,category)
+{
+  console.log(type);
+  var x =  thisOne.parentElement.parentElement.parentElement.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling;
+  var select;
+  if(x.children[5]) select = x.children[5];
+  else select = x.children[0];
+  loadAll(select.children[0],category,function(){
+    if(type=='all') return;
+    else
+    {
+  var x =  thisOne.parentElement.parentElement.parentElement.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling;
+    for(var i=0; i<x.children.length;i++)
+    {
+      if(hasClass(x.children[i],type)) x.children[i].style.display = "none";
+      else x.children[i].style.display = "block";
+    }
+  }
+  });
+
+// console.log(hasClass(x.children[0],type));
+// console.log(x.children[0]);
+
+}
+
+function hasClass(element, className)
+{
+    return element.className && new RegExp("(^|\\s)" + className + "(\\s|$)").test(element.className);
+}
 
 var arr=[];
 var idArr=[];
@@ -1003,23 +1088,37 @@ function scrollFunction() {
   if (document.body.scrollTop > document.getElementsByTagName('header')[0].offsetTop || document.documentElement.scrollTop > document.getElementsByTagName('header')[0].offsetTop ) {
     console.log("shivy goes");
     document.getElementById("mainNav").style.position = "fixed";
-    document.getElementById("mainNav").style.background = "#fff";
+    document.getElementById("mainNav").style.background = "rgba(256,256,256,0.95)";
+    document.getElementById("mainNav").style.borderBottom = "1px solid #e1e1e1";
     var elements  = document.getElementById("mainNav").querySelectorAll("a");
-    document.querySelector(".small-navbar").style.display="none";
     document.getElementById("logoImage").src="../img/logo5.png";
     document.querySelector(".logo").style.marginLeft = "13%";
     document.querySelector(".logo").style.width = "9vw";
     document.querySelector(".logo").style.height = "8vh";
     document.querySelector(".featured_happy_wrapper").style.marginTop = "6%";
+
+    if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) )
+    {
+        document.getElementById("main").style.marginTop = "17%";
+        document.querySelector(".secondSmall").style.display="none";
+    }
+    else   document.querySelector(".small-navbar").style.display="none";
+
     for (var i = 0; i < elements.length; i++) {
         elements[i].style.color="#000";
     }
   } else {
+    if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) )
+    {
+        document.getElementById("main").style.marginTop = "-17%";
+        document.querySelector(".secondSmall").style.display="block";
+    }
+      else document.querySelector(".small-navbar").style.display="block";
     // document.getElementById("navbar").style.top = "-50px";
     console.log("shivy comes");
+      document.getElementById("mainNav").style.borderBottom = "none";
       document.getElementById("mainNav").style.position = "relative";
       document.getElementById("mainNav").style.background = "none";
-      document.querySelector(".small-navbar").style.display="block";
       document.getElementById("logoImage").src="../img/dk_logo.png";
       document.querySelector(".logo").style.marginLeft = "0px";
       document.querySelector(".logo").style.width = "14vw";
