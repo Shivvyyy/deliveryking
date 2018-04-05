@@ -407,7 +407,7 @@
       </div>
     </div>
 
-
+<div id
     <div class="menu-wrapper" id="chinese">
       <div class="menu-header">
       <div class="line">
@@ -676,7 +676,6 @@
       </div>
     </div> -->
 
-
 <div class="loader">
   <img src="../img/loader.gif" alt="loader">
 </div>
@@ -752,7 +751,9 @@ xhr.onload = function (e) {
         if (xhr.readyState === 4) {
           if (xhr.status === 201) {
             var response = JSON.parse(xhr.response);
-            console.log(response);
+            // alert(response[0].category.name);
+            // alert(window.location.hash);
+            // console.log(response);
 
             div += '<div class="menu-wrapper" id="'+response[0].category.name+'">';
             div += '<div class="menu-header">';
@@ -772,9 +773,10 @@ xhr.onload = function (e) {
             if(response[0].category.desc)
             div += '<div class="description">'+response[0].category.desc+'</div><br/> <br/>';
             else
-            div += '<div class="description">Chef Made</div><br/><br/>';
+            div += '<div class="description">Chef Made food delicious and sweet</div><br/><br/>';
 
                 div += '  <div class="food-items">';
+
 
             response.forEach(function(product,index){
 
@@ -835,6 +837,8 @@ xhr.onload = function (e) {
             div += '</div></div>';
 
             htmlText.innerHTML += div;
+
+            if('#'+(response[0].category.name)==window.location.hash)   document.getElementById(response[0].category.name).scrollIntoView();
 
           } else {
             console.error(xhr.statusText);
