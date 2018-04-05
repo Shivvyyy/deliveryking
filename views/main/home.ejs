@@ -838,7 +838,7 @@ xhr.onload = function (e) {
 
             htmlText.innerHTML += div;
 
-            if('#'+(response[0].category.name)==window.location.hash)   document.getElementById(response[0].category.name).scrollIntoView();
+            if('#'+(response[0].category.name)==decodeURI(window.location.hash))   document.getElementById(response[0].category.name).scrollIntoView();
 
           } else {
             console.error(xhr.statusText);
