@@ -109,6 +109,7 @@ body
 }
 
 
+
 img
 {
 display: block;
@@ -460,7 +461,7 @@ color:#101b21;
   position: absolute;
   display: none;
  position: absolute;
- background-color: #fff;
+ background-color: #f7f7f7;
  width: 12.5vw;
      text-align: center;
  /* min-width: 160px; */
@@ -473,6 +474,7 @@ color:#101b21;
     padding: 12px 16px;
     text-decoration: none;
     display: block;
+    font-size: 1.1rem;
 }
 
 .filterDiv:hover .filterContent {
@@ -527,7 +529,7 @@ transition: all 0.5s;
 .food-item-titles
 {
   display: grid;
-  grid-template-columns: repeat(2,1fr);
+  grid-template-columns: auto auto;
   grid-row-gap: 1rem;
   align-content: center;
   padding: 10px;
@@ -540,7 +542,10 @@ transition: all 0.5s;
   /* font-family: 'Calibri',sans-serif; */
   font-weight: bold;
   font-size: 1.2rem;
-  /* white-space: nowrap; */
+  color:#343534;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
 }
 
 .food-item-price, .order_btn
@@ -639,7 +644,13 @@ grid-rows: repeat(5,1fr);
   font-weight: bold;
   font-size: 1.1rem;
 
-  /* white-space: nowrap; */
+  white-space: nowrap;
+}
+
+.food_title a
+{
+  color:#343534;
+  text-decoration: none;
 }
 
 
@@ -657,6 +668,13 @@ grid-rows: repeat(5,1fr);
   color: #fff;
   font-size: 0.6rem;
   cursor: pointer;
+}
+
+.food_order a
+{
+  color: #fff;
+  font-size: 0.6rem;
+  text-decoration: none;
 }
 
 .menu-wrapper
@@ -691,6 +709,7 @@ grid-rows: repeat(5,1fr);
   color: #fff;
   grid-gap: 2rem;
     padding: 3%;
+    text-align: center;
 }
 
 .footer_social_icon
@@ -767,15 +786,15 @@ grid-row-gap: 1rem;
 
 .food_icon
 {
-  width: 8% !important;
-  height: 8% !important;
+  width: 15px !important;
+  height: 15px !important;
   display: inline;
 }
 
 .other
 {
-  width: 4% !important;
-  height: 4% !important;
+  width: 15px !important;
+  height: 15px !important;
   display: inline;
 }
 
@@ -790,6 +809,11 @@ grid-row-gap: 1rem;
     #main
     {
       margin-top: -17%;
+    }
+
+    .food_title
+    {
+      white-space: normal;
     }
 
     .secondSmall
@@ -846,7 +870,7 @@ grid-row-gap: 1rem;
       padding-top: 18vh !important;
       display: grid !important;
       grid-template-columns: auto !important;
-      grid-template-rows: repeat(2,1fr) !important;
+      /* grid-template-rows: repeat(2,1fr) !important; */
       grid-row-gap: 5rem !important;
       /* grid-column-gap: 5rem; */
       align-content: center !important;
@@ -868,6 +892,10 @@ grid-row-gap: 1rem;
       padding-right:2%;
       /* align-items: center; */
       /* justify-content: space-around; */
+    }
+    .hpy_img
+    {
+      grid-row: 1;
     }
 
     .fill_space_div
@@ -901,6 +929,11 @@ grid-row-gap: 1rem;
       width: 24.5vw !important;
   }
 
+  filterContent a
+  {
+    font-size: 0.8rem;
+  }
+
   .related_products_slide
   {
     grid-template-columns: auto !important;
@@ -918,9 +951,20 @@ grid-row-gap: 1rem;
     padding:3%;
   }
 
-  .order_summary
+  /* .order_summary
   {
     display: none;
+  } */
+
+  .checkoutWrapper
+  {
+    grid-template-columns: auto !important;
+    grid-template-rows: auto auto;
+  }
+
+  .order_summary
+  {
+    grid-row: 1;
   }
 
 }
@@ -991,7 +1035,7 @@ grid-row-gap: 1rem;
 .prod_long_desc
 {
   font-size: 1.3rem;
-  line-height: 4vh;
+  line-height: 1.8rem;
   letter-spacing: 2px;
 }
 
@@ -1372,8 +1416,8 @@ margin-bottom: 5%;
 
 .food_icon_cart
 {
-  width: 10% !important;
-  height: 10% !important;
+  width: 15px !important;
+  height: 15px !important;
   display: inline;
 }
 

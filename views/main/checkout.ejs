@@ -140,95 +140,7 @@
     <!-- cartItems -->
     <div class="cart_items">
       <div class="cart_items_inner">
-    <div class="cart_order">
-      <div class="cart_order_title"><span>
-        <img src="../img/non-veg-icon.png" class="food_icon_cart_checkout">
-        <span class="cart_prod_name">&nbsp; Gulab Jamun</div>
 
-    <div class="cart_order_close" onclick="removeItem('+productId+',this)">
-      <!-- <i class="fa fa-times"></i> -->
-        </div>
-         <div class="cart_order_quantity">
-        <div id="input_div">
-          <input type="text" value="1" id="'+product.product._id+'">
-        <input type="button" value="-" id="moins" onclick="minus('+productId+')">
-        <input type="button" value="+" id="plus" onclick="plus('+productId+')">
-          </div>
-        </div>
-
-        <div class="cart_order_price">
-        Rs 250
-          </div>
-
-    </div>
-
-    <hr/>
-
-    <div class="cart_order">
-      <div class="cart_order_title"><span>
-        <img src="../img/non-veg-icon.png" class="food_icon_cart_checkout">
-        <span class="cart_prod_name">&nbsp; Gulab Jamun</div>
-
-    <div class="cart_order_close" onclick="removeItem('+productId+',this)">
-      <!-- <i class="fa fa-times"></i> -->
-        </div>
-         <div class="cart_order_quantity">
-        <div id="input_div">
-          <input type="text" value="1" id="'+product.product._id+'">
-        <input type="button" value="-" id="moins" onclick="minus('+productId+')">
-        <input type="button" value="+" id="plus" onclick="plus('+productId+')">
-          </div>
-        </div>
-
-        <div class="cart_order_price">
-        Rs 250
-          </div>
-
-    </div>
-
-    <div class="cart_order">
-      <div class="cart_order_title"><span>
-        <img src="../img/non-veg-icon.png" class="food_icon_cart_checkout">
-        <span class="cart_prod_name">&nbsp; Gulab Jamun</div>
-
-    <div class="cart_order_close" onclick="removeItem('+productId+',this)">
-      <!-- <i class="fa fa-times"></i> -->
-        </div>
-         <div class="cart_order_quantity">
-        <div id="input_div">
-          <input type="text" value="1" id="'+product.product._id+'">
-        <input type="button" value="-" id="moins" onclick="minus('+productId+')">
-        <input type="button" value="+" id="plus" onclick="plus('+productId+')">
-          </div>
-        </div>
-
-        <div class="cart_order_price">
-        Rs 250
-          </div>
-
-    </div>
-
-    <div class="cart_order">
-      <div class="cart_order_title"><span>
-        <img src="../img/non-veg-icon.png" class="food_icon_cart_checkout">
-        <span class="cart_prod_name">&nbsp; Gulab Jamun</div>
-
-    <div class="cart_order_close" onclick="removeItem('+productId+',this)">
-      <!-- <i class="fa fa-times"></i> -->
-        </div>
-         <div class="cart_order_quantity">
-        <div id="input_div">
-          <input type="text" value="1" id="'+product.product._id+'" required>
-        <input type="button" value="-" id="moins" onclick="minus('+productId+') required">
-        <input type="button" value="+" id="plus" onclick="plus('+productId+') required" >
-          </div>
-        </div>
-
-        <div class="cart_order_price">
-        Rs 250
-          </div>
-
-    </div>
   </div>
 
 
@@ -239,16 +151,16 @@
     <hr/>
     <div class="itemPrice">
       <div>Items Prices</div>
-      <div class="itemPriceP">Rs <span>400</span> </div>
+      <div class="itemPriceP">Rs <span></span> </div>
       <div>GST (5%)</div>
-      <div class="gstP">+Rs <span>20</span></div>
+      <div class="gstP">+Rs <span></span></div>
 
     </div>
     <hr/>
 
     <div class="gTotal">
       <div> GRAND TOTAL </div>
-      <div class="gTotalP"> Rs <span>420</span> </div>
+      <div class="gTotalP"> Rs <span></span> </div>
     </div>
 
 
@@ -341,8 +253,8 @@ document.addEventListener("DOMContentLoaded",function(){
     div += '<div class="cart_order_close" onclick="removeItem('+productCart._id+',this)">';
         // <!-- <i class="fa fa-times"></i> -->
     div += '</div><div class="cart_order_quantity"><div id="input_div">';
-    div += '<input type="text" data-val="'+productCart.price+'" value="'+productCart.quantity+'" id="'+productCart._id+'shivy" disabled>';
     div += '<input type="button" value="-" id="moins" onclick="minus('+productId+', this)">';
+    div += '<input type="text" data-val="'+productCart.price+'" value="'+productCart.quantity+'" id="'+productCart._id+'shivy" disabled>';
     div += '<input type="button" value="+" id="plus" onclick="plus('+productId+', this)">';
     div += '</div></div><div class="cart_order_price">Rs <span>'+productCart.price*productCart.quantity+'</span></div></div><hr/>';
 
@@ -458,8 +370,8 @@ document.getElementById("collapsible-arrow-2").setAttribute("onclick","openPanel
 
       function initMap() {
         map = new google.maps.Map(document.getElementById('map'), {
-          center: {lat: -34.397, lng: 150.644},
-          zoom: 6
+          center: {lat: 28.4595, lng: 77.0266},
+          zoom: 12
         });
         infoWindow = new google.maps.InfoWindow;
 

@@ -9,6 +9,7 @@
     <div class="prod_title">
       <h1><%= product.name %></h1>
     </div>
+    <div>
     <div class="prod_price">
     INR <%= product.price %>rs.
     </div>
@@ -16,7 +17,7 @@
       <%= product.prodDesc %>
       <%= product.prodDesc %>
     </div>
-
+</div>
     <div class="add_to_cart">
       <div class="add_to_cart_btn" onclick="openNav('<%= product._id %>',this);">ADD TO CART</div>
     </div>

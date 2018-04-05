@@ -26,8 +26,8 @@ document.addEventListener("DOMContentLoaded", function(event) {
       cartOrder += '</div>';
       cartOrder += '<div class="cart_order_quantity">';
        cartOrder += '<div id="input_div">';
-       cartOrder += '<input type="text" data-val="'+product.price+'" value="'+product.quantity+'" id="'+product._id+'" disabled>';
        cartOrder +=  '<input type="button" value="-" id="moins" onclick="minus('+productId+')">';
+       cartOrder += '<input type="text" data-val="'+product.price+'" value="'+product.quantity+'" id="'+product._id+'" disabled>';
        cartOrder += '<input type="button" value="+" id="plus" onclick="plus('+productId+')">';
        cartOrder += '</div>';
        cartOrder += '</div>';
@@ -89,8 +89,8 @@ function openNav(product,el,event) {
        cartOrder += '</div>';
        cartOrder += '<div class="cart_order_quantity">';
         cartOrder += '<div id="input_div">';
-        cartOrder += '<input type="text" data-val="'+product.product.price+'" value="1" id="'+product.product._id+'">';
         cartOrder +=  '<input type="button" value="-" id="moins" onclick="minus('+productId+')">';
+        cartOrder += '<input type="text" data-val="'+product.product.price+'" value="1" id="'+product.product._id+'">';
         cartOrder += '<input type="button" value="+" id="plus" onclick="plus('+productId+')">';
         cartOrder += '</div>';
         cartOrder += '</div>';
@@ -170,8 +170,8 @@ function openNav(product,el,event) {
   var quantityBtn = '';
     quantityBtn += '<div id="input_div" class="shivy_move">';
     var input_shivy = product.product._id+'shivy';
-    quantityBtn += '<input type="text" value="1" id="'+input_shivy+'" disabled>';
     quantityBtn +=  '<input type="button" value="-" id="moins" onclick="minus('+productId+')">';
+    quantityBtn += '<input type="text" value="1" id="'+input_shivy+'" disabled>';
     quantityBtn += '<input type="button" value="+" id="plus" onclick="plus('+productId+')">';
     quantityBtn += '</div>';
     shivyMove.innerHTML += quantityBtn;

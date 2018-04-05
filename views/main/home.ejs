@@ -54,16 +54,16 @@
 
   <% var total=0; for(var i=0; i< products.length; i++){ if((products[i].mainSection1)==true && total< 6){ %>
     <!-- <%= products[i].mainSection1 %> -->
-    <% total+= 1; %>
+    <% total+= 1;%>
     <div class="food_title_price">
     <div class="food_title">
-      <span><img src="../img/non-veg-icon.png" class="food_icon other"><%= products[i].name %></span>
+      <span><img src="../img/non-veg-icon.png" class="food_icon other">&nbsp;<a href="food/<%= products[i]._id %>"><%= products[i].name %></a></span>
     </div>
     <div class="food_price">
       Rs <%= products[i].price %>
     </div>
     <div class="food-content">Aloo/Mushroom/Water</div>
-    <div class="food_order" onclick="openNav('<%= products[i]._id %>',this)">ORDER</div>
+    <div class="food_order"><a href="food/<%= products[i]._id %>">ORDER</a></div>
   </div>
   <% }} %>
   <!-- <div class="food_title_price">
@@ -117,16 +117,16 @@
     <h1><span class="hpy_hrs_heading">Featured Items</span></h1>
     <% var total=0; for(var i=0; i< products.length; i++){ if((products[i].mainSection2)==true && total< 6){ %>
       <!-- <%= products[i].mainSection1 %> -->
-      <% total+= 1; %>
+      <% total+= 1;%>
 <div class="food_title_price">
     <div class="food_title">
-    <span><img src="../img/non-veg-icon.png" class="food_icon other"> <%= products[i].name %></span>
+    <span><img src="../img/non-veg-icon.png" class="food_icon other">&nbsp;<a href="food/<%= products[i]._id %>"><%= products[i].name %></a></span>
     </div>
     <div class="food_price">
       Rs <%= products[i].price %>
     </div>
     <div class="food-content">Aloo/Mushroom/Water</div>
-      <div class="food_order" onclick="openNav('<%= products[i]._id %>',this)">ORDER</div>
+      <div class="food_order"><a href="food/<%= products[i]._id %>">ORDER</a></div>
   </div>
   <% }} %>
 
@@ -691,6 +691,42 @@
 <script>
 document.addEventListener("DOMContentLoaded", function(event) {
 
+
+var sessionCart = JSON.parse(sessionStorage.getItem("cart"));
+// if(sessionCart!==null)
+// {
+//   // //   var productId = "'"+product._id+"'";
+//   //   var check = false;
+
+// // console.log(checkIds);
+// checkIds.forEach(function(id,index){
+//   console.log(index);
+//     // var check = false;
+//     sessionCart.items.some(function(productCart,index){
+//       if(productCart._id==id)
+//       {
+//         var productId = "'"+id+"'";
+//         var div = '';
+//         div += '<div id="input_div" class="shivy_move">';
+//         var input_shivy = id+'shivy';
+//         div += '<input type="text" value="'+productCart.quantity+'" id="'+input_shivy+'" disabled>';
+//         div +=  '<input type="button" value="-" id="moins" onclick="minus('+productId+')">';
+//         div += '<input type="button" value="+" id="plus" onclick="plus('+productId+')">';
+//         div += '</div>';
+//         // console.log(id+"shivy");
+//         var parentEl = document.getElementById(id+'extra').parentElement;
+//         document.getElementById(id+'extra').remove();
+//          parentEl.innerHTML += div;
+//         return true;
+//       // alert(id);
+//     }
+//     });
+//     // if(!check) div +=  '<div class="order_btn" onclick="openNav('+productId+',this);">ORDER</div>';
+// });
+//
+// }
+
+
   autocomplete(document.getElementById("myInput"));
 //
 // alert("DOM fully loaded and parsed");
@@ -765,9 +801,9 @@ xhr.onload = function (e) {
               else
               div += '<img src="../img/veg-icon.png" class="food_icon">';
               div +=  '&nbsp;'+product.name+'</span> </div>';
-              div +=  '<div class="food-item-price">Rs. '+product.price+'</div>';
+              div +=  '<div class="food-item-price">&nbsp;&nbsp;Rs. '+product.price+'</div>';
               div +=    '  <div class="food-item-content">Aloo/Mushroom</div>';
-              var sessionCart = JSON.parse(sessionStorage.getItem("cart"));
+              // var sessionCart = JSON.parse(sessionStorage.getItem("cart"));
                 var productId = "'"+product._id+"'";
                 var check = false;
                   if(sessionCart!==null)
@@ -778,8 +814,8 @@ xhr.onload = function (e) {
                 {
                   div += '<div id="input_div" class="shivy_move">';
                   var input_shivy = product._id+'shivy';
-                  div += '<input type="text" value="'+productCart.quantity+'" id="'+input_shivy+'" disabled>';
                   div +=  '<input type="button" value="-" id="moins" onclick="minus('+productId+')">';
+                  div += '<input type="text" value="'+productCart.quantity+'" id="'+input_shivy+'" disabled>';
                   div += '<input type="button" value="+" id="plus" onclick="plus('+productId+')">';
                   div += '</div>';
                   check = true;
@@ -827,8 +863,9 @@ xhr.send(null);
 
 
 
-function loadAll(thisOne,category,callback)
+function loadAll(thisOne,category, callback)
 {
+     var sessionCart = JSON.parse(sessionStorage.getItem("cart"));
   // alert(category);
   console.log(thisOne);
   var tmpEl = thisOne.parentElement.parentElement;
@@ -866,9 +903,8 @@ function loadAll(thisOne,category,callback)
          else
          div += '<img src="../img/veg-icon.png" class="food_icon">';
          div +=  '&nbsp;'+product.name+'</span> </div>';
-         div +=  '<div class="food-item-price">Rs. '+product.price+'</div>';
+         div +=  '<div class="food-item-price">&nbsp;&nbsp;Rs. '+product.price+'</div>';
          div +=    '  <div class="food-item-content">Aloo/Mushroom</div>';
-         var sessionCart = JSON.parse(sessionStorage.getItem("cart"));
            var productId = "'"+product._id+"'";
            var check = false;
              if(sessionCart!==null)
@@ -879,8 +915,8 @@ function loadAll(thisOne,category,callback)
            {
              div += '<div id="input_div" class="shivy_move">';
              var input_shivy = product._id+'shivy';
-             div += '<input type="text" value="'+productCart.quantity+'" id="'+input_shivy+'" disabled>';
              div +=  '<input type="button" value="-" id="moins" onclick="minus('+productId+')">';
+            div += '<input type="text" value="'+productCart.quantity+'" id="'+input_shivy+'" disabled>';
              div += '<input type="button" value="+" id="plus" onclick="plus('+productId+')">';
              div += '</div>';
              check = true;
@@ -893,12 +929,14 @@ function loadAll(thisOne,category,callback)
          div +=  '</div>';
          div +=   '</div>';
          tmpEl.innerHTML += div;
+        console.log(index);
+        // console.log(allProducts.length+"shivy");
+        if(index==(allProducts.length)-1)   callback && callback();
       });
       }
   };
-  xhttp.open("GET", "/allProducts/"+category+"/"+tLength+"", false);
+  xhttp.open("GET", "/allProducts/"+category+"/"+tLength+"", true);
   xhttp.send();
-  callback();
 }
 
 function filter(type,thisOne,category)
