@@ -1,0 +1,483 @@
+<% layout('layout') -%>
+<% include ./../partials/cart %>
+<main class="product_main">
+<div class="product_wrapper">
+  <div class="product_img">
+    <img src="http://deliverykings.co.in/uploads/<%= product.prodImg %>" alt="">
+  </div>
+  <div class="prod_desc">
+    <div class="prod_title">
+      <h1><%= product.name %></h1>
+    </div>
+    <div>
+    <div class="prod_price">
+    INR <%= product.price %>rs.
+    </div>
+    <br/>
+    <div class="prod_long_desc">
+      <%= product.prodDesc %>
+      <%= product.prodDesc %>
+    </div>
+</div>
+    <div class="add_to_cart">
+      <div class="add_to_cart_btn" onclick="openNav('<%= product._id %>',this);">ADD TO CART</div>
+    </div>
+    <div class="prod_short_desc">
+      Category: <%= product.category.name %><br/><br/>
+      Serve   : <%= product.serve %> Persons
+    </div>
+  </div>
+</div>
+
+<br/>
+<!-- Related products block -->
+
+<div class="related_products">
+  <h1>RELATED PRODUCTS</h1>
+
+<div class="related_products_slide">
+  
+  <div class="food-item">
+    <a href="foods"><img src="../img/food_items/6.jpg"></a>
+    <div class="food-item-titles">
+    <div class="food-item-title"><span><img src="../img/non-veg-icon.png" class="food_icon"> Mushroom Mutter</span> </div>
+    <div class="food-item-price">Rs. 24</div>
+    <div class="food-item-content">Aloo/Mushroom/Water</div>
+    <div class="order_btn" onclick="openNav()">ORDER</div>
+    </div>
+  </div>
+
+  <div class="food-item">
+          <a href="foods"><img src="../img/food_items/7.jpg"></a>
+          <div class="food-item-titles">
+          <div class="food-item-title"><span><img src="../img/non-veg-icon.png" class="food_icon"> Mushroom Mutter</span> </div>
+          <div class="food-item-price">Rs. 24</div>
+          <div class="food-item-content">Aloo/Mushroom/Water</div>
+          <div class="order_btn" onclick="openNav()">ORDER</div>
+          </div>
+        </div>
+
+        <div class="food-item">
+          <a href="foods"><a href="foods"><img src="../img/food_items/8.jpg"></a></a>
+          <div class="food-item-titles">
+          <div class="food-item-title"><span><img src="../img/non-veg-icon.png" class="food_icon"> Mushroom Mutter</span> </div>
+          <div class="food-item-price">Rs. 24</div>
+          <div class="food-item-content">Aloo/Mushroom/Water</div>
+          <div class="order_btn" onclick="openNav()">ORDER</div>
+          </div>
+        </div>
+
+
+
+
+
+</div>
+
+</div>
+
+
+
+<div class="reviews">
+<div class="old_review" id="old_review" onclick="change_box('old_review');">
+  Description
+</div>
+<div class="add_review" id="add_review" onclick="change_box('add_review');">
+  Give Review
+</div>
+<div class="old_box display" id="old_box">
+  <span class="review_heading">User Rating</span>
+  <span class="fa fa-star large checked"></span>
+  <span class="fa fa-star large checked"></span>
+  <span class="fa fa-star large checked"></span>
+  <span class="fa fa-star large checked"></span>
+  <span class="fa fa-star large"></span>
+  <p class="review_overall">4.1 average based on 254 reviews.</p>
+
+  <div class="review_overall_stars">
+    <div class="stars">
+      <div>
+      5 Star
+    </div>
+    <div>
+    4 Star
+    </div>
+    <div>
+    3 Star
+    </div>
+    <div>
+    2 Star
+    </div>
+    <div>
+    1 Star
+    </div>
+    </div>
+    <div class="bars">
+      <div class="bar1">
+      </div>
+      <div class="bar2">
+      </div>
+      <div class="bar3">
+      </div>
+      <div class="bar4">
+      </div>
+      <div class="bar5">
+      </div>
+    </div>
+    <div class="people_no">
+      <div class="people_no_1">
+        253
+      </div>
+      <div class="people_no_2">
+        452
+      </div>
+      <div class="people_no_3">
+        235
+      </div>
+      <div class="people_no_4">
+        50
+      </div>
+      <div class="people_no_5">
+        32
+      </div>
+    </div>
+  </div>
+
+<div>
+  <div class="people_ratings">
+    <div class="name_pic_rating">
+    <div class="customer_pic">
+      <img src="../img/customer_profile.png">
+    </div>
+    <div class="name_rating">
+    <div class="customer_name">
+      Shivyan
+    </div>
+    <div class="customer_rating">
+    <span class="fa fa-star checked"></span>
+    <span class="fa fa-star checked"></span>
+    <span class="fa fa-star checked"></span>
+    <span class="fa fa-star checked"></span>
+    <span class="fa fa-star half"></span>
+    </div>
+    </div>
+  </div>
+    <div class="customer_comment">
+      Lorem ujdhujhn Lorem ujdhujhn Lorem ujdhujhn Lorem ujdhujhnvv Lorem ujdhujhnvv Lorem ujdhujhn
+    </div>
+  </div>
+
+  <div class="people_ratings">
+    <div class="name_pic_rating">
+    <div class="customer_pic">
+      <img src="../img/customer_profile.png">
+    </div>
+    <div class="name_rating">
+    <div class="customer_name">
+      Shivyan
+    </div>
+    <div class="customer_rating">
+    <span class="fa fa-star checked"></span>
+    <span class="fa fa-star checked"></span>
+    <span class="fa fa-star checked"></span>
+    <span class="fa fa-star checked"></span>
+    <span class="fa fa-star half"></span>
+    </div>
+    </div>
+  </div>
+    <div class="customer_comment">
+      Lorem ujdhujhn Lorem ujdhujhn Lorem ujdhujhn Lorem ujdhujhnvv Lorem ujdhujhnvv Lorem ujdhujhn
+    </div>
+  </div>
+
+
+  <div class="people_ratings">
+    <div class="name_pic_rating">
+    <div class="customer_pic">
+      <img src="../img/customer_profile.png">
+    </div>
+    <div class="name_rating">
+    <div class="customer_name">
+      Shivyan
+    </div>
+    <div class="customer_rating">
+    <span class="fa fa-star checked"></span>
+    <span class="fa fa-star checked"></span>
+    <span class="fa fa-star checked"></span>
+    <span class="fa fa-star checked"></span>
+    <span class="fa fa-star half"></span>
+    </div>
+    </div>
+  </div>
+    <div class="customer_comment">
+      Lorem ujdhujhn Lorem ujdhujhn Lorem ujdhujhn Lorem ujdhujhnvv Lorem ujdhujhnvv Lorem ujdhujhn
+    </div>
+  </div>
+
+
+
+  <div class="people_ratings">
+    <div class="name_pic_rating">
+    <div class="customer_pic">
+      <img src="../img/customer_profile.png">
+    </div>
+    <div class="name_rating">
+    <div class="customer_name">
+      Shivyan
+    </div>
+    <div class="customer_rating">
+    <span class="fa fa-star checked"></span>
+    <span class="fa fa-star checked"></span>
+    <span class="fa fa-star checked"></span>
+    <span class="fa fa-star checked"></span>
+    <span class="fa fa-star half"></span>
+    </div>
+    </div>
+  </div>
+    <div class="customer_comment">
+      Lorem ujdhujhn Lorem ujdhujhn Lorem ujdhujhn Lorem ujdhujhnvv Lorem ujdhujhnvv Lorem ujdhujhn
+    </div>
+  </div>
+
+
+
+  <div class="people_ratings">
+    <div class="name_pic_rating">
+    <div class="customer_pic">
+      <img src="../img/customer_profile.png">
+    </div>
+    <div class="name_rating">
+    <div class="customer_name">
+      Shivyan
+    </div>
+    <div class="customer_rating">
+    <span class="fa fa-star checked"></span>
+    <span class="fa fa-star checked"></span>
+    <span class="fa fa-star checked"></span>
+    <span class="fa fa-star checked"></span>
+    <span class="fa fa-star half"></span>
+    </div>
+    </div>
+  </div>
+    <div class="customer_comment">
+      Lorem ujdhujhn Lorem ujdhujhn Lorem ujdhujhn Lorem ujdhujhnvv Lorem ujdhujhnvv Lorem ujdhujhn
+    </div>
+  </div>
+
+
+  <div class="people_ratings">
+    <div class="name_pic_rating">
+    <div class="customer_pic">
+      <img src="../img/customer_profile.png">
+    </div>
+    <div class="name_rating">
+    <div class="customer_name">
+      Shivyan
+    </div>
+    <div class="customer_rating">
+    <span class="fa fa-star checked"></span>
+    <span class="fa fa-star checked"></span>
+    <span class="fa fa-star checked"></span>
+    <span class="fa fa-star checked"></span>
+    <span class="fa fa-star half"></span>
+    </div>
+    </div>
+  </div>
+    <div class="customer_comment">
+      Lorem ujdhujhn Lorem ujdhujhn Lorem ujdhujhn Lorem ujdhujhnvv Lorem ujdhujhnvv Lorem ujdhujhn
+    </div>
+  </div>
+
+  <div class="people_ratings">
+    <div class="name_pic_rating">
+    <div class="customer_pic">
+      <img src="../img/customer_profile.png">
+    </div>
+    <div class="name_rating">
+    <div class="customer_name">
+      Shivyan
+    </div>
+    <div class="customer_rating">
+    <span class="fa fa-star checked"></span>
+    <span class="fa fa-star checked"></span>
+    <span class="fa fa-star checked"></span>
+    <span class="fa fa-star checked"></span>
+    <span class="fa fa-star half"></span>
+    </div>
+    </div>
+  </div>
+    <div class="customer_comment">
+      Lorem ujdhujhn Lorem ujdhujhn Lorem ujdhujhn Lorem ujdhujhnvv Lorem ujdhujhnvv Lorem ujdhujhn
+    </div>
+  </div>
+
+  <div class="people_ratings">
+    <div class="name_pic_rating">
+    <div class="customer_pic">
+      <img src="../img/customer_profile.png">
+    </div>
+    <div class="name_rating">
+    <div class="customer_name">
+      Shivyan
+    </div>
+    <div class="customer_rating">
+    <span class="fa fa-star checked"></span>
+    <span class="fa fa-star checked"></span>
+    <span class="fa fa-star checked"></span>
+    <span class="fa fa-star checked"></span>
+    <span class="fa fa-star half"></span>
+    </div>
+    </div>
+  </div>
+    <div class="customer_comment">
+      Lorem ujdhujhn Lorem ujdhujhn Lorem ujdhujhn Lorem ujdhujhnvv Lorem ujdhujhnvv Lorem ujdhujhn
+    </div>
+  </div>
+
+</div>
+
+</div>
+<div class="give_box" id="give_box">
+  <div class="review_grid">
+
+<div class="review_heading">
+  Give Your Review &nbsp; <i class="fa fa-edit"></i>
+</div>
+<div class="give_review_stars">
+  <span class="fa fa-star checked"></span>
+  <span class="fa fa-star checked"></span>
+  <span class="fa fa-star checked"></span>
+  <span class="fa fa-star checked"></span>
+  <span class="fa fa-star half"></span>
+</p>
+</div>
+<div class="reviewing">
+  <textarea rows="5" cols="50" class="reviewing_box" placeholder="Tell Us How You Feel About Our Service and Food.">
+
+</textarea>
+</div>
+  <div class="review_btn">
+  <button style="review_post_button">Post Your Review</button>
+</div>
+
+</div>
+
+</div>
+</div>
+<br/>
+<br/>
+
+</main>
+
+
+
+<script type="text/JavaScript">
+document.addEventListener("DOMContentLoaded",function(){
+
+  //navbar fix
+
+  document.getElementById("mainNav").style.position = "fixed";
+  document.getElementById("mainNav").style.background = "rgba(255, 255, 255, 0.95)";
+  document.getElementById("mainNav").style.borderBottom = " 1px solid rgb(225, 225, 225)";
+
+  var elements  = document.getElementById("mainNav").querySelectorAll("a");
+  // document.querySelector(".small-navbar").style.display="none";
+  document.getElementById("logoImage").src="../img/logo5.png";
+  document.querySelector(".logo").style.marginLeft = "13%";
+  document.querySelector(".logo").style.width = "9vw";
+  document.querySelector(".logo").style.height = "8vh";
+  // document.querySelector(".featured_happy_wrapper").style.marginTop = "6%";
+  for (var i = 0; i < elements.length; i++) {
+      elements[i].style.color="#000";
+  }
+
+
+  window.onscroll = function() {scrollFunction()};
+
+  function scrollFunction() {
+    if (document.body.scrollTop > document.querySelector(".small-navbar").offsetTop || document.documentElement.scrollTop > document.querySelector(".small-navbar").offsetTop )
+    {
+      if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) )
+          document.querySelector(".secondSmall").style.display="none";
+      else
+      document.querySelector(".small-navbar").style.display="none";
+    }
+    else
+    {
+        if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) )
+            document.querySelector(".secondSmall").style.display="block";
+        else
+        document.querySelector(".small-navbar").style.display="block";
+    }
+  }
+
+  // quantityBtn += '<div id="input_div" class="shivy_move">';
+  // // var input_shivy = product.product._id+'shivy';
+  // quantityBtn += '<input type="text" value="1" id="'+input_shivy+'">';
+  // quantityBtn +=  '<input type="button" value="-" id="moins" onclick="minus("<%= product._id %>shivy")">';
+  // quantityBtn += '<input type="button" value="+" id="plus" onclick="plus("<%= product._id %>shivy")">';
+  // quantityBtn += '</div>';
+  // shivyMove.innerHTML += quantityBtn;
+
+
+  var sessionCart = JSON.parse(sessionStorage.getItem("cart"));
+    // var productId = "'"+product._id+"'";
+    var check = false;
+      if(sessionCart!==null)
+      {
+  sessionCart.items.some(function(productCart,index){
+    // console.log(productCart._id);
+
+    if(productCart._id== '<%= product._id %>')
+    {
+      var divMain = document.createElement('div');
+      divMain.id= "input_div";
+      divMain.className = "shivy_move";
+              var div = "";
+      div += '<div id="input_div" class="shivy_move">';
+      // var input_shivy = product._id+'shivy';
+      div += '<input type="text" value="'+productCart.quantity+'" id="<%= product._id %>shivy" disabled>';
+      var productId = "'<%= product._id %>'";
+      div +=  '<input type="button" value="-" id="moins" onclick="minus('+productId+')">';
+      div += '<input type="button" value="+" id="plus" onclick="plus('+productId+')">';
+      div += '</div>';
+      divMain.innerHTML = div;
+
+      // check = true;
+    var cartBtn = document.querySelector(".prod_desc").childNodes[7];
+    // console.log(cartBtn);
+    cartBtn.replaceChild(divMain, cartBtn.childNodes[1]);
+      return true;
+    // alert(id);
+  }
+});
+}
+
+
+});
+//Change review box
+function change_box(what_box)
+{
+
+
+  if(what_box=='old_review')
+  {
+    alert("here");
+  document.getElementById('old_review').style.background='#dc3836';
+    document.getElementById('old_review').style.color='#fff';
+  document.getElementById('add_review').style.background='#fff';
+  document.getElementById('add_review').style.color='#000';
+  document.getElementById('old_box').classList.add("display");
+  document.getElementById('give_box').classList.remove("display");
+}
+else
+{
+  alert("here2");
+  document.getElementById('add_review').style.background='#dc3836';
+  document.getElementById('add_review').style.color='#fff';
+  document.getElementById('old_review').style.background='#fff';
+    document.getElementById('old_review').style.color='#000';
+  document.getElementById('old_box').classList.remove("display");
+  document.getElementById('give_box').classList.add("display");
+}
+}
+</script>

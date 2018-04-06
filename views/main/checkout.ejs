@@ -1,0 +1,525 @@
+<% layout('layout') -%>
+
+<main>
+
+<div class="checkoutWrapper">
+  <div class="checkoutDetails">
+      <div class="cus_info">Customer Information</div>
+    <div class="logsign">
+      <div class="logsignText">
+        Profile<br/><br/>
+        Log In or Sign Up
+      </div>
+      <div class="collapsible-arrow acc" id="collapsible-arrow" >
+        <span><i class="fas fa-2x fa-angle-up"></i></span>
+      </div>
+
+    </div>
+    <!-- collapsible -->
+    <div class="logsignformMain" id="accDiv">
+    <div class="logsignform">
+      <div class="signUpLink">Sign Up</div>
+      <div class="signupoffer">Sign up to get new offer on selected dishes</div>
+      <div class="logsignforminputs">
+        <div class="firstlastname">
+        <input type="text" placeholder="First Name" required>
+        <input type="text" placeholder="Last Name" required>
+      </div>
+      <div>
+        <input type="text" placeholder="Email Address" required>
+      </div>
+      <div>
+        <input type="number" placeholder="Enter 10 digit mob no" required>
+      </div>
+      <div>
+        <input type="text" placeholder="Password" required>
+      </div>
+
+      <!-- <input type="submit" class="submit_btn" value="SIGN UP & CONTINUE"> -->
+      <button class="submit_btn" value="SIGN UP & CONTINUE">SIGN UP & CONTINUE</button>
+      <div class="login_option">Already have an account? Log in</div>
+
+      <!-- <div class="or-divider">
+       <hr>
+      <span class="text">Or</span>
+      <hr>
+      </div> -->
+
+      <button class="guest_btn" value="Continue As Guest" onclick="manipulatePanel()">Continue as Guest</button>
+    </div>
+    </div>
+</div>
+
+<!-- deliver address -->
+
+<div class="logsign">
+  <div class="logsignText">
+    Deliver to<br/><br/>
+    Not Selected
+  </div>
+  <div id="collapsible-arrow-2" class="collapsible-arrow acc" >
+    <span ><i class="fas fa-2x fa-angle-up"></i></span>
+  </div>
+
+</div>
+<!-- collapsible -->
+<div class="logsignformMain" id="accDiv2" style="display: none">
+  <div class="logsignform2">
+    <div class="pac-card" id="pac-card">
+      <div>
+        <div id="title">
+          Autocomplete search
+        </div>
+        <div id="type-selector" class="pac-controls">
+          <input type="radio" name="type" id="changetype-all" checked="checked">
+          <label for="changetype-all">All</label>
+
+          <input type="radio" name="type" id="changetype-establishment">
+          <label for="changetype-establishment">Establishments</label>
+
+          <input type="radio" name="type" id="changetype-address">
+          <label for="changetype-address">Addresses</label>
+
+          <input type="radio" name="type" id="changetype-geocode">
+          <label for="changetype-geocode">Geocodes</label>
+        </div>
+        <div id="strict-bounds-selector" class="pac-controls">
+          <input type="checkbox" id="use-strict-bounds" value="">
+          <label for="use-strict-bounds">Strict Bounds</label>
+        </div>
+      </div>
+    </div>
+    <div id="map"></div>
+    <div id="infowindow-content">
+      <!-- <img src="" width="8" height="8" id="place-icon"> -->
+      <!-- <span id="place-name"  class="title"></span><br> -->
+      <span id="place-address"></span>
+    </div>
+    <!-- <p>Latitude: <input size="20" type="text" id="latbox" name="lat" ></p>
+   <p>Longitude: <input size="20" type="text" id="lngbox" name="lng" ></p>
+   <p>Address: <input size="20" type="text" id="faddress" </p> -->
+
+   <div  class="logsignforminputs">
+     <input id="pac-input" type="text" placeholder="Enter Your Location">
+   </div>
+   <div  class="logsignforminputs">
+     <input id="pac-input" type="text" placeholder="House and Street No.">
+   </div>
+   <div  class="logsignforminputs">
+     <input id="pac-input" type="text" placeholder="Your Mobile No.">
+   </div>
+   <div  class="logsignforminputs">
+     <input id="pac-input" type="text" placeholder="Your Email Address">
+   </div>
+
+  </div>
+</div>
+
+<!-- checkout panel -->
+
+<div class="logsign">
+  <div class="logsignText">
+    Payment Method<br/><br/>
+    Online Wallet or Cash On Delivery
+  </div>
+  <div class="collapsible-arrow acc" >
+    <span><i class="fas fa-2x fa-angle-up"></i></span>
+  </div>
+
+</div>
+
+  </div>
+  <div class="order_summary">
+      <div class="cus_info">ORDER SUMMARY</div>
+  <div class="checkoutTotal">
+
+    <div class="delivery_time">
+      Your order will be delivered within<br/><br/>
+      <span class="minutes">45 minutes</span>
+    </div>
+    <!-- cartItems -->
+    <div class="cart_items">
+      <div class="cart_items_inner">
+
+  </div>
+
+
+    <div class="coupon">
+      <input type="text" placeholder="Enter Coupon Code" autofocus="autofocus"></input>
+      <span class="apply">Apply</span>
+    </div>
+    <hr/>
+    <div class="itemPrice">
+      <div>Items Prices</div>
+      <div class="itemPriceP">Rs <span></span> </div>
+      <div>GST (5%)</div>
+      <div class="gstP">+Rs <span></span></div>
+
+    </div>
+    <hr/>
+
+    <div class="gTotal">
+      <div> GRAND TOTAL </div>
+      <div class="gTotalP"> Rs <span></span> </div>
+    </div>
+
+
+    </div>
+
+    <div class="helpLine">
+      NEED HELP IN PLACING YOUR ORDER?
+    </div>
+
+
+    <div class="helpLineNo">
+      Reach out to us on<br/><br/>
+      <span class="hNo">91-7017585022</span><br/><br/>
+      Lines open from 9:00 AM to 12:00 AM
+    </div>
+
+
+    </div>
+</div>
+
+</div>
+</main>
+
+<script>
+document.addEventListener("DOMContentLoaded",function(){
+
+
+    //navbar fix
+
+    document.getElementById("mainNav").style.position = "fixed";
+    document.getElementById("mainNav").style.background = "rgba(255, 255, 255, 0.95)";
+    document.getElementById("mainNav").style.borderBottom = " 1px solid rgb(225, 225, 225)";
+
+    var elements  = document.getElementById("mainNav").querySelectorAll("a");
+    // document.querySelector(".small-navbar").style.display="none";
+    document.getElementById("logoImage").src="../img/logo5.png";
+    document.querySelector(".logo").style.marginLeft = "13%";
+    document.querySelector(".logo").style.width = "9vw";
+    document.querySelector(".logo").style.height = "8vh";
+    // document.querySelector(".featured_happy_wrapper").style.marginTop = "6%";
+    for (var i = 0; i < elements.length; i++) {
+        elements[i].style.color="#000";
+    }
+
+
+    window.onscroll = function() {scrollFunction()};
+
+    function scrollFunction() {
+      if (document.body.scrollTop > document.querySelector(".small-navbar").offsetTop || document.documentElement.scrollTop > document.querySelector(".small-navbar").offsetTop )
+      {
+        console.log("yea work");
+        if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) )
+            document.querySelector(".secondSmall").style.display="none";
+        else document.querySelector(".small-navbar").style.display="none";
+      }
+      else
+      {
+        console.log("yea not");
+          if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) )
+              document.querySelector(".secondSmall").style.display="block";
+          else document.querySelector(".small-navbar").style.display="block";
+      }
+    }
+
+
+  var sessionCart = JSON.parse(sessionStorage.getItem("cart"));
+    // var productId = "'"+product._id+"'";
+    // var check = false;
+
+
+      if(sessionCart!==null)
+      {
+      var cartItemsDiv = document.querySelector(".cart_items_inner");
+
+      while(cartItemsDiv.firstChild) cartItemsDiv.firstChild.remove();
+      var subTotal = 0;
+  sessionCart.items.forEach(function(productCart,index){
+    // console.log(productCart._id);
+
+    console.log(productCart);
+      var div = "";
+
+
+    div +=  '<div class="cart_order">';
+    div += '<div class="cart_order_title"><span>';
+    div += '<img src="../img/non-veg-icon.png" class="food_icon_cart_checkout">';
+    div +=  '<span class="cart_prod_name">&nbsp; '+productCart.name+'</div>';
+
+    var productId = "'"+productCart._id+"'";
+    div += '<div class="cart_order_close" onclick="removeItem('+productCart._id+',this)">';
+        // <!-- <i class="fa fa-times"></i> -->
+    div += '</div><div class="cart_order_quantity"><div id="input_div">';
+    div += '<input type="button" value="-" id="moins" onclick="minus('+productId+', this)">';
+    div += '<input type="text" data-val="'+productCart.price+'" value="'+productCart.quantity+'" id="'+productCart._id+'shivy" disabled>';
+    div += '<input type="button" value="+" id="plus" onclick="plus('+productId+', this)">';
+    div += '</div></div><div class="cart_order_price">Rs <span>'+productCart.price*productCart.quantity+'</span></div></div><hr/>';
+
+      cartItemsDiv.innerHTML += div
+
+       subTotal += productCart.price*productCart.quantity;
+      // check = true;
+    // var cartBtn = document.querySelector(".prod_desc").childNodes[7];
+    // // console.log(cartBtn);
+    // cartBtn.replaceChild(divMain, cartBtn.childNodes[1]);
+    //   return true;
+    // alert(id);
+  // }
+});
+
+
+document.querySelector(".itemPriceP").getElementsByTagName("span")[0].innerText = subTotal;
+var gst = (subTotal*5)/100;
+document.querySelector(".gstP").getElementsByTagName("span")[0].innerText = gst;
+document.querySelector(".gTotalP").getElementsByTagName("span")[0].innerText = subTotal+gst;
+}
+
+
+
+   document.querySelector(".acc").addEventListener("click",function(e){
+
+
+
+    // console.log(e.target.className);
+    // e.target.parentElement.nextSibling.style.display = "none";
+    // document.getElementById
+    var elem = e.target.parentElement.parentElement.parentElement;
+    console.log(elem.className);
+    if(elem.className==='collapsible-arrow acc'){
+      // alert("shivy");
+      e.target.parentElement.classList.toggle("fa-angle-up");
+      e.target.parentElement.classList.toggle("fa-angle-down");
+
+      if (elem.parentElement.nextElementSibling.style.display === "none") {
+      elem.parentElement.nextElementSibling.style.display = "block";
+       }
+     else {
+      elem.parentElement.nextElementSibling.style.display= "none";
+       }
+
+    }
+    else
+    {
+      e.target.classList.toggle("fa-angle-up");
+      e.target.classList.toggle("fa-angle-down");
+
+      if (elem.nextElementSibling.style.display === "none") {
+      elem.nextElementSibling.style.display = "block";
+       }
+     else
+     {
+      elem.nextElementSibling.style.display= "none";
+       }
+
+    }
+  });
+});
+
+  function openPanel(e){
+    var elem = e.target.parentElement.parentElement.parentElement;
+    console.log(elem);
+    if(elem.className==='collapsible-arrow acc'){
+      // alert("shivy");
+      e.target.parentElement.classList.toggle("fa-angle-up");
+      e.target.parentElement.classList.toggle("fa-angle-down");
+
+      if (elem.parentElement.nextElementSibling.style.display === "none") {
+      elem.parentElement.nextElementSibling.style.display = "block";
+       }
+     else {
+      elem.parentElement.nextElementSibling.style.display= "none";
+       }
+
+    }
+    else
+    {
+      e.target.classList.toggle("fa-angle-up");
+      e.target.classList.toggle("fa-angle-down");
+
+      if (elem.nextElementSibling.style.display === "none") {
+      elem.nextElementSibling.style.display = "block";
+       }
+     else
+     {
+      elem.nextElementSibling.style.display= "none";
+       }
+
+    }
+  }
+
+  function manipulatePanel()
+  {
+    document.getElementById("collapsible-arrow-2").children[0].children[0].classList.toggle("fa-angle-down");
+    document.getElementById("accDiv2").style.display = "block";
+    document.getElementById("collapsible-arrow").children[0].children[0].classList.toggle("fa-angle-up");
+    document.getElementById("accDiv").style.display = "none";
+document.getElementById("collapsible-arrow-2").setAttribute("onclick","openPanel(event)");
+
+  }
+
+</script>
+<script>
+      // This example requires the Places library. Include the libraries=places
+      // parameter when you first load the API. For example:
+      // <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places">
+    document.querySelector(".cart_quan").style.display = "none";
+    document.querySelector(".shopping_cart").style.display = "none";
+
+      function initMap() {
+        map = new google.maps.Map(document.getElementById('map'), {
+          center: {lat: 28.4595, lng: 77.0266},
+          zoom: 12
+        });
+        infoWindow = new google.maps.InfoWindow;
+
+var geocoder = geocoder = new google.maps.Geocoder();
+        // Try HTML5 geolocation.
+        if (navigator.geolocation) {
+          navigator.geolocation.getCurrentPosition(function(position) {
+            var pos = {
+              lat: position.coords.latitude,
+              lng: position.coords.longitude
+            };
+
+            infoWindow.setPosition(pos);
+            infoWindow.setContent('Location Found.');
+            infoWindow.open(map);
+            map.setCenter(pos);
+          }, function() {
+            handleLocationError(true, infoWindow, map.getCenter());
+          });
+        } else {
+          // Browser doesn't support Geolocation
+          handleLocationError(false, infoWindow, map.getCenter());
+        }
+        var card = document.getElementById('pac-card');
+        var input = document.getElementById('pac-input');
+        var types = document.getElementById('type-selector');
+        var strictBounds = document.getElementById('strict-bounds-selector');
+
+        map.controls[google.maps.ControlPosition.TOP_RIGHT].push(card);
+
+        var autocomplete = new google.maps.places.Autocomplete(input);
+
+        // Bind the map's bounds (viewport) property to the autocomplete object,
+        // so that the autocomplete requests use the current map bounds for the
+        // bounds option in the request.
+        autocomplete.bindTo('bounds', map);
+
+        var infowindow = new google.maps.InfoWindow();
+        var infowindowContent = document.getElementById('infowindow-content');
+        infowindow.setContent(infowindowContent);
+        var marker = new google.maps.Marker({
+          map: map,
+          anchorPoint: new google.maps.Point(0, -29),
+          draggable: true,
+        });
+
+        autocomplete.addListener('place_changed', function() {
+          infowindow.close();
+          marker.setVisible(false);
+          var place = autocomplete.getPlace();
+          if (!place.geometry) {
+            // User entered the name of a Place that was not suggested and
+            // pressed the Enter key, or the Place Details request failed.
+            window.alert("No details available for input: '" + place.name + "'");
+            return;
+          }
+
+          // If the place has a geometry, then present it on a map.
+          if (place.geometry.viewport) {
+            map.fitBounds(place.geometry.viewport);
+          } else {
+            map.setCenter(place.geometry.location);
+            map.setZoom(17);  // Why 17? Because it looks good.
+          }
+          marker.setPosition(place.geometry.location);
+          marker.setVisible(true);
+
+          var address = '';
+          if (place.address_components) {
+            address = [
+              (place.address_components[0] && place.address_components[0].short_name || ''),
+              (place.address_components[1] && place.address_components[1].short_name || ''),
+              (place.address_components[2] && place.address_components[2].short_name || '')
+            ].join(' ');
+          }
+
+          // infowindowContent.children['place-icon'].src = place.icon;
+          // infowindowContent.children['place-name'].textContent = place.name;
+          infowindowContent.children['place-address'].textContent = address;
+          infowindow.open(map, marker);
+        });
+
+        // Sets a listener on a radio button to change the filter type on Places
+        // Autocomplete.
+        function setupClickListener(id, types) {
+          var radioButton = document.getElementById(id);
+          radioButton.addEventListener('click', function() {
+            autocomplete.setTypes(types);
+          });
+        }
+        function geocodePosition(pos) {
+          geocoder.geocode({
+            latLng: pos
+          }, function(responses) {
+            if (responses && responses.length > 0) {
+                    document.getElementById('pac-input').value = responses[0].formatted_address;
+                // document.getElementById('faddress').value = responses[0].formatted_address;
+                document.getElementById("place-address").innerHTML = responses[0].formatted_address;
+            } else {
+              updateMarkerAddress('Cannot determine address at this location.');
+            }
+          });
+        }
+        function updateMarkerStatus(str) {
+          console.log(str);
+          document.getElementById('markerStatus').innerHTML = str;
+        }
+
+        function updateMarkerPosition(latLng) {
+          document.getElementById('info').innerHTML = [
+            latLng.lat(),
+            latLng.lng()
+          ].join(', ');
+        }
+
+        function markerCoords(markerobject){
+            google.maps.event.addListener(markerobject, 'dragend', function(evt){
+                infoWindow.setOptions({
+                    content: '<p>Marker dropped: Current Lat: ' + evt.latLng.lat().toFixed(3) + ' Current Lng: ' + evt.latLng.lng().toFixed(3) + '</p>'
+                });
+                infoWindow.open(map, markerobject);
+            });
+
+            google.maps.event.addListener(markerobject, 'drag', function(evt){
+                console.log("marker is being dragged");
+            });
+        }
+
+        google.maps.event.addListener(marker, 'dragend', function (event) {
+          // console.log(this.getPosition());
+          // document.getElementById("latbox").value = this.getPosition().lat();
+          // document.getElementById("lngbox").value = this.getPosition().lng();
+          // document.getElementById('faddress').value = this.getPosition();
+          geocodePosition(marker.getPosition());
+      });
+        setupClickListener('changetype-all', []);
+        setupClickListener('changetype-address', ['address']);
+        setupClickListener('changetype-establishment', ['establishment']);
+        setupClickListener('changetype-geocode', ['geocode']);
+
+        document.getElementById('use-strict-bounds')
+            .addEventListener('click', function() {
+              console.log('Checkbox clicked! New state=' + this.checked);
+              autocomplete.setOptions({strictBounds: this.checked});
+            });
+      }
+
+
+    </script>
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB-wTYp5ZfepUgW0b7n9z_JvBlwhO4ImZo&libraries=places&callback=initMap"
+type="text/javascript"></script>

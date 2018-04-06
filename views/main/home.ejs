@@ -1,0 +1,1179 @@
+<% layout('layout') -%>
+
+
+<!-- Container-->
+
+
+
+<header>
+<% include ./../partials/cart %>
+
+  <div class="slider_content">
+    <!-- <div class="dropdown">
+      <button class="dropbtn">City <span class="fa fa-caret-down"></span></button>
+      <div class="dropdown-content">
+        <a href="#">Delhi</a>
+        <a href="#">Noida</a>
+        <a href="#">Gurgaon</a>
+      </div>
+    </div> -->
+
+    <div class="input-field autocomplete">
+      <span class="search-icon"><i class="fas fa-search"></i></span>
+      <input type="text" id="myInput" placeholder="Italian, Chinese, Indian and more..." autocomplete="off"/>
+    </div>
+
+    <div class="search_button">
+      <button class="srch_btn" value="" id="search_btn" onclick="searchProd(this);">Search</button>
+    </div>
+  </div>
+
+
+  <div class="fullscreen-video-wrap">
+
+   <!-- <video src="../video/dK-slider_video.mp4" autoplay="" loop="" muted> -->
+   <img src= "../img/ali-inay-9858-unsplash.jpg" class="hero_img" />
+ </video>
+ </div>
+ <div class="overlay"></div>
+  <!-- <div class="header-overlay"></div> -->
+</header>
+
+
+
+<!-- Use any element to open the sidenav -->
+
+<main class="home_main" id="main">
+  <div class="featured_happy_wrapper">
+    <div class="happy_hrs">
+      <div class="hpy_img">
+        <img src="../img/happy_hrs.jpg">
+      </div>
+      <div class="hpy_items">
+    <h1><span class="hpy_hrs_heading">Happy Hours</span></h1>
+
+
+  <% var total=0; for(var i=0; i< products.length; i++){ if((products[i].mainSection1)==true && total< 6){ %>
+    <!-- <%= products[i].mainSection1 %> -->
+    <% total+= 1;%>
+    <div class="food_title_price">
+    <div class="food_title">
+      <span><img src="../img/non-veg-icon.png" class="food_icon other">&nbsp;<a href="food/<%= products[i]._id %>"><%= products[i].name %></a></span>
+    </div>
+    <div class="food_price">
+      Rs <%= products[i].price %>
+    </div>
+    <div class="food-content">Aloo/Mushroom/Water</div>
+    <div class="food_order"><a href="food/<%= products[i]._id %>">ORDER</a></div>
+  </div>
+  <% }} %>
+  <!-- <div class="food_title_price">
+      <div class="food_title">
+        <span><img src="../img/veg-icon.png" class="food_icon other"> Mushroom Mutter</span>
+      </div>
+      <div class="food_price">
+          Rs 250
+      </div>
+      <div class="food-content">Aloo/Mushroom/Water</div>
+      <div class="food_order">ORDER</div>
+    </div>
+    <div class="food_title_price">
+        <div class="food_title">
+        <span><img src="../img/veg-icon.png" class="food_icon other"> Mushroom Mutter</span>
+        </div>
+        <div class="food_price">
+            Rs 250
+        </div>
+        <div class="food-content">Aloo/Mushroom/Water</div>
+        <div class="food_order">ORDER</div>
+      </div>
+      <div class="food_title_price">
+          <div class="food_title">
+          <span><img src="../img/veg-icon.png" class="food_icon other"> Mushroom Mutter</span>
+          </div>
+          <div class="food_price">
+              Rs 250
+          </div>
+          <div class="food-content">Aloo/Mushroom/Water</div>
+          <div class="food_order">ORDER</div>
+        </div>
+      <div class="food_title_price">
+            <div class="food_title">
+            <span><img src="../img/veg-icon.png" class="food_icon other"> Mushroom Mutter</span>
+            </div>
+            <div class="food_price">
+                Rs 250
+            </div>
+            <div class="food-content">Aloo/Mushroom/Water</div>
+            <div class="food_order">ORDER</div>
+          </div> -->
+      </div>
+    </div>
+
+    <!-- Featured wrapper -->
+
+    <div class="happy_hrs featured">
+
+      <div class="hpy_items">
+    <h1><span class="hpy_hrs_heading">Featured Items</span></h1>
+    <% var total=0; for(var i=0; i< products.length; i++){ if((products[i].mainSection2)==true && total< 6){ %>
+      <!-- <%= products[i].mainSection1 %> -->
+      <% total+= 1;%>
+<div class="food_title_price">
+    <div class="food_title">
+    <span><img src="../img/non-veg-icon.png" class="food_icon other">&nbsp;<a href="food/<%= products[i]._id %>"><%= products[i].name %></a></span>
+    </div>
+    <div class="food_price">
+      Rs <%= products[i].price %>
+    </div>
+    <div class="food-content">Aloo/Mushroom/Water</div>
+      <div class="food_order"><a href="food/<%= products[i]._id %>">ORDER</a></div>
+  </div>
+  <% }} %>
+
+
+      </div>
+      <div class="hpy_img">
+        <img src="../img/featured_items.jpg">
+      </div>
+    </div>
+</div>
+
+<div class="" id="home_mains">
+</div>
+    <!-- <div class="menu-wrapper" id="oven">
+      <div class="menu-header">
+      <div class="line">
+        <img src = "../img/line2.png"/>
+      </div>
+      <h1 class="menu-heading">OVEN ART</h1>
+      <div class="line">
+        <img src = "../img/line.png"/>
+      </div>
+    </div>
+      <div class="description">Chef made meals, inspired by cuisines from across the world, using fresh ingredients and no preservatives.</div>
+  <br/>
+  <br/>
+      <div class="food-items">
+        <div class="food-item">
+          <a href="foods"><a href="foods"><img src="../img/food_items/1.jpg"></a></a>
+          <div class="food-item-titles">
+          <div class="food-item-title"><span><img src="../img/veg-icon.png" class="food_icon"> Mushroom Mutter</span> </div>
+          <div class="food-item-price">Rs. 24</div>
+          <div class="food-item-content">Aloo/Mushroom/Water</div>
+          <div class="order_btn" onclick="openNav()">ORDER</div>
+          </div>
+        </div>
+        <div class="food-item">
+          <a href="foods"><img src="../img/food_items/2.jpg"></a>
+          <div class="food-item-titles">
+          <div class="food-item-title"><span><img src="../img/non-veg-icon.png" class="food_icon"> Mushroom Mutter</span> </div>
+          <div class="food-item-price">Rs. 24</div>
+          <div class="food-item-content">Aloo/Mushroom/Water</div>
+          <div class="order_btn" onclick="openNav()">ORDER</div>
+          </div>
+        </div>
+        <div class="food-item">
+          <a href="foods"><img src="../img/food_items/3.jpeg"></a>
+          <div class="food-item-titles">
+          <div class="food-item-title"><span><img src="../img/non-veg-icon.png" class="food_icon"> Mushroom Mutter</span> </div>
+          <div class="food-item-price">Rs. 24</div>
+          <div class="food-item-content">Aloo/Mushroom/Water</div>
+          <div class="order_btn" onclick="openNav()">ORDER</div>
+          </div>
+        </div>
+        <div class="food-item">
+          <a href="foods"><img src="../img/food_items/4.jpg"></a>
+          <div class="food-item-titles">
+          <div class="food-item-title"><span><img src="../img/non-veg-icon.png" class="food_icon"> Mushroom Mutter</span> </div>
+          <div class="food-item-price">Rs. 24</div>
+          <div class="food-item-content">Aloo/Mushroom/Water</div>
+          <div class="order_btn" onclick="openNav()">ORDER</div>
+          </div>
+        </div>
+        <div class="food-item">
+          <a href="foods"><img src="../img/food_items/5.jpg"></a>
+          <div class="food-item-titles">
+          <div class="food-item-title"><span><img src="../img/non-veg-icon.png" class="food_icon"> Mushroom Mutter</span> </div>
+          <div class="food-item-price">Rs. 24</div>
+          <div class="food-item-content">Aloo/Mushroom/Water</div>
+          <div class="order_btn" onclick="openNav()">ORDER</div>
+          </div>
+        </div>
+        <div class="food-item">
+          <a href="foods"><img src="../img/food_items/6.jpg"></a>
+          <div class="food-item-titles">
+          <div class="food-item-title"><span><img src="../img/non-veg-icon.png" class="food_icon"> Mushroom Mutter</span> </div>
+          <div class="food-item-price">Rs. 24</div>
+          <div class="food-item-content">Aloo/Mushroom/Water</div>
+          <div class="order_btn" onclick="openNav()">ORDER</div>
+          </div>
+        </div>
+        <div class="food-item">
+          <a href="foods"><img src="../img/food_items/7.jpg"></a>
+          <div class="food-item-titles">
+          <div class="food-item-title"><span><img src="../img/non-veg-icon.png" class="food_icon"> Mushroom Mutter</span> </div>
+          <div class="food-item-price">Rs. 24</div>
+          <div class="food-item-content">Aloo/Mushroom/Water</div>
+          <div class="order_btn" onclick="openNav()">ORDER</div>
+          </div>
+        </div>
+        <div class="food-item">
+          <a href="foods"><a href="foods"><img src="../img/food_items/8.jpg"></a></a>
+          <div class="food-item-titles">
+          <div class="food-item-title"><span><img src="../img/non-veg-icon.png" class="food_icon"> Mushroom Mutter</span> </div>
+          <div class="food-item-price">Rs. 24</div>
+          <div class="food-item-content">Aloo/Mushroom/Water</div>
+          <div class="order_btn" onclick="openNav()">ORDER</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="menu-wrapper" id="main">
+      <div class="menu-header">
+      <div class="line">
+        <img src = "../img/line2.png"/>
+      </div>
+      <h1 class="menu-heading">MAIN COURSE</h1>
+      <div class="line">
+        <img src = "../img/line.png"/>
+      </div>
+    </div>
+      <div class="description">Chef made meals, inspired by cuisines from across the world, using fresh ingredients and no preservatives.</div>
+  <br/>
+  <br/>
+      <div class="food-items">
+        <div class="food-item">
+          <a href="foods"><img src="../img/food_items/1.jpg"></a>
+          <div class="food-item-titles">
+          <div class="food-item-title"><span><img src="../img/veg-icon.png" class="food_icon"> Mushroom Mutter</span> </div>
+          <div class="food-item-price">Rs. 24</div>
+          <div class="food-item-content">Aloo/Mushroom/Water</div>
+          <div class="order_btn" onclick="openNav()">ORDER</div>
+          </div>
+        </div>
+        <div class="food-item">
+          <a href="foods"><img src="../img/food_items/2.jpg"></a>
+          <div class="food-item-titles">
+          <div class="food-item-title"><span><img src="../img/non-veg-icon.png" class="food_icon"> Mushroom Mutter</span> </div>
+          <div class="food-item-price">Rs. 24</div>
+          <div class="food-item-content">Aloo/Mushroom/Water</div>
+          <div class="order_btn" onclick="openNav()">ORDER</div>
+          </div>
+        </div>
+        <div class="food-item">
+          <a href="foods"><img src="../img/food_items/3.jpeg"></a>
+          <div class="food-item-titles">
+          <div class="food-item-title"><span><img src="../img/non-veg-icon.png" class="food_icon"> Mushroom Mutter</span> </div>
+          <div class="food-item-price">Rs. 24</div>
+          <div class="food-item-content">Aloo/Mushroom/Water</div>
+          <div class="order_btn" onclick="openNav()">ORDER</div>
+          </div>
+        </div>
+        <div class="food-item">
+          <a href="foods"><img src="../img/food_items/4.jpg"></a>
+          <div class="food-item-titles">
+          <div class="food-item-title"><span><img src="../img/non-veg-icon.png" class="food_icon"> Mushroom Mutter</span> </div>
+          <div class="food-item-price">Rs. 24</div>
+          <div class="food-item-content">Aloo/Mushroom/Water</div>
+          <div class="order_btn" onclick="openNav()">ORDER</div>
+          </div>
+        </div>
+        <div class="food-item">
+          <a href="foods"><img src="../img/food_items/5.jpg"></a>
+          <div class="food-item-titles">
+          <div class="food-item-title"><span><img src="../img/non-veg-icon.png" class="food_icon"> Mushroom Mutter</span> </div>
+          <div class="food-item-price">Rs. 24</div>
+          <div class="food-item-content">Aloo/Mushroom/Water</div>
+          <div class="order_btn" onclick="openNav()">ORDER</div>
+          </div>
+        </div>
+        <div class="food-item">
+          <a href="foods"><img src="../img/food_items/6.jpg"></a>
+          <div class="food-item-titles">
+          <div class="food-item-title"><span><img src="../img/non-veg-icon.png" class="food_icon"> Mushroom Mutter</span> </div>
+          <div class="food-item-price">Rs. 24</div>
+          <div class="food-item-content">Aloo/Mushroom/Water</div>
+          <div class="order_btn" onclick="openNav()">ORDER</div>
+          </div>
+        </div>
+        <div class="food-item">
+          <a href="foods"><img src="../img/food_items/7.jpg"></a>
+          <div class="food-item-titles">
+          <div class="food-item-title"><span><img src="../img/non-veg-icon.png" class="food_icon"> Mushroom Mutter</span> </div>
+          <div class="food-item-price">Rs. 24</div>
+          <div class="food-item-content">Aloo/Mushroom/Water</div>
+          <div class="order_btn" onclick="openNav()">ORDER</div>
+          </div>
+        </div>
+        <div class="food-item">
+          <a href="foods"><a href="foods"><img src="../img/food_items/8.jpg"></a></a>
+          <div class="food-item-titles">
+          <div class="food-item-title"><span><img src="../img/non-veg-icon.png" class="food_icon"> Mushroom Mutter</span> </div>
+          <div class="food-item-price">Rs. 24</div>
+          <div class="food-item-content">Aloo/Mushroom/Water</div>
+          <div class="order_btn" onclick="openNav()">ORDER</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="menu-wrapper" id="sides">
+      <div class="menu-header">
+      <div class="line">
+        <img src = "../img/line2.png"/>
+      </div>
+      <h1 class="menu-heading">SIDES</h1>
+      <div class="line">
+        <img src = "../img/line.png"/>
+      </div>
+    </div>
+      <div class="description">Chef made meals, inspired by cuisines from across the world, using fresh ingredients and no preservatives.</div>
+  <br/>
+  <br/>
+      <div class="food-items">
+        <div class="food-item">
+          <a href="foods"><img src="../img/food_items/1.jpg"></a>
+          <div class="food-item-titles">
+          <div class="food-item-title"><span><img src="../img/veg-icon.png" class="food_icon"> Mushroom Mutter</span> </div>
+          <div class="food-item-price">Rs. 24</div>
+          <div class="food-item-content">Aloo/Mushroom/Water</div>
+          <div class="order_btn" onclick="openNav()">ORDER</div>
+          </div>
+        </div>
+        <div class="food-item">
+          <a href="foods"><img src="../img/food_items/2.jpg"></a>
+          <div class="food-item-titles">
+          <div class="food-item-title"><span><img src="../img/non-veg-icon.png" class="food_icon"> Mushroom Mutter</span> </div>
+          <div class="food-item-price">Rs. 24</div>
+          <div class="food-item-content">Aloo/Mushroom/Water</div>
+          <div class="order_btn" onclick="openNav()">ORDER</div>
+          </div>
+        </div>
+        <div class="food-item">
+          <a href="foods"><img src="../img/food_items/3.jpeg"></a>
+          <div class="food-item-titles">
+          <div class="food-item-title"><span><img src="../img/non-veg-icon.png" class="food_icon"> Mushroom Mutter</span> </div>
+          <div class="food-item-price">Rs. 24</div>
+          <div class="food-item-content">Aloo/Mushroom/Water</div>
+          <div class="order_btn" onclick="openNav()">ORDER</div>
+          </div>
+        </div>
+        <div class="food-item">
+          <a href="foods"><img src="../img/food_items/4.jpg"></a>
+          <div class="food-item-titles">
+          <div class="food-item-title"><span><img src="../img/non-veg-icon.png" class="food_icon"> Mushroom Mutter</span> </div>
+          <div class="food-item-price">Rs. 24</div>
+          <div class="food-item-content">Aloo/Mushroom/Water</div>
+          <div class="order_btn" onclick="openNav()">ORDER</div>
+          </div>
+        </div>
+        <div class="food-item">
+          <a href="foods"><img src="../img/food_items/5.jpg"></a>
+          <div class="food-item-titles">
+          <div class="food-item-title"><span><img src="../img/non-veg-icon.png" class="food_icon"> Mushroom Mutter</span> </div>
+          <div class="food-item-price">Rs. 24</div>
+          <div class="food-item-content">Aloo/Mushroom/Water</div>
+          <div class="order_btn" onclick="openNav()">ORDER</div>
+          </div>
+        </div>
+        <div class="food-item">
+          <a href="foods"><img src="../img/food_items/6.jpg"></a>
+          <div class="food-item-titles">
+          <div class="food-item-title"><span><img src="../img/non-veg-icon.png" class="food_icon"> Mushroom Mutter</span> </div>
+          <div class="food-item-price">Rs. 24</div>
+          <div class="food-item-content">Aloo/Mushroom/Water</div>
+          <div class="order_btn" onclick="openNav()">ORDER</div>
+          </div>
+        </div>
+        <div class="food-item">
+          <a href="foods"><img src="../img/food_items/7.jpg"></a>
+          <div class="food-item-titles">
+          <div class="food-item-title"><span><img src="../img/non-veg-icon.png" class="food_icon"> Mushroom Mutter</span> </div>
+          <div class="food-item-price">Rs. 24</div>
+          <div class="food-item-content">Aloo/Mushroom/Water</div>
+          <div class="order_btn" onclick="openNav()">ORDER</div>
+          </div>
+        </div>
+        <div class="food-item">
+          <a href="foods"><a href="foods"><img src="../img/food_items/8.jpg"></a></a>
+          <div class="food-item-titles">
+          <div class="food-item-title"><span><img src="../img/non-veg-icon.png" class="food_icon"> Mushroom Mutter</span> </div>
+          <div class="food-item-price">Rs. 24</div>
+          <div class="food-item-content">Aloo/Mushroom/Water</div>
+          <div class="order_btn" onclick="openNav()">ORDER</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+<div id
+    <div class="menu-wrapper" id="chinese">
+      <div class="menu-header">
+      <div class="line">
+        <img src = "../img/line2.png"/>
+      </div>
+      <h1 class="menu-heading">CHINESE</h1>
+      <div class="line">
+        <img src = "../img/line.png"/>
+      </div>
+    </div>
+      <div class="description">Chef made meals, inspired by cuisines from across the world, using fresh ingredients and no preservatives.</div>
+  <br/>
+  <br/>
+      <div class="food-items">
+        <div class="food-item">
+          <a href="foods"><img src="../img/food_items/1.jpg"></a>
+          <div class="food-item-titles">
+          <div class="food-item-title"><span><img src="../img/veg-icon.png" class="food_icon"> Mushroom Mutter</span> </div>
+          <div class="food-item-price">Rs. 24</div>
+          <div class="food-item-content">Aloo/Mushroom/Water</div>
+          <div class="order_btn" onclick="openNav()">ORDER</div>
+          </div>
+        </div>
+        <div class="food-item">
+          <a href="foods"><img src="../img/food_items/2.jpg"></a>
+          <div class="food-item-titles">
+          <div class="food-item-title"><span><img src="../img/non-veg-icon.png" class="food_icon"> Mushroom Mutter</span> </div>
+          <div class="food-item-price">Rs. 24</div>
+          <div class="food-item-content">Aloo/Mushroom/Water</div>
+          <div class="order_btn" onclick="openNav()">ORDER</div>
+          </div>
+        </div>
+        <div class="food-item">
+          <a href="foods"><img src="../img/food_items/3.jpeg"></a>
+          <div class="food-item-titles">
+          <div class="food-item-title"><span><img src="../img/non-veg-icon.png" class="food_icon"> Mushroom Mutter</span> </div>
+          <div class="food-item-price">Rs. 24</div>
+          <div class="food-item-content">Aloo/Mushroom/Water</div>
+          <div class="order_btn" onclick="openNav()">ORDER</div>
+          </div>
+        </div>
+        <div class="food-item">
+          <a href="foods"><img src="../img/food_items/4.jpg"></a>
+          <div class="food-item-titles">
+          <div class="food-item-title"><span><img src="../img/non-veg-icon.png" class="food_icon"> Mushroom Mutter</span> </div>
+          <div class="food-item-price">Rs. 24</div>
+          <div class="food-item-content">Aloo/Mushroom/Water</div>
+          <div class="order_btn" onclick="openNav()">ORDER</div>
+          </div>
+        </div>
+        <div class="food-item">
+          <a href="foods"><img src="../img/food_items/5.jpg"></a>
+          <div class="food-item-titles">
+          <div class="food-item-title"><span><img src="../img/non-veg-icon.png" class="food_icon"> Mushroom Mutter</span> </div>
+          <div class="food-item-price">Rs. 24</div>
+          <div class="food-item-content">Aloo/Mushroom/Water</div>
+          <div class="order_btn" onclick="openNav()">ORDER</div>
+          </div>
+        </div>
+        <div class="food-item">
+          <a href="foods"><img src="../img/food_items/6.jpg"></a>
+          <div class="food-item-titles">
+          <div class="food-item-title"><span><img src="../img/non-veg-icon.png" class="food_icon"> Mushroom Mutter</span> </div>
+          <div class="food-item-price">Rs. 24</div>
+          <div class="food-item-content">Aloo/Mushroom/Water</div>
+          <div class="order_btn" onclick="openNav()">ORDER</div>
+          </div>
+        </div>
+        <div class="food-item">
+          <a href="foods"><img src="../img/food_items/7.jpg"></a>
+          <div class="food-item-titles">
+          <div class="food-item-title"><span><img src="../img/non-veg-icon.png" class="food_icon"> Mushroom Mutter</span> </div>
+          <div class="food-item-price">Rs. 24</div>
+          <div class="food-item-content">Aloo/Mushroom/Water</div>
+          <div class="order_btn" onclick="openNav()">ORDER</div>
+          </div>
+        </div>
+        <div class="food-item">
+          <a href="foods"><a href="foods"><img src="../img/food_items/8.jpg"></a></a>
+          <div class="food-item-titles">
+          <div class="food-item-title"><span><img src="../img/non-veg-icon.png" class="food_icon"> Mushroom Mutter</span> </div>
+          <div class="food-item-price">Rs. 24</div>
+          <div class="food-item-content">Aloo/Mushroom/Water</div>
+          <div class="order_btn" onclick="openNav()">ORDER</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="menu-wrapper" id="party">
+      <div class="menu-header">
+      <div class="line">
+        <img src = "../img/line2.png"/>
+      </div>
+      <h1 class="menu-heading">PARTY PLATTERS</h1>
+      <div class="line">
+        <img src = "../img/line.png"/>
+      </div>
+    </div>
+      <div class="description">Chef made meals, inspired by cuisines from across the world, using fresh ingredients and no preservatives.</div>
+  <br/>
+  <br/>
+      <div class="food-items">
+        <div class="food-item">
+          <a href="foods"><img src="../img/food_items/1.jpg"></a>
+          <div class="food-item-titles">
+          <div class="food-item-title"><span><img src="../img/veg-icon.png" class="food_icon"> Mushroom Mutter</span> </div>
+          <div class="food-item-price">Rs. 24</div>
+          <div class="food-item-content">Aloo/Mushroom/Water</div>
+          <div class="order_btn" onclick="openNav()">ORDER</div>
+          </div>
+        </div>
+        <div class="food-item">
+          <a href="foods"><img src="../img/food_items/2.jpg"></a>
+          <div class="food-item-titles">
+          <div class="food-item-title"><span><img src="../img/non-veg-icon.png" class="food_icon"> Mushroom Mutter</span> </div>
+          <div class="food-item-price">Rs. 24</div>
+          <div class="food-item-content">Aloo/Mushroom/Water</div>
+          <div class="order_btn" onclick="openNav()">ORDER</div>
+          </div>
+        </div>
+        <div class="food-item">
+          <a href="foods"><img src="../img/food_items/3.jpeg"></a>
+          <div class="food-item-titles">
+          <div class="food-item-title"><span><img src="../img/non-veg-icon.png" class="food_icon"> Mushroom Mutter</span> </div>
+          <div class="food-item-price">Rs. 24</div>
+          <div class="food-item-content">Aloo/Mushroom/Water</div>
+          <div class="order_btn" onclick="openNav()">ORDER</div>
+          </div>
+        </div>
+        <div class="food-item">
+          <a href="foods"><img src="../img/food_items/4.jpg"></a>
+          <div class="food-item-titles">
+          <div class="food-item-title"><span><img src="../img/non-veg-icon.png" class="food_icon"> Mushroom Mutter</span> </div>
+          <div class="food-item-price">Rs. 24</div>
+          <div class="food-item-content">Aloo/Mushroom/Water</div>
+          <div class="order_btn" onclick="openNav()">ORDER</div>
+          </div>
+        </div>
+        <div class="food-item">
+          <a href="foods"><img src="../img/food_items/5.jpg"></a>
+          <div class="food-item-titles">
+          <div class="food-item-title"><span><img src="../img/non-veg-icon.png" class="food_icon"> Mushroom Mutter</span> </div>
+          <div class="food-item-price">Rs. 24</div>
+          <div class="food-item-content">Aloo/Mushroom/Water</div>
+          <div class="order_btn" onclick="openNav()">ORDER</div>
+          </div>
+        </div>
+        <div class="food-item">
+          <a href="foods"><img src="../img/food_items/6.jpg"></a>
+          <div class="food-item-titles">
+          <div class="food-item-title"><span><img src="../img/non-veg-icon.png" class="food_icon"> Mushroom Mutter</span> </div>
+          <div class="food-item-price">Rs. 24</div>
+          <div class="food-item-content">Aloo/Mushroom/Water</div>
+          <div class="order_btn" onclick="openNav()">ORDER</div>
+          </div>
+        </div>
+        <div class="food-item">
+          <a href="foods"><img src="../img/food_items/7.jpg"></a>
+          <div class="food-item-titles">
+          <div class="food-item-title"><span><img src="../img/non-veg-icon.png" class="food_icon"> Mushroom Mutter</span> </div>
+          <div class="food-item-price">Rs. 24</div>
+          <div class="food-item-content">Aloo/Mushroom/Water</div>
+          <div class="order_btn" onclick="openNav()">ORDER</div>
+          </div>
+        </div>
+        <div class="food-item">
+          <a href="foods"><a href="foods"><img src="../img/food_items/8.jpg"></a></a>
+          <div class="food-item-titles">
+          <div class="food-item-title"><span><img src="../img/non-veg-icon.png" class="food_icon"> Mushroom Mutter</span> </div>
+          <div class="food-item-price">Rs. 24</div>
+          <div class="food-item-content">Aloo/Mushroom/Water</div>
+          <div class="order_btn" onclick="openNav()">ORDER</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="menu-wrapper" id="soup">
+      <div class="menu-header">
+      <div class="line">
+        <img src = "../img/line2.png"/>
+      </div>
+      <h1 class="menu-heading">SOUP & DESERTS</h1>
+      <div class="line">
+        <img src = "../img/line.png"/>
+      </div>
+    </div>
+      <div class="description">Chef made meals, inspired by cuisines from across the world, using fresh ingredients and no preservatives.</div>
+  <br/>
+  <br/>
+      <div class="food-items">
+        <div class="food-item">
+          <a href="foods"><img src="../img/food_items/1.jpg"></a>
+          <div class="food-item-titles">
+          <div class="food-item-title"><span><img src="../img/veg-icon.png" class="food_icon"> Mushroom Mutter</span> </div>
+          <div class="food-item-price">Rs. 24</div>
+          <div class="food-item-content">Aloo/Mushroom/Water</div>
+          <div class="order_btn" onclick="openNav()">ORDER</div>
+          </div>
+        </div>
+        <div class="food-item">
+          <a href="foods"><img src="../img/food_items/2.jpg"></a>
+          <div class="food-item-titles">
+          <div class="food-item-title"><span><img src="../img/non-veg-icon.png" class="food_icon"> Mushroom Mutter</span> </div>
+          <div class="food-item-price">Rs. 24</div>
+          <div class="food-item-content">Aloo/Mushroom/Water</div>
+          <div class="order_btn" onclick="openNav()">ORDER</div>
+          </div>
+        </div>
+        <div class="food-item">
+          <a href="foods"><img src="../img/food_items/3.jpeg"></a>
+          <div class="food-item-titles">
+          <div class="food-item-title"><span><img src="../img/non-veg-icon.png" class="food_icon"> Mushroom Mutter</span> </div>
+          <div class="food-item-price">Rs. 24</div>
+          <div class="food-item-content">Aloo/Mushroom/Water</div>
+          <div class="order_btn" onclick="openNav()">ORDER</div>
+          </div>
+        </div>
+        <div class="food-item">
+          <a href="foods"><img src="../img/food_items/4.jpg"></a>
+          <div class="food-item-titles">
+          <div class="food-item-title"><span><img src="../img/non-veg-icon.png" class="food_icon"> Mushroom Mutter</span> </div>
+          <div class="food-item-price">Rs. 24</div>
+          <div class="food-item-content">Aloo/Mushroom/Water</div>
+          <div class="order_btn" onclick="openNav()">ORDER</div>
+          </div>
+        </div>
+        <div class="food-item">
+          <a href="foods"><img src="../img/food_items/5.jpg"></a>
+          <div class="food-item-titles">
+          <div class="food-item-title"><span><img src="../img/non-veg-icon.png" class="food_icon"> Mushroom Mutter</span> </div>
+          <div class="food-item-price">Rs. 24</div>
+          <div class="food-item-content">Aloo/Mushroom/Water</div>
+          <div class="order_btn" onclick="openNav()">ORDER</div>
+          </div>
+        </div>
+        <div class="food-item">
+          <a href="foods"><img src="../img/food_items/6.jpg"></a>
+          <div class="food-item-titles">
+          <div class="food-item-title"><span><img src="../img/non-veg-icon.png" class="food_icon"> Mushroom Mutter</span> </div>
+          <div class="food-item-price">Rs. 24</div>
+          <div class="food-item-content">Aloo/Mushroom/Water</div>
+          <div class="order_btn" onclick="openNav()">ORDER</div>
+          </div>
+        </div>
+        <div class="food-item">
+          <a href="foods"><img src="../img/food_items/7.jpg"></a>
+          <div class="food-item-titles">
+          <div class="food-item-title"><span><img src="../img/non-veg-icon.png" class="food_icon"> Mushroom Mutter</span> </div>
+          <div class="food-item-price">Rs. 24</div>
+          <div class="food-item-content">Aloo/Mushroom/Water</div>
+          <div class="order_btn" onclick="openNav()">ORDER</div>
+          </div>
+        </div>
+        <div class="food-item">
+          <a href="foods"><a href="foods"><img src="../img/food_items/8.jpg"></a></a>
+          <div class="food-item-titles">
+          <div class="food-item-title"><span><img src="../img/non-veg-icon.png" class="food_icon"> Mushroom Mutter</span> </div>
+          <div class="food-item-price">Rs. 24</div>
+          <div class="food-item-content">Aloo/Mushroom/Water</div>
+          <div class="order_btn" onclick="openNav()">ORDER</div>
+          </div>
+        </div>
+      </div>
+    </div> -->
+
+<div class="loader">
+  <img src="../img/loader.gif" alt="loader">
+</div>
+
+
+
+</main>
+
+
+
+<script>
+document.addEventListener("DOMContentLoaded", function(event) {
+
+
+var sessionCart = JSON.parse(sessionStorage.getItem("cart"));
+// if(sessionCart!==null)
+// {
+//   // //   var productId = "'"+product._id+"'";
+//   //   var check = false;
+
+// // console.log(checkIds);
+// checkIds.forEach(function(id,index){
+//   console.log(index);
+//     // var check = false;
+//     sessionCart.items.some(function(productCart,index){
+//       if(productCart._id==id)
+//       {
+//         var productId = "'"+id+"'";
+//         var div = '';
+//         div += '<div id="input_div" class="shivy_move">';
+//         var input_shivy = id+'shivy';
+//         div += '<input type="text" value="'+productCart.quantity+'" id="'+input_shivy+'" disabled>';
+//         div +=  '<input type="button" value="-" id="moins" onclick="minus('+productId+')">';
+//         div += '<input type="button" value="+" id="plus" onclick="plus('+productId+')">';
+//         div += '</div>';
+//         // console.log(id+"shivy");
+//         var parentEl = document.getElementById(id+'extra').parentElement;
+//         document.getElementById(id+'extra').remove();
+//          parentEl.innerHTML += div;
+//         return true;
+//       // alert(id);
+//     }
+//     });
+//     // if(!check) div +=  '<div class="order_btn" onclick="openNav('+productId+',this);">ORDER</div>';
+// });
+//
+// }
+
+
+  autocomplete(document.getElementById("myInput"));
+//
+// alert("DOM fully loaded and parsed");
+
+
+var xhr = new XMLHttpRequest();
+xhr.open("GET", "/categories", true);
+xhr.onload = function (e) {
+  document.querySelector(".loader").style.display = "block";
+  if (xhr.readyState === 4) {
+    if (xhr.status === 201) {
+        categoriesResponse = JSON.parse(xhr.response);
+        console.log(categoriesResponse)
+          var htmlText =  document.getElementById('home_mains');
+          while (htmlText.firstChild) htmlText.removeChild(htmlText.firstChild);
+
+      categoriesResponse.forEach(function(category)
+    {
+      // alert(category._id)
+        var div = '';
+      var xhr = new XMLHttpRequest();
+      xhr.open("GET", "/products/"+category._id+'/5', true);
+      xhr.onload = function (e) {
+        if (xhr.readyState === 4) {
+          if (xhr.status === 201) {
+            var response = JSON.parse(xhr.response);
+            // alert(response[0].category.name);
+            // alert(window.location.hash);
+            // console.log(response);
+
+            div += '<div class="menu-wrapper" id="'+response[0].category.name+'">';
+            div += '<div class="menu-header">';
+            // div += '<div class="line">';
+            // div +=  '<img src = "../img/line2.png"/>';
+            // div +=  '</div>';
+            div +=  '<div class="menuDiv"><h1 class="menu-heading">'+response[0].category.name+'</h1></div>';
+            var nonVeg = "'non-veg'";
+            var veg = "'veg'";
+            var passingCatId = "'"+category._id+"'";
+            div +=  '<div class="filterDiv"><img src="../img/filter_btn.png" class="filterImg">';
+            div +=  '<div class="filterContent"> <a onClick="filter('+nonVeg+',this,'+passingCatId+')">Veg</a><a onClick="filter('+veg+',this,'+passingCatId+')">Non Veg</a><a onClick="filter(all,this,'+passingCatId+')">Show All</a>';
+            div +=  '</div></div>';
+            // div +=  '<div class="line">';
+            // div +=  '<img src = "../img/line.png"/>';
+            div += '</div>';
+            if(response[0].category.desc)
+            div += '<div class="description">'+response[0].category.desc+'</div><br/> <br/>';
+            else
+            div += '<div class="description">Chef Made food delicious and sweet</div><br/><br/>';
+
+                div += '  <div class="food-items">';
+
+
+            response.forEach(function(product,index){
+
+                  console.log(index)
+
+                  if(product.nonVeg)
+                  div += ' <div class="food-item non-veg">';
+                  else
+                  div += ' <div class="food-item veg">';
+
+                  div += '<div class="food-itemImg">';
+              div +=  '<a href="/food/'+product._id+'">';
+
+
+              div +=  '<img src="http://deliverykings.co.in/uploads/'+product.prodImg+'">';
+
+
+              div +=   '</a>';
+              div +=  '</div><div class="food-item-titles">';
+              div +=  '<div class="food-item-title"><span>';
+              if(product.nonVeg)
+              div += '<img src="../img/non-veg-icon.png" class="food_icon">';
+              else
+              div += '<img src="../img/veg-icon.png" class="food_icon">';
+              div +=  '&nbsp;'+product.name+'</span> </div>';
+              div +=  '<div class="food-item-price">&nbsp;&nbsp;Rs. '+product.price+'</div>';
+              div +=    '  <div class="food-item-content">Aloo/Mushroom</div>';
+              // var sessionCart = JSON.parse(sessionStorage.getItem("cart"));
+                var productId = "'"+product._id+"'";
+                var check = false;
+                  if(sessionCart!==null)
+                  {
+              sessionCart.items.some(function(productCart,index){
+                // console.log(productCart._id);
+                if(productCart._id==product._id)
+                {
+                  div += '<div id="input_div" class="shivy_move">';
+                  var input_shivy = product._id+'shivy';
+                  div +=  '<input type="button" value="-" id="moins" onclick="minus('+productId+')">';
+                  div += '<input type="text" value="'+productCart.quantity+'" id="'+input_shivy+'" disabled>';
+                  div += '<input type="button" value="+" id="plus" onclick="plus('+productId+')">';
+                  div += '</div>';
+                  check = true;
+                  return true;
+                // alert(id);
+              }
+            });
+          }
+            if(!check) div +=  '<div class="order_btn" onclick="openNav('+productId+',this);">ORDER</div>';
+              div +=  '</div>';
+              div +=   '</div>';
+
+            var passingCatId = "'"+category._id+"'";
+                if(index==4) div+= '<div class="food-item"><img src="../img/seeMore.png" class="seeMoreImg" onClick="loadAll(this,'+passingCatId+')"></div>';
+            });
+
+
+            div += '</div></div>';
+
+            htmlText.innerHTML += div;
+
+            if('#'+(response[0].category.name)==decodeURI(window.location.hash))   document.getElementById(response[0].category.name).scrollIntoView();
+
+          } else {
+            console.error(xhr.statusText);
+          }
+        }
+      };
+      xhr.onerror = function (e) {
+        console.error(xhr.statusText);
+      };
+      xhr.send(null);
+
+    });
+    } else {
+      console.error(xhr.statusText);
+    }
+  }
+    document.querySelector(".loader").style.display = "none";
+};
+xhr.onerror = function (e) {
+  console.error(xhr.statusText);
+};
+xhr.send(null);
+
+});
+
+
+
+function loadAll(thisOne,category, callback)
+{
+     var sessionCart = JSON.parse(sessionStorage.getItem("cart"));
+  // alert(category);
+  console.log(thisOne);
+  var tmpEl = thisOne.parentElement.parentElement;
+  var tLength = (tmpEl.children.length)-1;
+  alert(tLength);
+  console.log(tmpEl);
+  // while(tmpEl.firstChild) tmpEl.firstChild.remove();
+  if(tLength==5) tmpEl.lastElementChild.remove();
+  var xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function() {
+      if (this.readyState == 4 && this.status == 201) {
+        var allProducts = JSON.parse(xhttp.responseText);
+      allProducts.forEach(function(product,index){
+        console.log(product);
+        var div = "";
+         // Typical action to be performed when the document is ready:
+         if(product.nonVeg)
+         div += ' <div class="food-item non-veg">';
+         else
+         div += ' <div class="food-item veg">';
+
+
+         div += '<div class="food-itemImg veg">';
+         div +=  '<a href="/food/'+product._id+'">';
+
+
+         div +=  '<img src="http://deliverykings.co.in/uploads/'+product.prodImg+'">';
+
+
+         div +=   '</a>';
+         div +=  '</div><div class="food-item-titles">';
+         div +=  '<div class="food-item-title"><span>';
+         if(product.nonVeg)
+         div += '<img src="../img/non-veg-icon.png" class="food_icon">';
+         else
+         div += '<img src="../img/veg-icon.png" class="food_icon">';
+         div +=  '&nbsp;'+product.name+'</span> </div>';
+         div +=  '<div class="food-item-price">&nbsp;&nbsp;Rs. '+product.price+'</div>';
+         div +=    '  <div class="food-item-content">Aloo/Mushroom</div>';
+           var productId = "'"+product._id+"'";
+           var check = false;
+             if(sessionCart!==null)
+             {
+         sessionCart.items.some(function(productCart,index){
+           // console.log(productCart._id);
+           if(productCart._id==product._id)
+           {
+             div += '<div id="input_div" class="shivy_move">';
+             var input_shivy = product._id+'shivy';
+             div +=  '<input type="button" value="-" id="moins" onclick="minus('+productId+')">';
+            div += '<input type="text" value="'+productCart.quantity+'" id="'+input_shivy+'" disabled>';
+             div += '<input type="button" value="+" id="plus" onclick="plus('+productId+')">';
+             div += '</div>';
+             check = true;
+             return true;
+           // alert(id);
+         }
+       });
+     }
+       if(!check) div +=  '<div class="order_btn" onclick="openNav('+productId+',this);">ORDER</div>';
+         div +=  '</div>';
+         div +=   '</div>';
+         tmpEl.innerHTML += div;
+        console.log(index);
+        // console.log(allProducts.length+"shivy");
+        if(index==(allProducts.length)-1)   callback && callback();
+      });
+      }
+  };
+  xhttp.open("GET", "/allProducts/"+category+"/"+tLength+"", true);
+  xhttp.send();
+}
+
+function filter(type,thisOne,category)
+{
+  console.log(type);
+  var x =  thisOne.parentElement.parentElement.parentElement.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling;
+  var select;
+  if(x.children[5]) select = x.children[5];
+  else select = x.children[0];
+  loadAll(select.children[0],category,function(){
+    if(type=='all') return;
+    else
+    {
+  var x =  thisOne.parentElement.parentElement.parentElement.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling;
+    for(var i=0; i<x.children.length;i++)
+    {
+      if(hasClass(x.children[i],type)) x.children[i].style.display = "none";
+      else x.children[i].style.display = "block";
+    }
+  }
+  });
+
+// console.log(hasClass(x.children[0],type));
+// console.log(x.children[0]);
+
+}
+
+function hasClass(element, className)
+{
+    return element.className && new RegExp("(^|\\s)" + className + "(\\s|$)").test(element.className);
+}
+
+var arr=[];
+var idArr=[];
+//autocomplete
+function autocomplete(inp) {
+  /*the autocomplete function takes two arguments,
+  the text field element and an array of possible autocompleted values:*/
+
+  var currentFocus;
+  /*execute a function when someone writes in the text field:*/
+  inp.addEventListener("input", function(e) {
+      var a, b, i, val = this.value;
+      var shivy = this;
+var xhttp = new XMLHttpRequest();
+      xhttp.onreadystatechange = function() {
+  if (this.readyState == 4 && this.status == 200) {
+    var response = JSON.parse(this.responseText);
+    arr=[];
+    idArr=[];
+    for(prodName in response)
+    {
+      arr.push(response[prodName].name);
+      idArr.push(response[prodName]._id);
+    }
+    console.table(arr);
+    /*close any already open lists of autocompleted values*/
+    closeAllLists();
+    if (!val) { return false;}
+    currentFocus = -1;
+    /*create a DIV element that will contain the items (values):*/
+    a = document.createElement("DIV");
+    a.setAttribute("id", shivy.id + "autocomplete-list");
+    a.setAttribute("class", "autocomplete-items");
+    /*append the DIV element as a child of the autocomplete container:*/
+    shivy.parentNode.appendChild(a);
+
+    /*for each item in the array...*/
+    for (i = 0; i < arr.length; i++) {
+      /*check if the item starts with the same letters as the text field value:*/
+      if (arr[i].substr(0, val.length).toUpperCase() == val.toUpperCase()) {
+        /*create a DIV element for each matching element:*/
+        b = document.createElement("DIV");
+        /*make the matching letters bold:*/
+        b.innerHTML = "<strong>" + arr[i].substr(0, val.length) + "</strong>";
+        b.innerHTML += arr[i].substr(val.length);
+        /*insert a input field that will hold the current array item's value:*/
+        b.innerHTML += "<input type='hidden' data-id='/food/"+idArr[i]+"'  value='" + arr[i] + "'>";
+        /*execute a function when someone clicks on the item value (DIV element):*/
+            b.addEventListener("click", function(e) {
+            /*insert the value for the autocomplete text field:*/
+            inp.value = this.getElementsByTagName("input")[0].value;
+            document.getElementById("search_btn").value = this.getElementsByTagName("input")[0].getAttribute("data-id");
+            /*close the list of autocompleted values,
+            (or any other open lists of autocompleted values:*/
+            closeAllLists();
+        });
+        a.appendChild(b);
+      }
+    }
+  }
+};
+xhttp.open("GET", "/search?term="+val, true);
+xhttp.send();
+
+  });
+
+
+  /*execute a function presses a key on the keyboard:*/
+  inp.addEventListener("keydown", function(e) {
+      var x = document.getElementById(this.id + "autocomplete-list");
+      if (x) x = x.getElementsByTagName("div");
+      if (e.keyCode == 40) {
+        /*If the arrow DOWN key is pressed,
+        increase the currentFocus variable:*/
+        currentFocus++;
+        /*and and make the current item more visible:*/
+        addActive(x);
+      } else if (e.keyCode == 38) { //up
+        /*If the arrow UP key is pressed,
+        decrease the currentFocus variable:*/
+        currentFocus--;
+        /*and and make the current item more visible:*/
+        addActive(x);
+      } else if (e.keyCode == 13) {
+        /*If the ENTER key is pressed, prevent the form from being submitted,*/
+        e.preventDefault();
+        if (currentFocus > -1) {
+          /*and simulate a click on the "active" item:*/
+          if (x) x[currentFocus].click();
+        }
+      }
+  });
+  function addActive(x) {
+    /*a function to classify an item as "active":*/
+    if (!x) return false;
+    /*start by removing the "active" class on all items:*/
+    removeActive(x);
+    if (currentFocus >= x.length) currentFocus = 0;
+    if (currentFocus < 0) currentFocus = (x.length - 1);
+    /*add class "autocomplete-active":*/
+    x[currentFocus].classList.add("autocomplete-active");
+  }
+  function removeActive(x) {
+    /*a function to remove the "active" class from all autocomplete items:*/
+    for (var i = 0; i < x.length; i++) {
+      x[i].classList.remove("autocomplete-active");
+    }
+  }
+  function closeAllLists(elmnt) {
+    /*close all autocomplete lists in the document,
+    except the one passed as an argument:*/
+    var x = document.getElementsByClassName("autocomplete-items");
+    for (var i = 0; i < x.length; i++) {
+      if (elmnt != x[i] && elmnt != inp) {
+      x[i].parentNode.removeChild(x[i]);
+    }
+  }
+}
+/*execute a function when someone clicks in the document:*/
+document.addEventListener("click", function (e) {
+    closeAllLists(e.target);
+});
+}
+
+function searchProd(prod)
+{
+
+  if(prod.value) location.href=prod.value;
+  else
+  {
+    var gotIt = true;
+    arr.forEach(function(val,index){
+      if((prod.parentElement.previousElementSibling.getElementsByTagName("input")[0].value).toLowerCase()==val.toLowerCase())
+      {
+        gotIt = false;
+        location.href = '/food/'+idArr[index];
+      }
+      console.log(index);
+    });
+
+    if(gotIt)
+    alert("No Food By This Name");
+  }
+
+
+  // else alert("No Product For this name");
+}
+
+
+
+// When the user scrolls down 20px from the top of the document, slide down the navbar
+// When the user scrolls to the top of the page, slide up the navbar (50px out of the top view)
+window.onscroll = function() {scrollFunction()};
+
+function scrollFunction() {
+  if (document.body.scrollTop > document.getElementsByTagName('header')[0].offsetTop || document.documentElement.scrollTop > document.getElementsByTagName('header')[0].offsetTop ) {
+    console.log("shivy goes");
+    document.getElementById("mainNav").style.position = "fixed";
+    document.getElementById("mainNav").style.background = "rgba(256,256,256,0.95)";
+    document.getElementById("mainNav").style.borderBottom = "1px solid #e1e1e1";
+    var elements  = document.getElementById("mainNav").querySelectorAll("a");
+    document.getElementById("logoImage").src="../img/logo5.png";
+    document.querySelector(".logo").style.marginLeft = "20%";
+    document.querySelector(".logo img").style.width = "22%";
+    document.querySelector(".featured_happy_wrapper").style.marginTop = "6%";
+
+    if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) )
+    {
+        document.getElementById("main").style.marginTop = "17%";
+        document.querySelector(".secondSmall").style.display="none";
+    }
+    else   document.querySelector(".small-navbar").style.display="none";
+
+    for (var i = 0; i < elements.length; i++) {
+        elements[i].style.color="#000";
+    }
+  } else {
+    if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) )
+    {
+        document.getElementById("main").style.marginTop = "-17%";
+        document.querySelector(".secondSmall").style.display="block";
+    }
+      else document.querySelector(".small-navbar").style.display="block";
+    // document.getElementById("navbar").style.top = "-50px";
+    console.log("shivy comes");
+      document.getElementById("mainNav").style.borderBottom = "none";
+      document.getElementById("mainNav").style.position = "relative";
+      document.getElementById("mainNav").style.background = "none";
+      document.getElementById("logoImage").src="../img/dk_logo.png";
+      document.querySelector(".logo").style.marginLeft = "0px";
+      document.querySelector(".logo img").style.width = "14vw";
+      document.querySelector(".logo").style.height = "11vh";
+      document.querySelector(".featured_happy_wrapper").style.marginTop = "0px";
+  var elements =   document.getElementById("mainNav").querySelectorAll("a");
+  for (var i = 0; i < elements.length; i++) {
+      elements[i].style.color="#fff";
+  }
+  }
+}
+
+</script>
+
+
+<!-- Footer -->
