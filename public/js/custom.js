@@ -128,13 +128,13 @@ function openNav(product,el,event) {
           cart.items = cartItems;
 
           sessionStorage.setItem("cart",JSON.stringify(cart));
-          alert("yes")
+          // alert("yes")
         }
 
 
         else
         {
-          alert("Shivy");
+          // alert("Shivy");
 
                     var oldhtmlText = htmlText.innerHTML;
                     for(var i = 0; i < htmlText.length; i++)
@@ -336,7 +336,7 @@ function closeNav() {
 
 function removeItem(id,el)
 {
-  alert(id);
+  // alert(id);
   var sessionCart = JSON.parse(sessionStorage.getItem("cart"));
   sessionCart.items.some(function(product,index){
     console.log(product._id);

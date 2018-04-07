@@ -85,15 +85,23 @@ res.render('main/checkout');
 
 
 
-router.get('/delete',function(req,res,next){
-
-  Product.collection.remove({},function(err,out){
-    if(err) res.json({err});
-    else
-    res.json({out});
-  });
-});
-
+// router.get('/delete',function(req,res,next){
+//
+//   Product.collection.remove({},function(err,out){
+//     if(err) res.json({err});
+//     else
+//     res.json({out});
+//   });
+// });
+//
+// router.get('/del',function(req,res,next){
+//
+//   Category.collection.remove({},function(err,out){
+//     if(err) res.json({err});
+//     else
+//     res.json({out});
+//   });
+// });
 //export mainRoutes
 
 module.exports = router;

@@ -32,8 +32,9 @@
   <div class="fullscreen-video-wrap">
 
    <!-- <video src="../video/dK-slider_video.mp4" autoplay="" loop="" muted> -->
-   <img src= "../img/ali-inay-9858-unsplash.jpg" class="hero_img" />
- </video>
+   <!-- <img src= "../img/bg.png" class="hero_img" /> -->
+ <video src="../video/banner-video.mp4" class="hero_img" autoplay width="100%" loop muted></video>
+ <img src= "../img/bg.png" class="hero_img313" />
  </div>
  <div class="overlay"></div>
   <!-- <div class="header-overlay"></div> -->
@@ -691,7 +692,6 @@
 <script>
 document.addEventListener("DOMContentLoaded", function(event) {
 
-
 var sessionCart = JSON.parse(sessionStorage.getItem("cart"));
 // if(sessionCart!==null)
 // {
@@ -832,7 +832,7 @@ xhr.onload = function (e) {
               div +=   '</div>';
 
             var passingCatId = "'"+category._id+"'";
-                if(index==4) div+= '<div class="food-item"><img src="../img/seeMore.png" class="seeMoreImg" onClick="loadAll(this,'+passingCatId+')"></div>';
+                if(index==4) div+= '<div class="food-item" style="position: relative;"><div class="food-itemImg"><a href="/food/5ac12988a9324e0abbc73e4a"><img src="../img/bg.png"></a></div><div class="food-item-titles"><div class="food-item-title"><span><img src="../img/non-veg-icon.png" class="food_icon">&nbsp;12\'\' Chicken Ham \'n\' Cheese Pizza</span> </div><div class="food-item-price">&nbsp;&nbsp;Rs. 375</div>  <div class="food-item-content">Aloo/Mushroom</div><div id="input_div" class="shivy_move"><input type="button" value="-" id="moins" onclick="minus(\'5ac12988a9324e0abbc73e4a\')"><input type="text" value="1" id="5ac12988a9324e0abbc73e4ashivy" disabled=""><input type="button" value="+" id="plus" onclick="plus(\'5ac12988a9324e0abbc73e4a\')"></div></div><div class="food-overlay" onClick="loadAll(this,'+passingCatId+')"><p><span><i class="fas fa-angle-right"></span></i><span class="see-more">See More</span></p></div></div>';
             });
 
 
@@ -872,17 +872,18 @@ function loadAll(thisOne,category, callback)
 {
      var sessionCart = JSON.parse(sessionStorage.getItem("cart"));
   // alert(category);
-  console.log(thisOne);
+  // console.log(thisOne);
   var tmpEl = thisOne.parentElement.parentElement;
   var tLength = (tmpEl.children.length)-1;
-  alert(tLength);
-  console.log(tmpEl);
+  // alert(tLength);
+  // console.log(tmpEl);
   // while(tmpEl.firstChild) tmpEl.firstChild.remove();
   if(tLength==5) tmpEl.lastElementChild.remove();
   var xhttp = new XMLHttpRequest();
   xhttp.onreadystatechange = function() {
       if (this.readyState == 4 && this.status == 201) {
         var allProducts = JSON.parse(xhttp.responseText);
+        if(allProducts.length==0) callback && callback();
       allProducts.forEach(function(product,index){
         console.log(product);
         var div = "";
@@ -1143,6 +1144,7 @@ function scrollFunction() {
     {
         document.getElementById("main").style.marginTop = "17%";
         document.querySelector(".secondSmall").style.display="none";
+        document.querySelector(".logo img").style.width = "50%";
     }
     else   document.querySelector(".small-navbar").style.display="none";
 
@@ -1166,7 +1168,7 @@ function scrollFunction() {
       document.querySelector(".logo img").style.width = "14vw";
       document.querySelector(".logo").style.height = "11vh";
       document.querySelector(".featured_happy_wrapper").style.marginTop = "0px";
-  var elements =   document.getElementById("mainNav").querySelectorAll("a");
+      var elements =   document.getElementById("mainNav").querySelectorAll("a");
   for (var i = 0; i < elements.length; i++) {
       elements[i].style.color="#fff";
   }
