@@ -441,7 +441,8 @@ document.addEventListener("DOMContentLoaded",function(){
       divMain.innerHTML = div;
 
       // check = true;
-    var cartBtn = document.querySelector(".prod_desc").childNodes[7];
+    var cartBtn = document.querySelector(".prod_desc").childNodes[5];
+    console.log(cartBtn);
     // console.log(cartBtn);
     cartBtn.replaceChild(divMain, cartBtn.childNodes[1]);
       return true;
@@ -459,7 +460,7 @@ function change_box(what_box)
 
   if(what_box=='old_review')
   {
-    alert("here");
+    // alert("here");
   document.getElementById('old_review').style.background='#dc3836';
     document.getElementById('old_review').style.color='#fff';
   document.getElementById('add_review').style.background='#fff';
@@ -469,7 +470,7 @@ function change_box(what_box)
 }
 else
 {
-  alert("here2");
+  // alert("here2");
   document.getElementById('add_review').style.background='#dc3836';
   document.getElementById('add_review').style.color='#fff';
   document.getElementById('old_review').style.background='#fff';
