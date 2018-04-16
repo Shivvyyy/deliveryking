@@ -16,8 +16,25 @@
 
 </div>
 
+
 <div class="cart_order_place" onClick="window.open('/checkout','_self');">
   Place Order
 </div>
 
+<script>
+	document.addEventListener("DOMContentLoaded",function(){
+		var sessionCart = JSON.parse(sessionStorage.getItem("cart"));
+		if(sessionCart!==null) {
+			var subTotal = 0;
+			sessionCart.items.forEach(function(productCart,index){ 
+				subTotal += productCart.price*productCart.quantity;
+				document.querySelector('.cart_order_place').innerHTML = 'Place order (Rs. ' + subTotal + ')';
+			});
+		}
+	});
+	
+</script>
+
 </div>
+
+

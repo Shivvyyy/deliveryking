@@ -5,11 +5,12 @@ var Product = require('../models/product');
 
 //
 router.get('/', function(req, res, next) {
-  Product.find({ mainSection1: true }, { mainSection2: true } ).select("name _id prod_short_desc price mainSection1").exec(function(err, products) {
+  Product.find({ mainSection1: true }, { mainSection2: true } ).select("name _id prod_short_desc price mainSection1 nonVeg").exec(function(err, products) {
+
     if (err) return next(err);
     else
     {
-        // console.log(products);
+        console.log(products);
         res.render('main/home',{
           products:products
         });
@@ -30,6 +31,8 @@ router.get('/', function(req, res, next) {
 
 router.get('/food/:id', function(req, res, next) {
   Product.findById({ _id: req.params.id }).populate('category').exec(function(err, product) {
+
+    console.log(product);
     if (err) return next(err);
     else
     {
@@ -83,25 +86,22 @@ router.get('/checkout',(req, res, next)=>
 res.render('main/checkout');
 });
 
+router.get('/about',(req, res, next)=>
+{
+res.render('main/about');
+});
 
 
-// router.get('/delete',function(req,res,next){
-//
-//   Product.collection.remove({},function(err,out){
-//     if(err) res.json({err});
-//     else
-//     res.json({out});
-//   });
-// });
-//
-// router.get('/del',function(req,res,next){
-//
-//   Category.collection.remove({},function(err,out){
-//     if(err) res.json({err});
-//     else
-//     res.json({out});
-//   });
-// });
+
+router.get('/delete',function(req,res,next){
+
+  Product.collection.remove({},function(err,out){
+    if(err) res.json({err});
+    else
+    res.json({out});
+  });
+});
+
 //export mainRoutes
 
 module.exports = router;

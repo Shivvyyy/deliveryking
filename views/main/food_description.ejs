@@ -36,7 +36,7 @@
   <h1>RELATED PRODUCTS</h1>
 
 <div class="related_products_slide">
-
+  
   <div class="food-item">
     <a href="foods"><img src="../img/food_items/6.jpg"></a>
     <div class="food-item-titles">
@@ -389,7 +389,7 @@ document.addEventListener("DOMContentLoaded",function(){
   window.onscroll = function() {scrollFunction()};
 
   function scrollFunction() {
-    if (document.body.scrollTop > document.querySelector(".small-navbar").offsetTop || document.documentElement.scrollTop > document.querySelector(".small-navbar").offsetTop )
+    if (document.body.scrollTop > document.querySelector(".small-navbar").offsetTop || document.documentElement.scrollTop > document.querySelector(".small-navbar").offsetTop ) 
 
     {
       document.querySelector(".logo img").style.width = "22%";
@@ -402,7 +402,7 @@ document.addEventListener("DOMContentLoaded",function(){
     {
         if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) )
             document.querySelector(".secondSmall").style.display="block";
-        else
+        else 
         document.querySelector(".small-navbar").style.display="block";
       document.querySelector(".logo img").style.width = "100%";
     }
@@ -441,8 +441,7 @@ document.addEventListener("DOMContentLoaded",function(){
       divMain.innerHTML = div;
 
       // check = true;
-    var cartBtn = document.querySelector(".prod_desc").childNodes[5];
-    console.log(cartBtn);
+    var cartBtn = document.querySelector(".prod_desc").childNodes[7];
     // console.log(cartBtn);
     cartBtn.replaceChild(divMain, cartBtn.childNodes[1]);
       return true;
@@ -460,7 +459,7 @@ function change_box(what_box)
 
   if(what_box=='old_review')
   {
-    // alert("here");
+    alert("here");
   document.getElementById('old_review').style.background='#dc3836';
     document.getElementById('old_review').style.color='#fff';
   document.getElementById('add_review').style.background='#fff';
@@ -470,7 +469,7 @@ function change_box(what_box)
 }
 else
 {
-  // alert("here2");
+  alert("here2");
   document.getElementById('add_review').style.background='#dc3836';
   document.getElementById('add_review').style.color='#fff';
   document.getElementById('old_review').style.background='#fff';
