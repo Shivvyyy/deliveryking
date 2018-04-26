@@ -6,9 +6,12 @@
 
           <li class="floatright displayPointer">Corporate Ordering</li>
         <li class="floatright">|</li>
-        <li class="floatright displayPointer">Log In Sign Up </li>
+        <li id="signup-btn" class="floatright displayPointer" onclick="showSignupModal()">Sign Up</li>
         <li class="floatright">|</li>
-        <li class="floatright openCartItems displayPointer"><i class="fa fa-shopping-cart" aria-hidden="true"></i> Cart</li>
+        <li id="login-btn" class="floatright displayPointer"  onclick="showLoginModal()">Log In</li>
+        <li class="floatright">|</li>
+        
+      
 
 
 
@@ -87,3 +90,28 @@
   0
 </div>
 <img src="../img/add_to_cart.png" class="shopping_cart" />
+
+<div class="login-modal">
+  <input type="text" name="username" placeholder="Username">
+  <input type="password" name="password" placeholder="Password">
+  <input type="password" name="confirm-password" placeholder="Confirm Password">
+  <button class='login-modal-btn'>Login</button>
+  <p>New User? <a href=""> Sign up </a></p>
+</div>
+
+<div class="login-backdrop" onclick='hideLoginModal()'>
+  
+</div>
+
+<div class="signup-modal">
+  <input type="text" name="username" placeholder="Username">
+  <input type="password" name="password" placeholder="Password">
+  <button class='signup-modal-btn'>Sign Up</button>
+  <p>Already have an account? <a href=""> Log in </a></p>
+</div>
+
+<div class="signup-backdrop" onclick='hideSignupModal()'>
+  
+</div>
+
+
