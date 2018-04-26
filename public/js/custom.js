@@ -295,7 +295,7 @@ function closeNav() {
         if(countEl)
         {
         countEl.value = count;
-          countEl.setAttribute("value",count);
+        countEl.setAttribute("value",count);
         // console.log(  countEl.parentElement.parentElement.nextElementSibling.getElementsByTagName('span')[0]);
         countEl.parentElement.parentElement.nextElementSibling.getElementsByTagName('span')[0].innerText =  countEl.getAttribute("data-val")*count;
 
@@ -496,3 +496,28 @@ else
   document.getElementById("wholeBody").style.marginRight = "18%";
 }
 });
+
+function showLoginModal() {
+  document.querySelector('.login-modal').style.transform = 'translateY(0px)';
+  document.querySelector('.login-backdrop').style.opacity = '1';
+  document.querySelector('.login-backdrop').style.display = 'block';
+}
+
+function showSignupModal() {
+  document.querySelector('.signup-modal').style.transform = 'translateY(0px)';
+  document.querySelector('.signup-backdrop').style.opacity = '1';
+  document.querySelector('.signup-backdrop').style.display = 'block';
+}
+
+function hideLoginModal() {
+  document.querySelector('.login-modal').style.transform = 'translateY(-100vh)';
+  document.querySelector('.login-backdrop').style.opacity = '0';
+  document.querySelector('.login-backdrop').style.display = 'none';
+}
+
+
+function hideSignupModal() {
+  document.querySelector('.signup-modal').style.transform = 'translateY(-100vh)';
+  document.querySelector('.signup-backdrop').style.opacity = '0';
+  document.querySelector('.signup-backdrop').style.display = 'none';
+}
