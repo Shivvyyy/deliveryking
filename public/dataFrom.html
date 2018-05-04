@@ -1,0 +1,260 @@
+<html>
+<head>
+</head>
+<body>
+	<form method="POST" name="customerData" action="/ccavRequestHandler" id="myForm">
+		<table width="40%" height="100" border='1' align="center">
+			<caption>
+				<font size="4" color="blue"><b>Integration Kit</b></font>
+			</caption>
+		</table>
+		<table width="40%" height="100" border='1' align="center">
+			<tr>
+				<td>Parameter Name:</td>
+				<td>Parameter Value:</td>
+			</tr>
+			<tr>
+				<td colspan="2">Compulsory information</td>
+			</tr>
+			<tr>
+				<td>Merchant Id</td>
+				<td><input type="text" name="merchant_id" id="merchant_id" value="" /> </td>
+			</tr>
+			<tr>
+				<td>Order Id</td>
+				<td><input type="text" name="order_id" value="" /></td>
+			</tr>
+			<tr>
+				<td>Currency</td>
+				<td><input type="text" name="currency" value="INR" /></td>
+			</tr>
+			<tr>
+				<td>Amount</td>
+				<td><input type="text" name="amount" value="1.00" /></td>
+			</tr>
+			<tr>
+				<td>Redirect URL</td>
+				<td><input type="text" name="redirect_url"
+					value="http://127.0.0.1:5000/ccavResponseHandler" />
+				</td>
+			</tr>
+			<tr>
+				<td>Cancel URL</td>
+				<td><input type="text" name="cancel_url"
+					value="http://127.0.0.1:5000/ccavResponseHandler" />
+				</td>
+			</tr>
+			<tr>
+				<td>Language</td>
+				<td><input type="text" name="language" id="language" value="EN" /></td>
+			</tr>
+			<tr>
+				<td colspan="2">Billing information(optional):</td>
+			</tr>
+			<tr>
+				<td>Billing Name</td>
+				<td><input type="text" name="billing_name" value="Peter" /></td>
+			</tr>
+			<tr>
+				<td>Billing Address:</td>
+				<td><input type="text" name="billing_address"
+					value="Santacruz" /></td>
+			</tr>
+			<tr>
+				<td>Billing City:</td>
+				<td><input type="text" name="billing_city" value="Mumbai" /></td>
+			</tr>
+			<tr>
+				<td>Billing State:</td>
+				<td><input type="text" name="billing_state" value="MH" /></td>
+			</tr>
+			<tr>
+				<td>Billing Zip:</td>
+				<td><input type="text" name="billing_zip" value="400054" /></td>
+			</tr>
+			<tr>
+				<td>Billing Country:</td>
+				<td><input type="text" name="billing_country" value="India" />
+				</td>
+			</tr>
+			<tr>
+				<td>Billing Tel:</td>
+				<td><input type="text" name="billing_tel" value="9876543210" />
+				</td>
+			</tr>
+			<tr>
+				<td>Billing Email:</td>
+				<td><input type="text" name="billing_email"
+					value="testing@domain.com" /></td>
+			</tr>
+			<tr>
+				<td colspan="2">Shipping information(optional):</td>
+			</tr>
+			<tr>
+				<td>Shipping Name</td>
+				<td><input type="text" name="delivery_name" value="Sam" />
+				</td>
+			</tr>
+			<tr>
+				<td>Shipping Address:</td>
+				<td><input type="text" name="delivery_address"
+					value="Vile Parle" /></td>
+			</tr>
+			<tr>
+				<td>Shipping City:</td>
+				<td><input type="text" name="delivery_city" value="Mumbai" />
+				</td>
+			</tr>
+			<tr>
+				<td>Shipping State:</td>
+				<td><input type="text" name="delivery_state" value="Maharashtra" />
+				</td>
+			</tr>
+			<tr>
+				<td>Shipping Zip:</td>
+				<td><input type="text" name="delivery_zip" value="400038" /></td>
+			</tr>
+			<tr>
+				<td>Shipping Country:</td>
+				<td><input type="text" name="delivery_country" value="India" />
+				</td>
+			</tr>
+			<tr>
+				<td>Shipping Tel:</td>
+				<td><input type="text" name="delivery_tel" value="0123456789" />
+				</td>
+			</tr>
+			<tr>
+				<td>Merchant Param1</td>
+				<td><input type="text" name="merchant_param1"
+					value="additional Info." /></td>
+			</tr>
+			<tr>
+				<td>Merchant Param2</td>
+				<td><input type="text" name="merchant_param2"
+					value="additional Info." /></td>
+			</tr>
+			<tr>
+				<td>Merchant Param3</td>
+				<td><input type="text" name="merchant_param3"
+					value="additional Info." /></td>
+			</tr>
+			<tr>
+				<td>Merchant Param4</td>
+				<td><input type="text" name="merchant_param4"
+					value="additional Info." /></td>
+			</tr>
+			<tr>
+				<td>Merchant Param5</td>
+				<td><input type="text" name="merchant_param5"
+					value="additional Info." /></td>
+			</tr>
+			<tr>
+				<td>Integration Type:</td>
+				<td><select name="integration_type">
+						<option value="iframe_normal">iframe_normal</option>
+				</select></td>
+			</tr>
+			<tr>
+				<td>Promo Code:</td>
+				<td><input type="text" name="promo_code" value=""/></td>
+			</tr>
+			<tr>
+				<td>Customer Id:</td>
+				<td><input type="text" name="customer_identifier" value=""/></td>
+			</tr>
+			<tr>
+				<td></td>
+				<td> <input type="button" onclick="submitFunc()" value="Submit form"></td>
+			</tr>
+		</table>
+	</form>
+	<button onclick="sendData({amount:'200',merchant_id:'172720',order_id:'shivya_123',currency:'INR',redirect_url:'http://127.0.0.1:5000/ccavResponseHandler',cancel_url:'http://127.0.0.1:5000/ccavResponseHandler',language:'EN',integration_type:'iframe_normal',customer_identifier:'hims52'})">Click Me!</button>
+
+	<script type="text/javascript">
+	function submitFunc()
+	{
+		alert("fyck");
+	  document.getElementById("myForm").submit();
+	}
+// 		      var amount = '1.00';
+//         var merchant_id = '172720';
+//         var order_id = "shivya_123";
+//         var currency = 'INR';
+//         var redirect_url = "http://127.0.0.1:5000/ccavResponseHandler";
+//         var cancel_url = "http://127.0.0.1:5000/ccavResponseHandler";
+//         var language = "EN";
+//         var integration_type = "iframe_normal";
+//         var customer_identifier = "hims52";
+
+
+//         //inserting into form
+//         var formData = new FormData();
+//         formData.append("amount", amount);
+//         formData.append("merchant_id", merchant_id);
+//         formData.append("order_id", order_id);
+//         formData.append("currency", currency);
+//         formData.append("redirect_url", redirect_url);
+//         formData.append("cancel_url", cancel_url);
+//         formData.append("language", language);
+//         formData.append("integration_type", integration_type);
+//         formData.append("customer_identifier", customer_identifier);
+//         // Display the values
+// for (var value of formData.values()) {
+//    console.log(value);
+// }
+// var request = new XMLHttpRequest();
+// request.open("POST", "/ccavRequestHandler");
+// request.send(formData);
+// request.onreadystatechange = function() {//Call a function when the state changes.
+//     if(request.readyState == 4 && request.status == 200) {
+//         alert(this.responseText);
+//     }
+// }
+
+
+
+// Create the iFrame used to send our data
+var iframe = document.createElement("iframe");
+iframe.name = "myTarget";
+
+// Next, attach the iFrame to the main document
+window.addEventListener("load", function () {
+  iframe.style.display = "none";
+  document.body.appendChild(iframe);
+});
+
+// This is the function used to actually send the data
+// It takes one parameter, which is an object populated with key/value pairs.
+function sendData(data) {
+  var name,
+      form = document.createElement("form"),
+      node = document.createElement("input");
+
+  // Define what happens when the response loads
+  iframe.addEventListener("load", function (response) {
+    console.log(response);
+  });
+
+  form.action = "http://localhost:5000/ccavRequestHandler";
+  form.target = iframe.name;
+  form.method = "POST";
+
+  for(name in data) {
+    node.name  = name;
+    node.value = data[name].toString();
+    form.appendChild(node.cloneNode());
+  }
+
+  // To be sent, the form needs to be attached to the main document.
+  form.style.display = "none";
+  document.body.appendChild(form);
+
+  form.submit();
+
+  // Once the form is sent, remove it.
+  document.body.removeChild(form);
+}
+	</script>
+</body>
+</html>

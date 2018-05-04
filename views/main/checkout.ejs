@@ -6,7 +6,7 @@
   <div class="checkoutDetails">
       <div class="cus_info">Customer Information</div>
     <div class="logsign">
-      <div class="logsignText">
+      <div class="logsignText logtextchange">
         Profile<br/><br/>
         Log In or Sign Up
       </div>
@@ -21,23 +21,24 @@
       <div class="signUpLink">Sign Up</div>
       <div class="signupoffer">Sign up to get new offer on selected dishes</div>
       <div class="logsignforminputs">
+        <form id="user_details">
         <div class="firstlastname">
-        <input type="text" placeholder="First Name" required>
-        <input type="text" placeholder="Last Name" required>
+        <input type="text" id="first_name"  placeholder="First Name" required>
+        <input type="text" id="last_name" placeholder="Last Name" required>
       </div>
       <div>
-        <input type="text" placeholder="Email Address" required>
+        <input type="email" id="email_name"  placeholder="Email Address" required>
       </div>
       <div>
-        <input type="number" placeholder="Enter 10 digit mob no" required>
+        <input type="number" id="mobile_num" placeholder="Enter 10 digit mob no" required>
       </div>
       <div>
-        <input type="text" placeholder="Password" required>
+        <input type="text" id="password_name" placeholder="Password" required>
       </div>
 
       <!-- <input type="submit" class="submit_btn" value="SIGN UP & CONTINUE"> -->
-      <button class="submit_btn" value="SIGN UP & CONTINUE">SIGN UP & CONTINUE</button>
-      <div class="login_option">Already have an account? Log in</div>
+      <div class="submit_btn showCursor"  onclick="showSignupModal()" >SIGN UP & CONTINUE</div>
+      <div class="login_option">Already have an account? <a class="showCursor" onclick="showLoginModal()">Log in</a></div>
 
       <!-- <div class="or-divider">
        <hr>
@@ -45,7 +46,8 @@
       <hr>
       </div> -->
 
-      <button class="guest_btn" value="Continue As Guest" onclick="manipulatePanel()">Continue as Guest</button>
+      <button class="guest_btn" type="submit">Continue as Guest</button>
+    </form>
     </div>
     </div>
 </div>
@@ -99,19 +101,22 @@
    <p>Longitude: <input size="20" type="text" id="lngbox" name="lng" ></p>
    <p>Address: <input size="20" type="text" id="faddress" </p> -->
 
+<form id="address_details">
    <div  class="logsignforminputs">
-     <input id="pac-input" type="text" placeholder="Enter Your Location">
+     <input id="pac-input1" type="text" placeholder="Enter Your Location" required>
    </div>
    <div  class="logsignforminputs">
-     <input id="pac-input" type="text" placeholder="House and Street No.">
+     <input id="pac-input2" type="text" placeholder="House and Street No." required>
    </div>
    <div  class="logsignforminputs">
-     <input id="pac-input" type="text" placeholder="Your Mobile No.">
+     <input id="pac-input3" type="number" placeholder="Your Mobile No." required>
    </div>
    <div  class="logsignforminputs">
-     <input id="pac-input" type="text" placeholder="Your Email Address">
+     <input id="pac-input4" type="email" placeholder="Your Email Address" required>
    </div>
 
+  <button class="submit_btn" type="submit" value="CONTINUE WITH THIS ADDRESS">CONTINUE WITH THIS ADDRESS</button>
+</form>
   </div>
 </div>
 
@@ -122,11 +127,36 @@
     Payment Method<br/><br/>
     Online Wallet or Cash On Delivery
   </div>
-  <div class="collapsible-arrow acc" >
+  <div class="collapsible-arrow acc" id="collapsible-arrow-3" >
     <span><i class="fas fa-2x fa-angle-up"></i></span>
   </div>
 
 </div>
+<div class="logsignformMain" id="accDiv3" style="display: none">
+  <div class="logsignform">
+    <div class="containerradio">
+	<ul class="listradio">
+		<li class="list__itemradio">
+			<input type="radio" class="radio-btn" name="choice" id="a-opt" />
+			<label for="a-opt" class="labelradio">Cash On Delivery</label>
+		</li>
+		<li class="list__itemradio">
+			<input type="radio" class="radio-btn" name="choice" id="b-opt" checked/>
+			<label for="b-opt" class="labelradio">Debit Card/ Credit Card</label>
+		</li>
+		<!-- <li class="list__itemradio">
+			<input type="radio" class="radio-btn" name="choice" id="c-opt" />
+			<label for="c-opt" class="labelradio">pick me i'm the best!</label>
+		</li>
+		<li class="list__itemradio">
+			<input type="radio" class="radio-btn" name="choice" id="d-opt" />
+			<label for="d-opt" class="labelradio">pick me i'm fabulous!</label>
+		</li> -->
+	</ul>
+</div>
+  </div>
+</div>
+
 
   </div>
   <div class="order_summary">
@@ -160,11 +190,27 @@
 
     <div class="gTotal">
       <div> GRAND TOTAL </div>
-      <div class="gTotalP"> Rs <span></span> </div>
+      <div class="gTotalP"> Rs <span id="checkout_money"></span> </div>
     </div>
     </div>
     <div class="place-order-btn">
-      <button>Place Order</button>
+      <form method="POST" id="myForm" name="customerData" action="/ccavRequestHandler">
+        <input type="hidden" name="merchant_id" id="merchant_id" value="172720" />
+        <input type="hidden" name="order_id" value="shivy_123" id="orderId" />
+        <input type="hidden" name="currency" value="INR" />
+        <input type="hidden" id="money" name="amount" value="1.00" />
+          <input type="hidden" id="billingTel" name="billing_tel" value="9917232672" />
+          <input type="hidden" name="integration_type" value="iframe_normal" />
+        <input type="hidden" name="redirect_url"
+            value="http://localhost:5000/ccavResponseHandler" />
+            <input type="hidden" name="cancel_url"
+            value="http://localhost:5000/ccavResponseHandler" />
+            <input type="hidden" name="language" id="language" value="EN" />
+
+
+                  <button id="place_final_order" disabled>Place Order</button>
+      </form>
+
     </div>
 
     <div class="helpLine">
@@ -185,7 +231,10 @@
 </div>
 </main>
 
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script>
+
 document.addEventListener("DOMContentLoaded",function(){
 
 
@@ -228,7 +277,15 @@ document.addEventListener("DOMContentLoaded",function(){
       }
     }
 
-
+<% if(user){ %>
+  alert("Shiivy")
+  document.querySelector('.logtextchange').innerHTML = 'Logged In <br/><br/>'+'<%if(user.local.username){ %><%= user.local.username %><%} else if(user.google.name){%><%= user.google.name %><%} else if(user.facebook.name){ %><%= user.facebook.name %><%}%>';
+  document.getElementById("collapsible-arrow-2").children[0].children[0].classList.toggle("fa-angle-down");
+  document.getElementById("accDiv2").style.display = "block";
+  document.getElementById("collapsible-arrow").children[0].children[0].classList.toggle("fa-angle-down");
+  document.getElementById("accDiv").style.display = "none";
+  document.querySelector('.collapsible-arrow').classList.remove("acc");
+<% } %>
   var sessionCart = JSON.parse(sessionStorage.getItem("cart"));
     // var productId = "'"+product._id+"'";
     // var check = false;
@@ -353,15 +410,33 @@ document.querySelector(".gTotalP").getElementsByTagName("span")[0].innerText = s
     }
   }
 
-  function manipulatePanel()
+var userform = document.getElementById('user_details');
+userform.onsubmit = function (e) {
+  e.preventDefault();
+  if(document.getElementById('user_details')[0].checkValidity())
   {
     document.getElementById("collapsible-arrow-2").children[0].children[0].classList.toggle("fa-angle-down");
     document.getElementById("accDiv2").style.display = "block";
     document.getElementById("collapsible-arrow").children[0].children[0].classList.toggle("fa-angle-up");
     document.getElementById("accDiv").style.display = "none";
 document.getElementById("collapsible-arrow-2").setAttribute("onclick","openPanel(event)");
+}
+};
 
-  }
+var addressform = document.getElementById('address_details');
+addressform.onsubmit = function (e) {
+  e.preventDefault();
+  alert("shivy");
+  if(document.getElementById('address_details')[0].checkValidity())
+  {
+    document.getElementById("collapsible-arrow-3").children[0].children[0].classList.toggle("fa-angle-down");
+    document.getElementById("accDiv3").style.display = "block";
+    document.getElementById("collapsible-arrow-2").children[0].children[0].classList.toggle("fa-angle-up");
+    document.getElementById("accDiv2").style.display = "none";
+document.getElementById("collapsible-arrow-3").setAttribute("onclick","openPanel(event)");
+document.getElementById("place_final_order").removeAttribute("disabled");
+}
+};
 
 </script>
 <script>
@@ -522,7 +597,75 @@ var geocoder = geocoder = new google.maps.Geocoder();
             });
       }
 
+      document.getElementById("place_final_order").addEventListener("click",function(e){
+        var customerName = `<%if(user){ %><%if(user.local.username){ %><%= user.local.username %><%} else if(user.google.name){%><%= user.google.name %><%} else if(user.facebook.name){ %><%= user.facebook.name %><%}%><%}else{%>document.getElementById("first_name").value+" "+document.getElementById("last_name").value<%}%>`;
+        e.preventDefault();
+        if(document.getElementById('a-opt').checked)
+        {
+
+          var body = {
+            customer: customerName,
+            total: document.getElementById("checkout_money").innerHTML,
+            items: JSON.parse(sessionStorage.getItem("cart")).items,
+            paymentMethod: 'Cash On Delivery',
+            addressDetails: document.getElementById('pac-input2').value+' '+document.getElementById('pac-input1').value,
+            customerContact: document.getElementById("pac-input3").value,
+            successful: true
+          };
+          var xhttp = new XMLHttpRequest();
+xhttp.onreadystatechange = function() {
+  if (this.readyState == 4 && this.status == 201) {
+  location.replace("/?success=true");
+  }
+};
+xhttp.open("POST", "/add-order", true);
+xhttp.setRequestHeader("Content-type", "application/json");
+xhttp.send(JSON.stringify(body));
+        }
+        else
+        {
+
+
+          var body = {
+            customer: customerName,
+            total: document.getElementById("checkout_money").innerHTML,
+            items: JSON.parse(sessionStorage.getItem("cart")).items,
+            paymentMethod: 'Cash On Delivery',
+            addressDetails: document.getElementById('pac-input2').value+' '+document.getElementById('pac-input1').value,
+            customerContact: document.getElementById("pac-input3").value,
+            successful: false
+          };
+          var xhttp = new XMLHttpRequest();
+xhttp.onreadystatechange = function() {
+  if (this.readyState == 4 && this.status == 201) {
+    console.log(this.responseText);
+
+      document.getElementById("orderId").setAttribute('value',JSON.parse(this.responseText).order_id);
+      document.getElementById("billingTel").setAttribute('value',document.getElementById("pac-input3").value);
+      document.getElementById("myForm").submit();
+  }
+};
+xhttp.open("POST", "/gateway-order", true);
+xhttp.setRequestHeader("Content-type", "application/json");
+xhttp.send(JSON.stringify(body));
+
+        }
+        // var amount = document.getElementById("checkout_money").innerHTML;
+        // var merchant_id = '172720';
+        // var order_id = "shivya_123";
+        // var currency = 'INR';
+        // var redirect_url = "http://127.0.0.1:5000/ccavResponseHandler";
+        // var cancel_url = "http://127.0.0.1:5000/ccavResponseHandler";
+        // var language = "EN";
+        // var integration_type = "iframe_normal";
+        // var customer_identifier = "hims52";
+        //       <button id="place_final_order">Place Order</button>
+        // var money = document.getElementById("checkout_money").innerHTML;
+        // document.getElementById("money").setAttribute("value",money);
+});
+
 
     </script>
+
 <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB-wTYp5ZfepUgW0b7n9z_JvBlwhO4ImZo&libraries=places&callback=initMap"
 type="text/javascript"></script>

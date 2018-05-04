@@ -36,7 +36,7 @@
   <h1>RELATED PRODUCTS</h1>
 
 <div class="related_products_slide">
-  
+
   <div class="food-item">
     <a href="foods"><img src="../img/food_items/6.jpg"></a>
     <div class="food-item-titles">
@@ -79,14 +79,38 @@
 <div class="add_review" id="add_review" onclick="change_box('add_review');">
   Give Review
 </div>
+
 <div class="old_box display" id="old_box">
+  <% var totalRating=0; var one=0;var two=0;var three=0;var four=0;var five=0;  product.prodRating.forEach(function(rating) {
+     totalRating = parseInt(rating.stars) + totalRating;
+
+       if(rating.stars==1)
+       one++;
+      if(rating.stars==2)
+       two++;
+   if(rating.stars==3)
+       three++;
+   if(rating.stars==4)
+       four++;
+   if(rating.stars==5)
+       five++;
+
+  });%>
+
+
   <span class="review_heading">User Rating</span>
+  <%for(var i=0;i< Math.round(totalRating/product.prodRating.length);i++) {%>
   <span class="fa fa-star large checked"></span>
-  <span class="fa fa-star large checked"></span>
-  <span class="fa fa-star large checked"></span>
-  <span class="fa fa-star large checked"></span>
+  <% } %>
+    <%for(var i=0;i< 5-(Math.round(totalRating/product.prodRating.length));i++) {%>
   <span class="fa fa-star large"></span>
-  <p class="review_overall">4.1 average based on 254 reviews.</p>
+    <% } %>
+
+
+
+  <p class="review_overall"><% if(product.prodRating.length){ %><%= Math.round(totalRating/product.prodRating.length) %>
+    <%} else { %> No <% } %>
+     stars average based on <%=product.prodRating.length%> reviews.</p>
 
   <div class="review_overall_stars">
     <div class="stars">
@@ -107,226 +131,64 @@
     </div>
     </div>
     <div class="bars">
-      <div class="bar1">
-      </div>
-      <div class="bar2">
-      </div>
-      <div class="bar3">
+      <div class="bar5">
       </div>
       <div class="bar4">
       </div>
-      <div class="bar5">
+      <div class="bar3">
+      </div>
+      <div class="bar2">
+      </div>
+      <div class="bar1">
       </div>
     </div>
     <div class="people_no">
       <div class="people_no_1">
-        253
+        <%= five %>
       </div>
       <div class="people_no_2">
-        452
+        <%= four %>
       </div>
       <div class="people_no_3">
-        235
+          <%= three %>
       </div>
       <div class="people_no_4">
-        50
+          <%= two %>
       </div>
       <div class="people_no_5">
-        32
+        <%= one %>
       </div>
     </div>
   </div>
 
 <div>
-  <div class="people_ratings">
-    <div class="name_pic_rating">
-    <div class="customer_pic">
-      <img src="../img/customer_profile.png">
-    </div>
-    <div class="name_rating">
-    <div class="customer_name">
-      Shivyan
-    </div>
-    <div class="customer_rating">
-    <span class="fa fa-star checked"></span>
-    <span class="fa fa-star checked"></span>
-    <span class="fa fa-star checked"></span>
-    <span class="fa fa-star checked"></span>
-    <span class="fa fa-star half"></span>
-    </div>
-    </div>
-  </div>
-    <div class="customer_comment">
-      Lorem ujdhujhn Lorem ujdhujhn Lorem ujdhujhn Lorem ujdhujhnvv Lorem ujdhujhnvv Lorem ujdhujhn
-    </div>
-  </div>
-
-  <div class="people_ratings">
-    <div class="name_pic_rating">
-    <div class="customer_pic">
-      <img src="../img/customer_profile.png">
-    </div>
-    <div class="name_rating">
-    <div class="customer_name">
-      Shivyan
-    </div>
-    <div class="customer_rating">
-    <span class="fa fa-star checked"></span>
-    <span class="fa fa-star checked"></span>
-    <span class="fa fa-star checked"></span>
-    <span class="fa fa-star checked"></span>
-    <span class="fa fa-star half"></span>
-    </div>
-    </div>
-  </div>
-    <div class="customer_comment">
-      Lorem ujdhujhn Lorem ujdhujhn Lorem ujdhujhn Lorem ujdhujhnvv Lorem ujdhujhnvv Lorem ujdhujhn
-    </div>
-  </div>
 
 
-  <div class="people_ratings">
-    <div class="name_pic_rating">
-    <div class="customer_pic">
-      <img src="../img/customer_profile.png">
+  <% product.prodRating.forEach(function(rating) { %>
+    <div class="people_ratings">
+      <div class="name_pic_rating">
+      <div class="customer_pic">
+        <img src="../img/customer_profile.png">
+      </div>
+      <div class="name_rating">
+      <div class="customer_name">
+        <%= rating.username -%>
+        <%= rating.stars %>
+      </div>
+      <div class="customer_rating">
+        <% for(var i=1;i<=rating.stars;i++) { %>
+      <span class="fa fa-star checked"></span>
+      <%  } %>
+      </div>
+      </div>
     </div>
-    <div class="name_rating">
-    <div class="customer_name">
-      Shivyan
+      <div class="customer_comment">
+      <%= rating.comment -%>
+      </div>
     </div>
-    <div class="customer_rating">
-    <span class="fa fa-star checked"></span>
-    <span class="fa fa-star checked"></span>
-    <span class="fa fa-star checked"></span>
-    <span class="fa fa-star checked"></span>
-    <span class="fa fa-star half"></span>
-    </div>
-    </div>
-  </div>
-    <div class="customer_comment">
-      Lorem ujdhujhn Lorem ujdhujhn Lorem ujdhujhn Lorem ujdhujhnvv Lorem ujdhujhnvv Lorem ujdhujhn
-    </div>
-  </div>
+  <% }); %>
 
 
-
-  <div class="people_ratings">
-    <div class="name_pic_rating">
-    <div class="customer_pic">
-      <img src="../img/customer_profile.png">
-    </div>
-    <div class="name_rating">
-    <div class="customer_name">
-      Shivyan
-    </div>
-    <div class="customer_rating">
-    <span class="fa fa-star checked"></span>
-    <span class="fa fa-star checked"></span>
-    <span class="fa fa-star checked"></span>
-    <span class="fa fa-star checked"></span>
-    <span class="fa fa-star half"></span>
-    </div>
-    </div>
-  </div>
-    <div class="customer_comment">
-      Lorem ujdhujhn Lorem ujdhujhn Lorem ujdhujhn Lorem ujdhujhnvv Lorem ujdhujhnvv Lorem ujdhujhn
-    </div>
-  </div>
-
-
-
-  <div class="people_ratings">
-    <div class="name_pic_rating">
-    <div class="customer_pic">
-      <img src="../img/customer_profile.png">
-    </div>
-    <div class="name_rating">
-    <div class="customer_name">
-      Shivyan
-    </div>
-    <div class="customer_rating">
-    <span class="fa fa-star checked"></span>
-    <span class="fa fa-star checked"></span>
-    <span class="fa fa-star checked"></span>
-    <span class="fa fa-star checked"></span>
-    <span class="fa fa-star half"></span>
-    </div>
-    </div>
-  </div>
-    <div class="customer_comment">
-      Lorem ujdhujhn Lorem ujdhujhn Lorem ujdhujhn Lorem ujdhujhnvv Lorem ujdhujhnvv Lorem ujdhujhn
-    </div>
-  </div>
-
-
-  <div class="people_ratings">
-    <div class="name_pic_rating">
-    <div class="customer_pic">
-      <img src="../img/customer_profile.png">
-    </div>
-    <div class="name_rating">
-    <div class="customer_name">
-      Shivyan
-    </div>
-    <div class="customer_rating">
-    <span class="fa fa-star checked"></span>
-    <span class="fa fa-star checked"></span>
-    <span class="fa fa-star checked"></span>
-    <span class="fa fa-star checked"></span>
-    <span class="fa fa-star half"></span>
-    </div>
-    </div>
-  </div>
-    <div class="customer_comment">
-      Lorem ujdhujhn Lorem ujdhujhn Lorem ujdhujhn Lorem ujdhujhnvv Lorem ujdhujhnvv Lorem ujdhujhn
-    </div>
-  </div>
-
-  <div class="people_ratings">
-    <div class="name_pic_rating">
-    <div class="customer_pic">
-      <img src="../img/customer_profile.png">
-    </div>
-    <div class="name_rating">
-    <div class="customer_name">
-      Shivyan
-    </div>
-    <div class="customer_rating">
-    <span class="fa fa-star checked"></span>
-    <span class="fa fa-star checked"></span>
-    <span class="fa fa-star checked"></span>
-    <span class="fa fa-star checked"></span>
-    <span class="fa fa-star half"></span>
-    </div>
-    </div>
-  </div>
-    <div class="customer_comment">
-      Lorem ujdhujhn Lorem ujdhujhn Lorem ujdhujhn Lorem ujdhujhnvv Lorem ujdhujhnvv Lorem ujdhujhn
-    </div>
-  </div>
-
-  <div class="people_ratings">
-    <div class="name_pic_rating">
-    <div class="customer_pic">
-      <img src="../img/customer_profile.png">
-    </div>
-    <div class="name_rating">
-    <div class="customer_name">
-      Shivyan
-    </div>
-    <div class="customer_rating">
-    <span class="fa fa-star checked"></span>
-    <span class="fa fa-star checked"></span>
-    <span class="fa fa-star checked"></span>
-    <span class="fa fa-star checked"></span>
-    <span class="fa fa-star half"></span>
-    </div>
-    </div>
-  </div>
-    <div class="customer_comment">
-      Lorem ujdhujhn Lorem ujdhujhn Lorem ujdhujhn Lorem ujdhujhnvv Lorem ujdhujhnvv Lorem ujdhujhn
-    </div>
-  </div>
 
 </div>
 
@@ -338,20 +200,49 @@
   Give Your Review &nbsp; <i class="fa fa-edit"></i>
 </div>
 <div class="give_review_stars">
-  <span class="fa fa-star checked"></span>
-  <span class="fa fa-star checked"></span>
-  <span class="fa fa-star checked"></span>
-  <span class="fa fa-star checked"></span>
-  <span class="fa fa-star half"></span>
+  <input type="radio" class="no_show" name="stars" id="star-null" />
+  <input type="radio" class="no_show" name="stars" id="star-1" />
+  <input type="radio" class="no_show" name="stars" id="star-2" />
+  <input type="radio" class="no_show" name="stars" id="star-3" />
+  <input type="radio" class="no_show" name="stars" id="star-4" checked />
+  <input type="radio" class="no_show" name="stars" id="star-5" />
+
+  <section id="star_section">
+    <label class="labelstar" for="star-1">
+      <svg width="255" height="240" viewBox="0 0 51 48">
+        <path d="m25,1 6,17h18l-14,11 5,17-15-10-15,10 5-17-14-11h18z"/>
+      </svg>
+    </label>
+    <label class="labelstar" for="star-2">
+      <svg width="255" height="240" viewBox="0 0 51 48">
+        <path d="m25,1 6,17h18l-14,11 5,17-15-10-15,10 5-17-14-11h18z"/>
+      </svg>
+    </label>
+    <label class="labelstar" for="star-3">
+      <svg width="255" height="240" viewBox="0 0 51 48">
+        <path d="m25,1 6,17h18l-14,11 5,17-15-10-15,10 5-17-14-11h18z"/>
+      </svg>
+    </label>
+    <label class="labelstar" for="star-4">
+      <svg width="255" height="240" viewBox="0 0 51 48">
+        <path d="m25,1 6,17h18l-14,11 5,17-15-10-15,10 5-17-14-11h18z"/>
+      </svg>
+    </label>
+    <label class="labelstar" for="star-5">
+      <svg width="255" height="240" viewBox="0 0 51 48">
+        <path d="m25,1 6,17h18l-14,11 5,17-15-10-15,10 5-17-14-11h18z"/>
+      </svg>
+    </label>
+  </section>
 </p>
 </div>
 <div class="reviewing">
-  <textarea rows="5" cols="50" class="reviewing_box" placeholder="Tell Us How You Feel About Our Service and Food.">
+  <textarea rows="5" cols="50" class="reviewing_box" id="customer_review" placeholder="Tell Us How You Feel About Our Service and Food." required>
 
 </textarea>
 </div>
   <div class="review_btn">
-  <button style="review_post_button">Post Your Review</button>
+  <button class="review_post_button" >Post Your Review</button>
 </div>
 
 </div>
@@ -389,7 +280,7 @@ document.addEventListener("DOMContentLoaded",function(){
   window.onscroll = function() {scrollFunction()};
 
   function scrollFunction() {
-    if (document.body.scrollTop > document.querySelector(".small-navbar").offsetTop || document.documentElement.scrollTop > document.querySelector(".small-navbar").offsetTop ) 
+    if (document.body.scrollTop > document.querySelector(".small-navbar").offsetTop || document.documentElement.scrollTop > document.querySelector(".small-navbar").offsetTop )
 
     {
       document.querySelector(".logo img").style.width = "22%";
@@ -402,7 +293,7 @@ document.addEventListener("DOMContentLoaded",function(){
     {
         if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) )
             document.querySelector(".secondSmall").style.display="block";
-        else 
+        else
         document.querySelector(".small-navbar").style.display="block";
       document.querySelector(".logo img").style.width = "100%";
     }
@@ -441,7 +332,8 @@ document.addEventListener("DOMContentLoaded",function(){
       divMain.innerHTML = div;
 
       // check = true;
-    var cartBtn = document.querySelector(".prod_desc").childNodes[7];
+    var cartBtn = document.querySelector(".prod_desc").childNodes[5];
+    console.log(cartBtn);
     // console.log(cartBtn);
     cartBtn.replaceChild(divMain, cartBtn.childNodes[1]);
       return true;
@@ -451,6 +343,63 @@ document.addEventListener("DOMContentLoaded",function(){
 }
 
 
+
+// for(x in shivyan)
+// {
+//   console.log(shivyan[x]);
+// }
+document.querySelector(".review_post_button").addEventListener("click",function(){
+
+
+  <% var logged=false; if(typeof user !== 'undefined'){ logged = true; }%>
+
+if(<%=logged %>)
+{
+  var arrObj = [];
+
+  <% product.prodRating.forEach(function(rating) { %>
+      var shivyan={};
+    shivyan.stars =  '<%= rating.stars %>';
+    shivyan.comment =  '<%= rating.comment %>';
+    shivyan.username =  '<%= rating.username %>';
+    arrObj.push(shivyan);
+  <% }); %>
+
+  var json_obj = {};
+  var final_obj={};
+  var arrObjj=[];
+
+json_obj.stars = star_interact();
+json_obj.comment = (document.getElementById("customer_review").value).trim();
+json_obj.username = "<% if(logged){%><%if(user.local.username){ %><%= user.local.username %><%} else if(user.google.name){%><%= user.google.name %><%} else if(user.facebook.name){ %><%= user.facebook.name %><%}%><%}%>";
+final_obj.propName = "prodRating";
+arrObj.push(json_obj)
+final_obj.value = arrObj;
+arrObjj.push(final_obj);
+json_obj = JSON.stringify(arrObjj);
+console.log(json_obj);
+
+var http = new XMLHttpRequest();
+var preUrl = window.location.pathname;
+preUrl =  preUrl.replace('/food','');
+var url = "/review"+preUrl;
+http.open("put", url, true);
+
+//Send the proper header information along with the request
+http.setRequestHeader("Content-type", "application/json");
+
+http.onreadystatechange = function() {//Call a function when the state changes.
+    if(http.readyState == 4 && http.status == 200) {
+        materialAlert('Thank You!',JSON.parse(this.responseText).message);
+    }
+}
+http.send(json_obj);
+
+}
+else materialAlert('Please Login!','<br/>You cannot give review without login.');
+
+});
+
 });
 //Change review box
 function change_box(what_box)
@@ -459,7 +408,7 @@ function change_box(what_box)
 
   if(what_box=='old_review')
   {
-    alert("here");
+    // alert("here");
   document.getElementById('old_review').style.background='#dc3836';
     document.getElementById('old_review').style.color='#fff';
   document.getElementById('add_review').style.background='#fff';
@@ -469,7 +418,7 @@ function change_box(what_box)
 }
 else
 {
-  alert("here2");
+  // alert("here2");
   document.getElementById('add_review').style.background='#dc3836';
   document.getElementById('add_review').style.color='#fff';
   document.getElementById('old_review').style.background='#fff';
@@ -478,4 +427,30 @@ else
   document.getElementById('give_box').classList.add("display");
 }
 }
+
+function star_interact()
+{
+  var for_check = 0;
+  for(let i=1;i<=5;i++)
+  {
+    if(document.getElementById("star-"+i).checked)
+    {
+       for_check=1;
+       if(i==5)
+       {
+         return i;
+         break;
+       }
+     }
+    else if(for_check==1)
+    {
+      var mid = i-1;
+      return mid;
+      break;
+    }
+  }
+}
+
+
+
 </script>

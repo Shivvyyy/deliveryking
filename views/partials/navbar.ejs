@@ -5,13 +5,26 @@
       <li class="floatleft"><i class="fas fa-phone"></i> 91-7017585022</li>
 
           <li class="floatright displayPointer">Corporate Ordering</li>
+            <% if(typeof user !== 'undefined') { %>
+              <li class="floatright">|</li>
+                    <li class="floatright displayPointer logout"><a href="/logout">Log Out</a></li>
+              <li class="floatright">|</li>
+                <li  class="floatright displayPointer">Hi, <%if(user.local.username){ %><%= user.local.username %>
+                <%} else if(user.google.name){%><%= user.google.name %><%} else if(user.facebook.name){ %><%= user.facebook.name %><%}%>
+                </a></li>
+                  <li class="floatright">|</li>
+              <% } %>
+
+                  <% if(typeof user === 'undefined') { %>
+
         <li class="floatright">|</li>
         <li id="signup-btn" class="floatright displayPointer" onclick="showSignupModal()">Sign Up</li>
         <li class="floatright">|</li>
         <li id="login-btn" class="floatright displayPointer"  onclick="showLoginModal()">Log In</li>
         <li class="floatright">|</li>
-        
-      
+            <% } %>
+
+
 
 
 
@@ -42,7 +55,19 @@
 
           <!-- <li class=" displayPointer">Corporate Ordering</li>
         <li class="">|</li> -->
-        <li class="floatright displayPointer">Log In Sign Up </li>
+
+          <% if(typeof user !== 'undefined') { %>
+              <li class="floatright"><a href="/logout">Logout</a> </li>
+              <li class="floatright">|</li>
+      <li class="floatright">Hi, <%if(user.local.username){ %><%= user.local.username %>
+      <%} else if(user.google.name){%><%= user.google.name %><%} else if(user.facebook.name){ %><%= user.facebook.name %><%}%> </li>
+
+
+<% } %>
+    <% if(typeof user === 'undefined') { %>
+      <li class="floatright displayPointer">Log In Sign Up </li>
+  <% } %>
+
         <li class="floatright">|</li>
         <li class="floatright openCartItems displayPointer"><i class="fa fa-shopping-cart" aria-hidden="true"></i> Cart</li>
 
@@ -92,26 +117,166 @@
 <img src="../img/add_to_cart.png" class="shopping_cart" />
 
 <div class="login-modal">
-  <input type="text" name="username" placeholder="Username">
-  <input type="password" name="password" placeholder="Password">
-  <input type="password" name="confirm-password" placeholder="Confirm Password">
-  <button class='login-modal-btn'>Login</button>
-  <p>New User? <a href=""> Sign up </a></p>
+  <form action="/login" method="post" id="loginForm">
+  <input type="text" name="username" placeholder="Username" required>
+  <input type="password" name="password" placeholder="Password" required>
+  <button class='login-modal-btn' type="submit">Login</button>
+</form>
+<a href="/auth/facebook" class="oauth"><span class="fab fa-facebook"></span> Facebook</a>
+<a href="/auth/google" class="oauth"><span class="fab fa-google-plus"></span> Google+</a>
+  <p>New User? <a class="showCursor" onclick="showSignupModal()"> Sign up </a></p>
 </div>
 
 <div class="login-backdrop" onclick='hideLoginModal()'>
-  
+
 </div>
 
 <div class="signup-modal">
-  <input type="text" name="username" placeholder="Username">
-  <input type="password" name="password" placeholder="Password">
-  <button class='signup-modal-btn'>Sign Up</button>
-  <p>Already have an account? <a href=""> Log in </a></p>
+  <form action="/signup" method="post" id="signupForm">
+  <input type="text" name="username" placeholder="Enter Your Username" required>
+  <input type="password" name="password" placeholder="Password" id="firstPassword" required>
+  <input type="password" placeholder="Confirm Password" id="secondPassword" required>
+  <button class='signup-modal-btn' type="submit">Sign Up</button>
+    <a href="/auth/facebook" class="oauth"><span class="fab fa-facebook"></span> Facebook</a>
+    <a href="/auth/google" class="oauth"><span class="fab fa-google-plus"></span> Google+</a>
+</form>
+  <p>Already have an account? <a class="showCursor" onclick="showLoginModal()"> Log in </a></p>
 </div>
 
 <div class="signup-backdrop" onclick='hideSignupModal()'>
-  
+
 </div>
 
 
+<script>
+document.addEventListener('DOMContentLoaded',function(){
+  var form = document.getElementById('signupForm');
+  var form2 = document.getElementById('loginForm');
+
+  // Append the form status
+  var formStatus = document.createElement('div');
+  formStatus.setAttribute('class', 'form-status alert');
+  form.appendChild(formStatus);
+  form2.appendChild(formStatus);
+
+  form.onsubmit = function (e) {
+  	// Stop the regular form submission
+  	e.preventDefault();
+  	// Collect the form data while iterating over the inputs
+  	var data = {};
+  	for (var i = 0, ii = form.length; i < ii; ++i) {
+  		var input = form[i];
+  		if (input.name) {
+  			data[input.name] = input.value;
+  		}
+  	}
+
+
+
+  	// Send the collected data as JSON
+    if((document.getElementById('firstPassword').value)!==(document.getElementById('secondPassword').value))
+    {
+      	e.preventDefault();
+        formStatus.className += ' alert-danger';
+    		formStatus.innerHTML = "Passwords Doesn't Match";
+        alert("Password Doesn't Match");
+    }
+    else
+    {
+
+      // Construct an HTTP request
+      var xhr = new XMLHttpRequest();
+      xhr.open(form.method, form.action, true);
+      xhr.setRequestHeader('Accept', 'application/json; charset=utf-8');
+      xhr.setRequestHeader('Content-Type', 'application/json; charset=UTF-8');
+
+  	xhr.send(JSON.stringify(data));
+
+  	// Callback function
+  	xhr.onloadend = function (response) {
+  		if (response.target.status === 0) {
+
+  			// Failed XmlHttpRequest should be considered an undefined error.
+  			formStatus.className += ' alert-danger';
+  			formStatus.innerHTML = response.currentTarget.responseText;
+
+  		} else if (response.target.status === 401) {
+
+  			// Bad Request
+  			formStatus.className += ' alert-danger';
+        console.log(response);
+        console.log(typeof response);
+  			formStatus.innerHTML = response.currentTarget.responseText;
+
+  		} else if (response.target.status === 200) {
+        if(window.location.pathname=='/checkout') location.reload(true);
+        else window.location.href='/profile';
+  			// Success
+  			// formStatus.className += ' alert-success';
+  			// formStatus.innerHTML = form.dataset.formSuccess;
+
+  		}
+  	};
+  }
+  };
+
+
+
+  //login form submit
+
+  form2.onsubmit = function (e) {
+
+   e.preventDefault();
+  	// Stop the regular form submission
+  //
+  	// Collect the form data while iterating over the inputs
+  	var data = {};
+  	for (var i = 0, ii = form2.length; i < ii; ++i) {
+  		var input = form2[i];
+  		if (input.name) {
+  			data[input.name] = input.value;
+  		}
+  	}
+
+
+
+
+      // Construct an HTTP request
+      var xhr = new XMLHttpRequest();
+      xhr.open(form2.method, form2.action, true);
+      xhr.setRequestHeader('Accept', 'application/json; charset=utf-8');
+      xhr.setRequestHeader('Content-Type', 'application/json; charset=UTF-8');
+
+  	xhr.send(JSON.stringify(data));
+
+  	// Callback function
+  	xhr.onloadend = function (response) {
+  		if (response.target.status === 0) {
+
+  			// Failed XmlHttpRequest should be considered an undefined error.
+        	e.preventDefault();
+  			formStatus.className += ' alert-danger';
+  			formStatus.innerHTML = response.currentTarget.responseText;
+
+  		} else if (response.target.status === 401) {
+        	e.preventDefault();
+  			// Bad Request
+  			formStatus.className += ' alert-danger';
+        console.log(response);
+        console.log(typeof response);
+  			formStatus.innerHTML = response.currentTarget.responseText;
+
+  		} else if (response.target.status === 200) {
+        if(window.location.pathname=='/checkout') location.reload(true);
+        else window.location.href='/profile';
+  			// Success
+  			// formStatus.className += ' alert-success';
+  			// formStatus.innerHTML = form.dataset.formSuccess;
+
+  		}
+  	};
+  };
+});
+
+
+</script>

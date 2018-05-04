@@ -1,19 +1,21 @@
 var router = require('express').Router();
 var Category = require('../models/category');
 var Product = require('../models/product');
+var Order = require('../models/order');
+var http = require('http');
 
 
-//
 router.get('/', function(req, res, next) {
   Product.find({ mainSection1: true }, { mainSection2: true } ).select("name _id prod_short_desc price mainSection1 nonVeg").exec(function(err, products) {
 
     if (err) return next(err);
-    else
-    {
-        console.log(products);
+    else{
+      console.log("shiy");
         res.render('main/home',{
-          products:products
+          products:products,
+            user : req.user
         });
+
       // res.json({
       //   products:products
       // });
@@ -37,7 +39,8 @@ router.get('/food/:id', function(req, res, next) {
     else
     {
       res.render('main/food_description',{
-        product:product
+        product:product,
+        user : req.user
       });
     }
 
@@ -83,24 +86,174 @@ router.get('/happy', function(req, res, next) {
 
 router.get('/checkout',(req, res, next)=>
 {
-res.render('main/checkout');
+res.render('main/checkout',{
+    user : req.user
+});
 });
 
 router.get('/about',(req, res, next)=>
 {
-res.render('main/about');
+res.render('main/about',{
+    user : req.user
+});
+});
+
+
+router.get('/privacy-policy',(req, res, next)=>
+{
+res.render('main/terms',{
+    user : req.user
+});
+});
+
+
+// router.get('/delete',function(req,res,next){
+//
+//   Product.collection.remove({},function(err,out){
+//     if(err) res.json({err});
+//     else
+//     res.json({out});
+//   });
+// });
+
+router.put('/review/:productId',(req,res,next)=>{
+  const id = req.params.productId;
+  console.log("shivy hiteted");
+  console.log(req.body);
+  const updateOps = {};
+  for (const ops of req.body) {
+    updateOps[ops.propName] = ops.value;
+  }
+
+  console.log(updateOps);
+  Product.update({ _id: id }, { $set: updateOps })
+    .exec()
+    .then(result => {
+      res.status(200).json({
+        message: "Your Review Matters To Us.",
+      });
+    })
+    .catch(err => {
+      console.log(err);
+      res.status(500).json({
+        error: err
+      });
+    });
 });
 
 
 
-router.get('/delete',function(req,res,next){
 
-  Product.collection.remove({},function(err,out){
-    if(err) res.json({err});
+//add order
+router.post('/add-order', function(req, res, next) {
+  var order = new Order();
+  order.customer = req.body.customer;
+  order.total = req.body.total;
+  order.items = req.body.items;
+  order.paymentMethod = req.body.paymentMethod;
+  order.addressDetails = req.body.addressDetails;
+  order.customerContact = req.body.customerContact;
+  order.successful = req.body.successful;
+
+  order.save(function(err,result) {
+    if (err)
+    {
+      return res.status(500).json({
+        error:err
+      });
+    }
     else
-    res.json({out});
+    {
+    // req.flash('success', 'Successfully added a category');
+    http.get(`http://makemysms.in/api/sendsms.php?username=MOBIAPI&password=makemysms@123&sender=MOBSFT&mobile=${req.body.customerContact}&type=1&product=1&message=Your order has been successfully fulfiled`, (resp) => {
+      var data = '';
+
+      // A chunk of data has been recieved.
+      resp.on('data', (chunk) => {
+        data += chunk;
+      });
+
+      // The whole response has been received. Print out the result.
+      resp.on('end', () => {
+        console.log(JSON.parse(data));
+        return res.status(201).json('Success');
+      });
+
+    }).on("error", (err) => {
+      console.log("Error: " + err.message);
+    });
+
+   }
   });
 });
+
+
+
+router.post('/gateway-order', function(req, res, next) {
+  var order = new Order();
+  order.customer = req.body.customer;
+  order.total = req.body.total;
+  order.items = req.body.items;
+  order.paymentMethod = req.body.paymentMethod;
+  order.addressDetails = req.body.addressDetails;
+  order.customerContact = req.body.customerContact;
+  order.successful = req.body.successful;
+  order.save(function(err,result) {
+    if (err)
+    {
+      return res.status(500).json({
+        error:err
+      });
+    }
+    else
+    {
+    // req.flash('success', 'Successfully added a category');
+    res.status(201).json({order_id:result._id});
+   }
+  });
+});
+
+
+router.get('/orders', function(req, res, next) {
+
+  Order.find({}).sort().exec(function(err, orders) {
+
+    if (err) res.status(500).json({err:err});
+    else{
+
+      res.status(201).json({
+      orders:orders
+      });
+    }
+
+});
+
+});
+
+
+router.put('/order/:orderId',(req,res,next)=>{
+  const id = req.params.orderId;
+  console.log("shivy hiteted");
+  const updateOps = {};
+    updateOps['successful'] = true;
+
+  console.log(updateOps);
+  Order.update({ _id: id }, { $set: updateOps })
+    .exec()
+    .then(result => {
+      res.status(200).json({
+        message: "Order Successfully Updated.",
+      });
+    })
+    .catch(err => {
+      console.log(err);
+      res.status(500).json({
+        error: err
+      });
+    });
+});
+
+
 
 //export mainRoutes
 

@@ -91,7 +91,7 @@
       Rs <%= products[i].price %>
     </div>
     <div class="food-content">Aloo/Mushroom/Water</div>
-      <div class="food_order"><a href='food/<%=products[i]._id%>'>Order</a></div> 
+      <div class="food_order"><a href='food/<%=products[i]._id%>'>Order</a></div>
   </div>
   <% }} %>
 
@@ -116,6 +116,16 @@
 
 <script>
 document.addEventListener("DOMContentLoaded", function(event) {
+
+  if(window.location.search=='?success=true')
+  {
+        sessionStorage.removeItem("cart");
+          materialAlert('Thank You!',"Your Order Has Been Successfully Placed");
+  }
+  else if(window.location.search=='?success=false')
+  {
+        materialAlert('Error!',"Something Went Wrong Please Try Again");
+  }
 
 var sessionCart = JSON.parse(sessionStorage.getItem("cart"));
 
@@ -224,7 +234,7 @@ xhr.onload = function (e) {
               div +=   '</div>';
 
             var passingCatId = "'"+category._id+"'";
-                if(index==4) div+= '<div class="food-item" style="position: relative;"><div class="food-itemImg"><a href="/food/5ac12988a9324e0abbc73e4a"><img src="../img/bg.png"></a></div><div class="food-item-titles"><div class="food-item-title"><span></span> </div><div class="food-item-price"></div>  <div class="food-item-content"></div><div id="input_div" class="shivy_move"><input type="button" value="-" id="moins" onclick="minus(\'5ac12988a9324e0abbc73e4a\')"><input type="text" value="1" id="5ac12988a9324e0abbc73e4ashivy" disabled=""><input type="button" value="+" id="plus" onclick="plus(\'5ac12988a9324e0abbc73e4a\')"></div></div><div class="food-overlay" onClick="loadAll(this,'+passingCatId+')"><p><span><i class="fas fa-angle-right"></span></i><span class="see-more">See More</span></p></div></div>';
+                if(index==4) div+= '<div class="food-item" style="position: relative;"><div class="food-itemImg"><a href="/food/5ac12988a9324e0abbc73e4a"><img src="../img/bg.png"></a></div><div class="food-item-titles"><div class="food-item-title"><span></span> </div><div class="food-item-price"></div>  <div class="food-item-content"></div><div  class="shivy_move"><input type="button" value="-"  onclick="minus(\'5ac12988a9324e0abbc73e4a\')"><input type="text" value="1"  disabled=""><input type="button" value="+"  onclick="plus(\'5ac12988a9324e0abbc73e4a\')"></div></div><div class="food-overlay" onClick="loadAll(this,'+passingCatId+')"><p><span><i class="fas fa-angle-right"></span></i><span class="see-more">See More</span></p></div></div>';
             });
 
 
@@ -267,7 +277,7 @@ function loadAll(thisOne,category, callback)
   console.log(thisOne);
   var tmpEl = thisOne.parentElement.parentElement;
   var tLength = (tmpEl.children.length)-1;
-  alert(tLength);
+  // alert(tLength);
   console.log(tmpEl);
   // while(tmpEl.firstChild) tmpEl.firstChild.remove();
   if(tLength==5) tmpEl.lastElementChild.remove();
@@ -326,7 +336,7 @@ function loadAll(thisOne,category, callback)
          div +=  '</div>';
          div +=   '</div>';
          tmpEl.innerHTML += div;
-  
+
         // console.log(allProducts.length+"shivy");
         if(index==(allProducts.length)-1)   callback && callback();
       });
