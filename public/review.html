@@ -1,0 +1,111 @@
+<html>
+<head>
+  <style>
+  .row {
+  overflow: auto;
+  clear: both;
+}
+
+.rating {
+  float: left;
+  border: 1px solid #ddd;
+  margin: 1em;
+  padding: .75em 1em;
+}
+
+.rating label {
+  width: 2em;
+}
+
+.rating:not(:checked) > input {
+  position: absolute;
+  top: -9999px;
+  clip: rect(0, 0, 0, 0);
+}
+
+.rating:not(:checked) > label {
+  float: right;
+  width: 2em;
+  padding: 0 .1em;
+  overflow: hidden;
+  white-space: nowrap;
+  cursor: pointer;
+  line-height: 1.2;
+}
+
+.icon-star {
+  width: 2em;
+  height: 2em;
+  fill: #ccc;
+  transition: all .3s;
+}
+
+.rating > input:checked ~ label .icon-star {
+  fill: #fc0;
+}
+
+.rating:not(:checked) > label:hover .icon-star,
+.rating:not(:checked) > label:hover ~ label .icon-star {
+  fill: #bbb;
+}
+
+.rating > input:checked + label:hover .icon-star,
+.rating > input:checked + label:hover ~ label .icon-star,
+.rating > input:checked ~ label:hover .icon-star,
+.rating > input:checked ~ label:hover ~ label .icon-star,
+.rating > label:hover ~ input:checked ~ label .icon-star {
+  fill: #fd0;
+}
+
+.rating > label:active {
+  position: relative;
+  top: 1px;
+  left: 1px;
+}
+
+  </style>
+</head>
+<body>
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="starIcon" viewBox="0 0 24 24">
+  <polygon points="12,0 15.708,7.514 24,8.718 18,14.566 19.416,22.825 12,18.926 4.583,22.825 6,14.566 0,8.718 8.292,7.514"/>
+  </symbol>
+</svg>
+<div class="container">
+  <div class="row">
+    <fieldset class="rating">
+      <legend>Please rate:</legend>
+      <input type="radio" id="star5" name="rating" value="5" />
+      <label for="star5" title="Rocks!">
+        <svg class="icon icon-star">
+          <use xlink:href="#starIcon" />
+        </svg>
+      </label>
+      <input type="radio" id="star4" name="rating" value="4" />
+      <label for="star4" title="Pretty good">
+        <svg class="icon icon-star">
+          <use xlink:href="#starIcon" />
+        </svg>
+      </label>
+      <input type="radio" id="star3" name="rating" value="3" />
+      <label for="star3" title="Meh">
+        <svg class="icon icon-star">
+          <use xlink:href="#starIcon" />
+        </svg>
+      </label>
+      <input type="radio" id="star2" name="rating" value="2" />
+      <label for="star2" title="Kinda bad">
+        <svg class="icon icon-star">
+          <use xlink:href="#starIcon" />
+        </svg>
+      </label>
+      <input type="radio" id="star1" name="rating" value="1" />
+        <svg class="icon icon-star">
+          <use xlink:href="#starIcon" />
+        </svg>
+      </label>
+    </fieldset>
+  </div>
+</div>
+</body>
+</html>

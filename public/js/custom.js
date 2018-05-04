@@ -6,6 +6,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
 
   if(sessionCart!==null)
   {
+      if(document.querySelector(".cart_order_place")!==null)
     document.querySelector(".cart_order_place").style.display="block";
       htmlText.innerHTML = '';
     var cart_quantity = 0;
@@ -110,11 +111,12 @@ console.log(product,el, "something");
 
 
            sessionCart = JSON.parse(sessionStorage.getItem("cart"));
-          
+
           console.log(product.product.quanity, "CArt");
 
         if(sessionCart === null)
         {
+            if(document.querySelector(".cart_order_place")!==null)
           document.querySelector(".cart_order_place").style.display="block";
 
           // var oldhtmlText = htmlText.innerHTML;
@@ -136,25 +138,25 @@ console.log(product,el, "something");
           cart.items = cartItems;
 
           sessionStorage.setItem("cart",JSON.stringify(cart));
-          alert("yes")
+          // alert("yes")
           console.log(sessionStorage.cart, "log");
 
           var sessionCartObj = JSON.parse(sessionStorage.cart);
 
 
             var subTotal = 0;
-        sessionCartObj.items.forEach(function(productCart,index){ 
+        sessionCartObj.items.forEach(function(productCart,index){
           subTotal += productCart.price*productCart.quantity;
-         
-        });
 
+        });
+          if(document.querySelector(".cart_order_place")!==null)
            document.querySelector('.cart_order_place').innerHTML = 'Place order (Rs. ' + subTotal + ')';
         }
 
 
         else
         {
-          alert("Shivy");
+          // alert("Shivy");
 
                     var oldhtmlText = htmlText.innerHTML;
                     for(var i = 0; i < htmlText.length; i++)
@@ -173,19 +175,20 @@ console.log(product,el, "something");
 
           sessionStorage.setItem("cart",JSON.stringify(sessionCart));
         //   var subTotal = 0;
-        // sessionCart.items.forEach(function(productCart,index){ 
+        // sessionCart.items.forEach(function(productCart,index){
         //   document.querySelector('.cart_order_place').innerHTML = 'Place order (Rs. ' + subTotal + ')';
         // });
         }
 
-        console.log(JSON.parse(sessionStorage.getItem("cart")));
-        
+        var sessionCart =  JSON.parse(sessionStorage.getItem("cart"));
+
         console.log(sessionCart, "hello tets");
 
 
   var subTotal = 0;
-        sessionCart.items.forEach(function(productCart,index){ 
+        sessionCart.items.forEach(function(productCart,index){
           subTotal += productCart.price*productCart.quantity;
+          if(document.querySelector(".cart_order_place")!==null)
           document.querySelector('.cart_order_place').innerHTML = 'Place order (Rs. ' + subTotal + ')';
         });
 
@@ -278,8 +281,9 @@ function closeNav() {
          var subTotal = 0;
 
          console.log(sessionCart, "add session");
-        sessionCart.items.forEach(function(productCart,index){ 
+        sessionCart.items.forEach(function(productCart,index){
           subTotal += productCart.price*productCart.quantity;
+            if(document.querySelector(".cart_order_place")!==null)
           document.querySelector('.cart_order_place').innerHTML = 'Place order (Rs. ' + subTotal + ')';
         });
           return true;
@@ -325,7 +329,7 @@ function closeNav() {
         document.querySelector('.gTotalP').getElementsByTagName("span")[0].innerText = gsT+subT;
       }
 
-
+        countEm.value = count;
         // document.getElementById("main").classList.remove("home_main");
     }
     function minus(id,val){
@@ -335,12 +339,13 @@ function closeNav() {
         console.log(product._id);
         if(product._id==id&&product.quantity>0)
         {
-       
+
           var subTotal = 0;
-          sessionCart.items.forEach(function(productCart,index){ 
+          sessionCart.items.forEach(function(productCart,index){
             subTotal += productCart.price*productCart.quantity;
           });
           subTotal -= sessionCart.items[index].price;
+            if(document.querySelector(".cart_order_place")!==null)
           document.querySelector('.cart_order_place').innerHTML = 'Place order (Rs. ' + subTotal + ')';
         // alert(id);
         if (product._id==id&&product.quantity>1) {
@@ -352,8 +357,8 @@ function closeNav() {
         }
 
         // document.getElementById("main").classList.remove("home_main");
-        
-      } 
+
+      }
     });
 
       if (count > 1) {
@@ -363,6 +368,7 @@ function closeNav() {
         if(countEl)
         {
         countEl.value = count;
+        countEl.setAttribute("value",count);
         countEl.parentElement.parentElement.nextElementSibling.getElementsByTagName('span')[0].innerText =  countEl.getAttribute("data-val")*count;
 
         if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) )
@@ -407,14 +413,19 @@ function removeItem(id,el)
     {
       document.querySelector(".cart_quan").innerText = parseInt(document.querySelector(".cart_quan").innerText)-sessionCart.items[index].quantity;
       sessionCart.items.splice(index,1);
+      var subTotal = 0;
+      sessionCart.items.forEach(function(productCart,index){
+        subTotal += productCart.price*productCart.quantity;
 
+      });
+      document.querySelector('.cart_order_place').innerHTML = 'Place order (Rs. ' + subTotal + ')';
       el.parentElement.remove();
       var reference = document.getElementById(id+'shivy').parentElement;
       var realReference = reference.parentElement;
       reference.remove();
       if(!sessionCart.items.length)
       {
-
+          if(document.querySelector(".cart_order_place")!==null)
             document.querySelector(".cart_order_place").style.display="none";
             var empty_image = '<img src="../img/empty_cart_.png" class="empty_cart">';
             empty_image +=  '<h2 class="cart_empty_text"> Your Cart Is Empty</h2>';
@@ -427,8 +438,9 @@ function removeItem(id,el)
       }
       else
       {
-    // sessionStorage.setItem("cart",JSON.stringify(sessionCart));
-    sessionStorage.removeItem("cart");
+    sessionStorage.setItem("cart",JSON.stringify(sessionCart));
+    // alert("here");
+    // sessionStorage.removeItem("cart");
   }
       // Create the new element
    var li = document.createElement('div');

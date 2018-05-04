@@ -14,7 +14,8 @@ var ProductSchema = new Schema({
   nonVeg: {type: Boolean, required: true},
   veg: {type: Boolean, required: true},
   mainSection1: {type:Boolean, required: false},
-  mainSection2: {type:Boolean, required: false}
+  mainSection2: {type:Boolean, required: false},
+  prodRating:{type:Array, required:false}
 });
 
 // ProductSchema.plugin(mongoosastic, {
