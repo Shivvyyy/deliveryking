@@ -103,7 +103,7 @@
 
 <form id="address_details">
    <div  class="logsignforminputs">
-     <input id="pac-input1" type="text" placeholder="Enter Your Location" required>
+     <input id="pac-input" type="text" placeholder="Enter Your Location" required>
    </div>
    <div  class="logsignforminputs">
      <input id="pac-input2" type="text" placeholder="House and Street No." required>
@@ -608,7 +608,7 @@ var geocoder = geocoder = new google.maps.Geocoder();
             total: document.getElementById("checkout_money").innerHTML,
             items: JSON.parse(sessionStorage.getItem("cart")).items,
             paymentMethod: 'Cash On Delivery',
-            addressDetails: document.getElementById('pac-input2').value+' '+document.getElementById('pac-input1').value,
+            addressDetails: document.getElementById('pac-input2').value+' '+document.getElementById('pac-input').value,
             customerContact: document.getElementById("pac-input3").value,
             successful: true
           };
@@ -631,7 +631,7 @@ xhttp.send(JSON.stringify(body));
             total: document.getElementById("checkout_money").innerHTML,
             items: JSON.parse(sessionStorage.getItem("cart")).items,
             paymentMethod: 'Cash On Delivery',
-            addressDetails: document.getElementById('pac-input2').value+' '+document.getElementById('pac-input1').value,
+            addressDetails: document.getElementById('pac-input2').value+' '+document.getElementById('pac-input').value,
             customerContact: document.getElementById("pac-input3").value,
             successful: false
           };
