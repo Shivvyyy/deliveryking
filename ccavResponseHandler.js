@@ -6,7 +6,7 @@ var http = require('http'),
 exports.postRes = function(request,response){
     var ccavEncResponse='',
 	ccavResponse='',
-	workingKey = '0356E731A69A626C1D11E2BD33C15336',	//Put in the 32-Bit key provided by CCAvenues.
+	workingKey = 'B5105C7F4A443A7254E140214288B696',	//Put in the 32-Bit key provided by CCAvenues.
 	ccavPOST = '';
 
         request.on('data', function (data) {
