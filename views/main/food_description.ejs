@@ -380,9 +380,8 @@ json_obj = JSON.stringify(arrObjj);
 console.log(json_obj);
 
 var http = new XMLHttpRequest();
-var preUrl = window.location.pathname;
-preUrl =  preUrl.replace('/food','');
-var url = "/review"+preUrl;
+var preUrl =  '<%= product[0]._id %>';
+var url = "/review/"+preUrl;
 http.open("put", url, true);
 
 //Send the proper header information along with the request
