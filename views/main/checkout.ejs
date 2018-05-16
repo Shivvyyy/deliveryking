@@ -135,24 +135,24 @@
 <div class="logsignformMain" id="accDiv3" style="display: none">
   <div class="logsignform">
     <div class="containerradio">
-	<ul class="listradio">
-		<li class="list__itemradio">
-			<input type="radio" class="radio-btn" name="choice" id="a-opt" />
-			<label for="a-opt" class="labelradio">Cash On Delivery</label>
-		</li>
-		<li class="list__itemradio">
-			<input type="radio" class="radio-btn" name="choice" id="b-opt" checked/>
-			<label for="b-opt" class="labelradio">Debit Card/ Credit Card</label>
-		</li>
-		<!-- <li class="list__itemradio">
-			<input type="radio" class="radio-btn" name="choice" id="c-opt" />
-			<label for="c-opt" class="labelradio">pick me i'm the best!</label>
-		</li>
-		<li class="list__itemradio">
-			<input type="radio" class="radio-btn" name="choice" id="d-opt" />
-			<label for="d-opt" class="labelradio">pick me i'm fabulous!</label>
-		</li> -->
-	</ul>
+  <ul class="listradio">
+    <li class="list__itemradio">
+      <input type="radio" class="radio-btn" name="choice" id="a-opt" />
+      <label for="a-opt" class="labelradio">Cash On Delivery</label>
+    </li>
+    <li class="list__itemradio">
+      <input type="radio" class="radio-btn" name="choice" id="b-opt" checked/>
+      <label for="b-opt" class="labelradio">Debit Card/ Credit Card</label>
+    </li>
+    <!-- <li class="list__itemradio">
+      <input type="radio" class="radio-btn" name="choice" id="c-opt" />
+      <label for="c-opt" class="labelradio">pick me i'm the best!</label>
+    </li>
+    <li class="list__itemradio">
+      <input type="radio" class="radio-btn" name="choice" id="d-opt" />
+      <label for="d-opt" class="labelradio">pick me i'm fabulous!</label>
+    </li> -->
+  </ul>
 </div>
   </div>
 </div>
@@ -308,10 +308,10 @@ document.addEventListener("DOMContentLoaded",function(){
     div += '<div class="cart_order_title"><span>';
     div += '<img src="../img/non-veg-icon.png" class="food_icon_cart_checkout">';
     div +=  '<span class="cart_prod_name">&nbsp; '+productCart.name+'</div>';
-
+    var yess = "'"+'yes'+"'";
     var productId = "'"+productCart._id+"'";
-    div += '<div class="cart_order_close" onclick="removeItem('+productCart._id+',this)">';
-        // <!-- <i class="fa fa-times"></i> -->
+    div += '<div class="cart_order_close" onclick="removeItem('+productId+',this,'+yess+')">';
+    div +=  '<i class="fa fa-times"></i>';
     div += '</div><div class="cart_order_quantity"><div id="input_div">';
     div += '<input type="button" value="-" id="moins" onclick="minus('+productId+', this)">';
     div += '<input type="text" data-val="'+productCart.price+'" value="'+productCart.quantity+'" id="'+productCart._id+'shivy" disabled>';

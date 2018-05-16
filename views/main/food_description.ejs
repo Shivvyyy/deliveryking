@@ -3,28 +3,28 @@
 <main class="product_main">
 <div class="product_wrapper">
   <div class="product_img">
-    <img src="http://deliverykings.co.in/uploads/<%= product.prodImg %>" alt="">
+    <img src="http://deliverykings.co.in/uploads/<%= product[0].prodImg %>" alt="">
   </div>
   <div class="prod_desc">
     <div class="prod_title">
-      <h1><%= product.name %></h1>
+      <h1><%= product[0].name %></h1>
     </div>
     <div>
     <div class="prod_price">
-    INR <%= product.price %>rs.
+    INR <%= product[0].price %>rs.
     </div>
     <br/>
     <div class="prod_long_desc">
-      <%= product.prodDesc %>
-      <%= product.prodDesc %>
+      <%= product[0].prodDesc %>
+      <%= product[0].prodDesc %>
     </div>
 </div>
     <div class="add_to_cart">
-      <div class="add_to_cart_btn" onclick="openNav('<%= product._id %>',this);">ADD TO CART</div>
+      <div class="add_to_cart_btn" onclick="openNav('<%= product[0]._id %>',this);">ADD TO CART</div>
     </div>
     <div class="prod_short_desc">
-      Category: <%= product.category.name %><br/><br/>
-      Serve   : <%= product.serve %> Persons
+      Category: <%= product[0].category.name %><br/><br/>
+      Serve   : <%= product[0].serve %> Persons
     </div>
   </div>
 </div>
@@ -81,7 +81,7 @@
 </div>
 
 <div class="old_box display" id="old_box">
-  <% var totalRating=0; var one=0;var two=0;var three=0;var four=0;var five=0;  product.prodRating.forEach(function(rating) {
+  <% var totalRating=0; var one=0;var two=0;var three=0;var four=0;var five=0;  product[0].prodRating.forEach(function(rating) {
      totalRating = parseInt(rating.stars) + totalRating;
 
        if(rating.stars==1)
@@ -99,18 +99,18 @@
 
 
   <span class="review_heading">User Rating</span>
-  <%for(var i=0;i< Math.round(totalRating/product.prodRating.length);i++) {%>
+  <%for(var i=0;i< Math.round(totalRating/product[0].prodRating.length);i++) {%>
   <span class="fa fa-star large checked"></span>
   <% } %>
-    <%for(var i=0;i< 5-(Math.round(totalRating/product.prodRating.length));i++) {%>
+    <%for(var i=0;i< 5-(Math.round(totalRating/product[0].prodRating.length));i++) {%>
   <span class="fa fa-star large"></span>
     <% } %>
 
 
 
-  <p class="review_overall"><% if(product.prodRating.length){ %><%= Math.round(totalRating/product.prodRating.length) %>
+  <p class="review_overall"><% if(product[0].prodRating.length){ %><%= Math.round(totalRating/product[0].prodRating.length) %>
     <%} else { %> No <% } %>
-     stars average based on <%=product.prodRating.length%> reviews.</p>
+     stars average based on <%=product[0].prodRating.length%> reviews.</p>
 
   <div class="review_overall_stars">
     <div class="stars">
@@ -164,7 +164,7 @@
 <div>
 
 
-  <% product.prodRating.forEach(function(rating) { %>
+  <% product[0].prodRating.forEach(function(rating) { %>
     <div class="people_ratings">
       <div class="name_pic_rating">
       <div class="customer_pic">
@@ -302,8 +302,8 @@ document.addEventListener("DOMContentLoaded",function(){
   // quantityBtn += '<div id="input_div" class="shivy_move">';
   // // var input_shivy = product.product._id+'shivy';
   // quantityBtn += '<input type="text" value="1" id="'+input_shivy+'">';
-  // quantityBtn +=  '<input type="button" value="-" id="moins" onclick="minus("<%= product._id %>shivy")">';
-  // quantityBtn += '<input type="button" value="+" id="plus" onclick="plus("<%= product._id %>shivy")">';
+  // quantityBtn +=  '<input type="button" value="-" id="moins" onclick="minus("<%= product[0]._id %>shivy")">';
+  // quantityBtn += '<input type="button" value="+" id="plus" onclick="plus("<%= product[0]._id %>shivy")">';
   // quantityBtn += '</div>';
   // shivyMove.innerHTML += quantityBtn;
 
@@ -316,7 +316,7 @@ document.addEventListener("DOMContentLoaded",function(){
   sessionCart.items.some(function(productCart,index){
     // console.log(productCart._id);
 
-    if(productCart._id== '<%= product._id %>')
+    if(productCart._id== '<%= product[0]._id %>')
     {
       var divMain = document.createElement('div');
       divMain.id= "input_div";
@@ -324,8 +324,8 @@ document.addEventListener("DOMContentLoaded",function(){
               var div = "";
       div += '<div id="input_div" class="shivy_move">';
       // var input_shivy = product._id+'shivy';
-      div += '<input type="text" value="'+productCart.quantity+'" id="<%= product._id %>shivy" disabled>';
-      var productId = "'<%= product._id %>'";
+      div += '<input type="text" value="'+productCart.quantity+'" id="<%= product[0]._id %>shivy" disabled>';
+      var productId = "'<%= product[0]._id %>'";
       div +=  '<input type="button" value="-" id="moins" onclick="minus('+productId+')">';
       div += '<input type="button" value="+" id="plus" onclick="plus('+productId+')">';
       div += '</div>';
@@ -357,7 +357,7 @@ if(<%=logged %>)
 {
   var arrObj = [];
 
-  <% product.prodRating.forEach(function(rating) { %>
+  <% product[0].prodRating.forEach(function(rating) { %>
       var shivyan={};
     shivyan.stars =  '<%= rating.stars %>';
     shivyan.comment =  '<%= rating.comment %>';

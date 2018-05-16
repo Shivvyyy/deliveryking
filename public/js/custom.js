@@ -112,7 +112,7 @@ console.log(product,el, "something");
 
            sessionCart = JSON.parse(sessionStorage.getItem("cart"));
 
-          console.log(product.product.quanity, "CArt");
+          // console.log(product.product.quanity, "cart");
 
         if(sessionCart === null)
         {
@@ -337,7 +337,7 @@ function closeNav() {
       var sessionCart = JSON.parse(sessionStorage.getItem("cart"));
       sessionCart.items.some(function(product,index){
         console.log(product._id);
-        if(product._id==id&&product.quantity>0)
+        if(product._id==id&&product.quantity>1)
         {
 
           var subTotal = 0;
@@ -352,6 +352,7 @@ function closeNav() {
            count = sessionCart.items[index].quantity;
           console.log(sessionCart.items[index]);
           sessionCart.items[index].quantity--;
+           // console.log(count);
           sessionStorage.setItem("cart",JSON.stringify(sessionCart));
           return true;
         }
@@ -361,6 +362,7 @@ function closeNav() {
       }
     });
 
+     
       if (count > 1) {
         var countEl = document.getElementById(id);
         var countEm = document.getElementById(id+'shivy');
@@ -403,28 +405,72 @@ function closeNav() {
     }
 
 
-function removeItem(id,el)
+function removeItem(id,el,checkout)
 {
-  alert(id);
+
   var sessionCart = JSON.parse(sessionStorage.getItem("cart"));
   sessionCart.items.some(function(product,index){
     console.log(product._id);
     if(product._id==id)
     {
+      if(!(document.querySelector(".cart_quan").style.display=='none'))
+      {
+        alert("happend");
       document.querySelector(".cart_quan").innerText = parseInt(document.querySelector(".cart_quan").innerText)-sessionCart.items[index].quantity;
-      sessionCart.items.splice(index,1);
+    }
+
+          sessionCart.items.splice(index,1);
       var subTotal = 0;
       sessionCart.items.forEach(function(productCart,index){
         subTotal += productCart.price*productCart.quantity;
-
       });
+
+      if(checkout=='yes')
+      {
+        var subT = subTotal;
+        console.log(subT);
+        var checkoutDiv = document.getElementById(id+'shivy').parentElement.parentElement.parentElement;
+        checkoutDiv.previousSibling.remove();
+        checkoutDiv.remove();
+
+         document.querySelector('.itemPriceP').getElementsByTagName("span")[0].innerText = subT;
+        var gsT =  (subT*5)/100;
+        document.querySelector('.gstP').getElementsByTagName("span")[0].innerText = gsT;
+        document.querySelector('.gTotalP').getElementsByTagName("span")[0].innerText = gsT+subT;
+
+          sessionStorage.setItem("cart",JSON.stringify(sessionCart));
+
+          if(!sessionCart.items.length)
+          {
+            sessionStorage.removeItem("cart");
+           location.href = '/';
+         }
+      }
+      else
+      {
+        var removeBool = null;
       document.querySelector('.cart_order_place').innerHTML = 'Place order (Rs. ' + subTotal + ')';
       el.parentElement.remove();
+      console.log(document.getElementById(id+'shivy'));
+      if(!location.pathname.includes("food"))
+      {
+        removeBool  = true;
       var reference = document.getElementById(id+'shivy').parentElement;
       var realReference = reference.parentElement;
       reference.remove();
+     }
+     else if(document.querySelector('.shivy_move')!==null && document.getElementById(id+'shivy')!==null)
+      {
+        removeBool = false;
+        var reference = document.getElementById(id+'shivy').parentElement;
+      var realReference = reference.parentElement;
+      reference.remove();
+
+      }
+
       if(!sessionCart.items.length)
       {
+
           if(document.querySelector(".cart_order_place")!==null)
             document.querySelector(".cart_order_place").style.display="none";
             var empty_image = '<img src="../img/empty_cart_.png" class="empty_cart">';
@@ -443,11 +489,25 @@ function removeItem(id,el)
     // sessionStorage.removeItem("cart");
   }
       // Create the new element
+      if(removeBool===true)
+      {
    var li = document.createElement('div');
   li.className = 'order_btn'; // Class name
-  li.innerHTML = 'ORDER'; // Text inside
+  li.innerHTML = 'Add To Cart'; // Text inside
    li.setAttribute("onclick","openNav('"+id+"',this);");
     realReference.appendChild(li); // Append it
+  }
+  else if(removeBool===false)
+  {
+       var li = document.createElement('div');
+  li.className = 'add_to_cart_btn'; // Class name
+  li.innerHTML = 'Add To Cart'; // Text inside
+   li.setAttribute("onclick","openNav('"+id+"',this);");
+    realReference.appendChild(li); // Append it
+
+  }
+
+  }
 
  // Attach the event!
       // realReference.appendChild('<div class="order_btn" onclick="openNav('+id+',this)">ORDER</div>');

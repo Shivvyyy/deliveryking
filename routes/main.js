@@ -31,15 +31,18 @@ router.get('/', function(req, res, next) {
 //   res.render('main/food_description');
 // });
 
-router.get('/food/:id', function(req, res, next) {
-  Product.findById({ _id: req.params.id }).populate('category').exec(function(err, product) {
+router.get('/food/:foodTitle', function(req, res, next) {
+  const prodName = req.params.foodTitle.replace(/-/g, " ");
+  console.log(prodName);
+  Product.find({ name: prodName }).populate('category').limit(1).exec(function(err, product) {
 
     console.log(product);
     if (err) return next(err);
     else
     {
+      console.log(product);
       res.render('main/food_description',{
-        product:product,
+        product,
         user : req.user
       });
     }
@@ -57,7 +60,6 @@ router.get('/foodCart/:id', function(req, res, next) {
       product:product
     });
     }
-
 });
 
 });
@@ -80,10 +82,6 @@ router.get('/search', function(req, res, next) {
   }
 });
 
-router.get('/happy', function(req, res, next) {
-
-});
-
 router.get('/checkout',(req, res, next)=>
 {
 res.render('main/checkout',{
@@ -101,20 +99,10 @@ res.render('main/about',{
 
 router.get('/privacy-policy',(req, res, next)=>
 {
-res.render('main/terms',{
-    user : req.user
+  res.render('main/terms',{
+      user : req.user
+  });
 });
-});
-
-
-// router.get('/delete',function(req,res,next){
-//
-//   Product.collection.remove({},function(err,out){
-//     if(err) res.json({err});
-//     else
-//     res.json({out});
-//   });
-// });
 
 router.put('/review/:productId',(req,res,next)=>{
   const id = req.params.productId;
@@ -230,6 +218,23 @@ router.get('/orders', function(req, res, next) {
 
 });
 
+router.get('/account', function(req, res, next) {
+  res.render('user/profile',{
+    user : req.user
+  });
+})
+
+router.get('/account/edit', function(req, res, next) {
+  res.render('user/profileEdit',{
+    user : req.user
+  });
+})
+
+router.get('/account/orders', function(req, res, next) {
+  res.render('user/orders',{
+    user : req.user
+  });
+})
 
 router.put('/order/:orderId',(req,res,next)=>{
   const id = req.params.orderId;
