@@ -21,7 +21,7 @@ module.exports = {
     'googleAuth' : {
         'clientID'         : '1068669269960-k8cv80pvpcqpiml3akuc1uaadtshuf5o.apps.googleusercontent.com',
         'clientSecret'     : 'bH231gg6vgbWcQxQ24ZR--N4',
-        'callbackURL'      : 'http://localhost:5000/auth/google/callback'
+        'callbackURL'      : 'http://deliverykings.co.in/auth/google/callback'
     }
 
 };
