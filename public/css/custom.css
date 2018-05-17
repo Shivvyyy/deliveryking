@@ -4591,3 +4591,9 @@ transform: translate(0, -4px);
   margin: auto !important;
   text-align: center !important;
 }
+
+
+.profileLink
+{
+  all:unset;
+}
