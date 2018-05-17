@@ -467,7 +467,7 @@ var xhttp = new XMLHttpRequest();
     for(prodName in response)
     {
       arr.push(response[prodName].name);
-      idArr.push(response[prodName]._id);
+      idArr.push(response[prodName].name.replace(/ /g, "-"));
     }
     console.table(arr);
     /*close any already open lists of autocompleted values*/

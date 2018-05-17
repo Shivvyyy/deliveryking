@@ -39,7 +39,7 @@
 
 <div class="related_products_slide">
 
-<% for(var j=0; j<3; j++) { %>
+<%if(products.length){ for(var j=0; j<3; j++) { %>
   <div class="food-item">
     <a href="./<%=(products[j].name).replace(/ /g, "-")%> "><img src="http://deliverykings.co.in/uploads/<%= products[j].prodImg %>"></a>
     <div class="food-item-titles">
@@ -49,7 +49,7 @@
     <div class="order_btn"><a class="profileLink" href='./<%=(products[j].name).replace(/ /g, "-")%> '>ORDER</a></div>
     </div>
   </div>
-<% }%>
+<% }}%>
 
 </div>
 
