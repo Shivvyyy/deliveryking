@@ -5,6 +5,8 @@
   <div class="product_img">
     <img src="http://deliverykings.co.in/uploads/<%= product[0].prodImg %>" alt="">
   </div>
+
+
   <div class="prod_desc">
     <div class="prod_title">
       <h1><%= product[0].name %></h1>
@@ -37,35 +39,18 @@
 
 <div class="related_products_slide">
 
+<% for(var j=0; j<3; j++) { %>
   <div class="food-item">
-    <a href="foods"><img src="../img/food_items/6.jpg"></a>
+    <a href="./<%=(products[j].name).replace(/ /g, "-")%> "><img src="http://deliverykings.co.in/uploads/<%= products[j].prodImg %>"></a>
     <div class="food-item-titles">
-    <div class="food-item-title"><span><img src="../img/non-veg-icon.png" class="food_icon"> Mushroom Mutter</span> </div>
-    <div class="food-item-price">Rs. 24</div>
-    <div class="food-item-content">Aloo/Mushroom/Water</div>
-    <div class="order_btn" onclick="openNav()">ORDER</div>
+    <div class="food-item-title"><span><% if(products[j].nonVeg) { %><img src="../img/non-veg-icon.png" class="food_icon"><% } else { %> <img src="../img/veg-icon.png" class="food_icon"> <% } %> <%=(products[j].name) %></span> </div>
+    <div class="food-item-price">Rs. <%=products[j].price %></div>
+    <div class="food-item-content"><%=products[j].prodItemDesc %></div>
+    <div class="order_btn"><a class="profileLink" href='./<%=(products[j].name).replace(/ /g, "-")%> '>ORDER</a></div>
     </div>
   </div>
+<% }%>
 
-  <div class="food-item">
-          <a href="foods"><img src="../img/food_items/7.jpg"></a>
-          <div class="food-item-titles">
-          <div class="food-item-title"><span><img src="../img/non-veg-icon.png" class="food_icon"> Mushroom Mutter</span> </div>
-          <div class="food-item-price">Rs. 24</div>
-          <div class="food-item-content">Aloo/Mushroom/Water</div>
-          <div class="order_btn" onclick="openNav()">ORDER</div>
-          </div>
-        </div>
-
-        <div class="food-item">
-          <a href="foods"><a href="foods"><img src="../img/food_items/8.jpg"></a></a>
-          <div class="food-item-titles">
-          <div class="food-item-title"><span><img src="../img/non-veg-icon.png" class="food_icon"> Mushroom Mutter</span> </div>
-          <div class="food-item-price">Rs. 24</div>
-          <div class="food-item-content">Aloo/Mushroom/Water</div>
-          <div class="order_btn" onclick="openNav()">ORDER</div>
-          </div>
-        </div>
 </div>
 
 </div>

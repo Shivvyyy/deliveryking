@@ -31,21 +31,35 @@ router.get('/', function(req, res, next) {
 //   res.render('main/food_description');
 // });
 
+
+
+
 router.get('/food/:foodTitle', function(req, res, next) {
   const prodName = req.params.foodTitle.replace(/-/g, " ");
   console.log(prodName);
   Product.find({ name: prodName }).populate('category').limit(1).exec(function(err, product) {
 
-    console.log(product);
-    if (err) return next(err);
-    else
-    {
-      console.log(product);
+
+  Product
+    .find({ category: product[0].category._id , _id: { $ne: product[0]._id }} )
+    .populate('category')
+    .limit(3)
+    .exec(function(err, products) {
+      if (err) return next(err);
+      else
+      {
+         console.log(product);
       res.render('main/food_description',{
         product,
+        products,
         user : req.user
       });
-    }
+      }
+
+    });
+
+
+
 
 });
 
