@@ -1,7 +1,8 @@
 <% layout('layout') -%>
-
+<script>
+if(JSON.parse(sessionStorage.getItem("cart"))===null) location.href='/';
+</script>
 <main>
-
 <div class="checkoutWrapper">
   <div class="checkoutDetails">
       <div class="cus_info">Customer Information</div>
@@ -278,7 +279,6 @@ document.addEventListener("DOMContentLoaded",function(){
     }
 
 <% if(user){ %>
-  alert("Shiivy")
   document.querySelector('.logtextchange').innerHTML = 'Logged In <br/><br/>'+'<%if(user.local.username){ %><%= user.local.username %><%} else if(user.google.name){%><%= user.google.name %><%} else if(user.facebook.name){ %><%= user.facebook.name %><%}%>';
   document.getElementById("collapsible-arrow-2").children[0].children[0].classList.toggle("fa-angle-down");
   document.getElementById("accDiv2").style.display = "block";
@@ -599,12 +599,15 @@ var geocoder = geocoder = new google.maps.Geocoder();
 
       document.getElementById("place_final_order").addEventListener("click",function(e){
         var customerName = `<%if(user){ %><%if(user.local.username){ %><%= user.local.username %><%} else if(user.google.name){%><%= user.google.name %><%} else if(user.facebook.name){ %><%= user.facebook.name %><%}%><%}else{%>document.getElementById("first_name").value+" "+document.getElementById("last_name").value<%}%>`;
+        var customerId = `<%if(user){ %><%=user._id %><%}else{%>null<%}%>`;
+        console.log(customerId);
         e.preventDefault();
         if(document.getElementById('a-opt').checked)
         {
 
           var body = {
             customer: customerName,
+            customerId: customerId,
             total: document.getElementById("checkout_money").innerHTML,
             items: JSON.parse(sessionStorage.getItem("cart")).items,
             paymentMethod: 'Cash On Delivery',
@@ -628,6 +631,7 @@ xhttp.send(JSON.stringify(body));
 
           var body = {
             customer: customerName,
+            customerId: customerId,
             total: document.getElementById("checkout_money").innerHTML,
             items: JSON.parse(sessionStorage.getItem("cart")).items,
             paymentMethod: 'Cash On Delivery',

@@ -9,38 +9,30 @@
 		</div>
 	</div>
 </div>
+
 	<div class="profile-container">
 		<div class="sidebar">
 			<h2>My Account</h2>
 			<ul>
-				<a href="/account"><li>Account Dashboard</li></a>
-				<a href="/account/edit"><li>Account Information</li></a>
-				<a href="account/orders"><li>My Orders</li></a>
+				<a href="./profile"><li>Account Dashboard</li></a>
+				<!-- <a href="/account/edit"><li>Account Information</li></a> -->
+				<a href="./orders"><li>My Orders</li></a>
 			</ul>
 		</div>
 		<div class="info-window">
 			<h2>Your Orders</h2>
-			<div class="previously-ordered">
-				<img src="../img/food_items/1.jpg">
-				<div class="previously-ordered-info">
-					<p>Dal Makhni (x2)</p>
-					<p>Order again?</p>
+
+			<%orders.forEach(function(order){ order.items.forEach(function(item){%>
+				<div class="previously-ordered">
+					<img src="../img/food_items/1.jpg">
+					<div class="previously-ordered-info">
+						<p><%=item.name%> (x<%=item.quantity%>)</p>
+						<p>Order Status: <%if(order.successful==true){ %>successful<%}else{%>Failed <%}%></p>
+						<p>Payment Method: <%=order.paymentMethod%></p>
+					</div>
 				</div>
-			</div>
-			<div class="previously-ordered">
-				<img src="../img/food_items/1.jpg">
-				<div class="previously-ordered-info">
-					<p>Dal Makhni (x2)</p>
-					<p>Order again?</p>
-				</div>
-			</div>
-			<div class="previously-ordered">
-				<img src="../img/food_items/1.jpg">
-				<div class="previously-ordered-info">
-					<p>Dal Makhni (x2)</p>
-					<p>Order again?</p>
-				</div>
-			</div>
+			<%})})%>
+
+
 		</div>
 	</div>
-

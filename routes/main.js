@@ -151,6 +151,7 @@ router.put('/review/:productId',(req,res,next)=>{
 router.post('/add-order', function(req, res, next) {
   var order = new Order();
   order.customer = req.body.customer;
+  order.customerId = req.body.customerId;
   order.total = req.body.total;
   order.items = req.body.items;
   order.paymentMethod = req.body.paymentMethod;
@@ -195,6 +196,7 @@ router.post('/add-order', function(req, res, next) {
 router.post('/gateway-order', function(req, res, next) {
   var order = new Order();
   order.customer = req.body.customer;
+  order.customerId = req.body.customerId;
   order.total = req.body.total;
   order.items = req.body.items;
   order.paymentMethod = req.body.paymentMethod;
@@ -217,7 +219,7 @@ router.post('/gateway-order', function(req, res, next) {
 });
 
 
-router.get('/orders', function(req, res, next) {
+router.get('/allOrders', function(req, res, next) {
 
   Order.find({}).sort().exec(function(err, orders) {
 
@@ -233,22 +235,36 @@ router.get('/orders', function(req, res, next) {
 
 });
 
-router.get('/account', function(req, res, next) {
-  res.render('user/profile',{
-    user : req.user
-  });
-})
 
-router.get('/account/edit', function(req, res, next) {
-  res.render('user/profileEdit',{
-    user : req.user
-  });
-})
+
+
+
+
+
+// router.get('/account/edit', function(req, res, next) {
+//   res.render('user/profileEdit',{
+//     user : req.user
+//   });
+// })
 
 router.get('/account/orders', function(req, res, next) {
-  res.render('user/orders',{
-    user : req.user
-  });
+
+  Order.find({customerId:req.user._id}).sort().exec(function(err, orders) {
+
+    if (err) res.status(500).json({err:err});
+    else{
+
+      res.render('user/orders',{
+        user : req.user,
+        orders
+      });
+
+
+
+    }
+
+});
+
 })
 
 router.put('/order/:orderId',(req,res,next)=>{

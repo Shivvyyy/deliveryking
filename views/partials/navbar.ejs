@@ -9,7 +9,7 @@
               <li class="floatright">|</li>
                     <li class="floatright displayPointer logout"><a href="/logout">Log Out</a></li>
               <li class="floatright">|</li>
-                <li  class="floatright displayPointer">Hi, <a href="/profile" class="profileLink"><%if(user.local.username){ %><%= user.local.username %>
+                <li  class="floatright displayPointer">Hi, <a href="/account/profile" class="profileLink"><%if(user.local.username){ %><%= user.local.username %>
                 <%} else if(user.google.name){%><%= user.google.name %><%} else if(user.facebook.name){ %><%= user.facebook.name %><%}%>
                 </a></li>
                   <li class="floatright">|</li>
@@ -59,7 +59,7 @@
           <% if(typeof user !== 'undefined') { %>
               <li class="floatright"><a href="/logout">Logout</a> </li>
               <li class="floatright">|</li>
-      <li class="floatright">Hi,<a href="/profile" class="profileLink"> <%if(user.local.username){ %><%= user.local.username %>
+      <li class="floatright">Hi,<a href="/account/profile" class="profileLink"> <%if(user.local.username){ %><%= user.local.username %>
       <%} else if(user.google.name){%><%= user.google.name %><%} else if(user.facebook.name){ %><%= user.facebook.name %><%}%></a> </li>
 
 
@@ -210,7 +210,7 @@ document.addEventListener('DOMContentLoaded',function(){
 
   		} else if (response.target.status === 200) {
         if(window.location.pathname=='/checkout') location.reload(true);
-        else window.location.href='/profile';
+        else window.location.href='/account/profile';
   			// Success
   			// formStatus.className += ' alert-success';
   			// formStatus.innerHTML = form.dataset.formSuccess;
@@ -268,7 +268,7 @@ document.addEventListener('DOMContentLoaded',function(){
 
   		} else if (response.target.status === 200) {
         if(window.location.pathname=='/checkout') location.reload(true);
-        else window.location.href='/profile';
+        else window.location.href='/account/profile';
   			// Success
   			// formStatus.className += ' alert-success';
   			// formStatus.innerHTML = form.dataset.formSuccess;
