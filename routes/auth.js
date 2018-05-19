@@ -106,7 +106,6 @@ module.exports = function(app, passport) {
               successRedirect : req.session.pageUrl,
               failureRedirect : '/'
           });
-          next();
         }
           );
 
