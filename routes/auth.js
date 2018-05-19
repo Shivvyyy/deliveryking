@@ -102,6 +102,8 @@ module.exports = function(app, passport) {
         // the callback after google has authenticated the user
         app.get('/auth/google/callback',function(req,res)
         {
+          console.log("here");
+          console.log(req.session.pageUrl);
           passport.authenticate('google', {
               successRedirect : '/cart',
               failureRedirect : '/'
