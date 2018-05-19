@@ -291,7 +291,7 @@ function closeNav() {
         }
       });
         var countEl = document.getElementById(id);
-        var countEm = document.getElementById(id+'shivy');
+        if(document.getElementById(id+'shivy')!==null) var countEm = document.getElementById(id+'shivy');
         // console.log(id);
         // console.log(countEl);
         // console.log(countEm);
@@ -329,7 +329,8 @@ function closeNav() {
         document.querySelector('.gTotalP').getElementsByTagName("span")[0].innerText = gsT+subT;
       }
 
-        countEm.value = count;
+      if(countEm) countEm.value = count;
+          else countEm = false;
         // document.getElementById("main").classList.remove("home_main");
     }
     function minus(id,val){
@@ -369,6 +370,7 @@ function closeNav() {
         {
         var countEm = document.getElementById(id+'shivy');
       }
+      else countEm = false;
         count--;
         if(countEl)
         {
@@ -403,7 +405,7 @@ function closeNav() {
         document.querySelector('.gstP').getElementsByTagName("span")[0].innerText = gsT;
         document.querySelector('.gTotalP').getElementsByTagName("span")[0].innerText = gsT+subT;
       }
-      if(countEm!='undefined') countEm.value = count;
+      if(countEm) countEm.value = count;
       }
     }
 
