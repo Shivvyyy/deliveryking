@@ -2094,7 +2094,7 @@ transform: translate(0, -4px);
   border-radius: 4px;
   box-shadow: 0 0 5px 1px rgba(0,0,0,0.5);
 /*  transition: transform .1s ease;*/
-  transform: translateY(-100vh);
+  transform: translateY(-150vh);
 }
 
 .signup-modal {
@@ -2110,7 +2110,7 @@ transform: translate(0, -4px);
   border-radius: 4px;
   box-shadow: 0 0 5px 1px rgba(0,0,0,0.5);
 /*  transition: transform .6s ease;*/
-  transform: translateY(-100vh);
+  transform: translateY(-150vh);
 }
 
 .login-modal input {

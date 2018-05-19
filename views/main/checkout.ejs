@@ -31,7 +31,7 @@ if(JSON.parse(sessionStorage.getItem("cart"))===null) location.href='/';
         <input type="email" id="email_name"  placeholder="Email Address" required>
       </div>
       <div>
-        <input type="number" id="mobile_num" placeholder="Enter 10 digit mob no" required>
+        <input type="number" id="mobile_num" placeholder="Enter 10 digit mob no" required maxlength="10">
       </div>
       <div>
         <input type="text" id="password_name" placeholder="Password" required>

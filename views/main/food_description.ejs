@@ -375,6 +375,7 @@ http.setRequestHeader("Content-type", "application/json");
 http.onreadystatechange = function() {//Call a function when the state changes.
     if(http.readyState == 4 && http.status == 200) {
         materialAlert('Thank You!',JSON.parse(this.responseText).message);
+        location.reload();
     }
 }
 http.send(json_obj);
