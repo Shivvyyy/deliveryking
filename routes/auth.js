@@ -94,7 +94,7 @@ module.exports = function(app, passport) {
 
         // send to google to do the authentication
         app.get('/auth/google/:check',function(req,res,next){
-          if(req.params.check=='cart') req.session.pageUrl = 'cart';
+          if(req.params.check=='cart') req.session.pageUrl = '/cart';
           else   req.session.pageUrl = '/account/profile';
           passport.authenticate('google', { scope : ['profile', 'email'] })(req, res);
         } );
@@ -103,7 +103,7 @@ module.exports = function(app, passport) {
         app.get('/auth/google/callback',function(req,res)
         {
           passport.authenticate('google', {
-              successRedirect : req.session.pageUrl,
+              successRedirect : '/cart',
               failureRedirect : '/'
           });
         }
