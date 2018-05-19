@@ -93,23 +93,14 @@ module.exports = function(app, passport) {
     // google ---------------------------------
 
         // send to google to do the authentication
-        app.get('/auth/google/:check',function(req,res,next){
-          if(req.params.check=='cart') req.session.pageUrl = '/cart';
-          else   req.session.pageUrl = '/account/profile';
-          passport.authenticate('google', { scope : ['profile', 'email'] })(req, res);
-        } );
+        app.get('/auth/google', passport.authenticate('google', { scope : ['profile', 'email'] }));
 
         // the callback after google has authenticated the user
-        app.get('/auth/google/callback',function(req,res)
-        {
-          console.log("here");
-          console.log(req.session.pageUrl);
-          passport.authenticate('google', {
-              successRedirect : '/cart',
-              failureRedirect : '/'
-          });
-        }
-          );
+        app.get('/auth/google/callback',
+            passport.authenticate('google', {
+                successRedirect : '/account/profile',
+                failureRedirect : '/'
+            }));
 
 // =============================================================================
 // AUTHORIZE (ALREADY LOGGED IN / CONNECTING OTHER SOCIAL ACCOUNT) =============
