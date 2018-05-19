@@ -1,6 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+    <script>
+    if(!!window.performance && window.performance.navigation.type === 2)
+{
+    console.log('Reloading');
+    window.location.reload();
+}
+    </script>
     <title>Delivery Kings</title>
     <meta charset="utf-8">
  <meta name="viewport" content="width=device-width, initial-scale=1">

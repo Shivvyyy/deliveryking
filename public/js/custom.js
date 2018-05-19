@@ -301,6 +301,7 @@ function closeNav() {
         {
         countEl.value = count;
         countEl.setAttribute("value",count);
+        console.log(count);
         // console.log(  countEl.parentElement.parentElement.nextElementSibling.getElementsByTagName('span')[0]);
         countEl.parentElement.parentElement.nextElementSibling.getElementsByTagName('span')[0].innerText =  countEl.getAttribute("data-val")*count;
 
@@ -334,7 +335,7 @@ function closeNav() {
         // document.getElementById("main").classList.remove("home_main");
     }
     function minus(id,val){
-
+      console.log(count);
       var sessionCart = JSON.parse(sessionStorage.getItem("cart"));
       sessionCart.items.some(function(product,index){
         console.log(product._id);
@@ -364,7 +365,7 @@ function closeNav() {
     });
 
 
-      if (count > 1) {
+      if (document.getElementById(id).value > 1) {
         var countEl = document.getElementById(id);
         if(document.getElementById(id+'shivy')!==null)
         {
