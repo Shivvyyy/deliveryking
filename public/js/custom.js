@@ -362,7 +362,7 @@ function closeNav() {
       }
     });
 
-     
+
       if (count > 1) {
         var countEl = document.getElementById(id);
         var countEm = document.getElementById(id+'shivy');
@@ -454,10 +454,13 @@ function removeItem(id,el,checkout)
       console.log(document.getElementById(id+'shivy'));
       if(!location.pathname.includes("food"))
       {
+        if(document.getElementById(id+'shivy')!==null)
+        {
         removeBool  = true;
       var reference = document.getElementById(id+'shivy').parentElement;
       var realReference = reference.parentElement;
       reference.remove();
+    }
      }
      else if(document.querySelector('.shivy_move')!==null && document.getElementById(id+'shivy')!==null)
       {
