@@ -365,7 +365,10 @@ function closeNav() {
 
       if (count > 1) {
         var countEl = document.getElementById(id);
+        if(document.getElementById(id+'shivy')!==null)
+        {
         var countEm = document.getElementById(id+'shivy');
+      }
         count--;
         if(countEl)
         {
@@ -400,7 +403,7 @@ function closeNav() {
         document.querySelector('.gstP').getElementsByTagName("span")[0].innerText = gsT;
         document.querySelector('.gTotalP').getElementsByTagName("span")[0].innerText = gsT+subT;
       }
-        countEm.value = count;
+      if(countEm!='undefined') countEm.value = count;
       }
     }
 
