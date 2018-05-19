@@ -96,16 +96,17 @@ module.exports = function(app, passport) {
         app.get('/auth/google/:check',function(req,res,next){
           if(req.params.check=='cart') req.session.pageUrl = 'cart';
           else   req.session.pageUrl = '/account/profile';
-          passport.authenticate('google', { scope : ['profile', 'email'] })(req, res, next);
+          passport.authenticate('google', { scope : ['profile', 'email'] })(req, res);
         } );
 
         // the callback after google has authenticated the user
-        app.get('/auth/google/callback',function(req,res,next)
+        app.get('/auth/google/callback',function(req,res)
         {
           passport.authenticate('google', {
               successRedirect : req.session.pageUrl,
               failureRedirect : '/'
-          })
+          });
+          next();
         }
           );
 
