@@ -292,6 +292,7 @@ function closeNav() {
       });
         var countEl = document.getElementById(id);
         if(document.getElementById(id+'shivy')!==null) var countEm = document.getElementById(id+'shivy');
+        else var countEm = false;
         // console.log(id);
         // console.log(countEl);
         // console.log(countEm);
@@ -330,7 +331,6 @@ function closeNav() {
       }
 
       if(countEm) countEm.value = count;
-          else countEm = false;
         // document.getElementById("main").classList.remove("home_main");
     }
     function minus(id,val){
@@ -370,7 +370,7 @@ function closeNav() {
         {
         var countEm = document.getElementById(id+'shivy');
       }
-      else countEm = false;
+      else var countEm = false;
         count--;
         if(countEl)
         {
@@ -420,7 +420,7 @@ function removeItem(id,el,checkout)
     {
       if(!(document.querySelector(".cart_quan").style.display=='none'))
       {
-        alert("happend");
+        // alert("happend");
       document.querySelector(".cart_quan").innerText = parseInt(document.querySelector(".cart_quan").innerText)-sessionCart.items[index].quantity;
     }
 
