@@ -678,7 +678,7 @@ grid-rows: repeat(5,1fr);
   /* text-decoration: underline; */
 }
 
-.food_price, .food_order
+.food_price, .order_link_btn
 {
   justify-self:end;
   font-weight: bold;
@@ -728,7 +728,7 @@ grid-rows: repeat(5,1fr);
   cursor: pointer;
 }
 
-.food_order a
+.order_link_btn
 {
   color: #fff;
   font-size: 0.6rem;
