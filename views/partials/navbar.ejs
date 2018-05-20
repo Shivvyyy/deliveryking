@@ -201,10 +201,10 @@ document.addEventListener('DOMContentLoaded',function(){
   			formStatus.innerHTML = response.currentTarget.responseText;
 
   		} else if (response.target.status === 401) {
-        alert("shivy");
+
   			// Bad Request
-  			formStatus.className += 'alert-danger';
-        console.log(response.currentTarget.responseText);
+  			formStatus.className += ' alert-danger';
+        console.log(response);
         console.log(typeof response);
   			formStatus.innerHTML = response.currentTarget.responseText;
 
