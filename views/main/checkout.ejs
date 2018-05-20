@@ -31,10 +31,7 @@ if(JSON.parse(sessionStorage.getItem("cart"))===null) location.href='/';
         <input type="email" id="email_name"  placeholder="Email Address" required>
       </div>
       <div>
-        <input type="number" id="mobile_num" placeholder="Enter 10 digit mob no" required>
-      </div>
-      <div>
-        <input type="text" id="password_name" placeholder="Password" required>
+        <input type="number" id="mobile_num" placeholder="Enter 10 digit mob no" minlength="10" maxlength="10" required>
       </div>
 
       <!-- <input type="submit" class="submit_btn" value="SIGN UP & CONTINUE"> -->
@@ -110,7 +107,7 @@ if(JSON.parse(sessionStorage.getItem("cart"))===null) location.href='/';
      <input id="pac-input2" type="text" placeholder="House and Street No." required>
    </div>
    <div  class="logsignforminputs">
-     <input id="pac-input3" type="number" placeholder="Your Mobile No." required>
+     <input id="pac-input3" type="number" placeholder="Your Mobile No." minlength="10" maxlength="10" required >
    </div>
    <div  class="logsignforminputs">
      <input id="pac-input4" type="email" placeholder="Your Email Address" required>

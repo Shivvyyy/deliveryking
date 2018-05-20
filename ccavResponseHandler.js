@@ -33,7 +33,7 @@ exports.postRes = function(request,response){
         if(orderStatus!=='Failure')
         {
 
-   http.get(`http://makemysms.in/api/sendsms.php?username=MOBIAPI&password=makemysms@123&sender=MOBSFT&mobile=${mobileNo}&type=1&product=1&message=Your order has been successfully fulfiled`, (resp) => {
+   http.get(`http://makemysms.in/api/sendsms.php?username=MOBIAPI&password=makemysms@123&sender=MOBSFT&mobile=${mobileNo}&type=1&product=1&message=Your order has been successfully fulfiled. Order Id: ${orderId}`, (resp) => {
      var data = '';
 
      // A chunk of data has been recieved.
