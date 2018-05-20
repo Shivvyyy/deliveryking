@@ -96,7 +96,7 @@ module.exports = function(passport) {
 
                     // check to see if theres already a user with that email
                     if (user) {
-                      req.authError = 'That user name is already taken.'
+                      req.authError = 'That email  is already taken.'
                         return done(null, false);
                     } else {
 
@@ -124,7 +124,7 @@ module.exports = function(passport) {
                         return done(err);
 
                     if (user) {
-                      req.authError='That user name is already taken.';
+                      req.authError='That email name is already taken.';
                         return done(null, false);
                         // Using 'loginMessage instead of signupMessage because it's used by /connect/local'
                     } else {
