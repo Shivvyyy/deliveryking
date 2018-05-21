@@ -169,7 +169,7 @@ router.post('/add-order', function(req, res, next) {
     else
     {
     // req.flash('success', 'Successfully added a category');
-    http.get(`http://makemysms.in/api/sendsms.php?username=MOBIAPI&password=makemysms@123&sender=MOBSFT&mobile=${req.body.customerContact}&type=1&product=1&message=Your order has been successfully fulfiled`, (resp) => {
+    http.get(`http://makemysms.in/api/sendsms.php?username=MOBIAPI&password=makemysms@123&sender=MOBSFT&mobile=${req.body.customerContact}&type=1&product=1&message=Your order has been successfully fulfiled. Order Id: ${result._id}`, (resp) => {
       var data = '';
 
       // A chunk of data has been recieved.
@@ -212,7 +212,6 @@ router.post('/gateway-order', function(req, res, next) {
     }
     else
     {
-    // req.flash('success', 'Successfully added a category');
     res.status(201).json({order_id:result._id});
    }
   });
@@ -248,8 +247,7 @@ router.get('/allOrders', function(req, res, next) {
 // })
 
 router.get('/account/orders', function(req, res, next) {
-
-  Order.find({customerId:req.user._id}).sort().exec(function(err, orders) {
+  Order.find({customerId:req.user._id}).populate('items._id').sort().exec(function(err, orders) {
 
     if (err) res.status(500).json({err:err});
     else{
