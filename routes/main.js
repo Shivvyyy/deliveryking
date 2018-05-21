@@ -196,7 +196,7 @@ router.post('/add-order', function(req, res, next) {
 router.post('/gateway-order', function(req, res, next) {
   var order = new Order();
   order.customer = req.body.customer;
-  order.customerId = req.body.customerId;
+  if(order.customerId) order.customerId = req.body.customerId;
   order.total = req.body.total;
   order.items = req.body.items;
   order.paymentMethod = req.body.paymentMethod;
