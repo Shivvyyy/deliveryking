@@ -336,12 +336,13 @@ function closeNav() {
     }
     function minus(id,val){
       console.log(count);
+      var test = false;
       var sessionCart = JSON.parse(sessionStorage.getItem("cart"));
       sessionCart.items.some(function(product,index){
         console.log(product._id);
         if(product._id==id&&product.quantity>1)
         {
-
+          test = true;
           var subTotal = 0;
           sessionCart.items.forEach(function(productCart,index){
             subTotal += productCart.price*productCart.quantity;
@@ -365,7 +366,7 @@ function closeNav() {
     });
 
 
-      if (document.getElementById(id).value > 1) {
+      if (test) {
         var countEl = document.getElementById(id);
         if(document.getElementById(id+'shivy')!==null)
         {
