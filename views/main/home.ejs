@@ -66,7 +66,7 @@
     </div>
     <div class="food-content">Aloo/Mushroom/Water</div>
     <% var productId = products[i]._id %>
-    <div class="food_order"><a href='food/<%=(products[i].name).replace(/ /g, "-")%>'>Order</a></div>
+    <div class="food_order" onClick='window.location="food/<%=(products[i].name).replace(/ /g, "-")%>"'>ORDER</div>
   </div>
   <% }} %>
 
@@ -91,7 +91,7 @@
       Rs <%= products[i].price %>
     </div>
     <div class="food-content">Aloo/Mushroom/Water</div>
-      <div class="food_order"><a href='food/<%=(products[i].name).replace(/ /g, "-")%> '>Order</a></div>
+      <div class="food_order" onClick='window.location="food/<%=(products[i].name).replace(/ /g, "-")%> "' >ORDER</div>
   </div>
   <% }} %>
 
@@ -341,6 +341,9 @@ xhr.send(null);
 
 function loadAll(thisOne,category, callback)
 {
+
+  // alert("loadAllfunc");
+  // alert(category);
      var sessionCart = JSON.parse(sessionStorage.getItem("cart"));
   // alert(category);
   console.log(thisOne);
@@ -354,6 +357,14 @@ function loadAll(thisOne,category, callback)
   xhttp.onreadystatechange = function() {
       if (this.readyState == 4 && this.status == 201) {
         var allProducts = JSON.parse(xhttp.responseText);
+        if(!allProducts.length || allProducts.length==1)
+        {
+          //   alert("shivu");
+          // alert(allProducts.length);
+
+          callback && callback();
+          return;
+        }
       allProducts.forEach(function(product,index){
         console.log(product);
         var div = "";
@@ -418,8 +429,10 @@ function loadAll(thisOne,category, callback)
 
 function filter(type,thisOne,category)
 {
-  console.log(type);
+  // alert("filter function");
   var x =  thisOne.parentElement.parentElement.parentElement.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling;
+  console.log(x);
+  console.log('sgivyyv');
   var select;
   if(x.children[5]) select = x.children[5];
   else select = x.children[0];

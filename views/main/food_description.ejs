@@ -46,7 +46,7 @@
     <div class="food-item-title"><span><% if(products[j].nonVeg) { %><img src="../img/non-veg-icon.png" class="food_icon"><% } else { %> <img src="../img/veg-icon.png" class="food_icon"> <% } %> <%=(products[j].name) %></span> </div>
     <div class="food-item-price">Rs. <%=products[j].price %></div>
     <div class="food-item-content"><%=products[j].prodItemDesc %></div>
-    <div class="order_btn"><a class="profileLink" href='./<%=(products[j].name).replace(/ /g, "-")%> '>ORDER</a></div>
+    <div class="order_btn" onClick='window.location="<%=(products[j].name).replace(/ /g, "-")%> "'>ORDER</div>
     </div>
   </div>
 <% }}%>
@@ -308,10 +308,12 @@ document.addEventListener("DOMContentLoaded",function(){
       divMain.className = "shivy_move";
               var div = "";
       div += '<div id="input_div" class="shivy_move">';
+          var productId = "'<%= product[0]._id %>'";
       // var input_shivy = product._id+'shivy';
+            div +=  '<input type="button" value="-" id="moins" onclick="minus('+productId+')">';
       div += '<input type="text" value="'+productCart.quantity+'" id="<%= product[0]._id %>shivy" disabled>';
-      var productId = "'<%= product[0]._id %>'";
-      div +=  '<input type="button" value="-" id="moins" onclick="minus('+productId+')">';
+
+
       div += '<input type="button" value="+" id="plus" onclick="plus('+productId+')">';
       div += '</div>';
       divMain.innerHTML = div;
