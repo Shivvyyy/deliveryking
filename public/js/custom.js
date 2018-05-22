@@ -16,10 +16,13 @@ document.addEventListener("DOMContentLoaded", function(event) {
    cartOrder += '<div class="cart_order">';
    cartOrder += '<div class="cart_order_title"><span>';
    if(product.nonVeg)
+{
      cartOrder +=   '<img src="../img/non-veg-icon.png" class="food_icon_cart">';
+   }
   else
+  {
      cartOrder +=   '<img src="../img/veg-icon.png" class="food_icon_cart">';
-
+  }
       cartOrder += '&nbsp;'+product.name+'</div>';
         var productId = "'"+product._id+"'";
      cartOrder += '<div class="cart_order_close" onclick="removeItem('+productId+',this)">';
@@ -97,7 +100,7 @@ console.log(product,el, "something");
        cartOrder += '<div class="cart_order_quantity">';
         cartOrder += '<div id="input_div">';
         cartOrder +=  '<input type="button" value="-" id="moins" onclick="minus('+productId+')">';
-        cartOrder += '<input type="text" data-val="'+product.product.price+'" value="1" id="'+product.product._id+'">';
+        cartOrder += '<input type="text" data-val="'+product.product.price+'" value="1" id="'+product.product._id+'" disabled>';
         cartOrder += '<input type="button" value="+" id="plus" onclick="plus('+productId+')">';
         cartOrder += '</div>';
         cartOrder += '</div>';
@@ -133,6 +136,7 @@ console.log(product,el, "something");
           item.quantity = 1;
           item.price = product.product.price;
           item.name = product.product.name;
+          item.nonVeg = product.product.nonVeg;
           cartItems.push(item);
           cart.total = 0;
           cart.items = cartItems;
@@ -170,6 +174,7 @@ console.log(product,el, "something");
           item.quantity = 1;
           item.price = product.product.price;
           item.name = product.product.name;
+          item.nonVeg = product.product.nonVeg;
           console.log(sessionCart);
           sessionCart.items.push(item);
 
@@ -437,7 +442,11 @@ function removeItem(id,el,checkout)
         var subT = subTotal;
         console.log(subT);
         var checkoutDiv = document.getElementById(id+'shivy').parentElement.parentElement.parentElement;
-        checkoutDiv.previousSibling.remove();
+        if(checkoutDiv.previousSibling)
+        {
+          checkoutDiv.previousSibling.remove();
+        }
+        else if(checkoutDiv.nextSibling)   checkoutDiv.nextSibling.remove();
         checkoutDiv.remove();
 
          document.querySelector('.itemPriceP').getElementsByTagName("span")[0].innerText = subT;

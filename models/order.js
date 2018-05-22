@@ -14,6 +14,7 @@ var CartSchema = new Schema({
   paymentMethod: {type:String,required:true},
   addressDetails: {type:String,required:true},
   customerContact: {type:String,required:true},
+  date: {type:Date, default: Date.now},
   successful: {type:Boolean,required:true}
 });
 

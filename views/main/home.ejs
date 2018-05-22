@@ -7,7 +7,6 @@
 
 <header>
 <% include ./../partials/cart %>
-
   <div class="slider_content">
     <!-- <div class="dropdown">
       <button class="dropbtn">City <span class="fa fa-caret-down"></span></button>
@@ -188,11 +187,23 @@ document.addEventListener("DOMContentLoaded", function(event) {
   if(window.location.search=='?success=true')
   {
         sessionStorage.removeItem("cart");
-          materialAlert('Thank You!',"Your Order Has Been Successfully Placed");
+          materialAlert('Thank You!',"Your Order Has Been Successfully Placed", function(){
+            var uri = window.location.toString();
+            if (uri.indexOf("?") > 0) {
+                var clean_uri = uri.substring(0, uri.indexOf("?"));
+                window.history.replaceState({}, document.title, clean_uri);
+            }
+          });
   }
   else if(window.location.search=='?success=false')
   {
-        materialAlert('Error!',"Something Went Wrong Please Try Again");
+        materialAlert('Error!',"Something Went Wrong Please Try Again", function(){
+          var uri = window.location.toString();
+          if (uri.indexOf("?") > 0) {
+              var clean_uri = uri.substring(0, uri.indexOf("?"));
+              window.history.replaceState({}, document.title, clean_uri);
+          }
+        });
   }
 
 var sessionCart = JSON.parse(sessionStorage.getItem("cart"));

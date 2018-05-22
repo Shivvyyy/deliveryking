@@ -220,7 +220,7 @@ router.post('/gateway-order', function(req, res, next) {
 
 router.get('/allOrders', function(req, res, next) {
 
-  Order.find({}).sort().exec(function(err, orders) {
+  Order.find({}).sort({date: -1}).exec(function(err, orders) {
 
     if (err) res.status(500).json({err:err});
     else{
@@ -247,7 +247,7 @@ router.get('/allOrders', function(req, res, next) {
 // })
 
 router.get('/account/orders', function(req, res, next) {
-  Order.find({customerId:req.user._id}).populate('items._id').sort().exec(function(err, orders) {
+  Order.find({customerId:req.user._id}).populate('items._id').sort({date: -1}).exec(function(err, orders) {
 
     if (err) res.status(500).json({err:err});
     else{

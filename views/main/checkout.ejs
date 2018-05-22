@@ -9,7 +9,7 @@ if(JSON.parse(sessionStorage.getItem("cart"))===null) location.href='/';
     <div class="logsign">
       <div class="logsignText logtextchange">
         Profile<br/><br/>
-        Log In or Sign Up
+        Please Fill This Before Proceed
       </div>
       <div class="collapsible-arrow acc" id="collapsible-arrow" >
         <span><i class="fas fa-2x fa-angle-up"></i></span>
@@ -19,8 +19,8 @@ if(JSON.parse(sessionStorage.getItem("cart"))===null) location.href='/';
     <!-- collapsible -->
     <div class="logsignformMain" id="accDiv">
     <div class="logsignform">
-      <div class="signUpLink">Sign Up</div>
-      <div class="signupoffer">Sign up to get new offer on selected dishes</div>
+      <div class="signUpLink">Fill The Required Details</div>
+      <div class="signupoffer"><a class="showCursor" onclick="showLoginModal()">Sign up to get new offer on selected dishes</a></div>
       <div class="logsignforminputs">
         <form id="user_details">
         <div class="firstlastname">
@@ -30,9 +30,9 @@ if(JSON.parse(sessionStorage.getItem("cart"))===null) location.href='/';
       <div>
         <input type="email" id="email_name"  placeholder="Email Address" required>
       </div>
-      <div>
-        <input type="number" id="mobile_num" placeholder="Enter 10 digit mob no" minlength="10" maxlength="10" required>
-      </div>
+      <!-- <div>
+        <input type="tel" id="mobile_num" placeholder="Enter 10 digit mob no"  minlength="10" maxlength="10" required>
+      </div> -->
 
       <!-- <input type="submit" class="submit_btn" value="SIGN UP & CONTINUE"> -->
       <div class="submit_btn showCursor"  onclick="showSignupModal()" >SIGN UP & CONTINUE</div>
@@ -107,7 +107,7 @@ if(JSON.parse(sessionStorage.getItem("cart"))===null) location.href='/';
      <input id="pac-input2" type="text" placeholder="House and Street No." required>
    </div>
    <div  class="logsignforminputs">
-     <input id="pac-input3" type="number" placeholder="Your Mobile No." minlength="10" maxlength="10" required >
+     <input id="pac-input3" type="text" placeholder="Your Mobile No." pattern="[789][0-9]{9}"  required >
    </div>
    <div  class="logsignforminputs">
      <input id="pac-input4" type="email" placeholder="Your Email Address" required>
@@ -206,7 +206,7 @@ if(JSON.parse(sessionStorage.getItem("cart"))===null) location.href='/';
             <input type="hidden" name="language" id="language" value="EN" />
 
 
-                  <button id="place_final_order"  disabled>Place Order</button>
+                  <button id="place_final_order" onclick="return false">Place Order</button>
       </form>
 
     </div>
@@ -233,6 +233,7 @@ if(JSON.parse(sessionStorage.getItem("cart"))===null) location.href='/';
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script>
 
+var done = false ;
 document.addEventListener("DOMContentLoaded",function(){
 
 
@@ -303,7 +304,10 @@ document.addEventListener("DOMContentLoaded",function(){
 
     div +=  '<div class="cart_order">';
     div += '<div class="cart_order_title"><span>';
+        if(productCart.nonVeg)
     div += '<img src="../img/non-veg-icon.png" class="food_icon_cart_checkout">';
+    else
+      div += '<img src="../img/veg-icon.png" class="food_icon_cart_checkout">';
     div +=  '<span class="cart_prod_name">&nbsp; '+productCart.name+'</div>';
     var yess = "'"+'yes'+"'";
     var productId = "'"+productCart._id+"'";
@@ -432,6 +436,7 @@ addressform.onsubmit = function (e) {
     document.getElementById("accDiv2").style.display = "none";
 document.getElementById("collapsible-arrow-3").setAttribute("onclick","openPanel(event)");
 document.getElementById("place_final_order").removeAttribute("disabled");
+ done = true;
 }
 };
 
@@ -595,6 +600,12 @@ var geocoder = geocoder = new google.maps.Geocoder();
       }
 
       document.getElementById("place_final_order").addEventListener("click",function(e){
+        if(!done)
+        {
+          materialAlert("First Fill The All Required Details","<br/> Profile <br/><br/>  Address<br/><br/>Payment Method<br/><br/> ");
+        }
+        else
+        {
         var customerName = `<%if(user){ %><%if(user.local.username){ %><%= user.local.username %><%} else if(user.google.name){%><%= user.google.name %><%} else if(user.facebook.name){ %><%= user.facebook.name %><%}%><%}else{%>document.getElementById("first_name").value+" "+document.getElementById("last_name").value<%}%>`;
         var customerId = `<%if(user){ %><%=user._id %><%}else{%>null<%}%>`;
         console.log(customerId);
@@ -663,6 +674,7 @@ xhttp.send(JSON.stringify(body));
         //       <button id="place_final_order">Place Order</button>
         // var money = document.getElementById("checkout_money").innerHTML;
         // document.getElementById("money").setAttribute("value",money);
+}
 });
 
 
