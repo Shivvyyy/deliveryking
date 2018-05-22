@@ -606,7 +606,7 @@ var geocoder = geocoder = new google.maps.Geocoder();
         }
         else
         {
-        var customerName = `<%if(user){ %><%if(user.local.username){ %><%= user.local.username %><%} else if(user.google.name){%><%= user.google.name %><%} else if(user.facebook.name){ %><%= user.facebook.name %><%}%><%}else{%>document.getElementById("first_name").value+" "+document.getElementById("last_name").value<%}%>`;
+        var customerName = `<%if(user){ %><%if(user.local.username){ %><%= user.local.username %><%} else if(user.google.name){%><%= user.google.name %><%} else if(user.facebook.name){ %><%= user.facebook.name %><%}%><%}else{%>`+document.getElementById("first_name").value+" "+document.getElementById("last_name").value+`<%}%>`;
         var customerId = `<%if(user){ %><%=user._id %><%}else{%>null<%}%>`;
         console.log(customerId);
         e.preventDefault();

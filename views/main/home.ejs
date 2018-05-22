@@ -230,7 +230,7 @@ xhr.onload = function (e) {
       // alert(category._id)
         var div = '';
       var xhr = new XMLHttpRequest();
-      xhr.open("GET", "/products/"+category._id+'/5', true);
+      xhr.open("GET", "/products/"+category._id+'/5', false);
       xhr.onload = function (e) {
         if (xhr.readyState === 4) {
           if (xhr.status === 201) {

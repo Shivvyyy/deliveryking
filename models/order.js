@@ -3,7 +3,7 @@ var Schema = mongoose.Schema;
 
 var CartSchema = new Schema({
   customer: {type:String,required:true},
-  customerId:{type: Schema.Types.ObjectId, ref: 'User'},
+  customerId:{type: Schema.Types.ObjectId, ref: 'User', required:false},
   total: { type: Number, default: 0},
   items: [{
     _id: { type: Schema.Types.ObjectId, ref: 'Product'},
