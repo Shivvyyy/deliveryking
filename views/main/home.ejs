@@ -215,7 +215,7 @@ var sessionCart = JSON.parse(sessionStorage.getItem("cart"));
 
 
 var xhr = new XMLHttpRequest();
-xhr.open("GET", "/categories", true);
+xhr.open("GET", "/categories", false);
 xhr.onload = function (e) {
   document.querySelector(".loader").style.display = "block";
   if (xhr.readyState === 4) {
