@@ -2,9 +2,10 @@
     <ul class="left-menu">
       <li class="floatleft"></li>
       <li class="floatleft">|</li>
-      <li class="floatleft"><i class="fas fa-phone"></i> 91-7017585022</li>
+      <li class="floatleft"><i class="fas fa-phone"></i> 91-9718988686</li>
 
           <li class="floatright displayPointer"></li>
+
             <% if(typeof user !== 'undefined') { %>
               <li class="floatright">|</li>
                     <li class="floatright displayPointer logout"><a href="/logout">Log Out</a></li>
@@ -15,6 +16,7 @@
                   <li class="floatright">|</li>
               <% } %>
 
+
                   <% if(typeof user === 'undefined') { %>
 
         <li class="floatright">|</li>
@@ -23,6 +25,7 @@
         <li id="login-btn" class="floatright displayPointer"  onclick="showLoginModal()">Log In</li>
         <li class="floatright">|</li>
             <% } %>
+            <li class="floatright home-link"><a href="/"><span class='home-icon'><i class="fas fa-home"></i></span>HOME</a></li>
 
 
 
