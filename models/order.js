@@ -1,6 +1,7 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
+var d = new Date;
 var CartSchema = new Schema({
   customer: {type:String,required:true},
   customerId:{type: Schema.Types.ObjectId, ref: 'User', required:false},
@@ -15,7 +16,7 @@ var CartSchema = new Schema({
   addressDetails: {type:String,required:true},
   customerContact: {type:String,required:true},
   customerEmail: {type:String,required:true},
-  date: {type:Date, default: Date.now},
+  date: {type:Date, default: d.getTime()},
   successful: {type:Boolean,required:true}
 });
 
