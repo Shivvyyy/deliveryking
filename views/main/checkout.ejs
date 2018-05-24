@@ -666,6 +666,8 @@ var geocoder = geocoder = new google.maps.Geocoder();
         var customerId = `<%if(user){ %><%=user._id %><%}else{%>null<%}%>`;
         var customerEmail = `<%if(user){ %><%if(user.local.email){ %><%= user.local.email %><%} else if(user.google.email){%><%= user.google.email %><%} else if(user.facebook.email){ %><%= user.facebook.email %><%}%><%}else{%>`+document.getElementById("email_name").value+`<%}%>`;
         e.preventDefault();
+        var date =  new Date().toLocaleDateString();
+        var time = new Date().toLocaleTimeString();
         var radioBtns = document.getElementsByName("addressChoice");
        for(var i = 0; i < radioBtns.length; i++){
          if(radioBtns[i].checked){
@@ -700,6 +702,8 @@ var geocoder = geocoder = new google.maps.Geocoder();
             addressDetails: customerAddress,
             customerContact: customerContact,
             customerEmail: customerEmail,
+            date: date,
+            time: time,
             successful: true
           };
           var xhttp = new XMLHttpRequest();
@@ -725,6 +729,8 @@ xhttp.send(JSON.stringify(body));
             addressDetails: customerAddress,
             customerContact: customerContact,
             customerEmail: customerEmail,
+            date: date,
+            time: time,
             successful: false
           };
           var xhttp = new XMLHttpRequest();

@@ -160,6 +160,8 @@ router.post('/add-order', function(req, res, next) {
   order.addressDetails = req.body.addressDetails;
   order.customerContact = req.body.customerContact;
   order.customerEmail = req.body.customerEmail;
+  order.date = req.body.date;
+  order.time = req.body.time;
   order.successful = req.body.successful;
 
   order.save(function(err,result) {
@@ -206,6 +208,8 @@ router.post('/gateway-order', function(req, res, next) {
   order.addressDetails = req.body.addressDetails;
   order.customerContact = req.body.customerContact;
   order.customerEmail = req.body.customerEmail;
+  order.date = req.body.date;
+  order.time = req.body.time;
   order.successful = req.body.successful;
   order.save(function(err,result) {
     if (err)
