@@ -25,8 +25,8 @@
 			<%orders.forEach(function(order)
 			{ order.items.forEach(function(item){%>
 
-					<% if(order.date){ %>
-					<h4><%=order.date.toDateString() %> At <%=order.date.toTimeString() %></h4>
+					<% if(order.date && order.time){ %>
+					<h4><%=order.date%> At <%=order.time%></h4>
 					<% } %>
 				<div class="previously-ordered">
 					<img src="http://deliverykings.co.in/uploads/<%=item._id.prodImg%>">
