@@ -2,6 +2,7 @@ var router = require('express').Router();
 var Category = require('../models/category');
 var Product = require('../models/product');
 var Order = require('../models/order');
+var User       = require('../models/user');
 var http = require('http');
 
 
@@ -158,6 +159,7 @@ router.post('/add-order', function(req, res, next) {
   order.paymentMethod = req.body.paymentMethod;
   order.addressDetails = req.body.addressDetails;
   order.customerContact = req.body.customerContact;
+  order.customerEmail = req.body.customerEmail;
   order.successful = req.body.successful;
 
   order.save(function(err,result) {
@@ -203,6 +205,7 @@ router.post('/gateway-order', function(req, res, next) {
   order.paymentMethod = req.body.paymentMethod;
   order.addressDetails = req.body.addressDetails;
   order.customerContact = req.body.customerContact;
+  order.customerEmail = req.body.customerEmail;
   order.successful = req.body.successful;
   order.save(function(err,result) {
     if (err)
@@ -241,11 +244,39 @@ router.get('/allOrders', function(req, res, next) {
 
 
 
-// router.get('/account/edit', function(req, res, next) {
-//   res.render('user/profileEdit',{
-//     user : req.user
-//   });
-// })
+router.get('/account/addressBook', function(req, res, next) {
+
+
+      res.render('user/addressBook',{
+        user : req.user
+      });
+
+})
+
+
+router.post('/account/addressBook', function(req, res, next) {
+
+  const id = req.user._id;
+  console.log("shivy hiteted");
+
+  User.update({ _id: id },  { $push: {"addresses": {
+          location: req.body.location,
+          street: req.body.street,
+          phone: req.body.phone,
+          pickerName: req.body.pickerName
+      }}})
+    .exec()
+    .then(result => {
+    res.redirect('/account/addressBook');
+    })
+    .catch(err => {
+      console.log(err);
+      res.status(500).json({
+        error: err
+      });
+    });
+
+});
 
 router.get('/account/orders', function(req, res, next) {
   Order.find({customerId:req.user._id}).populate('items._id').sort({date: -1}).exec(function(err, orders) {

@@ -121,7 +121,7 @@
 
 <div class="login-modal">
   <form action="/login" method="post" id="loginForm">
-  <input type="email" name="username"  placeholder="Email" required>
+  <input type="email" name="email"  placeholder="Email" required>
   <input type="password" name="password" placeholder="Password" required>
   <button class='login-modal-btn' type="submit">Login</button>
 </form>
@@ -136,7 +136,8 @@
 
 <div class="signup-modal">
   <form action="/signup" method="post" id="signupForm">
-  <input  name="username" type="email" placeholder="Enter Your Email" required>
+  <input  name="email" type="email" placeholder="Enter Your Email" required>
+  <input  name="username" type="text" placeholder="Enter Your Name" required>
   <input type="password" name="password" placeholder="Password" id="firstPassword" required>
   <input type="password" placeholder="Confirm Password" id="secondPassword" required>
   <button class='signup-modal-btn' type="submit">Sign Up</button>
@@ -153,14 +154,17 @@
 
 <script>
 document.addEventListener('DOMContentLoaded',function(){
+
   var form = document.getElementById('signupForm');
   var form2 = document.getElementById('loginForm');
 
   // Append the form status
   var formStatus = document.createElement('div');
   formStatus.setAttribute('class', 'form-status alert');
+  var formStatus2 = document.createElement('div');
+  formStatus2.setAttribute('class', 'form-status alert');
   form.appendChild(formStatus);
-  form2.appendChild(formStatus);
+  form2.appendChild(formStatus2);
 
   form.onsubmit = function (e) {
   	// Stop the regular form submission
@@ -258,16 +262,16 @@ document.addEventListener('DOMContentLoaded',function(){
 
   			// Failed XmlHttpRequest should be considered an undefined error.
         	e.preventDefault();
-  			formStatus.className += ' alert-danger';
-  			formStatus.innerHTML = response.currentTarget.responseText;
+  			formStatus2.className += ' alert-danger';
+  			formStatus2.innerHTML = response.currentTarget.responseText;
 
   		} else if (response.target.status === 401) {
         	e.preventDefault();
   			// Bad Request
-  			formStatus.className += ' alert-danger';
+  			formStatus2.className += ' alert-danger';
         console.log(response);
         console.log(typeof response);
-  			formStatus.innerHTML = response.currentTarget.responseText;
+  			formStatus2.innerHTML = response.currentTarget.responseText;
 
   		} else if (response.target.status === 200) {
         if(window.location.pathname=='/checkout') location.reload(true);

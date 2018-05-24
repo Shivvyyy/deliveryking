@@ -9,7 +9,7 @@ if(JSON.parse(sessionStorage.getItem("cart"))===null) location.href='/';
     <div class="logsign">
       <div class="logsignText logtextchange">
         Profile<br/><br/>
-        Please Fill This Before Proceed
+        Please Sign Up or Continue As a Guest
       </div>
       <div class="collapsible-arrow acc" id="collapsible-arrow" >
         <span><i class="fas fa-2x fa-angle-up"></i></span>
@@ -20,22 +20,26 @@ if(JSON.parse(sessionStorage.getItem("cart"))===null) location.href='/';
     <div class="logsignformMain" id="accDiv">
     <div class="logsignform">
       <div class="signUpLink">Fill The Required Details</div>
-      <div class="signupoffer"><a class="showCursor" onclick="showLoginModal()">Sign up to get new offer on selected dishes</a></div>
+      <div class="signupoffer">Sign up to get new offer on selected dishes</div>
       <div class="logsignforminputs">
         <form id="user_details">
         <div class="firstlastname">
-        <input type="text" id="first_name"  placeholder="First Name" required>
-        <input type="text" id="last_name" placeholder="Last Name" required>
+        <input type="text" id="first_name"  placeholder="Enter Your Name" required>
+        <input type="email" id="email_name"  placeholder="Email Address" required>
       </div>
       <div>
-        <input type="email" id="email_name"  placeholder="Email Address" required>
+        <input type="password" id="customer_pswd"  placeholder="Enter Your Password To Signup">
+      </div>
+
+      <div>
+          <input type="password" id="customer_pswd_confirm"  placeholder="Re-enter Your Password">
       </div>
       <!-- <div>
         <input type="tel" id="mobile_num" placeholder="Enter 10 digit mob no"  minlength="10" maxlength="10" required>
       </div> -->
 
       <!-- <input type="submit" class="submit_btn" value="SIGN UP & CONTINUE"> -->
-      <div class="submit_btn showCursor"  onclick="showSignupModal()" >SIGN UP & CONTINUE</div>
+      <div class="submit_btn showCursor" id="signupcontbtn"  onclick=" signupfunc()" >SIGN UP & CONTINUE</div>
       <div class="login_option">Already have an account? <a class="showCursor" onclick="showLoginModal()">Log in</a></div>
 
       <!-- <div class="or-divider">
@@ -107,12 +111,32 @@ if(JSON.parse(sessionStorage.getItem("cart"))===null) location.href='/';
      <input id="pac-input2" type="text" placeholder="House and Street No." required>
    </div>
    <div  class="logsignforminputs">
-     <input id="pac-input3" type="text" placeholder="Your Mobile No." pattern="[789][0-9]{9}"  required >
+     <input id="pac-input3" type="text" placeholder="Enter Picker's Mobile No." pattern="[789][0-9]{9}"  required >
    </div>
    <div  class="logsignforminputs">
-     <input id="pac-input4" type="email" placeholder="Your Email Address" required>
+     <input id="pac-input4" type="text" placeholder="Enter Pickers Name" required>
    </div>
+<% if(user){ %>
+<div style="text-align:center;font-size:1.4rem;color:grey">Or Select From The Existing</div>
+<hr/>
+  <% user.addresses.forEach(function(address,index){ %>
 
+    <li class="list__itemradio" onclick="selectAddr('<%=index%>')">
+      <input type="radio" class="radio-btn" value="<%= address.phone %>" name="addressChoice" id="<%=index%>"/>
+      <label  class="labelradio">
+
+<textarea  rows="8" cols="30" name="comment[text]" id="addrval<%=index%>"  class="ui-autocomplete-input xtarea" autocomplete="off" role="textbox" aria-autocomplete="list" aria-haspopup="true" disabled>
+
+Picker's Name: <%=address.pickerName %>
+
+Address: <%=address.street %>, <%=address.location %>
+
+Picker's Phone: <%=address.phone %>
+</textarea>
+</label>
+    </li>
+<% }); %>
+  <% } %>
   <button class="submit_btn" type="submit" value="CONTINUE WITH THIS ADDRESS">CONTINUE WITH THIS ADDRESS</button>
 </form>
   </div>
@@ -336,6 +360,15 @@ document.querySelector(".itemPriceP").getElementsByTagName("span")[0].innerText 
 var gst = (subTotal*5)/100;
 document.querySelector(".gstP").getElementsByTagName("span")[0].innerText = gst;
 document.querySelector(".gTotalP").getElementsByTagName("span")[0].innerText = subTotal+gst;
+
+document.getElementById('user_details').onkeypress = checkEnter;
+document.getElementById('address_details').onkeypress = checkEnter;
+function checkEnter(e){
+e = e || event;
+var txtArea = /textarea/i.test((e.target || e.srcElement).tagName);
+return txtArea || (e.keyCode || e.which || e.charCode || 0) !== 13;
+}
+
 }
 
 
@@ -426,9 +459,32 @@ document.getElementById("collapsible-arrow-2").setAttribute("onclick","openPanel
 
 var addressform = document.getElementById('address_details');
 addressform.onsubmit = function (e) {
+  // alert("shivy");
   e.preventDefault();
   // alert("shivy");
-  if(document.getElementById('address_details')[0].checkValidity())
+  var radioBtns = document.getElementsByName("addressChoice");
+ for(var i = 0; i < radioBtns.length; i++){
+   if(radioBtns[i].checked){
+     // document.getElementById("output").textContent = radioBtns[i].value;
+     var id = radioBtns[i].getAttribute("id");
+
+     // alert(id);
+     console.log((document.getElementById("addrval"+id)).value);
+
+   }
+ }
+
+ if(id != 'undefined')
+{
+  document.getElementById("collapsible-arrow-3").children[0].children[0].classList.toggle("fa-angle-down");
+  document.getElementById("accDiv3").style.display = "block";
+  document.getElementById("collapsible-arrow-2").children[0].children[0].classList.toggle("fa-angle-up");
+  document.getElementById("accDiv2").style.display = "none";
+document.getElementById("collapsible-arrow-3").setAttribute("onclick","openPanel(event)");
+document.getElementById("place_final_order").removeAttribute("disabled");
+done = true;
+}
+  else if(document.getElementById('address_details')[0].checkValidity())
   {
     document.getElementById("collapsible-arrow-3").children[0].children[0].classList.toggle("fa-angle-down");
     document.getElementById("accDiv3").style.display = "block";
@@ -606,10 +662,32 @@ var geocoder = geocoder = new google.maps.Geocoder();
         }
         else
         {
-        var customerName = `<%if(user){ %><%if(user.local.username){ %><%= user.local.username %><%} else if(user.google.name){%><%= user.google.name %><%} else if(user.facebook.name){ %><%= user.facebook.name %><%}%><%}else{%>`+document.getElementById("first_name").value+" "+document.getElementById("last_name").value+`<%}%>`;
+        var customerName = `<%if(user){ %><%if(user.local.username){ %><%= user.local.username %><%} else if(user.google.name){%><%= user.google.name %><%} else if(user.facebook.name){ %><%= user.facebook.name %><%}%><%}else{%>`+document.getElementById("first_name").value+`<%}%>`;
         var customerId = `<%if(user){ %><%=user._id %><%}else{%>null<%}%>`;
-        console.log(customerId);
+        var customerEmail = `<%if(user){ %><%if(user.local.email){ %><%= user.local.email %><%} else if(user.google.email){%><%= user.google.email %><%} else if(user.facebook.email){ %><%= user.facebook.email %><%}%><%}else{%>`+document.getElementById("email_name").value+`<%}%>`;
         e.preventDefault();
+        var radioBtns = document.getElementsByName("addressChoice");
+       for(var i = 0; i < radioBtns.length; i++){
+         if(radioBtns[i].checked){
+           // document.getElementById("output").textContent = radioBtns[i].value;
+           var addrSelected = radioBtns[i].getAttribute("id");
+
+         }
+       }
+
+       if(addrSelected)
+       {
+         // alert("got there");
+         var customerAddress = document.getElementById("addrval"+addrSelected).value;
+         var customerContact = document.getElementById(addrSelected).value;
+       }
+       else
+       {
+         // alert("not there");
+         var customerAddress = 'Picker Name: '+document.getElementById('pac-input4').value+ 'Picker Address: ' +document.getElementById('pac-input2').value+' '+document.getElementById('pac-input').value+'Picker Mobile: '+document.getElementById('pac-input3').value;
+          var customerContact = document.getElementById("pac-input3").value;
+       }
+
         if(document.getElementById('a-opt').checked)
         {
 
@@ -619,8 +697,9 @@ var geocoder = geocoder = new google.maps.Geocoder();
             total: document.getElementById("checkout_money").innerHTML,
             items: JSON.parse(sessionStorage.getItem("cart")).items,
             paymentMethod: 'Cash On Delivery',
-            addressDetails: document.getElementById('pac-input2').value+' '+document.getElementById('pac-input').value,
-            customerContact: document.getElementById("pac-input3").value,
+            addressDetails: customerAddress,
+            customerContact: customerContact,
+            customerEmail: customerEmail,
             successful: true
           };
           var xhttp = new XMLHttpRequest();
@@ -642,17 +721,18 @@ xhttp.send(JSON.stringify(body));
             customerId: customerId,
             total: document.getElementById("checkout_money").innerHTML,
             items: JSON.parse(sessionStorage.getItem("cart")).items,
-            paymentMethod: 'Cash On Delivery',
-            addressDetails: document.getElementById('pac-input2').value+' '+document.getElementById('pac-input').value,
-            customerContact: document.getElementById("pac-input3").value,
+            paymentMethod: 'Card',
+            addressDetails: customerAddress,
+            customerContact: customerContact,
+            customerEmail: customerEmail,
             successful: false
           };
           var xhttp = new XMLHttpRequest();
 xhttp.onreadystatechange = function() {
   if (this.readyState == 4 && this.status == 201) {
     console.log(this.responseText);
+    document.getElementById("orderId").setAttribute('value',JSON.parse(this.responseText).order_id);
 
-      document.getElementById("orderId").setAttribute('value',JSON.parse(this.responseText).order_id);
       document.getElementById("billingTel").setAttribute('value',document.getElementById("pac-input3").value);
       document.getElementById("myForm").submit();
   }
@@ -676,6 +756,89 @@ xhttp.send(JSON.stringify(body));
         // document.getElementById("money").setAttribute("value",money);
 }
 });
+
+function selectAddr(index)
+{
+  document.getElementById(index).checked = true;
+  document.getElementById('address_details').setAttribute("novalidate","true");
+}
+
+function signupfunc()
+{
+  // alert("here");
+  if(document.getElementById("errorDiv")) document.getElementById("errorDiv").remove();
+  var form3 = document.getElementById("signupcontbtn").parentElement;
+  var formStatus3 = document.createElement('div');
+  formStatus3.setAttribute('class', 'form-status alert');
+  formStatus3.setAttribute('id', 'errorDiv');
+  form3.appendChild(formStatus3);
+
+  if(!(document.getElementById('first_name').value.length)||!(document.getElementById('email_name').value.length))
+  {
+      formStatus3.className += ' alert-danger';
+      formStatus3.innerHTML = "Fill All The Required Fields First";
+      alert("Fill All The Required Fields First");
+      return;
+  }
+  else if(!(document.getElementById('customer_pswd').value.length)||!(document.getElementById('customer_pswd_confirm').value.length))
+  {
+    formStatus3.className += ' alert-danger';
+    formStatus3.innerHTML = "Passwords Fields Are Not Filled";
+    // alert("Passwords Fields Are Not Filled");
+    return;
+  }
+
+    else if((document.getElementById('customer_pswd').value)!==(document.getElementById('customer_pswd_confirm').value))
+    {
+        formStatus3.className += ' alert-danger';
+        formStatus3.innerHTML = "Passwords Doesn't Match";
+        alert("Password Doesn't Match");
+        return;
+    }
+  else
+  {
+
+  var signupData = {};
+  signupData['email'] = document.getElementById("first_name").value;
+  signupData['username'] = document.getElementById("email_name").value;
+  signupData['password'] = document.getElementById("customer_pswd").value;
+
+  // Construct an HTTP request
+  var xhr = new XMLHttpRequest();
+  xhr.open('POST', '/signup', true);
+  xhr.setRequestHeader('Accept', 'application/json; charset=utf-8');
+  xhr.setRequestHeader('Content-Type', 'application/json; charset=UTF-8');
+
+xhr.send(JSON.stringify(signupData));
+
+// Callback function
+xhr.onloadend = function (response) {
+  if (response.target.status === 0) {
+
+    // Failed XmlHttpRequest should be considered an undefined error.
+    formStatus3.className += ' alert-danger';
+    formStatus3.innerHTML = response.currentTarget.responseText;
+
+  } else if (response.target.status === 401) {
+
+    // Bad Request
+    formStatus3.className += ' alert-danger';
+    console.log(response);
+    console.log(typeof response);
+    formStatus3.innerHTML = response.currentTarget.responseText;
+
+  } else if (response.target.status === 200) {
+    location.reload(true);
+    // Success
+    // formStatus.className += ' alert-success';
+    // formStatus.innerHTML = form.dataset.formSuccess;
+
+  }
+};
+
+}
+}
+
 
 
     </script>
