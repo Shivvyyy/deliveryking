@@ -1,6 +1,5 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
-const timeZone = require('mongoose-timezone');
 
 var CartSchema = new Schema({
   customer: {type:String,required:true},
@@ -20,5 +19,5 @@ var CartSchema = new Schema({
   successful: {type:Boolean,required:true}
 });
 
-CartSchema.plugin(timeZone, { paths: ['date'] });
+
 module.exports = mongoose.model('Cart', CartSchema);
