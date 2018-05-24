@@ -23,7 +23,7 @@
 			<h2>Your Orders</h2>
 
 			<%orders.forEach(function(order){ order.items.forEach(function(item){%>
-					<% var cur_date = new Date(order.date);
+					<% var cur_date =order.date;
 					var date = cur_date;
 				cur_date =	(cur_date.getHours()<10?'0':'') + cur_date.getHours()+':'+(cur_date.getMinutes()<10?'0':'') + cur_date.getMinutes();
 					%>
