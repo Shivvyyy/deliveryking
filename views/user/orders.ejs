@@ -25,7 +25,8 @@
 			<%orders.forEach(function(order){ order.items.forEach(function(item){%>
 					<% var cur_date =order.date;
 					var date = cur_date;
-				cur_date =	(cur_date.getHours()<10?'0':'') + cur_date.getHours()+':'+(cur_date.getMinutes()<10?'0':'') + cur_date.getMinutes();
+					cur_date = cur_date.getHours() + ":" + cur_date.getMinutes() + ":" + cur_date.getSeconds();
+				<!-- cur_date =	(cur_date.getHours()<10?'0':'') + cur_date.getHours()+':'+(cur_date.getMinutes()<10?'0':'') + cur_date.getMinutes(); -->
 					%>
 					<% if(order.date){ %>
 					<h4><%=date.toDateString() %> At <%=cur_date %></h4>
