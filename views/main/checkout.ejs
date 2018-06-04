@@ -116,7 +116,7 @@ if(JSON.parse(sessionStorage.getItem("cart"))===null) location.href='/';
    <div  class="logsignforminputs">
      <input id="pac-input4" type="text" placeholder="Enter Pickers Name" required>
    </div>
-<% if(user){ %>
+<% if(user&&user.addresses.length){ %>
 <div style="text-align:center;font-size:1.4rem;color:grey">Or Select From The Existing</div>
 <hr/>
   <% user.addresses.forEach(function(address,index){ %>

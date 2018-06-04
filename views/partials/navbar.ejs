@@ -128,11 +128,28 @@
 <a href="/auth/facebook" class="oauth"><span class="fab fa-facebook"></span> Facebook</a>
 <a href="/auth/google" class="oauth"><span class="fab fa-google-plus"></span> Google+</a>
   <p>New User? <a class="showCursor" onclick="showSignupModal()"> Sign up </a></p>
+    <p>Forgot Password? <a class="showCursor" onclick="showResetModal()"> Reset Password </a></p>
 </div>
 
 <div class="login-backdrop" onclick='hideLoginModal()'>
 
 </div>
+
+
+<div class="reset-modal">
+  <form action="/forgot" method="post" id="resetForm">
+  <input type="email" name="email"  placeholder="Enter Registered Email" required>
+  <button class='reset-modal-btn' type="submit">Login</button>
+</form>
+<a href="/auth/facebook" class="oauth"><span class="fab fa-facebook"></span> Facebook</a>
+<a href="/auth/google" class="oauth"><span class="fab fa-google-plus"></span> Google+</a>
+  <p>New User? <a class="showCursor" onclick="showSignupModal()"> Sign up </a></p>
+</div>
+
+<div class="reset-backdrop" onclick='hideResetModal()'>
+
+</div>
+
 
 <div class="signup-modal">
   <form action="/signup" method="post" id="signupForm">

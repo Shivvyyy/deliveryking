@@ -600,6 +600,12 @@ function showSignupModal() {
   document.querySelector('.signup-backdrop').style.display = 'block';
 }
 
+function showResetModal() {
+  document.querySelector('.reset-modal').style.transform = 'translateY(0px)';
+  document.querySelector('.reset-backdrop').style.opacity = '1';
+  document.querySelector('.reset-backdrop').style.display = 'block';
+}
+
 function hideLoginModal() {
   document.querySelector('.login-modal').style.transform = 'translateY(-100vh)';
   document.querySelector('.login-backdrop').style.opacity = '0';
@@ -611,4 +617,11 @@ function hideSignupModal() {
   document.querySelector('.signup-modal').style.transform = 'translateY(-100vh)';
   document.querySelector('.signup-backdrop').style.opacity = '0';
   document.querySelector('.signup-backdrop').style.display = 'none';
+}
+
+function hideResetModal() {
+  document.querySelector('.reset-modal').style.transform = 'translateY(-100vh)';
+  document.querySelector('.reset-backdrop').style.opacity = '0';
+  document.querySelector('.reset-backdrop').style.display = 'none';
+  hideLoginModal();
 }
