@@ -529,6 +529,11 @@ font-family: 'Raleway';
     overflow: hidden;
 }
 
+.extraheightimg img
+{
+  height: 100% !important;
+}
+
 .seeMoreImg
 {
   cursor: pointer;
@@ -892,6 +897,33 @@ grid-row-gap: 1rem;
 @media only screen and (max-width: 768px) {
 
     /* For mobile phones: */
+    body
+    {
+         letter-spacing: 0.2vw !important;
+    }
+
+    .firstlastname > input
+    {
+      width: 100% !important
+    }
+
+    .logsignforminputs input
+    {
+      width: 100% !important;
+    }
+
+.login-modal
+{
+  width: 260px !important;
+  left: 16% !important;
+}
+
+.signup-modal
+{
+  width: 260px !important;
+  left: 16% !important;
+}
+
     #main
     {
       margin-top: -17%;
@@ -1048,10 +1080,10 @@ grid-row-gap: 1rem;
     grid-template-rows: auto auto;
   }
 
-  .order_summary
+  /* .order_summary
   {
     grid-row: 1;
-  }
+  } */
 
   .fullscreen-video-wrap img,
   .fullscreen-video-wrap,
@@ -1641,7 +1673,7 @@ border: 1px solid #f9f9f9;
 
 .firstlastname > input
 {
-  width: 45% !important;
+  width: 45%;
 }
 
 
