@@ -2116,7 +2116,7 @@ transform: translate(0, -4px);
 
 .login-modal {
   width: 400px;
-  height: 320px;
+  height: 350px;
   background-color: white;
   position: fixed;
   top: 30%;
@@ -2148,7 +2148,7 @@ transform: translate(0, -4px);
 
 .signup-modal {
   width: 400px;
-  height: 320px;
+  height: 400px;
   background-color: white;
   position: fixed;
   top: 30%;
