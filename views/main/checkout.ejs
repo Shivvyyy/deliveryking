@@ -805,10 +805,10 @@ function signupfunc()
   {
 
   var signupData = {};
-  signupData['email'] = document.getElementById("first_name").value;
-  signupData['username'] = document.getElementById("email_name").value;
+  signupData['email'] = document.getElementById("email_name").value;
+  signupData['username'] = document.getElementById("first_name").value;
   signupData['password'] = document.getElementById("customer_pswd").value;
-
+  console.log(signupData);
   // Construct an HTTP request
   var xhr = new XMLHttpRequest();
   xhr.open('POST', '/signup', true);
