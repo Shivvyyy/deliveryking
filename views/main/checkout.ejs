@@ -459,9 +459,31 @@ document.getElementById("collapsible-arrow-2").setAttribute("onclick","openPanel
 
 var addressform = document.getElementById('address_details');
 addressform.onsubmit = function (e) {
+
   // alert("shivy");
   e.preventDefault();
   // alert("shivy");
+<% if(user){ %>
+
+var pickerName = document.getElementById('pac-input4').value;
+var phone = document.getElementById('pac-input3').value;
+var street = document.getElementById('pac-input2').value;
+var location = document.getElementById('pac-input').value;
+
+  var addrBody = {
+  pickerName:pickerName,
+  phone:phone,
+  location:location,
+  street:street
+  };
+  var xhttp = new XMLHttpRequest();
+xhttp.open("POST", "/account/addressBook", true);
+xhttp.setRequestHeader("Content-type", "application/json");
+xhttp.send(JSON.stringify(addrBody));
+
+<% } %>
+
+
   var radioBtns = document.getElementsByName("addressChoice");
  for(var i = 0; i < radioBtns.length; i++){
    if(radioBtns[i].checked){
@@ -738,7 +760,7 @@ xhttp.onreadystatechange = function() {
   if (this.readyState == 4 && this.status == 201) {
     console.log(this.responseText);
     document.getElementById("orderId").setAttribute('value',JSON.parse(this.responseText).order_id);
-
+    document.getElementById("money").setAttribute('value',document.getElementById('checkout_money').innerText);
       document.getElementById("billingTel").setAttribute('value',document.getElementById("pac-input3").value);
       document.getElementById("myForm").submit();
   }
