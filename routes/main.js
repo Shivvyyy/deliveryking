@@ -117,7 +117,19 @@ res.render('main/about',{
 
 router.get('/privacy-policy',(req, res, next)=>
 {
+  res.render('main/privacy-policy',{
+      user : req.user
+  });
+});
+router.get('/terms',(req, res, next)=>
+{
   res.render('main/terms',{
+      user : req.user
+  });
+});
+router.get('/refund-policy',(req, res, next)=>
+{
+  res.render('main/refund-policy',{
       user : req.user
   });
 });
