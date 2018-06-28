@@ -369,7 +369,7 @@ router.get('/account/orders', function(req, res, next) {
 
 })
 
-router.put('/order/:orderId',(req,res,next)=>{
+router.get('/order/:orderId',(req,res,next)=>{
   const id = req.params.orderId;
   console.log("shivy hiteted");
   const updateOps = {};
