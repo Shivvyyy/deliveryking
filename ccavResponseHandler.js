@@ -44,7 +44,9 @@ exports.postRes = function(request,response){
      // The whole response has been received. Print out the result.
      resp.on('end', () => {
        console.log(JSON.parse(data));
-       http.get(`/order/${orderId}`, function(res) {
+       console.log(orderId);
+       console.log("shivyan");
+       http.get(`http://deliverykings.co.in/order/${orderId}`, function(res) {
   console.log("Got response: " + res.statusCode);
     response.redirect('/?success=true');
 }).on('error', function(e) {
