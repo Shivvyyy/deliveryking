@@ -45,7 +45,7 @@ exports.postRes = function(request,response){
      resp.on('end', () => {
        console.log(JSON.parse(data));
        // http.get(`/order/${orderId}`, function(res) {
-  console.log("Got response: " + res.statusCode);
+  // console.log("Got response: " + res.statusCode);
     response.redirect('/?success=true');
 // }).on('error', function(e) {
 //   console.log("Got error: " + e.message);
