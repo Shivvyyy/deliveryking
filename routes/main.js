@@ -369,6 +369,24 @@ router.get('/account/orders', function(req, res, next) {
 
 })
 
+router.get('/random', function(req, res, next) {
+
+  Product.aggregate([{$sample: {size: 10}}]).exec(function(err, products) {
+
+    if (err) res.status(500).json({err:err});
+    else{
+
+  res.json(products);
+  
+    }
+
+});
+
+})
+
+
+
+
 router.get('/order/:orderId',(req,res,next)=>{
   const id = req.params.orderId;
   console.log("shivy hiteted");

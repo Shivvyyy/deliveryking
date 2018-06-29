@@ -229,7 +229,7 @@ header{
 
 .logo
 {
-  height: 11vh;
+  height: 4vw;
   width: 14vw;
   display: grid;
   align-items: center;
@@ -430,7 +430,7 @@ font-family: 'Raleway';
 
 #home_mains
 {
-  background-image: url(../img/dk_background.jpg);
+  /* background-image: url(../img/dk_background.jpg); */
   background-repeat: no-repeat;
   background-size: cover;
   padding-top:2%;
@@ -520,8 +520,14 @@ font-family: 'Raleway';
   grid-template-columns: repeat(3,1fr);
   grid-gap:1rem;
   grid-column-gap: 1.5rem;
-  background-color: #f0f0f0;
+  /* background-color: #f0f0f0; */
   padding: 1rem;
+}
+
+.loadallimg
+{
+  background-image: url(../img/bg.png) !important;
+background-size: 100% 100% !important;
 }
 
 .food-itemImg
@@ -538,6 +544,92 @@ font-family: 'Raleway';
 {
   cursor: pointer;
   height: 100% !important;
+}
+
+.anythingelse
+{
+  color: #535657;
+font-weight: 600;
+padding: 20px 0;
+text-align: center;
+position: relative;
+font-size: 1.1vw;
+
+
+}
+
+.anythingelse:before
+{
+  content: '';
+  position: absolute;
+  width: 50px;
+  top: 50%;
+  border-top: 1px solid #cacaca;
+  right: 6%;
+}
+
+.anythingelse:after
+{
+  content: '';
+position: absolute;
+width: 50px;
+top: 50%;
+left: 6%;
+border-top: 1px solid #cacaca;
+}
+
+.anythingcard
+{
+  display: grid;
+  grid-template-columns: auto auto;
+  grid-column-gap: 1vw;
+  font-size: 1rem;
+  padding: 10px;
+margin-bottom: 10px;
+    background-color: whitesmoke;
+    padding: 1rem;
+}
+
+.anythingimage img
+{
+    width: 6vw;
+}
+
+.anythingtitle
+{
+font-size: 1.1vw;
+}
+
+.anythingprod
+{
+  display: grid;
+  grid-template-rows: auto auto;
+  align-items: center;
+  align-content: space-around;
+  grid-row-gap: 1vw;
+}
+
+.anythingdesc
+{
+display: grid;
+grid-template-columns: auto auto;
+grid-row-gap: 1vw;
+}
+
+.anythingorder
+{
+  border: 1px solid #dc3836e0;
+  text-align: center;
+  background-color: #fff;
+  color: #dc3836e0;
+  padding-top: 2%;
+  padding-down: 2%;
+  cursor: pointer;
+}
+
+.anythingprice
+{
+
 }
 
 
@@ -649,7 +741,7 @@ text-decoration: none;
   display: grid;
 grid-rows: repeat(5,1fr);
   align-content: space-evenly;
-  background-color: #f9f9f9;
+  /* background-color: #f9f9f9; */
   padding-left: 4%;
   padding-right: 4%;
 }
@@ -776,7 +868,7 @@ grid-rows: repeat(5,1fr);
 }
 
 /* footer css started */
-
+/*
 .footer_wrapper h1
 {
   font-weight: bolder;
@@ -788,13 +880,13 @@ grid-rows: repeat(5,1fr);
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   /* grid-column-gap: 2rem; */
-  justify-content: space-evenly;
+  /* justify-content: space-evenly; */
   /* align-items: center; */
-  background-color: black;
+  /* background-color: black;
   color: #fff;
   grid-gap: 2rem;
-    padding: 3%;
-}
+    padding: 3%; */
+/* }
 
 .footer_social_icon
 {
@@ -811,14 +903,14 @@ grid-rows: repeat(5,1fr);
 .footer_text
 {
   line-height: 1.3rem;
-}
+} */
 
 /* footer
 {
   margin-bottom: 0px;
 } */
 
-.footer_lower
+/* .footer_lower
 {
   font-size: 1.3rem;
  text-align: center;
@@ -830,15 +922,81 @@ grid-rows: repeat(5,1fr);
  align-content: center;
  justify-content: center;
 
-}
+} */
 
 
-.footer_wrapper a
+/* .footer_wrapper a
 {
 
   color:#fff;
+}  */
+
+footer
+{
+      padding: 0px;
+      padding-left: 13%;
+      padding-right: 17%;
+      background-color: #282C35;
+      padding-top: 2%;
+      padding-bottom: 2%;
+      color: #fff;
 }
 
+
+
+.footerdiv
+{
+  margin-top: 2%;
+  padding-top: 1.5%;
+   padding-bottom: 1.5%;
+color: #cdcdcd;
+display: grid;
+grid-template-columns: auto auto;
+align-items: center;
+justify-content: space-between;
+padding-left: 2%;
+padding-right: 2%;
+border-top: 1px solid #3C3F46;
+border-bottom: 1px solid #3C3F46;
+}
+
+.footerul1
+{
+  display: grid;
+grid-template-columns: auto auto auto auto;
+grid-column-gap: 1.2vw;
+font-size: 1.06vw;
+}
+
+.footerul2
+{
+  display: grid;
+grid-template-columns: auto auto auto auto;
+grid-column-gap: 1.2vw;
+}
+
+/* .footerul2 > li
+{
+  background: rgba(0,0,0,.3);
+  padding: 6%;
+  border-radius: 50%;
+} */
+
+
+.footer_last_line
+{
+      margin-top: 5%;
+text-align: center;
+color: #9a9a9a;
+opacity: .5;
+}
+
+.footerimg
+{
+  width: 14vw;
+}
+
+/* footer css ends */
 .sm_links
 {
   text-align: center;
@@ -895,6 +1053,37 @@ grid-row-gap: 1rem;
   }
 /* Mobile css */
 @media only screen and (max-width: 768px) {
+
+
+  .footer_last_line
+  {
+    font-size: 2vw;
+  }
+
+  .footerimg
+  {
+    width: 29.5vw;
+  }
+
+  .footerul1
+  {
+    grid-template-columns: auto auto;
+font-size: 3.06vw;
+line-height: 6vw;
+  }
+
+  .footerul2
+  {
+    grid-template-rows: auto auto auto auto;
+grid-template-columns: auto;
+grid-row-gap: 1.2vw;
+  }
+
+  .footerdiv
+  {
+    padding-top: 4.5%;
+        padding-bottom: 4.5%;
+  }
 
     /* For mobile phones: */
     body

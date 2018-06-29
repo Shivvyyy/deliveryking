@@ -127,6 +127,9 @@ console.log(product,el, "something");
               htmlText.removeChild(children[i]);
 
           htmlText.innerHTML = cartOrder;
+
+
+
           // htmlText.innerHTML += oldhtmlText;
 
           var cart = {};
@@ -151,10 +154,51 @@ console.log(product,el, "something");
             var subTotal = 0;
         sessionCartObj.items.forEach(function(productCart,index){
           subTotal += productCart.price*productCart.quantity;
-
         });
+
+
           if(document.querySelector(".cart_order_place")!==null)
            document.querySelector('.cart_order_place').innerHTML = 'Place order (Rs. ' + subTotal + ')';
+
+           var xhttp = new XMLHttpRequest();
+ xhttp.onreadystatechange = function() {
+     if (this.readyState == 4 && this.status == 200) {
+        // Typical action to be performed when the document is ready:
+        let randProds = JSON.parse(this.response);
+        let htmlText2 = document.querySelector('.anythingdiv');
+
+        htmlText2.innerHTML +=
+        `<div class="anythingelse">
+          Anything Else
+        </div>`;
+
+       randProds.forEach(function(product,index){
+         console.log(product);
+         htmlText2.innerHTML += `
+         <div class="anythingcard">
+           <div class="anythingimage">
+             <img src="http://deliverykings.co.in/uploads/${product.prodImg}" alt="" />
+           </div>
+           <div class="anythingprod">
+             <div class="anythingtitle">${product.name}</div>
+             <div class="anythingdesc">
+         <div class="anythingprice">Rs ${product.price}</div>
+         <div class="anythingorder ">ORDER</div>
+             </div>
+           </div>
+
+
+         </div>`;
+
+       });
+
+       // htmlText.innerHTML += '</div>';
+
+     }
+ };
+ xhttp.open("GET", "/random", true);
+ xhttp.send();
+
         }
 
 
