@@ -968,11 +968,26 @@ grid-column-gap: 1.2vw;
 font-size: 1.06vw;
 }
 
+.footerul1 li
+{
+  cursor: pointer;
+}
+
+.footerul2 li
+{
+  cursor: pointer;
+}
+
 .footerul2
 {
   display: grid;
 grid-template-columns: auto auto auto auto;
 grid-column-gap: 1.2vw;
+}
+
+footer a
+{
+  all:unset;
 }
 
 /* .footerul2 > li
