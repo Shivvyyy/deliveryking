@@ -419,8 +419,9 @@ router.get('/checkorder/:orderId/:price',(req,res,next)=>{
   Order.find({ order_id : id })
     .exec()
     .then(result => {
-
-      if(result.money==price)
+      console.log(result);
+      console.log('shivy printed');
+      if(result.total==price)
     {
       res.status(200).json({
         message: "Amount Verified Successfully.",
