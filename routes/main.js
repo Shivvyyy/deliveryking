@@ -377,7 +377,7 @@ router.get('/random', function(req, res, next) {
     else{
 
   res.json(products);
-  
+
     }
 
 });
@@ -410,6 +410,37 @@ router.get('/order/:orderId',(req,res,next)=>{
 });
 
 
+
+router.get('/checkorder/:orderId/:price',(req,res,next)=>{
+  const id = req.params.orderId;
+  const price  = req.params.price;
+  console.log("shivy it is coming here");
+
+  Order.find({ _id: id })
+    .exec()
+    .then(result => {
+
+      if(result.money==price)
+    {
+      res.status(200).json({
+        message: "Amount Verified Successfully.",
+      });
+    }
+    else
+    {
+      res.status(401).json({
+        message: "Amount is not Valid.",
+      });
+    }
+
+    })
+    .catch(err => {
+      console.log(err);
+      res.status(500).json({
+        error: err
+      });
+    });
+});
 
 //export mainRoutes
 

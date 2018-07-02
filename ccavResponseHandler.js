@@ -27,37 +27,52 @@ exports.postRes = function(request,response){
         mobileNo =table[mobileNo];
         var orderStatus =  (table.indexOf("order_status"))+1;
         orderStatus =table[orderStatus];
+        var amount =  (table.indexOf("amount"))+1;
+        amount =table[amount];
         console.log(mobileNo);
         console.log(orderId);
+        console.log(amount);
 
         if(orderStatus!=='Failure')
-        {
 
-   http.get(`http://makemysms.in/api/sendsms.php?username=MOBIAPI&password=makemysms@123&sender=MOBSFT&mobile=${mobileNo}&type=1&product=1&message=Your order has been successfully fulfiled. Order Id: ${orderId}`, (resp) => {
-     var data = '';
+        http.get(`/checkorder/${orderId}/${amount}`, function(res) {
+   console.log("Got response: " + res.statusCode);
+    if(res.statusCode==200)
+    {
+      http.get(`http://makemysms.in/api/sendsms.php?username=MOBIAPI&password=makemysms@123&sender=MOBSFT&mobile=${mobileNo}&type=1&product=1&message=Your order has been successfully fulfiled. Order Id: ${orderId}`, (resp) => {
+        var data = '';
 
-     // A chunk of data has been recieved.
-     resp.on('data', (chunk) => {
-       data += chunk;
-     });
+        // A chunk of data has been recieved.
+        resp.on('data', (chunk) => {
+          data += chunk;
+        });
 
-     // The whole response has been received. Print out the result.
-     resp.on('end', () => {
-       console.log(JSON.parse(data));
-       console.log(orderId);
-       console.log("shivyan");
-       http.get(`http://deliverykings.co.in/order/${orderId}`, function(res) {
-  console.log("Got response: " + res.statusCode);
-    response.redirect('/?success=true');
-}).on('error', function(e) {
-  console.log("Got error: " + e.message);
-});
-
-     });
-
-   }).on("error", (err) => {
-     console.log("Error: " + err.message);
+        // The whole response has been received. Print out the result.
+        resp.on('end', () => {
+          console.log(JSON.parse(data));
+          console.log(orderId);
+          console.log("shivyan");
+          http.get(`http://deliverykings.co.in/order/${orderId}`, function(res) {
+     console.log("Got response: " + res.statusCode);
+       response.redirect('/?success=true');
+   }).on('error', function(e) {
+     console.log("Got error: " + e.message);
    });
+
+        });
+
+      }).on("error", (err) => {
+        console.log("Error: " + err.message);
+      });
+    }
+    else response.redirect('/?success=false');
+ }).on('error', function(e) {
+   console.log("Got error: " + e.message);
+ });
+
+
+
+
 
    }
    else

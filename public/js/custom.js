@@ -46,13 +46,11 @@ document.addEventListener("DOMContentLoaded", function(event) {
           htmlText.innerHTML += cartOrder;
 
 
-
-
   });
   document.querySelector(".cart_quan").innerText = cart_quantity;
       document.querySelector(".cartOrders").style.display = "block";
-
 }
+
 
 
 
@@ -183,7 +181,7 @@ console.log(product,el, "something");
              <div class="anythingtitle">${product.name}</div>
              <div class="anythingdesc">
          <div class="anythingprice">Rs ${product.price}</div>
-         <div class="anythingorder ">ORDER</div>
+         <div class="anythingorder" onclick="addIt('${product._id}',this,'${product.name}','${product.price}','${product.prodImg}','${product.nonVeg}')">ORDER</div>
              </div>
            </div>
 
@@ -541,6 +539,9 @@ function removeItem(id,el,checkout)
             empty_image +=  '<h2 class="cart_empty_text"> Please Fill It</h2>';
 
             document.querySelector(".cartOrders").innerHTML = empty_image;
+            document.querySelector(".anythingdiv").innerHTML = '';
+
+
             sessionStorage.clear();
 
             sessionStorage.removeItem("cart");

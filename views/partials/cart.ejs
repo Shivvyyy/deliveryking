@@ -48,8 +48,20 @@ if (this.readyState == 4 && this.status == 200) {
      Anything Else
    </div>`;
 
+
+
   randProds.forEach(function(product,index){
     console.log(product);
+    var checkDouble = 0
+    var sessionCart = JSON.parse(sessionStorage.getItem("cart"));
+    sessionCart.items.some(function(cartProduct,index){
+        if(cartProduct._id==product._id) checkDouble++;
+
+  });
+
+  if(!checkDouble)
+  {
+    alert("herejjhjn");
     htmlText2.innerHTML += `
     <div class="anythingcard">
       <div class="anythingimage">
@@ -59,12 +71,14 @@ if (this.readyState == 4 && this.status == 200) {
         <div class="anythingtitle">${product.name}</div>
         <div class="anythingdesc">
     <div class="anythingprice">Rs ${product.price}</div>
-    <div class="anythingorder ">ORDER</div>
+    <div class="anythingorder" onclick="addIt('${product._id}',this,'${product.name}','${product.price}','${product.prodImg}','${product.nonVeg}')">ADD</div>
         </div>
       </div>
 
 
     </div>`;
+}
+
 
   });
 
@@ -76,6 +90,102 @@ xhttp.open("GET", "/random", true);
 xhttp.send();
 		}
 	});
+
+function addIt(id,thisone,name,price,img,type)
+{
+  alert(id);
+  alert(name);
+  alert(price);
+  alert(img);
+  alert(type);
+    thisone.parentElement.parentElement.parentElement.remove();
+
+
+  if(document.getElementById('torto'+id))
+    document.getElementById('torto'+id).click();
+
+    else
+    {
+
+
+            alert("in else");
+
+           var htmlText =  document.querySelector('.cartOrders');
+           var cartOrder = '';
+          cartOrder += '<div class="cart_order">';
+          cartOrder += '<div class="cart_order_title"><span>';
+          if(type)
+            cartOrder +=   '<img src="../img/non-veg-icon.png" class="food_icon_cart">';
+          else
+            cartOrder +=   '<img src="../img/veg-icon.png" class="food_icon_cart">';
+             cartOrder += '&nbsp;'+name+'</div>';
+               var productId = "'"+id+"'";
+            cartOrder += '<div class="cart_order_close" onclick="removeItem('+productId+',this)">';
+            cartOrder +=  '<i class="fa fa-times"></i>';
+             cartOrder += '</div>';
+             cartOrder += '<div class="cart_order_quantity">';
+              cartOrder += '<div id="input_div">';
+              cartOrder +=  '<input type="button" value="-" id="moins" onclick="minus('+productId+')">';
+              cartOrder += '<input type="text" data-val="'+price+'" value="1" id="'+id+'" disabled>';
+              cartOrder += '<input type="button" value="+" id="plus" onclick="plus('+productId+')">';
+              cartOrder += '</div>';
+              cartOrder += '</div>';
+
+             cartOrder += '<div class="cart_order_price">';
+              cartOrder += 'Rs <span>'+price +'</span>';
+              cartOrder += '</div>';
+
+            cartOrder += '</div>';
+
+
+                 sessionCart = JSON.parse(sessionStorage.getItem("cart"));
+
+
+                 var oldhtmlText = htmlText.innerHTML;
+                 for(var i = 0; i < htmlText.length; i++)
+                     htmlText.removeChild(children[i]);
+
+                 htmlText.innerHTML = cartOrder;
+                 htmlText.innerHTML += oldhtmlText;
+
+       var item = {};
+       item._id = id;
+       item.quantity = 1;
+       item.price = price;
+       item.name = name;
+       item.nonVeg = type;
+       console.log(sessionCart);
+       sessionCart.items.push(item);
+
+       sessionStorage.setItem("cart",JSON.stringify(sessionCart));
+     //   var subTotal = 0;
+     // sessionCart.items.forEach(function(productCart,index){
+     //   document.querySelector('.cart_order_place').innerHTML = 'Place order (Rs. ' + subTotal + ')';
+     // });
+
+
+     var sessionCart =  JSON.parse(sessionStorage.getItem("cart"));
+
+     console.log(sessionCart, "hello tets");
+
+
+     var subTotal = 0;
+     sessionCart.items.forEach(function(productCart,index){
+       subTotal += productCart.price*productCart.quantity;
+       if(document.querySelector(".cart_order_place")!==null)
+       document.querySelector('.cart_order_place').innerHTML = 'Place order (Rs. ' + subTotal + ')';
+     });
+
+
+
+    }
+
+
+        document.querySelector(".cart_quan").innerText = parseInt(document.querySelector(".cart_quan").innerText) + 1;
+
+}
+
+
 
 </script>
 

@@ -309,7 +309,7 @@ xhr.onload = function (e) {
               }
             });
           }
-            if(!check) div +=  '<div class="order_btn" onclick="openNav('+productId+',this);">Add To Cart</div>';
+            if(!check) div +=  '<div class="order_btn" id="torto'+product._id+'" onclick="openNav('+productId+',this);">Add To Cart</div>';
               div +=  '</div>';
               div +=   '</div>';
 
@@ -424,7 +424,7 @@ function loadAll(thisOne,category, callback)
          }
        });
      }
-       if(!check) div +=  '<div class="order_btn" onclick="openNav('+productId+',this);">Add To Cart</div>';
+       if(!check) div +=  '<div class="order_btn" id="torto'+product._id+'" onclick="openNav('+productId+',this);">Add To Cart</div>';
          div +=  '</div>';
          div +=   '</div>';
          tmpEl.innerHTML += div;
