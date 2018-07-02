@@ -235,7 +235,7 @@ router.post('/gateway-order', function(req, res, next) {
     }
     else
     {
-    res.status(201).json({order_id:result._id});
+    res.status(201).json({result});
    }
   });
 });
