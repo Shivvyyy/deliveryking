@@ -416,7 +416,7 @@ router.get('/checkorder/:orderId/:price',(req,res,next)=>{
   const price  = req.params.price;
   console.log("shivy it is coming here");
 
-  Order.find({ _id: id })
+  Order.find({ order_id : id })
     .exec()
     .then(result => {
 
