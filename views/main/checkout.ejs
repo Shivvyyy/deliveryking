@@ -763,7 +763,7 @@ xhttp.onreadystatechange = function() {
     document.getElementById("orderId").setAttribute('value',JSON.parse(this.responseText).order_id);
     document.getElementById("money").setAttribute('value',document.getElementById('checkout_money').innerText);
       document.getElementById("billingTel").  setAttribute('value',document.getElementById("pac-input3").value);
-      alert("stop here");
+      // alert("stop here");
       document.getElementById("myForm").submit();
   }
 };
