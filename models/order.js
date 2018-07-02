@@ -17,8 +17,7 @@ var CartSchema = new Schema({
   customerEmail: {type:String,required:true},
   date: {type:String},
   time: {type:String},
-  successful: {type:Boolean,required:true},
-  money: {type: Number}
+  successful: {type:Boolean,required:true}
 });
 
 
