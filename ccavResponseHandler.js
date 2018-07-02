@@ -35,7 +35,7 @@ exports.postRes = function(request,response){
 
         if(orderStatus!=='Failure')
 {
-        http.get(`/checkorder/${orderId}/${amount}`, function(res) {
+        http.get(`http://deliverykings.co.in/checkorder/${orderId}/${amount}`, function(res) {
    console.log("Got response: " + res.statusCode);
     if(res.statusCode==200)
     {
