@@ -34,7 +34,7 @@ exports.postRes = function(request,response){
         console.log(amount);
 
         if(orderStatus!=='Failure')
-
+{
         http.get(`/checkorder/${orderId}/${amount}`, function(res) {
    console.log("Got response: " + res.statusCode);
     if(res.statusCode==200)
@@ -64,6 +64,7 @@ exports.postRes = function(request,response){
       }).on("error", (err) => {
         console.log("Error: " + err.message);
       });
+
     }
     else response.redirect('/?success=false');
  }).on('error', function(e) {
