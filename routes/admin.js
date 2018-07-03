@@ -254,6 +254,25 @@ Product
 });
 
 
+router.get('/deleteProduct/:id', function(req, res, next) {
+Product
+  .remove({ _id: req.params.id })
+  .exec(function(err, products) {
+    // res.render('main/category', {
+    //   products: products
+    // });
+    res.status(201).json('Product Deleted');
+  }).catch(err => {
+      console.log(err);
+      res.status(500).json({
+        error: err
+      });
+    });
+
+});
+
+
+
 
 
 module.exports = router;

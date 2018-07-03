@@ -449,10 +449,10 @@ font-family: 'Raleway';
 .menu-heading
 {
   color:#dc3836;
-  /* font-family: 'FireontheMountain' !important; */
-  font-size: 4rem;
-  font-weight: 300;
-  text-transform: uppercase;
+  font-family: 'Lato' !important;
+  font-size: 3rem;
+  font-weight: 500;
+  text-transform: capitalize;
 }
 /*
 .line
@@ -668,10 +668,10 @@ transition: all 0.5s;
 
 .food-item-title
 {
-  text-transform: uppercase;
-  /* font-family: 'Calibri',sans-serif; */
+  text-transform: capitalize;
+  font-family: 'Calibri',sans-serif;
   font-weight: bold;
-  font-size: 1.2rem;
+  font-size: 1.3rem;
   color:#343534;
   white-space: nowrap;
   text-overflow: ellipsis;
@@ -681,6 +681,8 @@ transition: all 0.5s;
 
 .food-item-price {
   grid-column: span 2;
+  font-size: 1.2rem !important;
+font-weight: normal !important;
 }
 
 .food-item-price, .order_btn
