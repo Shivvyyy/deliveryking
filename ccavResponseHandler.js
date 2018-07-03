@@ -29,6 +29,8 @@ exports.postRes = function(request,response){
         orderStatus =table[orderStatus];
         var amount =  (table.indexOf("amount"))+1;
         amount =table[amount];
+        var tracking_id = (table.indexOf("tracking_id"))+1;
+        console.log(tracking_id);
         console.log(mobileNo);
         console.log(orderId);
         console.log(amount);
@@ -39,6 +41,11 @@ exports.postRes = function(request,response){
    console.log("Got response: " + res.statusCode);
     if(res.statusCode==200)
     {
+      http.get(`http://deliverykings.co.in/checktrackingid/${tracking_id}`, function(res) {
+  console.log("Got response: " + res.statusCode);
+  if(res.statusCode==200)
+  {
+
       http.get(`http://makemysms.in/api/sendsms.php?username=MOBIAPI&password=makemysms@123&sender=MOBSFT&mobile=${mobileNo}&type=1&product=1&message=Your order has been successfully fulfiled. Order Id: ${orderId}`, (resp) => {
         var data = '';
 
@@ -52,7 +59,7 @@ exports.postRes = function(request,response){
           console.log(JSON.parse(data));
           console.log(orderId);
           console.log("shivyan");
-          http.get(`http://deliverykings.co.in/order/${orderId}`, function(res) {
+          http.get(`http://deliverykings.co.in/order/${orderId}/${tracking_id}`, function(res) {
      console.log("Got response: " + res.statusCode);
        response.redirect('/?success=true');
    }).on('error', function(e) {
@@ -71,6 +78,11 @@ exports.postRes = function(request,response){
    console.log("Got error: " + e.message);
  });
 
+}
+else response.redirect('/?success=false');
+}).on('error', function(e) {
+console.log("Got error: " + e.message);
+});
 
 
 

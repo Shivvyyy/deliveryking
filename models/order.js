@@ -17,6 +17,7 @@ var CartSchema = new Schema({
   customerEmail: {type:String,required:true},
   date: {type:String},
   time: {type:String},
+  tracking_id: {type: Number},
   successful: {type:Boolean,required:true}
 });
 

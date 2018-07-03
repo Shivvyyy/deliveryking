@@ -387,11 +387,13 @@ router.get('/random', function(req, res, next) {
 
 
 
-router.get('/order/:orderId',(req,res,next)=>{
+router.get('/order/:orderId/:trackingId',(req,res,next)=>{
   const id = req.params.orderId;
+  const trackingId = req.params.trackingId;
   console.log("shivy hiteted");
   const updateOps = {};
     updateOps['successful'] = true;
+    updateOps['tracking_id'] = trackingId;
 
   console.log(updateOps);
   Order.update({ _id: id }, { $set: updateOps })
@@ -419,7 +421,6 @@ router.get('/checkorder/:orderId/:price',(req,res,next)=>{
   Order.find({ _id : id })
     .exec()
     .then(result => {
-      console.log(result);
       console.log('shivy printed');
       console.log(result[0].total);
       if(result[0].total==price)
@@ -444,6 +445,39 @@ router.get('/checkorder/:orderId/:price',(req,res,next)=>{
     });
 });
 
+
+
+router.get('/checktrackingid/:trackingId',(req,res,next)=>{
+  const trackingId  = req.params.trackingId;
+  console.log("shivy it is coming here");
+
+  Order.find({ tracking_id : trackingId })
+    .exec()
+    .then(result => {
+      console.log('shivy trackingId');
+      console.log(result[0].tracking_id);
+      if(result.length)
+    {
+      res.status(401).json({
+        message: "Tracking id is not Unique.",
+      });
+    }
+    else
+    {
+      res.status(200).json({
+        message: "Tracking Id is unique.",
+      });
+
+    }
+
+    })
+    .catch(err => {
+      console.log(err);
+      res.status(500).json({
+        error: err
+      });
+    });
+});
 //export mainRoutes
 
 module.exports = router;
