@@ -254,7 +254,7 @@ Product
 });
 
 
-router.get('/deleteProduct/:id', function(req, res, next) {
+router.delete('/deleteProduct/:id', function(req, res, next) {
 Product
   .remove({ _id: req.params.id })
   .exec(function(err, products) {
@@ -267,7 +267,17 @@ Product
 
 });
 
-
+router.delete('/deleteCategory/:id', function(req, res, next) {
+Product
+  .remove({ _id: req.params.id })
+  .exec(function(err, categories) {
+    // res.render('main/category', {
+    //   products: products
+    // });
+        if (err) return next(err);
+    res.status(201).json('Category Deleted');
+  })
+});
 
 
 
