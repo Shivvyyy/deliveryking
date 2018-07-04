@@ -254,25 +254,50 @@ Product
 });
 
 
-router.get('/deleteProduct/:id', function(req, res, next) {
-Product
-  .remove({ _id: req.params.id })
+router.delete('/deleteProduct/:id', function(req, res, next) {
+Product.remove({ _id: req.params.id })
   .exec(function(err, products) {
     // res.render('main/category', {
     //   products: products
     // });
+        if (err) return next(err);
     res.status(201).json('Product Deleted');
-  }).catch(err => {
+  })
+});
+
+router.delete('/deleteCategory/:id', function(req, res, next) {
+Category
+  .remove({ _id: req.params.id })
+  .exec(function(err, categories) {
+    // res.render('main/category', {
+    //   products: products
+    // });
+        if (err) return next(err);
+    res.status(201).json('Category Deleted');
+  })
+});
+
+
+//update product
+router.patch('/updateProduct/:productId', function(req, res, next) {
+  const id = req.params.productId;
+  const updateOps = {};
+  for (const ops of req.body) {
+    updateOps[ops.propName] = ops.value;
+  }
+  Product.update({ _id: id }, { $set: updateOps })
+    .exec()
+    .then(result => {
+      res.status(200).json({
+        message: "Product updated"
+      });
+    })
+    .catch(err => {
       console.log(err);
       res.status(500).json({
         error: err
       });
     });
-
-});
-
-
-
-
+  });
 
 module.exports = router;
