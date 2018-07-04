@@ -254,9 +254,8 @@ Product
 });
 
 
-router.get('/deleteProduct/:id', function(req, res, next) {
-Product
-  .remove({ _id: req.params.id })
+router.delete('/deleteProduct/:id', function(req, res, next) {
+Product.remove({ _id: req.params.id })
   .exec(function(err, products) {
     // res.render('main/category', {
     //   products: products
@@ -264,8 +263,20 @@ Product
         if (err) return next(err);
     res.status(201).json('Product Deleted');
   })
-
 });
+
+router.delete('/deleteCategory/:id', function(req, res, next) {
+Category
+  .remove({ _id: req.params.id })
+  .exec(function(err, categories) {
+    // res.render('main/category', {
+    //   products: products
+    // });
+        if (err) return next(err);
+    res.status(201).json('Category Deleted');
+  })
+});
+
 
 //update product
 router.patch('/updateProduct/:productId', function(req, res, next) {
@@ -287,8 +298,6 @@ router.patch('/updateProduct/:productId', function(req, res, next) {
         error: err
       });
     });
-});
-
-
+  });
 
 module.exports = router;
