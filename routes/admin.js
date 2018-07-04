@@ -261,13 +261,9 @@ Product
     // res.render('main/category', {
     //   products: products
     // });
+        if (err) return next(err);
     res.status(201).json('Product Deleted');
-  }).catch(err => {
-      console.log(err);
-      res.status(500).json({
-        error: err
-      });
-    });
+  })
 
 });
 
