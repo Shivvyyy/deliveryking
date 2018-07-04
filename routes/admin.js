@@ -261,17 +261,33 @@ Product
     // res.render('main/category', {
     //   products: products
     // });
+        if (err) return next(err);
     res.status(201).json('Product Deleted');
-  }).catch(err => {
+  })
+
+});
+
+//update product
+router.patch('/updateProduct/:productId', function(req, res, next) {
+  const id = req.params.productId;
+  const updateOps = {};
+  for (const ops of req.body) {
+    updateOps[ops.propName] = ops.value;
+  }
+  Product.update({ _id: id }, { $set: updateOps })
+    .exec()
+    .then(result => {
+      res.status(200).json({
+        message: "Product updated"
+      });
+    })
+    .catch(err => {
       console.log(err);
       res.status(500).json({
         error: err
       });
     });
-
 });
-
-
 
 
 

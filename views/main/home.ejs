@@ -25,15 +25,66 @@
     <div class="search_button">
       <button class="srch_btn" value="" id="search_btn" onclick="searchProd(this);">Search</button>
     </div>
+
   </div>
 
 
   <div class="fullscreen-video-wrap">
 
    <!-- <video src="../video/dK-slider_video.mp4" autoplay="" loop="" muted> -->
-   <img src= "../img/banner.gif" class="hero_img" />
+   <!-- <img src= "../img/banner.gif" class="hero_img" /> -->
  <!-- <video src="../video/banner-video.mp4" class="hero_img" autoplay width="100%" loop muted></video> -->
- <img src= "../img/bg.png" class="hero_img313" />
+ <!-- <img src= "../img/bg.png" class="hero_img313" /> -->
+
+ <div id="categorySlider" class="slider">
+         <div class="slider__viewport">
+           <ul class="slider__slides slide-list js-slide-list" style ="left: -100%">
+             <li class="slide-list__item js-slide-list-item" data-slide-index="0">
+               <!-- <div class="slide-list__content-area">Custom HTML Slide 1</div> -->
+               <img class="slide-list__image" src="https://images.pexels.com/photos/162971/potatoes-french-mourning-funny-162971.jpeg?auto=compress&cs=tinysrgb&h=350">
+             </li>
+             <li class="slide-list__item js-slide-list-item" data-slide-index="1">
+               <!-- <div class="slide-list__content-area">Custom HTML Slide 2</div> -->
+               <img class="slide-list__image" src="https://images.pexels.com/photos/958545/pexels-photo-958545.jpeg?auto=compress&cs=tinysrgb&h=350">
+             </li>
+             <li class="slide-list__item js-slide-list-item" data-slide-index="2">
+               <!-- <div class="slide-list__content-area">Custom HTML Slide 3</div> -->
+                <img class="slide-list__image" src="https://images.pexels.com/photos/247685/pexels-photo-247685.png?auto=compress&cs=tinysrgb&h=350">
+             </li>
+             <li class="slide-list__item js-slide-list-item" data-slide-index="3">
+               <!-- <div class="slide-list__content-area">Custom HTML Slide 4</div> -->
+               <img class="slide-list__image" src="https://images.pexels.com/photos/5317/food-salad-restaurant-person.jpg?auto=compress&cs=tinysrgb&h=350">
+             </li>
+             <li class="slide-list__item js-slide-list-item" data-slide-index="4">
+               <!-- <div class="slide-list__content-area">Custom HTML Slide 5</div> -->
+               <img class="slide-list__image" src="https://images.pexels.com/photos/461198/pexels-photo-461198.jpeg?auto=compress&cs=tinysrgb&h=350">
+             </li>
+              <li class="slide-list__item js-slide-list-item" data-slide-index="5">
+               <!-- <div class="slide-list__content-area">Custom HTML Slide 6</div> -->
+               <img class="slide-list__image" src="https://images.pexels.com/photos/1095550/pexels-photo-1095550.jpeg?auto=compress&cs=tinysrgb&h=350">
+             </li>
+           </ul>
+         </div>
+         <div class="slider__controls">
+           <button type="button" data-direction="prev" class="js-arrow-button slider__button slider__button--prev "><</button>
+           <button type="button" data-direction="next " class="js-arrow-button slider__button slider__button--next">></button>
+             <!-- <div class="slider-pager">
+               <button class="slider-pager__item js-pager-item" type="button" data-slide-index="0">1</button>
+               <button class="slider-pager__item js-pager-item" type="button" data-slide-index="1">2</button>
+               <button class="slider-pager__item js-pager-item" type="button" data-slide-index="2">3</button>
+               <button class="slider-pager__item js-pager-item" type="button" data-slide-index="3">4</button>
+               <button class="slider-pager__item js-pager-item" type="button" data-slide-index="4">5</button>
+               <button class="slider-pager__item js-pager-item" type="button" data-slide-index="5">6</button>
+             </div> -->
+         </div>
+   </div>
+
+
+
+ </div>
+
+
+ <div class="">
  </div>
  <!-- <div class="overlay"></div> -->
   <!-- <div class="header-overlay"></div> -->
@@ -183,6 +234,8 @@
 
 <script>
 document.addEventListener("DOMContentLoaded", function(event) {
+
+    new Slider('categorySlider').init();
 
   if(window.location.search=='?success=true')
   {
@@ -671,6 +724,158 @@ function scrollFunction() {
   }
   }
 }
+
+//slider JavaScript
+var Slider = function ( id ){
+  this.slider = document.getElementById( id );
+  this.slideList = this.slider.getElementsByClassName('js-slide-list')[0];
+  this.slideListItems = this.slider.getElementsByClassName('js-slide-list-item');
+  this.slideWidth = this.slideListItems[0].offsetWidth;
+  this.slidesLength = this.slideListItems.length;
+  // Means we're at slide 0 (Slide 1)
+  this.current = 1;
+  this.direction;
+  this.animating = false;
+
+};
+
+Slider.prototype = {
+  constructor : Slider,
+  init : function(){
+    this.listenEvents();
+    this.cloneFirstAndLastItem();
+  },
+
+  listenEvents : function(){
+    var that = this;
+    var arrowButtons = this.slider.getElementsByClassName('js-arrow-button');
+    for (var i = 0; i < arrowButtons.length; i++) {
+      arrowButtons[i].addEventListener('click', function(){
+        that.clickArrowButton( this );
+      });
+    };
+    var pagerItems = this.slider.getElementsByClassName('js-pager-item');
+    for (var i = 0; i < pagerItems.length; i++){
+      pagerItems[i].addEventListener('click', function(){
+        that.clickPagerItem( this );
+      });
+    };
+  },
+
+  cloneFirstAndLastItem : function(){
+    var firstSlide = this.slideListItems[0];
+    var lastSlide = this.slideListItems[ this.slidesLength - 1 ];
+    var firstSlideClone = firstSlide.cloneNode( true );
+    var lastSlideClone = lastSlide.cloneNode( true );
+
+    // Remove data-slide-index for pager items to choose correct target
+    firstSlideClone.removeAttribute('data-slide-index');
+    lastSlideClone.removeAttribute('data-slide-index');
+
+    this.slideList.appendChild( firstSlideClone );
+    this.slideList.insertBefore( lastSlideClone, firstSlide );
+  },
+
+  clickArrowButton : function( el ){
+    var direction = el.getAttribute('data-direction');
+    var pos = parseInt( this.slideList.style.left ) || 0;
+    var newPos;
+    // direction will be added to current slide number
+    this.direction = direction === 'prev' ? -1 : 1;
+    newPos = pos + ( -1 * 100 * this.direction );
+    if( !this.animating ) {
+      this.slideTo(this.slideList, function( progress ){
+        return Math.pow(progress, 2);
+      }, pos, newPos, 500);
+      // Update current slide number
+      this.current += this.direction;
+    }
+  },
+
+  clickPagerItem : function( el ){
+    var slideIndex = el.getAttribute('data-slide-index');
+    var targetSlide = this.slider.querySelector('.js-slide-list-item[data-slide-index="' + slideIndex +'"]');
+    var pos = parseInt( this.slideList.style.left ) || 0;
+    var newPos = Math.round( targetSlide.offsetLeft / targetSlide.offsetWidth ) * 100 * -1;
+
+    if( !this.animating && pos !== newPos ){
+      this.slideTo(this.slideList, function( progress ){
+        return Math.pow(progress, 2);
+      }, pos, newPos, 500);
+      // Update current slide number
+      this.current = parseInt(slideIndex) + 1;
+    }
+
+  },
+
+
+  slideTo : function( element, deltaFunc, pos, newPos, duration ){
+   this.animating = true;
+   this.animate({
+     delay: 20,
+     duration: duration || 1000,
+     deltaFunc: deltaFunc,
+     step: function( delta ){
+       var direction = pos > newPos ? 1 : -1
+       element.style.left = pos  + Math.abs(newPos - pos) * delta * direction * -1 + '%';
+
+       // PREV
+       // Direction: -1
+       // Pos = -600
+       // newPos = 0
+       // Ex: Slide 4 (0px) <- Slide 1 (-600px)
+       //element.style.left = -600  + Math.abs(0 - (-600)) * 0.021 * -1 * -1+ 'px';
+
+       // NEXT
+       // Direction: +1
+       // Pos = -600
+       // newPos = -1200
+       // Next: Slide 1 (-600px) -> Slide 2 (-1200px)
+       //element.style.left = -600  + Math.abs( -600 - (-1200) ) * 0.021 * 1 * -1 + 'px';
+
+     }
+   });
+  },
+
+  animate : function( opts ){
+    var that = this;
+    var start = new Date();
+    var id = setInterval(function(){
+      var timePassed = new Date - start;
+      var progress = timePassed / opts.duration;
+
+      if( progress > 1 ) {
+        progress = 1;
+      }
+      var delta = opts.deltaFunc( progress );
+      opts.step( delta );
+
+      if( progress === 1 ){
+        clearInterval( id );
+        that.animating = false;
+        that.checkCurrentSlide();
+      }
+    }, opts.delay || 10 );
+  },
+
+  checkCurrentSlide : function( ){
+    var cycle = false;
+    //this.current += this.direction;
+    // Are we at the cloned slides?
+    cycle = !!( this.current === 0 || this.current > this.slidesLength )
+    if ( cycle ) {
+      // update current in order to adapt new slide list
+      // we'll use current value to relocate slide list
+      this.current = ( this.current === 0 ) ? this.slidesLength : 1;
+      // For 4 x 600px slides,
+      // left pos will be either -600px (first slide clone -> first slide)       // or -2400px (last slide clone -> fourth slide)
+      this.slideList.style.left = ( -1 * this.current * 100 ) + '%';
+    }
+
+  }
+};
+
+
 
 </script>
 
