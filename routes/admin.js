@@ -281,6 +281,8 @@ Category
 //update product
 router.patch('/updateProduct/:productId', function(req, res, next) {
   const id = req.params.productId;
+  console.log(req.body);
+  console.log("shivy log this");
   const updateOps = {};
   for (const ops of req.body) {
     updateOps[ops.propName] = ops.value;
