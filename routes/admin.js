@@ -268,7 +268,7 @@ Product
 });
 
 router.delete('/deleteCategory/:id', function(req, res, next) {
-Product
+Category
   .remove({ _id: req.params.id })
   .exec(function(err, categories) {
     // res.render('main/category', {
