@@ -7,26 +7,7 @@
 
 <header>
 <% include ./../partials/cart %>
-  <div class="slider_content">
-    <!-- <div class="dropdown">
-      <button class="dropbtn">City <span class="fa fa-caret-down"></span></button>
-      <div class="dropdown-content">
-        <a href="#">Delhi</a>
-        <a href="#">Noida</a>
-        <a href="#">Gurgaon</a>
-      </div>
-    </div> -->
 
-    <div class="input-field autocomplete">
-      <span class="search-icon"><i class="fas fa-search"></i></span>
-      <input type="text" id="myInput" placeholder="Italian, Chinese, Indian and more..." autocomplete="off"/>
-    </div>
-
-    <div class="search_button">
-      <button class="srch_btn" value="" id="search_btn" onclick="searchProd(this);">Search</button>
-    </div>
-
-  </div>
 
 
   <div class="fullscreen-video-wrap">
@@ -79,13 +60,41 @@
          </div>
    </div>
 
+<!-- search div -->
+   <div class="searchbardiv">
+     <div class="searchbardivimg">
+       <img src="https://s3-ap-southeast-1.amazonaws.com/foodvista.1/724a1b67-8be3-41d9-80cd-4aa54af602eb.jpg" alt="" />
+     </div>
+  <div class="searchbardivinner">
 
+    <div class="searchbardivinner2">
+      <div class="slider_content">
+
+
+        <div class="input-field autocomplete">
+          <span class="search-icon"><i class="fas fa-search"></i></span>
+          <input type="text" id="myInput" placeholder="Italian, Chinese, Indian and more..." autocomplete="off" />
+        </div>
+
+        <div class="search_button">
+          <button class="srch_btn" value="" id="search_btn" onclick="searchProd(this);">Search</button>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="searchbardivinner1">
+      Try Us Out With Great Offers
+    </div>
+
+  </div>
+
+   </div>
 
  </div>
 
 
- <div class="">
- </div>
+
  <!-- <div class="overlay"></div> -->
   <!-- <div class="header-overlay"></div> -->
 </header>
@@ -155,71 +164,7 @@
 
 
 
-<div class="foodSlider">
-  <!-- Start cssSlider.com -->
-  <div class='csslider1 autoplay '>
-    <input name="cs_anchor1" id='cs_slide1_0' type="radio" class='cs_anchor slide' >
-    <input name="cs_anchor1" id='cs_slide1_1' type="radio" class='cs_anchor slide' >
-    <input name="cs_anchor1" id='cs_slide1_2' type="radio" class='cs_anchor slide' >
-    <input name="cs_anchor1" id='cs_play1' type="radio" class='cs_anchor' checked>
-    <input name="cs_anchor1" id='cs_pause1' type="radio" class='cs_anchor' >
-    <ul>
-      <div style="width: 100%; visibility: hidden; font-size: 0px; line-height: 0;">
-        <img src="../img/Slider1.jpg" style="width: 100%;">
-      </div>
-      <li class='num0 img'>
-         <a href="#" target=""><img src='../img/Slider1.jpg' alt='Buns' title='' /> </a>
-      </li>
-      <li class='num1 img'>
-         <a href="#" target=""><img src='../img/Slider2.jpg' alt='Croissant' title='' /> </a>
-      </li>
-      <li class='num2 img'>
-         <a href="#" target=""><img src='../img/Slider3.jpg' alt='Lemon pie' title='' /> </a>
-      </li>
 
-    </ul>
-    <!-- <div class='cs_description'>
-      <label class='num0'>
-        <span class="cs_title"><span class="cs_wrapper">Buns</span></span>
-      </label>
-      <label class='num1'>
-        <span class="cs_title"><span class="cs_wrapper">Croissant</span></span>
-      </label>
-      <label class='num2'>
-        <span class="cs_title"><span class="cs_wrapper">Lemon pie</span></span>
-      </label>
-    </div> -->
-
-    <!-- <div class='cs_arrowprev'>
-      <label class='num0' for='cs_slide1_0'></label>
-      <label class='num1' for='cs_slide1_1'></label>
-      <label class='num2' for='cs_slide1_2'></label>
-    </div>
-    <div class='cs_arrownext'>
-      <label class='num0' for='cs_slide1_0'></label>
-      <label class='num1' for='cs_slide1_1'></label>
-      <label class='num2' for='cs_slide1_2'></label>
-    </div> -->
-
-    <div class='cs_bullets'>
-      <label class='num0' for='cs_slide1_0'>
-        <span class='cs_point'></span>
-        <span class='cs_thumb'><img src='../img/Slider1.jpg' alt='Buns' title='Buns' /></span>
-      </label>
-      <label class='num1' for='cs_slide1_1'>
-        <span class='cs_point'></span>
-        <span class='cs_thumb'><img src='../img/Slider2.jpg' alt='Croissant' title='Croissant' /></span>
-      </label>
-      <label class='num2' for='cs_slide1_2'>
-        <span class='cs_point'></span>
-        <span class='cs_thumb'><img src='../img/Slider3.jpg' alt='Lemon pie' title='Lemon pie' /></span>
-      </label>
-    </div>
-    </div>
-    <!-- End cssSlider.com -->
-
-  <br /><br />
-</div>
 
 <div class="" id="home_mains">
 </div>
@@ -687,7 +632,7 @@ function scrollFunction() {
     document.getElementById("logoImage").src="../img/logo5.png";
     document.querySelector(".logo").style.marginLeft = "20%";
     document.querySelector(".logo img").style.width = "60%";
-    document.querySelector(".featured_happy_wrapper").style.marginTop = "6%";
+    document.querySelector(".featured_happy_wrapper").style.marginTop = "-5%";
 
     if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) )
     {
@@ -712,12 +657,12 @@ function scrollFunction() {
     // document.getElementById("navbar").style.top = "-50px";
       document.getElementById("mainNav").style.borderBottom = "none";
       document.getElementById("mainNav").style.position = "relative";
-      document.getElementById("mainNav").style.background = "none";
+      document.getElementById("mainNav").style.background = "#000";
       document.getElementById("logoImage").src="../img/dk_logo.png";
       document.querySelector(".logo").style.marginLeft = "0px";
       document.querySelector(".logo img").style.width = "14vw";
       document.querySelector(".logo").style.height = "4vw";
-      document.querySelector(".featured_happy_wrapper").style.marginTop = "0px";
+      document.querySelector(".featured_happy_wrapper").style.marginTop = "-5%";
       var elements =   document.getElementById("mainNav").querySelectorAll("a");
   for (var i = 0; i < elements.length; i++) {
       elements[i].style.color="#fff";
