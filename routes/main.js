@@ -422,7 +422,7 @@ router.get('/checkorder/:orderId/:price',(req,res,next)=>{
     .exec()
     .then(result => {
       console.log('shivy printed');
-      console.log(result[0].total);
+      console.log(result);
       if(result[0].total==price)
     {
       res.status(200).json({
