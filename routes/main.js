@@ -455,7 +455,8 @@ router.get('/checktrackingid/:trackingId',(req,res,next)=>{
     .exec()
     .then(result => {
       console.log('shivy trackingId');
-      console.log(result[0].tracking_id);
+      console.log(result);
+      // console.log(result[0].tracking_id);
       if(result.length)
     {
       res.status(401).json({

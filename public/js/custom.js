@@ -82,6 +82,7 @@ console.log(product,el, "something");
 
       console.log(product);
 
+if(document.getElementById('new'+product.product._id)!='null') document.getElementById('new'+product.product._id).remove();
      var htmlText =  document.querySelector('.cartOrders');
      var cartOrder = '';
     cartOrder += '<div class="cart_order">';
@@ -173,7 +174,7 @@ console.log(product,el, "something");
        randProds.forEach(function(product,index){
          console.log(product);
          htmlText2.innerHTML += `
-         <div class="anythingcard">
+         <div class="anythingcard" id="new${product._id}">
            <div class="anythingimage">
              <img src="http://deliverykings.co.in/uploads/${product.prodImg}" alt="" />
            </div>
