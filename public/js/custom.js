@@ -82,7 +82,7 @@ console.log(product,el, "something");
 
       console.log(product);
 
-if(document.getElementById('new'+product.product._id)!='null') document.getElementById('new'+product.product._id).remove();
+if(document.getElementById('new'+product.product._id)!=null) document.getElementById('new'+product.product._id).remove();
      var htmlText =  document.querySelector('.cartOrders');
      var cartOrder = '';
     cartOrder += '<div class="cart_order">';
