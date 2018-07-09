@@ -1092,6 +1092,15 @@ grid-row-gap: 1rem;
 /* Mobile css */
 @media only screen and (max-width: 768px) {
 
+.searchbardiv
+{
+  grid-column-gap: 2vw;
+}
+
+.searchbardivinner2
+{
+  display:none;
+}
 
   .left-menu li
   {
@@ -1323,8 +1332,6 @@ grid-row-gap: 1.2vw;
     grid-row: 1;
   } */
 
-  .fullscreen-video-wrap img,
-  .fullscreen-video-wrap,
   .overlay {
     height: 390px!important;
   }
@@ -1353,7 +1360,6 @@ grid-row-gap: 1.2vw;
 
 }
 /* Mobile css ends */
-
 
 
 .logsignform2
@@ -5016,7 +5022,7 @@ transform: translate(0, -4px);
   color: #444;
   position: relative;
   width: 80%;
-  height: 400px;
+  height: 40vh;
   margin: 0 auto;
   box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.3);
 }
