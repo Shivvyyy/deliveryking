@@ -1185,6 +1185,7 @@ grid-row-gap: 1.2vw;
       display: block;
       padding-top: 2%;
           padding-bottom: 6%;
+          font-size:0.8rem;
     }
 
     .firstSmall
@@ -1341,7 +1342,7 @@ grid-row-gap: 1.2vw;
   }
 
   .food_order {
-    width: 37%;
+    width: 50%;
 
   }
 
