@@ -30,6 +30,8 @@ exports.postRes = function(request,response){
         var amount =  (table.indexOf("amount"))+1;
         amount =table[amount];
         var tracking_id = (table.indexOf("tracking_id"))+1;
+        tracking_id = table[tracking_id];
+
         console.log(tracking_id);
         console.log(mobileNo);
         console.log(orderId);
