@@ -8,6 +8,18 @@ padding: 3%;
 text-align: center;
 }
 
+
+.about-header
+  {
+    height: 122vh!important;
+
+  }
+
+  .banner
+  {
+  top: 6vw !important;
+  }
+
 .logout a
 {
   all: unset;
@@ -1350,9 +1362,17 @@ grid-row-gap: 1.2vw;
   }
 
   .about-header {
-    height: 122vh!important;
-    top: 6vw;
+    height: 73vh!important;
   }
+
+  .banner
+  {
+    height: 73vh !important;
+    top: 20vw !important;
+  }
+
+
+
 
   .anythingimage img
   {
@@ -2298,6 +2318,8 @@ transform: translate(0, -4px);
 .about-header {
   background: #F6F5F3;
 }
+
+
 
 .content-container-outer {
   padding: 3rem 1rem;
