@@ -626,6 +626,8 @@ function scrollFunction() {
         document.querySelector(".logo img").style.width = "110%";
         document.querySelector(".logo").style.marginLeft = "0.3%";
         document.getElementById("mainNav").style.paddingTop = "4%";
+        document.querySelector(".logo").style.width = "19vw !important";
+        document.querySelector(".logo").style.marginTop = "-3% !important";
     }
     else   document.querySelector(".small-navbar").style.display="none";
 
@@ -637,15 +639,24 @@ function scrollFunction() {
     {
         document.getElementById("main").style.marginTop = "-85%";
         document.querySelector(".secondSmall").style.display="block";
+        document.querySelector(".logo").style.width = "15vw";
+        document.querySelector(".logo").style.marginTop = "-3%";
+              document.querySelector(".logo").style.marginLeft = "1vw";
+            // document.querySelector(".logo img").style.width = "100% !important";
     }
-      else document.querySelector(".small-navbar").style.display="block";
+      else
+      {
+        document.querySelector(".small-navbar").style.display="block";
+              document.querySelector(".logo img").style.width = "9vw";
+                  document.querySelector(".logo").style.marginLeft = "3vw";
+      }
     // document.getElementById("navbar").style.top = "-50px";
       document.getElementById("mainNav").style.borderBottom = "none";
       document.getElementById("mainNav").style.position = "relative";
       document.getElementById("mainNav").style.background = "#000";
       document.getElementById("logoImage").src="../img/dk_logo.png";
-      document.querySelector(".logo").style.marginLeft = "3vw";
-      document.querySelector(".logo img").style.width = "9vw";
+
+
       document.querySelector(".logo").style.height = "4vw";
       document.querySelector(".featured_happy_wrapper").style.marginTop = "-5%";
       var elements =   document.getElementById("mainNav").querySelectorAll("a");

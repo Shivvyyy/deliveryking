@@ -270,7 +270,7 @@ header{
   width:100%;
   height: 120vh;
   overflow:hidden;
-  top: 8vw;
+  top: 6vw;
 }
 
 .fullscreen-video-wrap img{
@@ -1350,7 +1350,7 @@ grid-row-gap: 1.2vw;
   }
 
   .about-header {
-    height: 50vh!important;
+    height: 122vh!important;
   }
 
   .anythingimage img
@@ -1368,6 +1368,20 @@ grid-row-gap: 1.2vw;
   font-size: inherit;
   }
 
+  .logo
+  {
+    width: 15vw;
+    margin-top: -3%;
+    margin-left: 1vw;
+  }
+  .slider__button--next
+  {
+    right: -5.9% !important;
+  }
+  .slider__button--prev
+  {
+    left : -5.9% !important;
+  }
 }
 /* Mobile css ends */
 

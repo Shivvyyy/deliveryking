@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Admin Area | Dashboard</title>
+    <!-- Bootstrap core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+    <script src="http://cdn.ckeditor.com/4.6.1/standard/ckeditor.js"></script>
+    <script src="http://code.jquery.com/jquery-3.3.1.min.js"></script>
+
+    <style>
+      .loader {
+        border: 16px solid #f3f3f3;
+        border-radius: 50%;
+        border-top: 16px solid #3498db;
+        width: 120px;
+        height: 120px;
+        position: absolute;
+        -webkit-animation: spin 2s linear infinite;
+        animation: spin 2s linear infinite;
+        top: 80%;
+        left: 50%;
+        z-index: 1000;
+        display:none;
+    }
+    
+    /* Safari */
+    @-webkit-keyframes spin {
+      0% { -webkit-transform: rotate(0deg); }
+      100% { -webkit-transform: rotate(360deg); }
+    }
+    
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+    
+    .overlay {
+        background: #e9e9e9;   
+        display: none;        
+        position: absolute;   
+        top: 0;               
+        right: 0;             
+        bottom: 0;
+        left: 0;
+        opacity: 0.5;
+        z-index: 999;
+    }
+    </style>
+  </head>
+  <body>
+
+    <div class="loader"></div>
+    <nav class="navbar navbar-default">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="products.html">Delivery Kings</a>
+        </div>
+        <div id="navbar" class="collapse navbar-collapse">
+          <ul class="nav navbar-nav">
+            <li class="active"><a href="products.html">Dashboard</a></li>
+            <li><a href="category.html">Categories</a></li>
+            <li><a href="products.html">Products</a></li>
+            
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="#">Welcome</a></li>
+            <li><a href="login.html">Logout</a></li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </nav>
+
+    <header id="header">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-10">
+            <h1><span class="glyphicon glyphicon-cog" aria-hidden="true"></span> Dashboard <small>Manage Your Site</small></h1>
+          </div>
+          <div class="col-md-2">
+            <div class="dropdown create">
+              <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                Upload Product
+                <span class="caret"></span>
+              </button>
+              <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                
+                <li><a href="addProduct.html">Add Product</a></li>
+               
+                <li><a href="editProduct.html">Edit Product</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <section id="breadcrumb">
+      <div class="container">
+        <ol class="breadcrumb">
+          <li class="active">Dashboard</li>
+        </ol>
+      </div>
+    </section>
+
+    <section id="main">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-3">
+            <div class="list-group">
+              <a href="products.html" class="list-group-item active main-color-bg">
+                <span class="glyphicon glyphicon-cog" aria-hidden="true"></span> Dashboard
+              </a>
+              <a href="category.html" class="list-group-item"><span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span> Categories <span class="badge">6</span></a>
+              <a href="product.html" class="list-group-item"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> Products <span class="badge">20</span></a>
+              
+            </div>
+
+            
+          </div>
+          <div class="col-md-9">
+            <!-- Website Overview -->
+            <div class="panel panel-default">
+              <div class="panel-heading main-color-bg">
+                <h3 class="panel-title">Edit Product</h3>
+              </div>
+              <div class="panel-body">
+                <div class="col-md-12">
+                  <div class="well dash-box">
+                      <div class="overlay"> 
+                        </div>
+                    <form id="uploadProducts" enctype="multipart/form-data" method="POST">
+                       
+                        <div class="modal-body">
+                          <div class="form-group">
+                            <label>Product Name</label>
+                           <!-- <input type="text" class="form-control" id="name" placeholder="Product Name" name="name" required> -->
+                            <input type="text" class="form-control" id="name" name="name" placeholder="Product Name" required>
+                          </div>
+
+                          <div class="form-group">
+                            <label>Product Category</label><br>
+                            <select width="100%" name="category" id="category" required="true">
+                                <option value="" disabled selected>Select</option>
+                            </select>
+                          </div>
+
+                          <div class="form-group">
+                            <label>Product Description</label>
+                            <textarea name="prodDesc" id="prodDesc" class="form-control prodDesc" id="editor1" placeholder="Product Description" required></textarea>
+                          </div>
+
+                          <div class="form-group">
+                            <label>Serves</label>
+                            <input type="number" class="form-control" id="serve" min="1" max="10" name="serve" placeholder="Number of Serves" required>
+                          </div>
+
+                          <div class="form-group">
+                            <label>Full Price</label>
+                            <input type="number" class="form-control" id="fullPrice" name="fullPrice" placeholder="Full Plate Price" required>
+                          </div>
+
+                          <div class="form-group">
+                            <label>Half Price</label>
+                            <input type="number" class="form-control" id="price" placeholder="Half Plate Price" name="price" required>
+                          </div>
+
+                          <div class="checkbox">
+                            <input type="radio" id="veg" name="veg">Vegetarian</label><br>
+                            <input type="radio" id="nonVeg" name="veg">Non-Vegetarian</label>
+                          </div>
+
+      
+                          <br>
+                          <div class="checkbox">
+                            <label><input type="checkbox" name="mainSection1" id= "mainSection1">Main Section One</label>
+                          </div>
+                          <div class="checkbox">
+                            <label><input type="checkbox" name="mainSection2" id="mainSection2">Main Section Two</label>
+                          </div>
+
+                          <div class="form-group">
+                            <label>Product Short Description</label>
+                            <input type="text" class="form-control" id="prodItemDesc" name="prodItemDesc" placeholder="Add Short Description of Product" required>
+                          </div>
+                          <div class="form-group">
+                            <label>Product Image</label>
+                            <input type="file" id="prodImg" name="prodImg" accept="image/*;capture=camera" required>
+                          </div>
+                          
+                        </div>
+                        <div class="modal-footer">
+                          <input type ="submit" id="submit" class="btn btn-block" align="middle" value="Add" >
+                        </div>
+                      </form>
+                  </div>
+                </div>
+                
+              
+               
+              </div>
+              </div>
+
+            
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer id="footer">
+      <p>Copyright AdsVento, &copy; 2017</p>
+    </footer>
+
+    <!-- Modals -->
+
+    
+
+  <script>
+    var productName = document.getElementById('name');
+    var category = document.getElementById('category');
+    var prodDesc = document.getElementById('prodDesc');
+    var prodItemDesc = document.getElementById('prodItemDesc');
+    var prodDesc = document.getElementById('prodDesc');
+    var prodImg = document.getElementById('prodImg');
+    var serve = document.getElementById('serve');
+    var price = document.getElementById('price');
+    var fullPrice = document.getElementById('fullPrice');
+    var nonVeg = document.getElementById('nonVeg');
+    var veg = document.getElementById('veg');
+    var mainSection1 = document.getElementById('mainSection1');
+    var mainSection2 = document.getElementById('mainSection2');
+    var url_string = document.location.href; //window.location.href
+    var url = new URL(url_string);
+    var id = url.searchParams.get("id");
+    var productImage = null;
+
+    var xhr = new XMLHttpRequest();
+    xhr.onreadystatechange = function() {
+      if (this.readyState == 4 && this.status == 201) {
+        var data = JSON.parse(this.responseText);
+        var product = data.product;
+        productName.value = product.name;
+        prodDesc.value = product.prodDesc;
+        serve.value = product.serve;
+        price.value = product.price;
+        fullPrice.value = product.fullPrice;
+        veg.checked = product.veg ? true : false;  
+        nonVeg.checked = product.veg ? false : true;
+        mainSection1.checked = product.mainSection1 ? true : false;
+        mainSection2.checked = product.mainSection2 ? true : false;
+        productImage = product.prodImg;
+        prodItemDesc.value = product.prodItemDesc;  
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function(req, res, next) {
+          if (this.readyState == 4 && this.status == 201) {
+            const data = JSON.parse(this.responseText);   
+            for(var i=0; i<data.length; i++) {
+              var option = document.createElement('option');
+              var text = document.createTextNode(data[i].name);
+              option.appendChild(text);
+              document.getElementById('category').appendChild(option);
+              if(data[i]._id == product.category) {
+                setSelectedValue(category, data[i].name)
+              }
+            }
+          }
+        };
+        xhttp.open("GET", "http://deliverykings.co.in/categories", true);
+        xhttp.send();
+      }
+    }
+    xhr.open('GET', `http://deliverykings.co.in/foodCart/${id}`, false);
+    xhr.send();
+
+
+    function setSelectedValue(selectObj, valueToSet) {
+        for (var i = 0; i < selectObj.options.length; i++) {
+            if (selectObj.options[i].text== valueToSet) {
+                selectObj.options[i].selected = true;
+                return;
+            }
+        }
+    }
+
+
+
+    $("#uploadProducts").submit(function(e){
+       e.preventDefault(); //prevent default action
+       var forms = document.querySelectorAll('form');
+       var form_data = new FormData(forms[0]); //Creates new FormData
+
+       var http = new XMLHttpRequest();
+         http.open("PATCH", `http://deliverykings.co.in/updateProduct/${id}`, true);
+         http.onreadystatechange = function(res, req, next) {//Call a function when the state changes.
+             if(http.readyState == 4 && http.status == 200) {
+                var data = this.responseText;
+                 //alert("Your order has been successfully placed and we will contact you within next 48 hours.");
+                  forms[0].reset();
+                  window.location = "products.html";
+             }
+         }
+         http.send(form_data);
+    });
+  </script>
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/addProduct.js"></script>
+  </body>
+</html>

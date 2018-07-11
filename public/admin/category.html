@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Admin Area | Categories</title>
+    <!-- Bootstrap core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+    <script src="http://cdn.ckeditor.com/4.6.1/standard/ckeditor.js"></script>
+  </head>
+  <body>
+
+    <nav class="navbar navbar-default">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="products.html">Delivery Kings</a>
+        </div>
+        <div id="navbar" class="collapse navbar-collapse">
+          <ul class="nav navbar-nav">
+            <li><a href="products.html">Dashboard</a></li>
+            <li class="active"><a href="category.html">Categories</a></li>
+            <li><a href="products.html">Products</a></li>
+            
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="#">Welcome</a></li>
+            <li><a href="login.html">Logout</a></li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </nav>
+
+    <header id="header">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-10">
+            <h1><span class="glyphicon glyphicon-cog" aria-hidden="true"></span> Manage<small> Categories</small></h1>
+          </div>
+          <div class="col-md-2">
+            <div class="dropdown create">
+              <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                submit
+                <span class="caret"></span>
+              </button>
+              <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+               
+                <li><a href="addCategory.html">Add Category</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <section id="breadcrumb">
+      <div class="container">
+        <ol class="breadcrumb">
+          <li><a href="products.html">Dashboard</a></li>
+          <li class="active">Categories</li>
+        </ol>
+      </div>
+    </section>
+
+    <section id="main">
+      <div class="container">
+        <div class="row">
+          
+          <div class="col-md-9">
+            <!-- Website Overview -->
+            <div class="panel panel-default">
+              <div class="panel-heading main-color-bg">
+                <h3 class="panel-title">Categories</h3>
+              </div>
+              <div class="panel-body">
+               
+                <br>
+                <table id="categoryTable" class="table table-striped table-hover">
+                      <tr>
+                        <th>Name</th>
+                        <th>Edit</th>  
+                        <th>Delete</th>
+                      </tr>
+                      
+                    </table>
+              </div>
+              </div>
+
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer id="footer">
+      <p>Copyright AdsVento, &copy; 2017</p>
+    </footer>
+
+    <!-- Modals -->
+
+    <!-- Add Page -->
+    <div class="modal fade" id="addPage" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <form>
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Add Page</h4>
+      </div>
+      <div class="modal-body">
+        <div class="form-group">
+          <label>Page Title</label>
+          <input type="text" class="form-control" placeholder="Page Title">
+        </div>
+        <div class="form-group">
+          <label>Page Body</label>
+          <textarea name="editor1" class="form-control" placeholder="Page Body"></textarea>
+        </div>
+        <div class="checkbox">
+          <label>
+            <input type="checkbox"> Published
+          </label>
+        </div>
+        <div class="form-group">
+          <label>Meta Tags</label>
+          <input type="text" class="form-control" placeholder="Add Some Tags...">
+        </div>
+        <div class="form-group">
+          <label>Meta Description</label>
+          <input type="text" class="form-control" placeholder="Add Meta Description...">
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="submit" class="btn btn-primary">Save changes</button>
+      </div>
+    </form>
+    </div>
+  </div>
+</div>
+
+  <script>
+    var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function(req, res, next) {
+      if (this.readyState == 4 && this.status == 201) {
+        const data = JSON.parse(this.responseText);   
+        console.log('data', data);     
+        for(let i =0; i < data.length; i++) {
+          appendRow(data[i]);
+        }
+      }
+    };
+    xhttp.open("GET", "http://deliverykings.co.in/categories", true);
+    xhttp.send();
+
+    function appendRow(product) {
+      var tbl = document.getElementById('categoryTable'), // table reference
+        row = tbl.insertRow(tbl.rows.length),      // append table row
+        i;
+      // insert table cells to the new row
+      for (i = 0; i < 3; i++) {
+        if(i < 1) {
+          createCell(row.insertCell(i), product.name, 'row');
+        }
+        else if (i < 2) {
+          createLink(row.insertCell(i), 'Edit', product._id, 'btn btn-default');
+        } else {
+          createLink(row.insertCell(i), 'Delete', product._id, 'btn btn-danger');
+        }
+      }
+    }
+
+    function createCell(cell, text, style) {
+      var txt = document.createTextNode(text); 
+      cell.appendChild(txt);                    
+    }
+
+    function createLink(cell, text, href, style) {
+      var link = document.createElement("a");
+      var button = document.createElement("input");
+      button.type = "button";
+      button.value = text;
+      if(text === 'Edit') {
+        link.setAttribute('href', `/dkadmin/editCategory.html?id=${href}`);
+      } else {
+        link.setAttribute('href', `#`);
+        var deleteId = href;
+        console.log( typeof deleteId,'Deleted Id');
+        link.setAttribute('onclick','deleteReq("'+deleteId+'");');
+      }
+      button.setAttribute('class', style);        // set DIV class attribute
+      button.setAttribute('className', style);    // set DIV class attribute for IE (?!)
+      link.appendChild(button);
+      cell.appendChild(link); 
+    }
+
+    function deleteReq(deleteId){
+      var xhttp = new XMLHttpRequest();
+      xhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+          console.log('data deleted');
+          window.reload();
+        }
+      };
+      xhttp.open("DELETE", `http://deliverykings.co.in/deleteCategory/${deleteId}`, true);
+      xhttp.send();
+    }
+  </script>
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="crossorigin="anonymous"></script> 
+    <script src="js/bootstrap.min.js"></script>
+
+  </body>
+</html>
