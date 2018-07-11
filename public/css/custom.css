@@ -589,12 +589,11 @@ border-top: 1px solid #cacaca;
 {
   display: grid;
   grid-template-columns: auto auto;
-  grid-column-gap: 1vw;
+  grid-column-gap: 0.5vw;
   font-size: 1rem;
   padding: 10px;
 margin-bottom: 10px;
     background-color: whitesmoke;
-    padding: 1rem;
 }
 
 .anythingimage img
@@ -1361,7 +1360,12 @@ grid-row-gap: 1.2vw;
 
   .slider
   {
-    height: 25vh;
+    height: 25vh !important;
+  }
+
+  .anythingtitle
+  {
+  font-size: inherit;
   }
 
 }
