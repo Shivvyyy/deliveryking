@@ -272,15 +272,15 @@ if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(naviga
   document.getElementById("mySidenav").style.width = "100%";
      document.getElementById("mySidenav").style.paddingLeft = "5%";
      document.getElementById("mySidenav").style.paddingRight = "5%";
-     // document.getElementById("wholeBody").style.marginRight = "18%";
+     // document.getElementById("wholeBody").style.marginRight = "300px";
      document.querySelector(".cartOrders").style.display = "block";
 }
 else
 {
-  document.getElementById("mySidenav").style.width = "18%";
+  document.getElementById("mySidenav").style.width = "300px";
     document.getElementById("mySidenav").style.paddingLeft = "2%";
     document.getElementById("mySidenav").style.paddingRight = "2%";
-    document.getElementById("wholeBody").style.marginRight = "18%";
+    document.getElementById("wholeBody").style.marginRight = "300px";
     document.querySelector(".cartOrders").style.display = "block";
   }
     // document.getElementById("main").classList.remove("home_main");
@@ -358,14 +358,14 @@ function closeNav() {
         document.getElementById("mySidenav").style.width = "100%";
         document.getElementById("mySidenav").style.paddingLeft = "5%";
         document.getElementById("mySidenav").style.paddingRight = "5%";
-        // document.getElementById("wholeBody").style.marginRight = "18%";
+        // document.getElementById("wholeBody").style.marginRight = "300px";
       }
       else
       {
-        document.getElementById("mySidenav").style.width = "18%";
+        document.getElementById("mySidenav").style.width = "300px";
         document.getElementById("mySidenav").style.paddingLeft = "2%";
         document.getElementById("mySidenav").style.paddingRight = "2%";
-        document.getElementById("wholeBody").style.marginRight = "18%";
+        document.getElementById("wholeBody").style.marginRight = "300px";
       }
         document.querySelector(".cart_quan").innerText = parseInt(document.querySelector(".cart_quan").innerText) + 1;
       }
@@ -434,15 +434,15 @@ function closeNav() {
                 document.getElementById("mySidenav").style.width = "100%";
                 document.getElementById("mySidenav").style.paddingLeft = "5%";
                 document.getElementById("mySidenav").style.paddingRight = "5%";
-              // document.getElementById("wholeBody").style.marginRight = "18%";
+              // document.getElementById("wholeBody").style.marginRight = "300px";
             }
 
             else
             {
-              document.getElementById("mySidenav").style.width = "18%";
+              document.getElementById("mySidenav").style.width = "300px";
               document.getElementById("mySidenav").style.paddingLeft = "2%";
               document.getElementById("mySidenav").style.paddingRight = "2%";
-            document.getElementById("wholeBody").style.marginRight = "18%";
+            document.getElementById("wholeBody").style.marginRight = "300px";
             }
           document.querySelector(".cart_quan").innerText = parseInt(document.querySelector(".cart_quan").innerText) - 1;
       }
@@ -589,14 +589,14 @@ document.querySelector(".cart_quan").addEventListener("click",function(){
   document.getElementById("mySidenav").style.width = "100%";
   document.getElementById("mySidenav").style.paddingLeft = "5%";
   document.getElementById("mySidenav").style.paddingRight = "5%";
-  // document.getElementById("wholeBody").style.marginRight = "18%";
+  // document.getElementById("wholeBody").style.marginRight = "300px";
 }
 else
 {
-  document.getElementById("mySidenav").style.width = "18%";
+  document.getElementById("mySidenav").style.width = "300px";
   document.getElementById("mySidenav").style.paddingLeft = "2%";
   document.getElementById("mySidenav").style.paddingRight = "2%";
-  document.getElementById("wholeBody").style.marginRight = "18%";
+  document.getElementById("wholeBody").style.marginRight = "300px";
 }
 });
 
@@ -606,14 +606,14 @@ document.querySelector(".shopping_cart").addEventListener("click",function(){
   document.getElementById("mySidenav").style.width = "100%";
   document.getElementById("mySidenav").style.paddingLeft = "5%";
   document.getElementById("mySidenav").style.paddingRight = "5%";
-  // document.getElementById("wholeBody").style.marginRight = "18%";
+  // document.getElementById("wholeBody").style.marginRight = "300px";
 }
 else
 {
-  document.getElementById("mySidenav").style.width = "18%";
+  document.getElementById("mySidenav").style.width = "300px";
   document.getElementById("mySidenav").style.paddingLeft = "2%";
   document.getElementById("mySidenav").style.paddingRight = "2%";
-  document.getElementById("wholeBody").style.marginRight = "18%";
+  document.getElementById("wholeBody").style.marginRight = "300px";
 }
 });
 
@@ -623,14 +623,14 @@ document.querySelector(".openCartItems").addEventListener("click",function(){
   document.getElementById("mySidenav").style.width = "100%";
   document.getElementById("mySidenav").style.paddingLeft = "5%";
   document.getElementById("mySidenav").style.paddingRight = "5%";
-  // document.getElementById("wholeBody").style.marginRight = "18%";
+  // document.getElementById("wholeBody").style.marginRight = "300px";
 }
 else
 {
-  document.getElementById("mySidenav").style.width = "18%";
+  document.getElementById("mySidenav").style.width = "300px";
   document.getElementById("mySidenav").style.paddingLeft = "2%";
   document.getElementById("mySidenav").style.paddingRight = "2%";
-  document.getElementById("wholeBody").style.marginRight = "18%";
+  document.getElementById("wholeBody").style.marginRight = "300px";
 }
 });
 
