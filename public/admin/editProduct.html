@@ -120,8 +120,8 @@
               <a href="products.html" class="list-group-item active main-color-bg">
                 <span class="glyphicon glyphicon-cog" aria-hidden="true"></span> Dashboard
               </a>
-              <a href="category.html" class="list-group-item"><span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span> Categories <span class="badge">6</span></a>
-              <a href="product.html" class="list-group-item"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> Products <span class="badge">20</span></a>
+              <a href="category.html" class="list-group-item"><span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span> Categories</a>
+              <a href="product.html" class="list-group-item"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> Products</a>
               
             </div>
 
@@ -192,11 +192,11 @@
                             <label>Product Short Description</label>
                             <input type="text" class="form-control" id="prodItemDesc" name="prodItemDesc" placeholder="Add Short Description of Product" required>
                           </div>
-                          <div class="form-group">
+<!--                           <div class="form-group">
                             <label>Product Image</label>
                             <input type="file" id="prodImg" name="prodImg" accept="image/*;capture=camera" required>
                           </div>
-                          
+                           -->
                         </div>
                         <div class="modal-footer">
                           <input type ="submit" id="submit" class="btn btn-block" align="middle" value="Add" >
@@ -241,7 +241,7 @@
     var url_string = document.location.href; //window.location.href
     var url = new URL(url_string);
     var id = url.searchParams.get("id");
-    var productImage = null;
+    // var productImage = null;
 
     var xhr = new XMLHttpRequest();
     xhr.onreadystatechange = function() {
@@ -257,7 +257,7 @@
         nonVeg.checked = product.veg ? false : true;
         mainSection1.checked = product.mainSection1 ? true : false;
         mainSection2.checked = product.mainSection2 ? true : false;
-        productImage = product.prodImg;
+        // productImage = product.prodImg;
         prodItemDesc.value = product.prodItemDesc;  
         var xhttp = new XMLHttpRequest();
         xhttp.onreadystatechange = function(req, res, next) {
@@ -304,8 +304,8 @@
              if(http.readyState == 4 && http.status == 200) {
                 var data = this.responseText;
                  //alert("Your order has been successfully placed and we will contact you within next 48 hours.");
-                  forms[0].reset();
-                  window.location = "products.html";
+                forms[0].reset();
+                window.location = "products.html";
              }
          }
          http.send(form_data);
