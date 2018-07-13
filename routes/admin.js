@@ -238,6 +238,22 @@ router.get('/products/:id/:limit', function(req, res, next) {
 
 });
 
+router.get('/products/:id/:limit', function(req, res, next) {
+
+  Product
+    .find({ category: req.params.id })
+    .populate('category')
+    .limit(parseInt(req.params.limit))
+    .exec(function(err, products) {
+      if (err) return next(err);
+      // res.render('main/category', {
+      //   products: products
+      // });
+      res.status(201).json(products);
+    });
+
+});
+
 
 router.get('/allProducts/:id/:skip', function(req, res, next) {
 Product
@@ -245,6 +261,16 @@ Product
   .skip(parseInt(req.params.skip))
   .populate('category')
   .exec(function(err, products) {
+    if (err) return next(err);
+    // res.render('main/category', {
+    //   products: products
+    // });
+    res.status(201).json(products);
+  });
+});
+
+router.get('/allProducts', function(req, res, next) {
+  Product.find().exec(function(err, products) {
     if (err) return next(err);
     // res.render('main/category', {
     //   products: products

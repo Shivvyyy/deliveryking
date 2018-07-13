@@ -59,7 +59,6 @@
         </div>
       </div>
     </header>
-
     <section id="breadcrumb">
       <div class="container">
         <ol class="breadcrumb">
@@ -126,13 +125,14 @@
     var xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function(req, res, next) {
       if (this.readyState == 4 && this.status == 201) {
-        const data = JSON.parse(this.responseText);     
+        const data = JSON.parse(this.responseText);   
+        console.log(data, 'products');  
         for(let i =0; i < data.length; i++) {
           appendRow(data[i]);
         }
       }
     };
-    xhttp.open("GET", "http://deliverykings.co.in/allProducts/5ac8b8ac2b30e8216bf927a5/0", true);
+    xhttp.open("GET", "http://deliverykings.co.in/allProducts", true);
     xhttp.send();
 
     function appendRow(product) {
@@ -163,7 +163,7 @@
       button.type = "button";
       button.value = text;
       if(text === 'Edit') {
-        link.setAttribute('href', `/dkadmin/editProduct.html?id=${href}`);
+        link.setAttribute('href', `/editProduct.html?id=${href}`);
       } else {
         link.setAttribute('href', `#`);
         var deleteId = href;
