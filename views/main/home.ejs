@@ -108,7 +108,7 @@
     <div class="food_price">
       Rs <%= products[i].price %>
     </div>
-    <div class="food-content">Aloo/Mushroom/Water</div>
+    <div class="food-content"><%= products[i].prodItemDesc %></div>
     <% var productId = products[i]._id %>
     <div class="food_order" onClick='window.location="food/<%=(products[i].name).replace(/ /g, "-")%>"'>ORDER</div>
   </div>
@@ -134,7 +134,7 @@
     <div class="food_price">
       Rs <%= products[i].price %>
     </div>
-    <div class="food-content">Aloo/Mushroom/Water</div>
+    <div class="food-content"><%= products[i].prodItemDesc %></div>
       <div class="food_order" onClick='window.location="food/<%=(products[i].name).replace(/ /g, "-")%> "' >ORDER</div>
   </div>
   <% }} %>
@@ -270,7 +270,7 @@ xhr.onload = function (e) {
               div += '<img src="../img/veg-icon.png" class="food_icon">';
               div +=  '&nbsp;'+product.name+'</span> </div>';
               div +=  '<div class="food-item-price">&nbsp;&nbsp;Rs. '+product.price+'</div>';
-              div +=    '  <div class="food-item-content">Aloo/Mushroom</div>';
+              div +=    '  <div class="food-item-content">' +product.prodItemDesc+'</div>';
               // var sessionCart = JSON.parse(sessionStorage.getItem("cart"));
                 var productId = "'"+product._id+"'";
                 var check = false;
@@ -386,7 +386,7 @@ function loadAll(thisOne,category, callback)
          div += '<img src="../img/veg-icon.png" class="food_icon">';
          div +=  '&nbsp;'+product.name+'</span> </div>';
          div +=  '<div class="food-item-price">&nbsp;&nbsp;Rs. '+product.price+'</div>';
-         div +=    '  <div class="food-item-content">Aloo/Mushroom</div>';
+         div +=    '  <div class="food-item-content">' +product.prodItemDesc+ '</div>';
            var productId = "'"+product._id+"'";
            var check = false;
              if(sessionCart!==null)

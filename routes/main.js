@@ -10,7 +10,7 @@ var crypto = require('crypto');
 
 
 router.get('/', function(req, res, next) {
-  Product.find({ mainSection1: true }, { mainSection2: true } ).select("name _id prod_short_desc price mainSection1 nonVeg").exec(function(err, products) {
+  Product.find({ $or: [ { mainSection1: true }, { mainSection2: true } ] }).select("name _id prodItemDesc prod_short_desc price mainSection2 mainSection1 nonVeg").exec(function(err, products) {
 
     if (err) return next(err);
     else{
@@ -19,10 +19,6 @@ router.get('/', function(req, res, next) {
           products:products,
             user : req.user
         });
-
-      // res.json({
-      //   products:products
-      // });
     }
 
 });
