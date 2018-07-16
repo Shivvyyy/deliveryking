@@ -421,6 +421,8 @@ router.get('/checkorder/:orderId/:price',(req,res,next)=>{
       console.log(result);
       if(result[0].total==price)
     {
+      console.log(result[0].total);
+      console.log(price);
       res.status(200).json({
         message: "Amount Verified Successfully.",
       });
