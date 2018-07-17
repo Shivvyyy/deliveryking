@@ -305,15 +305,16 @@ Category
 
 
 //update product
-router.patch('/updateProduct/:productId', function(req, res, next) {
+router.patch('/updateProduct/:productId', upload.any('yuuy'), function(req, res, next) {
   const id = req.params.productId;
   console.log(req.body);
+  const body = req.body;
   console.log("shivy log this");
   const updateOps = {};
-  for (const ops of req.body) {
-    updateOps[ops.propName] = ops.value;
-  }
-  Product.update({ _id: id }, { $set: updateOps })
+  // for (const ops of req.body) {
+  //   updateOps[ops.propName] = ops.value;
+  // }
+  Product.update({ _id: id }, { $set: body })
     .exec()
     .then(result => {
       res.status(200).json({
