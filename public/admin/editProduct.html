@@ -156,7 +156,7 @@
 
                           <div class="form-group">
                             <label>Product Description</label>
-                            <textarea name="prodDesc" id="prodDesc" class="form-control prodDesc" id="editor1" placeholder="Product Description" required></textarea>
+                            <textarea name="prodDesc" id="prodDesc" class="form-control prodDesc" id="editor1" placeholder="Product Description"></textarea>
                           </div>
 
                           <div class="form-group">
@@ -165,13 +165,13 @@
                           </div>
 
                           <div class="form-group">
-                            <label>Full Price</label>
-                            <input type="number" class="form-control" id="fullPrice" name="fullPrice" placeholder="Full Plate Price" required>
+                            <label>Half Price</label>
+                            <input type="number" class="form-control" id="fullPrice" name="fullPrice" placeholder="Half Plate Price">
                           </div>
 
                           <div class="form-group">
-                            <label>Half Price</label>
-                            <input type="number" class="form-control" id="price" placeholder="Half Plate Price" name="price" required>
+                            <label>Full Price</label>
+                            <input type="number" class="form-control" id="price" placeholder="Full Plate Price" name="price">
                           </div>
 
                           <div class="checkbox">
@@ -190,7 +190,7 @@
 
                           <div class="form-group">
                             <label>Product Short Description</label>
-                            <input type="text" class="form-control" id="prodItemDesc" name="prodItemDesc" placeholder="Add Short Description of Product" required>
+                            <input type="text" class="form-control" id="prodItemDesc" name="prodItemDesc" placeholder="Add Short Description of Product">
                           </div>
 <!--                           <div class="form-group">
                             <label>Product Image</label>
@@ -243,44 +243,113 @@
     var id = url.searchParams.get("id");
     // var productImage = null;
 
-    var xhr = new XMLHttpRequest();
-    xhr.onreadystatechange = function() {
-      if (this.readyState == 4 && this.status == 201) {
-        var data = JSON.parse(this.responseText);
-        var product = data.product;
-        productName.value = product.name;
-        prodDesc.value = product.prodDesc;
-        serve.value = product.serve;
-        price.value = product.price;
-        fullPrice.value = product.fullPrice;
-        veg.checked = product.veg ? true : false;  
-        nonVeg.checked = product.veg ? false : true;
-        mainSection1.checked = product.mainSection1 ? true : false;
-        mainSection2.checked = product.mainSection2 ? true : false;
-        // productImage = product.prodImg;
-        prodItemDesc.value = product.prodItemDesc;  
-        var xhttp = new XMLHttpRequest();
-        xhttp.onreadystatechange = function(req, res, next) {
-          if (this.readyState == 4 && this.status == 201) {
-            const data = JSON.parse(this.responseText);   
-            for(var i=0; i<data.length; i++) {
-              var option = document.createElement('option');
-              var text = document.createTextNode(data[i].name);
-              option.appendChild(text);
-              document.getElementById('category').appendChild(option);
-              if(data[i]._id == product.category) {
-                setSelectedValue(category, data[i].name)
-              }
-            }
-          }
-        };
-        xhttp.open("GET", "http://deliverykings.co.in/categories", true);
-        xhttp.send();
-      }
-    }
-    xhr.open('GET', `http://deliverykings.co.in/foodCart/${id}`, false);
-    xhr.send();
+    // var xhr = new XMLHttpRequest();
+    // xhr.onreadystatechange = function() {
+    //   if (this.readyState == 4 && this.status == 201) {
+    //     var data = JSON.parse(this.responseText);
+    //     var product = data.product;
+    //     productName.value = product.name;
+    //     prodDesc.value = product.prodDesc;
+    //     serve.value = product.serve;
+    //     price.value = product.price;
+    //     fullPrice.value = product.fullPrice;
+    //     veg.checked = product.veg ? true : false;  
+    //     nonVeg.checked = product.veg ? false : true;
+    //     mainSection1.checked = product.mainSection1 ? true : false;
+    //     mainSection2.checked = product.mainSection2 ? true : false;
+    //     // productImage = product.prodImg;
+    //     prodItemDesc.value = product.prodItemDesc;  
+    //     var xhttp = new XMLHttpRequest();
+    //     xhttp.onreadystatechange = function(req, res, next) {
+    //       if (this.readyState == 4 && this.status == 201) {
+    //         const data = JSON.parse(this.responseText);   
+    //         for(var i=0; i<data.length; i++) {
+    //           var option = document.createElement('option');
+    //           var text = document.createTextNode(data[i].name);
+    //           option.appendChild(text);
+    //           document.getElementById('category').appendChild(option);
+    //           if(data[i]._id == product.category) {
+    //             setSelectedValue(category, data[i].name)
+    //           }
+    //         }
+    //       }
+    //     };
+    //     xhttp.open("GET", "http://deliverykings.co.in/categories", true);
+    //     xhttp.send();
+    //   }
+    // }
+    // xhr.open('GET', `http://deliverykings.co.in/foodCart/${id}`, false);
+    // xhr.send();
 
+    const fetchProductData = fetch(`http://deliverykings.co.in/foodCart/${id}`)
+      .then(response => response.json())
+      
+
+    const fetchCategoryData = fetch(`http://deliverykings.co.in/categories`)
+      .then(response => response.json())
+      
+
+    var combinedData = {"productData":{},"categoryData":{}};
+
+    Promise.all([fetchProductData, fetchCategoryData]).then((values) => {
+      combinedData["productData"] = values[0];
+      combinedData["categoryData"] = values[1];
+      var product = combinedData["productData"].product;
+      productName.value = product.name;
+      prodDesc.value = product.prodDesc;
+      serve.value = product.serve;
+      price.value = product.price;
+      fullPrice.value = product.fullPrice;
+      veg.checked = product.veg ? true : false;  
+      nonVeg.checked = product.veg ? false : true;
+      mainSection1.checked = product.mainSection1 ? true : false;
+      mainSection2.checked = product.mainSection2 ? true : false;
+      // productImage = product.prodImg;
+      prodItemDesc.value = product.prodItemDesc; 
+      var categoryData = combinedData["categoryData"]
+      for(var i=0; i<categoryData.length; i++) {
+        var option = document.createElement('option');
+        var text = document.createTextNode(categoryData[i].name);
+        option.appendChild(text);
+        document.getElementById('category').appendChild(option);
+        if(categoryData[i]._id == product.category) {
+          setSelectedValue(category, categoryData[i].name)
+        }
+      }
+    })
+    function sendData() {
+      var forms = document.querySelectorAll('form');
+      var formData  = new FormData(forms[0]);
+
+      if(document.getElementById('veg').checked)
+      {
+        formData.set('veg', true);
+        formData.set('nonVeg', false);
+      }
+      if(document.getElementById('nonVeg').checked)
+      {
+        alert('nonveg checked')
+        formData.set('nonVeg', true);
+        formData.set('veg', false);
+      }
+      if(document.getElementById('mainSection1').checked && !document.getElementById('mainSection2').checked)
+      {
+        formData.set('mainSection1', true);
+        formData.set('mainSection2', false);
+      }
+      if(document.getElementById('mainSection2').checked && !document.getElementById('mainSection1').checked)
+      {
+        formData.set('mainSection2', true);
+        formData.set('mainSection1', false);
+      }
+
+      fetch(`http://deliverykings.co.in/updateProduct/${id}`, {
+        method: 'PATCH',
+        body: formData
+      }).then(function (response) {
+         console.log(response);
+      });
+    }
 
     function setSelectedValue(selectObj, valueToSet) {
         for (var i = 0; i < selectObj.options.length; i++) {
@@ -295,20 +364,21 @@
 
     $("#uploadProducts").submit(function(e){
        e.preventDefault(); //prevent default action
-       var forms = document.querySelectorAll('form');
-       var form_data = new FormData(forms[0]); //Creates new FormData
-
-       var http = new XMLHttpRequest();
-         http.open("PATCH", `http://deliverykings.co.in/updateProduct/${id}`, true);
-         http.onreadystatechange = function(res, req, next) {//Call a function when the state changes.
-             if(http.readyState == 4 && http.status == 200) {
-                var data = this.responseText;
-                 //alert("Your order has been successfully placed and we will contact you within next 48 hours.");
-                forms[0].reset();
-                window.location = "products.html";
-             }
-         }
-         http.send(form_data);
+//        var forms = document.querySelectorAll('form');
+//        var form_data = new FormData(forms[0]); //Creates new FormData
+// 
+//        var http = new XMLHttpRequest();
+//          http.open("PATCH", `http://deliverykings.co.in/updateProduct/${id}`, true);
+//          http.onreadystatechange = function(res, req, next) {//Call a function when the state changes.
+//              if(http.readyState == 4 && http.status == 200) {
+//                 var data = this.responseText;
+//                  //alert("Your order has been successfully placed and we will contact you within next 48 hours.");
+//                 forms[0].reset();
+//                 window.location = "products.html";
+//              }
+//          }
+//          http.send(form_data);
+       sendData();
     });
   </script>
 
