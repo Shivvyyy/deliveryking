@@ -5175,3 +5175,18 @@ margin-top: 16%;
 font-size: 2rem;
 font-weight: 500;
 }
+
+
+@media (min-width: 720px) {
+  .food-item-content,
+  .food_order {
+    height: 1.75vw;
+  }
+}
+
+@media (max-width: 720px) {
+  .food-item-content,
+  .food_order {
+    height: 6vw;
+  }
+}
