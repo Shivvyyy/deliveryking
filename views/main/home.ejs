@@ -274,7 +274,7 @@ xhr.onload = function (e) {
               div += '<img src="../img/veg-icon.png" class="food_icon">';
               div +=  '&nbsp;'+product.name+'</span> </div>';
               div +=  '<div class="food-item-price">&nbsp;&nbsp;Rs. '+product.price+'</div>';
-              div +=    ' <div style="display: flex; justify-content: flex-end;"> <div class="food-item-content">' +product.prodItemDesc+'</div></div>';
+              div +=    ' <div class="food-item-content">' +product.prodItemDesc+'</div>';
               // var sessionCart = JSON.parse(sessionStorage.getItem("cart"));
                 var productId = "'"+product._id+"'";
                 var check = false;
@@ -296,7 +296,7 @@ xhr.onload = function (e) {
               }
             });
           }
-            if(!check) div +=  '<div class="order_btn" id="torto'+product._id+'" onclick="openNav('+productId+',this);">Add To Cart</div>';
+            if(!check) div +=  '<div style="display: flex; justify-content: flex-end;"><div class="order_btn" id="torto'+product._id+'" onclick="openNav('+productId+',this);">Add To Cart</div></div>';
               div +=  '</div>';
               div +=   '</div>';
 
