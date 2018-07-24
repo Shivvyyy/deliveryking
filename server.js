@@ -89,6 +89,8 @@ app.engine('ejs', engine);
 app.set('view engine', 'ejs');
 
 
+require('./config/passport.js')(passport); // pass passport for configuration
+require('./routes/auth.js')(app, passport); // load our routes and pass in our app and fully configured passport
 
 //requiring  routes
 
@@ -98,14 +100,12 @@ var adminRoutes = require('./routes/admin');
 
 
 //routes middleware
-app.use(mainRoutes);
 app.use(adminRoutes);
+app.use(mainRoutes);
 
-
-require('./config/passport.js')(passport); // pass passport for configuration
-require('./routes/auth.js')(app, passport); // load our routes and pass in our app and fully configured passport
-
-
+app.get('*', function(req, res){
+  res.redirect('/', 302);
+});
 
 
 app.listen(secret.port, function(err) {
