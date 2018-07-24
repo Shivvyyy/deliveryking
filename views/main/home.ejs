@@ -111,7 +111,7 @@
     <div class="food-content"><%= products[i].prodItemDesc %></div>
     <% var productId = products[i]._id %>
     <div style="display: flex; justify-content: flex-end;">
-      <div class="food_order" onClick='window.location="food/<%=(products[i].name).replace(/ /g, "-")%>"'>ORDER</div>
+      <div class="food_order" onClick='window.location="food/<%=(products[i].name).replace(/ /g, "-")%>"'>Add To Cart</div>
     </div>
   </div>
   <% }} %>
@@ -138,7 +138,7 @@
     </div>
     <div class="food-content"><%= products[i].prodItemDesc %></div>
     <div style="display: flex; justify-content: flex-end;">
-      <div class="food_order" onClick='window.location="food/<%=(products[i].name).replace(/ /g, "-")%> "' >ORDER</div>
+      <div class="food_order" onClick='window.location="food/<%=(products[i].name).replace(/ /g, "-")%> "' >Add To Cart</div>
     </div>
   </div>
   <% }} %>
