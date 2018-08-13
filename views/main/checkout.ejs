@@ -773,7 +773,8 @@ else
 }
 };
 
-xhttppos.open("POST", "http://posistapi.com/api/v1/online_order/push?customer_key=8f1c6ad4ab658f3715540b625a8c54b4fc76028e7bfc7c8fe457907fe070f29a0857886d5b078e9a3a5f99b6fc78ec4d", true);
+xhttppos.open("POST", "http://posistapi.com/api/v1/online_order/push?customer_key=cdb2dab618f68c1810ce8870e32556071d912ca78dcc781a33a423fb032276f5644a5f1f2a9158ed72af4d4284999588
+", true);
 xhttppos.setRequestHeader("Content-type", "application/json");
 xhttppos.setRequestHeader("Authorization", "Basic U3l4UTdkX1ZROlN1dlM5VE9yNkgyVW1RaXNDWnBXbytGMEJTSFRJUlpEazJLT1JzalRDQXM9");
 xhttppos.send(JSON.stringify(body));
