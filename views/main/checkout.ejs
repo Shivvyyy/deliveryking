@@ -470,7 +470,8 @@ var phone = document.getElementById('pac-input3').value;
 var street = document.getElementById('pac-input2').value;
 var location = document.getElementById('pac-input').value;
 
-  var addrBody = {
+  var addrBody =
+  {
   pickerName:pickerName,
   phone:phone,
   location:location,
@@ -489,7 +490,6 @@ xhttp.send(JSON.stringify(addrBody));
    if(radioBtns[i].checked){
      // document.getElementById("output").textContent = radioBtns[i].value;
      var id = radioBtns[i].getAttribute("id");
-
      // alert(id);
      console.log((document.getElementById("addrval"+id)).value);
 
@@ -731,7 +731,57 @@ var geocoder = geocoder = new google.maps.Geocoder();
           var xhttp = new XMLHttpRequest();
 xhttp.onreadystatechange = function() {
   if (this.readyState == 4 && this.status == 201) {
-  location.replace("/?success=true");
+      let itemsArr = [];
+      JSON.parse(sessionStorage.getItem("cart")).items.forEach(function(item){
+        const temp = {
+        id: item._id,
+        quanity: item.quanity,
+        name: item.name
+        }
+        itemArr.push(temp);
+      });
+
+
+    //posist API starts
+    var body = {
+	"source": {
+		"name": "PiedPiper",
+		"id": "Syx3IXCI",
+		"order_id": "12345"
+	},
+	"payments": {
+		"type": "COD"
+	},
+	"customer": {
+		"firstname": customerName,
+		"mobile": customerContact,
+		"address1": customerContact
+	},
+	"tabType": "delivery",
+	"items": itemArr
+};
+    var xhttppos = new XMLHttpRequest();
+xhttppos.onreadystatechange = function() {
+if (this.readyState == 4 && this.status == 201) {
+  alert("topology");
+console.log("topology topology shivy");
+console.log("topology topology shivy");
+}
+else
+{
+  alert("here");
+}
+};
+
+xhttppos.open("POST", "http://posistapi.com/api/v1/online_order/push?customer_key=8f1c6ad4ab658f3715540b625a8c54b4fc76028e7bfc7c8fe457907fe070f29a0857886d5b078e9a3a5f99b6fc78ec4d", true);
+xhttppos.setRequestHeader("Content-type", "application/json");
+xhttppos.setRequestHeader("Authorization", "Basic U3l4UTdkX1ZROlN1dlM5VE9yNkgyVW1RaXNDWnBXbytGMEJTSFRJUlpEazJLT1JzalRDQXM9");
+xhttppos.send(JSON.stringify(body));
+    //posist api ends
+
+  // location.replace("/?success=true");
+
+  //
   }
 };
 xhttp.open("POST", "/add-order", true);
