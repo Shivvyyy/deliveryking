@@ -735,10 +735,11 @@ xhttp.onreadystatechange = function() {
       JSON.parse(sessionStorage.getItem("cart")).items.forEach(function(item){
         const temp = {
         id: item._id,
-        quanity: item.quanity,
+        quantity: item.quantity,
         name: item.name
         }
         itemArr.push(temp);
+        console.log(itemArr);
       });
 
 
@@ -763,13 +764,13 @@ xhttp.onreadystatechange = function() {
     var xhttppos = new XMLHttpRequest();
 xhttppos.onreadystatechange = function() {
 if (this.readyState == 4 && this.status == 201) {
-  alert("topology");
+ // alert("topology");
 console.log("topology topology shivy");
 console.log("topology topology shivy");
 }
 else
 {
-  alert("here");
+//  alert("here");
 }
 };
 
@@ -779,7 +780,7 @@ xhttppos.setRequestHeader("Authorization", "Basic U3l4UTdkX1ZROlN1dlM5VE9yNkgyVW
 xhttppos.send(JSON.stringify(body));
     //posist api ends
 
-  // location.replace("/?success=true");
+  location.replace("/?success=true");
 
   //
   }
